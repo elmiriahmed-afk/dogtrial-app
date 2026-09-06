@@ -16,6 +16,9 @@ workflows:
     scripts:
       - name: Install npm dependencies
         script: npm install
+      - name: Add iOS platform (first run only)
+        script: |
+          test -d ios || npx cap add ios
       - name: Capacitor sync
         script: npx cap sync ios
       - name: Install CocoaPods
