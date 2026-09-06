@@ -3,9 +3,9 @@ workflows:
     name: DogTrial iOS
     max_build_duration: 60
     instance_type: mac_mini_m2
+    integrations:
+      app_store_connect: dogtrial_asc
     environment:
-      integrations:
-        app_store_connect: dogtrial_asc
       groups:
         - app_store_credentials
       vars:
