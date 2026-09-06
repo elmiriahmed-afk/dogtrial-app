@@ -1,4 +1,9 @@
-<title>The 30-Day Dog</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DogTrial</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
@@ -195,12 +200,15 @@
   .big-num{font-family:"Fraunces",serif; font-size:40px; font-weight:600;}
 
   .top-actions{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .reset-confirm{display:flex; align-items:center; gap:8px;}
 
   @media (prefers-reduced-motion: reduce){
     .meter-fill, .cmd-fill{transition:none;}
   }
 </style>
 
+</head>
+<body>
 <div id="app"></div>
 
 <script>
@@ -209,8 +217,14 @@
   var STORAGE_KEY = "thirtyDayDog_v1";
   var HOUR = 3600000;
   var DOGDAYS_PER_HOUR = 7/24;
-  var STAGE_BOUNDS = { puppy:[0,60], adolescent:[60,240], adult:[240,Infinity] };
-  var STAGE_LABEL = { puppy:"Puppy", adolescent:"Adolescent", adult:"Adult" };
+  var STAGE_BOUNDS = { puppy:[0,60], adolescent:[60,240], adult:[240,2555], senior:[2555,Infinity] };
+  var STAGE_LABEL = { puppy:"Puppy", adolescent:"Adolescent", adult:"Adult", senior:"Senior" };
+  var START_STAGES = [
+    { id:"puppy", label:"Puppy", note:"Just weaned, a few weeks old.", startDogDays:14 },
+    { id:"adolescent", label:"Adolescent", note:"Past the newborn stage, still learning the rules.", startDogDays:120 },
+    { id:"adult", label:"Adult", note:"Fully grown, settled habits already in place.", startDogDays:600 },
+    { id:"senior", label:"Senior", note:"Older dog — slower, needs closer health attention.", startDogDays:2800 }
+  ];
   var FEED_INTERVAL = { puppy:24/5, adolescent:24/2, adult:24/1 }; // 5x/day, 2x/day, 1x/day
   var BLADDER_INTERVAL = { puppy:3, adolescent:6, adult:8 };
   var WALK_INTERVAL_HOURS = 12; // 2 walks/day, every breed and stage — research is consistent on this
@@ -2983,7 +2997,8 @@
   function stageOf(dogDays){
     if (dogDays < STAGE_BOUNDS.puppy[1]) return "puppy";
     if (dogDays < STAGE_BOUNDS.adolescent[1]) return "adolescent";
-    return "adult";
+    if (dogDays < STAGE_BOUNDS.adult[1]) return "adult";
+    return "senior";
   }
   function fmtHours(h){
     if (h < 1) return Math.round(h*60) + "m";
@@ -3007,6 +3022,8 @@
   var view = "onboarding";
   var pendingBreed = BREEDS[0].id;
   var pendingHousing = HOUSING[0].id;
+  var pendingStartStage = START_STAGES[0].id;
+  var resetConfirmOpen = false;
   var trainCtx = null; // {commandId, round, results:[], animId, pos, zoneLeft, zoneWidth}
   var liveTimer = null;
 
@@ -3021,13 +3038,13 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e){}
   }
 
-  function newDog(name, breedId, housingId){
+  function newDog(name, breedId, housingId, startDogDays){
     var now = Date.now();
     var training = {};
     COMMANDS.forEach(function(c){ training[c.id] = 0; });
     return {
       name: name, breedId: breedId, housingId: housingId,
-      startedAt: now, lastTick: now, dogDays: 0,
+      startedAt: now, lastTick: now, dogDays: startDogDays || 0,
       hunger:0, bladder:0, energy:0, bond:40, health:100, houseTraining:5,
       training: training, lastTrainedAt: 0,
       away: null,
@@ -3270,6 +3287,13 @@
         '<div class="house-risk"><span class="house-risk-tag">Main risk</span>'+esc(h.risk)+'</div></div>' +
         '</button>';
     }).join("");
+    var stageCards = START_STAGES.map(function(s){
+      var sel = s.id === pendingStartStage;
+      return '<button class="breed-card'+(sel?' selected':'')+'" data-start-stage="'+s.id+'">' +
+        '<div><div class="name">'+esc(s.label)+'</div>' +
+        '<div class="catch">'+esc(s.note)+'</div></div>' +
+        '</button>';
+    }).join("");
     var selectedBreed = byId(pendingBreed);
     var upfront = VET_STARTER_COST + GEAR_STARTER_COST;
     var monthlyFood = estimateMonthlyFoodCost(selectedBreed);
@@ -3285,6 +3309,10 @@
         '</div>' +
         '<div class="section-title">Choose a breed</div>' +
         '<div class="breed-grid">'+cards+'</div>' +
+      '</div>' +
+      '<div class="card" style="margin-top:14px">' +
+        '<div class="section-title">How old is the dog?</div>' +
+        '<div class="breed-grid">'+stageCards+'</div>' +
       '</div>' +
       '<div class="card" style="margin-top:14px">' +
         '<div class="section-title">What this actually costs</div>' +
@@ -3331,7 +3359,13 @@
       '<div class="card">' +
         '<div class="top-actions">' +
           '<span class="badge '+stage+'">'+STAGE_LABEL[stage]+'</span>' +
-          '<button class="btn-ghost" id="reset-btn">Reset</button>' +
+          (resetConfirmOpen ?
+            '<span class="reset-confirm">' +
+              '<span class="muted" style="font-size:12px;">Start over?</span>' +
+              '<button class="btn-ghost" id="reset-confirm-btn" style="color:var(--bad)">Yes</button>' +
+              '<button class="btn-ghost" id="reset-cancel-btn">Cancel</button>' +
+            '</span>' :
+            '<button class="btn-ghost" id="reset-btn">Reset</button>') +
         '</div>' +
         '<div class="dog-head">' +
           '<div class="dog-portrait">'+dogVisual(breed, stage)+'</div>' +
@@ -3553,11 +3587,18 @@
           render();
         });
       });
+      root.querySelectorAll("[data-start-stage]").forEach(function(el){
+        el.addEventListener("click", function(){
+          pendingStartStage = el.getAttribute("data-start-stage");
+          render();
+        });
+      });
       var startBtn = document.getElementById("start-btn");
       if (startBtn) startBtn.addEventListener("click", function(){
         var nameInput = document.getElementById("dogname");
         var name = (nameInput.value || "").trim() || "The dog";
-        state = newDog(name, pendingBreed, pendingHousing);
+        var startStage = START_STAGES.filter(function(s){ return s.id === pendingStartStage; })[0] || START_STAGES[0];
+        state = newDog(name, pendingBreed, pendingHousing, startStage.startDogDays);
         save();
         view = "home";
         render();
@@ -3583,13 +3624,23 @@
       document.getElementById("journal-btn").addEventListener("click", function(){
         view = "journal"; render();
       });
-      document.getElementById("reset-btn").addEventListener("click", function(){
-        if (window.confirm("Start over with a new dog? This clears the current trial.")){
-          state = null;
-          try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
-          view = "onboarding";
-          render();
-        }
+      var resetBtn = document.getElementById("reset-btn");
+      if (resetBtn) resetBtn.addEventListener("click", function(){
+        resetConfirmOpen = true;
+        render();
+      });
+      var resetConfirmBtn = document.getElementById("reset-confirm-btn");
+      if (resetConfirmBtn) resetConfirmBtn.addEventListener("click", function(){
+        resetConfirmOpen = false;
+        state = null;
+        try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+        view = "onboarding";
+        render();
+      });
+      var resetCancelBtn = document.getElementById("reset-cancel-btn");
+      if (resetCancelBtn) resetCancelBtn.addEventListener("click", function(){
+        resetConfirmOpen = false;
+        render();
       });
       root.querySelectorAll("[data-train]").forEach(function(el){
         el.addEventListener("click", function(){
@@ -3956,3 +4007,5 @@
   document.addEventListener("DOMContentLoaded", init);
 })();
 </script>
+</body>
+</html>
