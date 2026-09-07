@@ -3059,8 +3059,58 @@
       settings: { notifications:false, gpsWalks:false, stepWalks:false },
       lastNotified: { hunger:0, bladder:0, energy:0 },
       lastHomeAccidentAt: 0,
+      ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
       journal: [{ ts: now, text: name + " came home. The trial starts now." }]
     };
+  }
+  function bumpOwnerLoad(amount){
+    state.ownerLoad = clamp((state.ownerLoad||0) + amount);
+  }
+  function ownerLoadLabel(v){
+    if (v < 30) return "Manageable";
+    if (v < 60) return "Building up";
+    if (v < 85) return "Heavy";
+    return "Overwhelming";
+  }
+  function costSoFar(breed, realDays){
+    var days = Math.max(0, realDays);
+    var food = estimateMonthlyFoodCost(breed) / 30 * days;
+    return Math.round(VET_STARTER_COST + GEAR_STARTER_COST + food);
+  }
+  function compatibilityScore(){
+    var avgTraining = COMMANDS.reduce(function(s,c){ return s + state.training[c.id]; }, 0) / COMMANDS.length;
+    var score = 70
+      + (state.houseTraining - 50) * 0.3
+      + (avgTraining - 50) * 0.2
+      - state.accidentsCount * 3
+      - Math.max(0, state.ownerLoad - 50) * 0.4;
+    return Math.max(0, Math.min(100, Math.round(score)));
+  }
+  function biggestChallenge(){
+    var candidates = [
+      { label:"Cleanup & house-training", score: state.accidentsCount*10 },
+      { label:"Time spent alone", score: state.totalHoursAway },
+      { label:"Keeping up day to day", score: state.ownerLoad },
+      { label:"Bond & settling in", score: 100 - state.bond }
+    ];
+    candidates.sort(function(a,b){ return b.score - a.score; });
+    return candidates[0].label;
+  }
+  function maybeInterceptView(){
+    if (!state) return;
+    var day = tripDay();
+    if (day >= 30 && state.checkpointShownDay < 30){
+      state.checkpointShownDay = 30;
+      save();
+      view = "report30";
+    } else if (day >= 7 && state.checkpointShownDay < 7){
+      state.checkpointShownDay = 7;
+      save();
+      view = "reality7";
+    }
+  }
+  function tripDay(){
+    return Math.floor((Date.now() - state.startedAt) / (24*HOUR));
   }
 
   function log(text){
@@ -3096,8 +3146,11 @@
     if (!canWalkOutside(state.dogDays) && state.bladder <= 0 && (now - (state.lastHomeAccidentAt||0)) > 0.75*HOUR){
       state.houseTraining = clamp(state.houseTraining - 3);
       state.lastHomeAccidentAt = now;
+      state.accidentsCount = (state.accidentsCount||0) + 1;
+      bumpOwnerLoad(8);
       log(state.name + " had an accident on the floor — before real walks start, puppies need a bathroom trip after almost every nap, meal, or play session.");
     }
+    bumpOwnerLoad(-deltaHours*0.5); // calm, uneventful time settles the load back down
     save();
   }
 
@@ -3153,6 +3206,9 @@
 
     state.lastTick = now;
     state.away = null;
+    state.totalHoursAway = (state.totalHoursAway||0) + actualHours;
+    state.accidentsCount = (state.accidentsCount||0) + incidents.filter(function(inc){ return inc.type==="accident"; }).length;
+    bumpOwnerLoad(5 + incidents.length*3 + (crateOverage>0 ? 5 : 0));
 
     if (incidents.length===0 && crateOverage===0){
       log(state.name + " handled " + fmtHours(actualHours) + " alone just fine.");
@@ -3261,6 +3317,8 @@
     else if (view === "awayReport") root.innerHTML = brandStrip() + renderAwayReport(window.__lastReport);
     else if (view === "train") root.innerHTML = brandStrip() + renderTrain();
     else if (view === "journal") root.innerHTML = brandStrip() + renderJournal();
+    else if (view === "reality7") root.innerHTML = brandStrip() + renderReality7();
+    else if (view === "report30") root.innerHTML = brandStrip() + renderReport30();
     else if (view === "walkGps") root.innerHTML = brandStrip() + renderWalkGps();
     else if (view === "walkSteps") root.innerHTML = brandStrip() + renderWalkSteps();
     attachHandlers();
@@ -3393,6 +3451,12 @@
         meter("Energy", state.energy) +
         meter("Bond", state.bond) +
         meter("Health", state.health) +
+      '</div>' +
+
+      '<div class="card">' +
+        '<div class="section-title">You — owner load</div>' +
+        meter(ownerLoadLabel(state.ownerLoad), state.ownerLoad) +
+        '<p class="muted" style="margin-top:6px; font-size:12.5px;">Not the dog\'s stat — yours. Cleanup, broken sleep and incidents push it up; calm, uneventful stretches bring it back down.</p>' +
       '</div>' +
 
       '<div class="card">' +
@@ -3571,6 +3635,62 @@
       '</div>';
   }
 
+  function renderReality7(){
+    var breed = byId(state.breedId);
+    var cost = costSoFar(breed, 7);
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">One week in</div>' +
+        '<h2 style="margin-top:4px;">Reality check — day 7</h2>' +
+        '<p class="muted" style="margin-top:8px;">Here\'s what the last week actually looked like — not how it felt in the moment.</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="cost-row"><span>Walks / play sessions completed</span><b>'+state.walksCompleted+'</b></div>' +
+        '<div class="cost-row"><span>Accidents cleaned up</span><b>'+state.accidentsCount+'</b></div>' +
+        '<div class="cost-row"><span>Hours left alone, total</span><b>'+fmtHours(state.totalHoursAway)+'</b></div>' +
+        '<div class="cost-row"><span>Owner load, right now</span><b>'+ownerLoadLabel(state.ownerLoad)+'</b></div>' +
+        '<div class="cost-row cost-total"><span>Spent so far</span><b>€'+cost+'</b></div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Still want this dog?</div>' +
+        '<button class="btn btn-primary" id="reality-keep" style="margin-top:10px;">Yes — keep going</button>' +
+        '<button class="btn btn-ghost" id="reality-unsure" style="width:100%; border:1px solid var(--line); margin-top:8px;">I\'m not sure</button>' +
+        '<p class="muted" style="margin-top:10px; font-size:12.5px;">Not being sure is useful information, not a wrong answer.</p>' +
+      '</div>';
+  }
+
+  function renderReport30(){
+    var breed = byId(state.breedId);
+    var cost = costSoFar(breed, 30);
+    var avgTraining = Math.round(COMMANDS.reduce(function(s,c){ return s + state.training[c.id]; }, 0) / COMMANDS.length);
+    var score = compatibilityScore();
+    var challenge = biggestChallenge();
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">Your 30-day trial</div>' +
+        '<h2 style="margin-top:4px;">'+esc(state.name)+'\'s report</h2>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="cost-row"><span>Compatibility</span><b>'+score+' / 100</b></div>' +
+        '<div class="cost-row"><span>House training</span><b>'+Math.round(state.houseTraining)+'%</b></div>' +
+        '<div class="cost-row"><span>Avg. command training</span><b>'+avgTraining+'%</b></div>' +
+        '<div class="cost-row"><span>Accidents / missed care</span><b>'+state.accidentsCount+'</b></div>' +
+        '<div class="cost-row"><span>Hours left alone, total</span><b>'+fmtHours(state.totalHoursAway)+'</b></div>' +
+        '<div class="cost-row"><span>Owner load, now</span><b>'+ownerLoadLabel(state.ownerLoad)+'</b></div>' +
+        '<div class="cost-row cost-total"><span>Total cost, 30 days</span><b>€'+cost+'</b></div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Hardest part</div>' +
+        '<p>'+challenge+'</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">If '+esc(state.name)+' were real tomorrow, would you still adopt?</div>' +
+        '<button class="btn btn-primary" id="report-yes" style="margin-top:10px;">Yes, I\'m ready</button>' +
+        '<button class="btn btn-ghost" id="report-think" style="width:100%; border:1px solid var(--line); margin-top:8px;">I need to think</button>' +
+        '<button class="btn btn-ghost" id="report-no" style="width:100%; border:1px solid var(--line); margin-top:8px;">This isn\'t the right dog for me</button>' +
+      '</div>';
+  }
+
   function renderJournal(){
     var items = state.journal.map(function(j){
       return '<div class="j-entry"><div class="j-time">'+timeAgo(j.ts)+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
@@ -3623,6 +3743,7 @@
         var isPuppy = stageOf(state.dogDays) === "puppy";
         if (isPuppy) state.bladder = clamp(state.bladder - 30);
         log("Fed " + state.name + "." + (isPuppy ? " Expect a bathroom trip within 20 minutes at this age." : ""));
+        bumpOwnerLoad(1);
         save(); render();
       });
       var walkBtn = document.getElementById("walk-btn");
@@ -3755,13 +3876,39 @@
 
     if (view === "awayReport"){
       document.getElementById("ack-report").addEventListener("click", function(){
-        view = "home"; render();
+        view = "home"; maybeInterceptView(); render();
       });
     }
 
     if (view === "journal"){
       document.getElementById("back-home").addEventListener("click", function(){
         view = "home"; render();
+      });
+    }
+
+    if (view === "reality7"){
+      document.getElementById("reality-keep").addEventListener("click", function(){
+        log("Day 7: decided to keep going.");
+        save(); view = "home"; render();
+      });
+      document.getElementById("reality-unsure").addEventListener("click", function(){
+        log("Day 7: not sure yet — noted, and that's useful information.");
+        save(); view = "home"; render();
+      });
+    }
+
+    if (view === "report30"){
+      document.getElementById("report-yes").addEventListener("click", function(){
+        log("30-day trial complete: ready to adopt.");
+        save(); view = "home"; render();
+      });
+      document.getElementById("report-think").addEventListener("click", function(){
+        log("30-day trial complete: still thinking it over.");
+        save(); view = "home"; render();
+      });
+      document.getElementById("report-no").addEventListener("click", function(){
+        log("30-day trial complete: not the right dog — a successful outcome, not a failure.");
+        save(); view = "home"; render();
       });
     }
 
@@ -3807,6 +3954,7 @@
       state.lastTrainedAt = Date.now();
       var resultWord = ratio>=0.66 ? "went well" : ratio>0 ? "was mixed" : "didn't land";
       log("Training — " + cmd.label + ": " + hits + "/3, session " + resultWord + "." + (isPuppy ? " Playtime like this means another bathroom trip soon." : ""));
+      bumpOwnerLoad(2);
       save();
       trainCtx = null;
       view = "home";
@@ -3831,6 +3979,8 @@
     state.energy = clamp(state.energy + fraction*(100-state.energy));
     state.bond = clamp(state.bond + fraction*3);
     state.houseTraining = clamp(state.houseTraining + fraction*2);
+    state.walksCompleted = (state.walksCompleted||0) + 1;
+    bumpOwnerLoad(3);
     log(note);
     save();
   }
@@ -3843,6 +3993,8 @@
     state.energy = clamp(state.energy + 0.5*(100-state.energy));
     state.bond = clamp(state.bond + 4);
     state.houseTraining = clamp(state.houseTraining + 1);
+    state.walksCompleted = (state.walksCompleted||0) + 1;
+    bumpOwnerLoad(2);
     log(note);
     save();
   }
@@ -4004,6 +4156,7 @@
     if (state && view === "home"){
       tickHome(Date.now());
       checkNotify();
+      maybeInterceptView();
       render();
     }
   }, 20000);
@@ -4021,6 +4174,11 @@
     if (!state.lastNotified) state.lastNotified = { hunger:0, bladder:0, energy:0 };
     if (!state.housingId) state.housingId = HOUSING[1].id;
     if (state.lastHomeAccidentAt === undefined) state.lastHomeAccidentAt = 0;
+    if (state.ownerLoad === undefined) state.ownerLoad = 20;
+    if (state.walksCompleted === undefined) state.walksCompleted = 0;
+    if (state.accidentsCount === undefined) state.accidentsCount = 0;
+    if (state.totalHoursAway === undefined) state.totalHoursAway = 0;
+    if (state.checkpointShownDay === undefined) state.checkpointShownDay = 0;
     if (state.away && state.away.awayAlerted === undefined) state.away.awayAlerted = false;
     if (state.away){
       var now = Date.now();
@@ -4035,6 +4193,7 @@
     } else {
       tickHome(Date.now());
       view = "home";
+      maybeInterceptView();
     }
     render();
   }
