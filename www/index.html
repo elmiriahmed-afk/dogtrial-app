@@ -138,12 +138,10 @@
   .age{color:var(--ink-faint); font-size:13px;}
   .mood-chip{margin-top:8px; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600;}
   .mood-dot{width:8px; height:8px; border-radius:50%;}
+  .day-label{color:var(--ink-faint); font-size:11px; letter-spacing:.05em; text-transform:uppercase;}
+  .next-label{font-family:"Fraunces",serif; font-weight:600; font-size:22px; margin-top:2px;}
 
   /* ---- meters ---- */
-  .meter{margin-bottom:12px;}
-  .meter:last-child{margin-bottom:0;}
-  .meter-label{display:flex; justify-content:space-between; font-size:12.5px; color:var(--ink-soft); margin-bottom:5px;}
-  .meter-label b{color:var(--ink); font-weight:600;}
   .meter-track{height:8px; border-radius:6px; background:var(--card-2); border:1px solid var(--line); overflow:hidden;}
   .meter-fill{height:100%; border-radius:6px; transition:width .4s ease;}
 
@@ -3252,16 +3250,63 @@
     return {label:"Struggling", key:"bad"};
   }
 
-  function meterColor(v){
-    if (v>=60) return "var(--accent)";
-    if (v>=30) return "var(--warn)";
-    return "var(--bad)";
-  }
-
   function esc(s){
     return String(s).replace(/[&<>"']/g, function(c){
       return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
     });
+  }
+
+  function dayLabel(){
+    var n = Math.min(30, Math.max(1, tripDay()+1));
+    var now = new Date();
+    var weekday = now.toLocaleDateString("en-US", { weekday:"long" });
+    var monthDay = now.toLocaleDateString("en-US", { month:"long", day:"numeric" });
+    return "Day " + n + " / 30 · " + weekday + ", " + monthDay;
+  }
+
+  function todaysJournalEntries(){
+    var now = new Date();
+    return state.journal.filter(function(j){
+      return new Date(j.ts).toDateString() === now.toDateString();
+    }).slice().reverse();
+  }
+
+  // Picks the single most urgent thing the dog needs right now, from real decay rates —
+  // not a dashboard of every meter, just what to do next.
+  function computeNextAction(){
+    var stage = stageOf(state.dogDays);
+    var canWalk = canWalkOutside(state.dogDays);
+    var fi = FEED_INTERVAL[stage], bi = BLADDER_INTERVAL[stage];
+
+    function etaMinutes(val, intervalHours){
+      if (!intervalHours) return Infinity;
+      return Math.max(0, val * intervalHours / 100 * 60);
+    }
+
+    var hungerEta = etaMinutes(state.hunger, fi);
+    var bladderEta = etaMinutes(state.bladder, bi);
+    var energyEta = etaMinutes(state.energy, WALK_INTERVAL_HOURS);
+    var outEta = Math.min(bladderEta, energyEta);
+    var outIsBladder = bladderEta <= energyEta;
+
+    var candidates = [
+      { eta: hungerEta, label:"Feeding time", cta:"Feed " + esc(state.name), actionId:"feed" },
+      { eta: outEta,
+        label: outIsBladder ? "Bathroom break" : (canWalk ? "Walk" : "Play & socialize"),
+        cta: canWalk ? "Take her out" : "Play with " + esc(state.name),
+        actionId: canWalk ? "walk" : "play" }
+    ];
+    candidates.sort(function(a,b){ return a.eta - b.eta; });
+    var top = candidates[0];
+    var minutes = Math.round(top.eta);
+
+    var etaText;
+    if (!isFinite(minutes)) etaText = "Not urgent right now";
+    else if (minutes <= 0) etaText = "Due now";
+    else if (minutes < 60) etaText = "in about " + minutes + " min";
+    else etaText = "in about " + fmtHours(minutes/60);
+
+    return { label: top.label, cta: top.cta, actionId: top.actionId, etaText: etaText };
   }
 
   // ---------- SVG dog ----------
@@ -3408,11 +3453,8 @@
     var mood = moodOf();
     var weeks = Math.floor(state.dogDays/7);
     var days = Math.floor(state.dogDays%7);
-
-    function meter(label, val){
-      return '<div class="meter"><div class="meter-label"><span>'+label+'</span><b>'+Math.round(val)+'</b></div>' +
-        '<div class="meter-track"><div class="meter-fill" style="width:'+val+'%; background:'+meterColor(val)+'"></div></div></div>';
-    }
+    var next = computeNextAction();
+    var todayEntries = todaysJournalEntries();
 
     var cmdRows = COMMANDS.map(function(c){
       return '<div class="cmd-row"><div class="cmd-name">'+c.label+'</div>' +
@@ -3433,18 +3475,19 @@
     return '' +
       '<div class="card">' +
         '<div class="top-actions">' +
-          '<span class="badge '+stage+'">'+STAGE_LABEL[stage]+'</span>' +
+          '<span class="day-label mono">'+dayLabel()+'</span>' +
           (resetConfirmOpen ?
             '<span class="reset-confirm">' +
-              '<span class="muted" style="font-size:12px;">Start over?</span>' +
+              '<span class="muted" style="font-size:12px;">Start a new trial?</span>' +
               '<button class="btn-ghost" id="reset-confirm-btn" style="color:var(--bad)">Yes</button>' +
               '<button class="btn-ghost" id="reset-cancel-btn">Cancel</button>' +
             '</span>' :
-            '<button class="btn-ghost" id="reset-btn">Reset</button>') +
+            '<button class="btn-ghost" id="reset-btn">Start a new trial</button>') +
         '</div>' +
         '<div class="dog-head">' +
           '<div class="dog-portrait">'+dogVisual(breed, stage)+'</div>' +
           '<div class="dog-id">' +
+            '<span class="badge '+stage+'">'+STAGE_LABEL[stage]+'</span>' +
             '<div class="name">'+esc(state.name)+'</div>' +
             '<div class="age mono">'+weeks+'w '+days+'d old · '+esc(breed.name)+'</div>' +
             '<div class="age" style="margin-top:2px;">'+esc(housing.short)+'</div>' +
@@ -3454,12 +3497,20 @@
       '</div>' +
 
       '<div class="card">' +
-        '<div class="section-title">Needs</div>' +
-        meter("Hunger", state.hunger) +
-        meter("Bladder", state.bladder) +
-        meter("Energy", state.energy) +
-        meter("Bond", state.bond) +
-        meter("Health", state.health) +
+        '<div class="section-title">Next</div>' +
+        '<div class="next-label">'+esc(next.label)+'</div>' +
+        '<div class="muted mono" style="margin-top:2px; font-size:13px;">'+esc(next.etaText)+'</div>' +
+        '<button class="btn btn-primary" id="next-action-btn" data-action="'+next.actionId+'" style="margin-top:14px">'+esc(next.cta)+'</button>' +
+      '</div>' +
+
+      '<div class="card">' +
+        '<div class="section-title">Today</div>' +
+        (todayEntries.length ? todayEntries.map(function(j){
+          var t = new Date(j.ts);
+          var hh = (t.getHours()<10?"0":"")+t.getHours();
+          var mm = (t.getMinutes()<10?"0":"")+t.getMinutes();
+          return '<div class="j-entry"><div class="j-time mono">'+hh+':'+mm+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
+        }).join("") : '<div class="muted">Nothing logged yet today.</div>') +
       '</div>' +
 
       '<div class="card">' +
@@ -3752,6 +3803,11 @@
     }
 
     if (view === "home"){
+      var nextBtn = document.getElementById("next-action-btn");
+      if (nextBtn) nextBtn.addEventListener("click", function(){
+        var target = document.getElementById(nextBtn.getAttribute("data-action") + "-btn");
+        if (target) target.click();
+      });
       document.getElementById("feed-btn").addEventListener("click", function(){
         state.hunger = 100; state.bond = clamp(state.bond+1);
         var isPuppy = stageOf(state.dogDays) === "puppy";
