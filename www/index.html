@@ -2979,6 +2979,17 @@
     {text:"refused to come out of the crate when you got home", bond:-3, health:0, house:0, type:"anxiety"}
   ];
 
+  // The calm, affectionate side of ownership — shown as behavior, not a "bond %" gauge,
+  // so the trial doesn't read as purely punitive.
+  var POSITIVE_MOMENTS = [
+    function(name){ return name + " settled beside you and stayed there a while."; },
+    function(name){ return name + " brought you a toy."; },
+    function(name){ return name + " fell asleep near your feet."; },
+    function(name){ return name + " followed you from room to room today."; },
+    function(name){ return name + " leaned into you for a scratch."; },
+    function(name){ return "A quiet moment — " + name + " just wanted to be close by."; }
+  ];
+
   function housingById(id){ for (var i=0;i<HOUSING.length;i++) if (HOUSING[i].id===id) return HOUSING[i]; return HOUSING[1]; }
 
   // Cost model (EUR, French market): ~15g of kibble per kg of body weight per day,
@@ -3053,7 +3064,7 @@
       away: null,
       settings: { notifications:false, gpsWalks:false, stepWalks:false },
       lastNotified: { hunger:0, bladder:0, energy:0 },
-      lastHomeAccidentAt: 0,
+      lastHomeAccidentAt: 0, lastPositiveMomentAt: 0,
       ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
       journal: [{ ts: now, text: name + " came home. The trial starts now." }]
     };
@@ -3138,6 +3149,21 @@
     }
   }
 
+  // Roughly once every few hours once the bond is established — never every tick,
+  // or it reads as noise instead of a moment.
+  function maybePositiveMoment(deltaHours){
+    if (state.bond < 45) return;
+    var hoursSince = (Date.now() - (state.lastPositiveMomentAt||0)) / HOUR;
+    if (hoursSince < 3) return;
+    var chance = Math.min(0.9, deltaHours/8) * (state.bond/100);
+    if (Math.random() < chance){
+      var pick = POSITIVE_MOMENTS[Math.floor(Math.random()*POSITIVE_MOMENTS.length)];
+      log(pick(state.name));
+      state.bond = clamp(state.bond + 1);
+      state.lastPositiveMomentAt = Date.now();
+    }
+  }
+
   function tickHome(now){
     var last = state.lastTick;
     var deltaHours = (now-last)/HOUR;
@@ -3157,6 +3183,7 @@
       bumpOwnerLoad(8);
       log(state.name + " had an accident on the floor — before real walks start, puppies need a bathroom trip after almost every nap, meal, or play session.");
     }
+    maybePositiveMoment(deltaHours);
     bumpOwnerLoad(-deltaHours*0.5); // calm, uneventful time settles the load back down
     save();
   }
@@ -4276,6 +4303,7 @@
     if (!state.lastNotified) state.lastNotified = { hunger:0, bladder:0, energy:0 };
     if (!state.housingId) state.housingId = HOUSING[1].id;
     if (state.lastHomeAccidentAt === undefined) state.lastHomeAccidentAt = 0;
+    if (state.lastPositiveMomentAt === undefined) state.lastPositiveMomentAt = 0;
     if (state.ownerLoad === undefined) state.ownerLoad = 20;
     if (state.walksCompleted === undefined) state.walksCompleted = 0;
     if (state.accidentsCount === undefined) state.accidentsCount = 0;
