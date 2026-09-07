@@ -170,11 +170,6 @@
   .j-time{flex:none; width:64px; color:var(--ink-faint); font-family:"IBM Plex Mono",monospace; font-size:11.5px; padding-top:1px;}
   .j-text{color:var(--ink);}
 
-  /* ---- incident report ---- */
-  .incident{padding:12px 0; border-bottom:1px solid var(--line); font-size:14px;}
-  .incident:last-child{border-bottom:none;}
-  .incident .tag{font-family:"IBM Plex Mono",monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--bad); display:block; margin-bottom:3px;}
-  .none-happened{color:var(--ink-soft); font-size:14px; padding:6px 0;}
   .alert-banner{margin-top:14px; padding:10px 12px; border-radius:8px; background:var(--warn-soft); color:var(--warn); font-size:13px; text-align:left; font-weight:600;}
 
   /* ---- activity ring ---- */
@@ -3118,9 +3113,16 @@
     return Math.floor((Date.now() - state.startedAt) / (24*HOUR));
   }
 
-  function log(text){
-    state.journal.unshift({ ts: Date.now(), text: text });
+  // Inserts at the right chronological position rather than always at the front,
+  // so a deferred consequence can be logged with the timestamp it actually happened at.
+  function logAt(ts, text){
+    var idx = 0;
+    while (idx < state.journal.length && state.journal[idx].ts > ts) idx++;
+    state.journal.splice(idx, 0, { ts: ts, text: text });
     if (state.journal.length > 60) state.journal.length = 60;
+  }
+  function log(text){
+    logAt(Date.now(), text);
   }
 
   function applyHomeDecay(hours, stage){
@@ -3215,18 +3217,41 @@
     state.accidentsCount = (state.accidentsCount||0) + incidents.filter(function(inc){ return inc.type==="accident"; }).length;
     bumpOwnerLoad(5 + incidents.length*3 + (crateOverage>0 ? 5 : 0));
 
-    if (incidents.length===0 && crateOverage===0){
-      log(state.name + " handled " + fmtHours(actualHours) + " alone just fine.");
-    } else {
-      log("Home from work (" + fmtHours(actualHours) + " away): " + incidents.length + " thing" + (incidents.length>1?"s":"") + " went wrong.");
+    // Build a real timeline instead of a lump-sum summary: each incident is logged with
+    // the timestamp it actually happened at, spread across the window past tolerance —
+    // action (leaving) -> state (restless) -> delay -> consequence (incident), not a score.
+    var toleranceMs = tolerance*HOUR;
+    var timeline = [{ ts: away.leaveStart, text: "Left for work — said back in " + away.declaredHours + "h." }];
+    if (excess > 0){
+      var restlessTs = away.leaveStart + toleranceMs;
+      var restlessText = state.name + " is becoming restless — past the alone-time " + breed.name + " can comfortably handle right now.";
+      if (!away.awayAlerted) logAt(restlessTs, restlessText);
+      timeline.push({ ts: restlessTs, text: restlessText });
+    }
+    if (incidents.length > 0){
+      var windowMs = Math.max(1, now - (away.leaveStart + toleranceMs));
+      incidents.forEach(function(inc, i){
+        var ts = away.leaveStart + toleranceMs + windowMs * ((i+1) / (incidents.length+1));
+        var text = state.name + " " + inc.text + ".";
+        logAt(ts, text);
+        timeline.push({ ts: ts, text: text });
+      });
     }
     if (crateOverage > 0){
-      log(state.name + " spent " + fmtHours(crateOverage) + " past the recommended crate-time limit.");
+      var crateText = state.name + " spent " + fmtHours(crateOverage) + " past the recommended crate-time limit.";
+      log(crateText);
+      timeline.push({ ts: now, text: crateText });
     }
+    var homeText = (incidents.length===0 && crateOverage===0)
+      ? state.name + " handled " + fmtHours(actualHours) + " alone just fine."
+      : "You're home. " + state.name + " is excited to see you.";
+    log(homeText);
+    timeline.push({ ts: now, text: homeText });
     save();
 
     return { actualHours: actualHours, declaredHours: away.declaredHours, tolerance: tolerance, incidents: incidents,
-      houseTrained: houseTrained, wellTrained: wellTrained, hadRisk: excess>0, housing: housing, crateOverage: crateOverage };
+      houseTrained: houseTrained, wellTrained: wellTrained, hadRisk: excess>0, housing: housing, crateOverage: crateOverage,
+      timeline: timeline };
   }
 
   function checkNotify(){
@@ -3612,23 +3637,29 @@
 
   function renderAwayReport(report){
     var breed = byId(state.breedId);
-    var list = report.incidents.length === 0
-      ? '<div class="none-happened">Nothing went wrong. '+esc(breed.tolerance+'h')+' of tolerance covered it.</div>'
-      : report.incidents.map(function(inc){
-          return '<div class="incident"><span class="tag">While you were out</span>'+esc(state.name)+' '+esc(inc.text)+'.</div>';
-        }).join("");
+    var timelineHtml = report.timeline.map(function(ev){
+      var t = new Date(ev.ts);
+      var hh = (t.getHours()<10?"0":"")+t.getHours();
+      var mm = (t.getMinutes()<10?"0":"")+t.getMinutes();
+      return '<div class="j-entry"><div class="j-time mono">'+hh+':'+mm+'</div><div class="j-text">'+esc(ev.text)+'</div></div>';
+    }).join("");
     var footnotes = "";
     if (report.hadRisk && report.houseTrained) footnotes += '<p class="muted" style="margin-top:10px; font-size:12.5px;">Solid house-training kept any accident off the list.</p>';
     if (report.hadRisk && report.wellTrained) footnotes += '<p class="muted" style="margin-top:6px; font-size:12.5px;">Training paid off — a well-trained dog copes calmer alone, so fewer things went wrong than the hours alone would suggest.</p>';
-    if (report.crateOverage > 0) footnotes += '<p class="muted" style="margin-top:6px; font-size:12.5px; color:var(--bad);">'+fmtHours(report.crateOverage)+' past the safe crate-time limit — this is where crate use turns into a welfare risk, not just an inconvenience.</p>';
+    if (report.crateOverage > 0) footnotes += '<p class="muted" style="margin-top:6px; font-size:12.5px; color:var(--bad);">This is where crate use turns into a welfare risk, not just an inconvenience.</p>';
     return '' +
       '<div class="card">' +
         '<div class="section-title">Welcome home</div>' +
         '<h2>Away '+fmtHours(report.actualHours)+' — said '+fmtHours(report.declaredHours)+'</h2>' +
         '<p class="muted">'+esc(breed.name)+' can comfortably handle about '+fmtHours(report.tolerance)+' alone at this age ('+esc(report.housing.label)+').</p>' +
-        '<div style="margin-top:10px">'+list+'</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">What happened</div>' +
+        timelineHtml +
         footnotes +
-        '<button class="btn btn-primary" id="ack-report" style="margin-top:16px">Back to '+esc(state.name)+'</button>' +
+      '</div>' +
+      '<div class="card">' +
+        '<button class="btn btn-primary" id="ack-report">Back to '+esc(state.name)+'</button>' +
       '</div>';
   }
 
@@ -4177,6 +4208,7 @@
     var elapsed = (Date.now() - state.away.leaveStart)/HOUR;
     if (elapsed <= tolerance) return;
     state.away.awayAlerted = true;
+    log(state.name + " is becoming restless — past the alone-time " + breed.name + " can comfortably handle right now.");
     save();
     var alertEl = document.getElementById("atwork-alert");
     if (alertEl) alertEl.innerHTML = anxietyAlertHtml();
