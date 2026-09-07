@@ -3425,6 +3425,7 @@
     else if (view === "report30") root.innerHTML = brandStrip() + renderReport30();
     else if (view === "walkGps") root.innerHTML = brandStrip() + renderWalkGps();
     else if (view === "walkSteps") root.innerHTML = brandStrip() + renderWalkSteps();
+    else if (view === "walkConfirm") root.innerHTML = brandStrip() + renderWalkConfirm();
     attachHandlers();
     if (view === "atWork") startAtWorkClock();
     else if (view === "walkSteps") startStepsClock();
@@ -3628,10 +3629,38 @@
       '</div>';
   }
 
+  function prepRow(label, ready, note){
+    return '<div class="setting-row">' +
+      '<div class="setting-copy">' +
+        '<div class="title"><span class="mood-dot" style="background:'+(ready?"var(--accent)":"var(--warn)")+'; display:inline-block; margin-right:6px;"></span>'+esc(label)+'</div>' +
+        '<div class="caveat">'+esc(note)+'</div>' +
+      '</div>' +
+    '</div>';
+  }
+
   function renderLeaveSetup(){
+    var canWalk = canWalkOutside(state.dogDays);
+    var checklist = [
+      { label:"Bathroom", ready: state.bladder >= 60,
+        note: state.bladder >= 60 ? "Recently relieved." : "Bladder is low — an accident is more likely on a long day." },
+      { label:"Food", ready: state.hunger >= 60,
+        note: state.hunger >= 60 ? "Recently fed." : "Already hungry — that adds up over a long absence." },
+      { label: canWalk ? "Exercise" : "Play",
+        ready: state.energy >= 50,
+        note: state.energy >= 50 ? "Had a chance to burn energy." : "Still has pent-up energy — restlessness sets in sooner." }
+    ];
+    var allReady = checklist.every(function(c){ return c.ready; });
+    var rows = checklist.map(function(c){ return prepRow(c.label, c.ready, c.note); }).join("");
+    var warning = allReady ? "" :
+      '<p class="muted" style="margin-top:10px; font-size:12.5px; color:var(--warn);">Leaving before '+esc(state.name)+' is ready makes the day harder on both of you — you can still go.</p>';
     return '' +
       '<div class="card">' +
-        '<h2>Leave for work</h2>' +
+        '<h2>Leave '+esc(state.name)+' alone?</h2>' +
+        '<div class="section-title" style="margin-top:16px;">Before you leave</div>' +
+        rows +
+        warning +
+      '</div>' +
+      '<div class="card">' +
         '<p class="muted">How many hours will '+esc(state.name)+' actually be alone?</p>' +
         '<div class="field" style="margin-top:14px">' +
           '<label for="hours-range">Hours away: <b id="hours-out" class="mono">4h</b></label>' +
@@ -3731,6 +3760,21 @@
         '</div>' +
         '<div class="muted mono" id="walk-steps-count" style="margin-top:12px; font-size:12.5px;">'+steps+' steps detected</div>' +
         '<button class="btn btn-primary" id="end-walk" style="margin-top:16px">End walk</button>' +
+      '</div>';
+  }
+
+  function renderWalkConfirm(){
+    var c = walkCtx;
+    var statLine = c.mode === "steps"
+      ? Math.round(c.activeSeconds/60) + " of " + c.goalMinutes + " min · " + c.steps + " steps"
+      : Math.round(c.distance) + " m of " + c.target + " m";
+    return '' +
+      '<div class="card center">' +
+        '<div class="section-title">Walk complete?</div>' +
+        '<div class="big-num mono" style="font-size:26px;">'+statLine+'</div>' +
+        '<p class="muted" style="margin-top:10px;">Does that match what actually happened?</p>' +
+        '<button class="btn btn-primary" id="confirm-walk-yes" style="margin-top:20px">Confirm walk</button>' +
+        '<button class="btn btn-ghost" id="confirm-walk-no" style="width:100%; border:1px solid var(--line); margin-top:8px;">I couldn\'t walk</button>' +
       '</div>';
   }
 
@@ -3967,13 +4011,25 @@
 
     if (view === "walkGps"){
       document.getElementById("end-walk").addEventListener("click", function(){
-        finishGpsWalk(false);
+        requestGpsWalkConfirm();
       });
     }
 
     if (view === "walkSteps"){
       document.getElementById("end-walk").addEventListener("click", function(){
-        finishStepsWalk(false);
+        requestStepsWalkConfirm();
+      });
+    }
+
+    if (view === "walkConfirm"){
+      var isSteps = walkCtx && walkCtx.mode === "steps";
+      document.getElementById("confirm-walk-yes").addEventListener("click", function(){
+        if (isSteps) finishStepsWalk(false, false);
+        else finishGpsWalk(false, false);
+      });
+      document.getElementById("confirm-walk-no").addEventListener("click", function(){
+        if (isSteps) finishStepsWalk(false, true);
+        else finishGpsWalk(false, true);
       });
     }
 
@@ -4138,9 +4194,16 @@
   }
   function startGpsWalk(){
     var breed = byId(state.breedId);
-    walkCtx = { watchId:null, distance:0, lastPos:null, target: Math.round(breed.walkMinutes*80) };
+    walkCtx = { mode:"gps", watchId:null, distance:0, lastPos:null, target: Math.round(breed.walkMinutes*80) };
     view = "walkGps"; render();
     walkCtx.watchId = navigator.geolocation.watchPosition(onWalkPos, onWalkErr, { enableHighAccuracy:true, maximumAge:5000, timeout:15000 });
+  }
+  // Ending the walk asks for confirmation rather than applying the outcome straight away —
+  // a person reviews what was measured before it's logged, per the "no GPS gotchas" rule.
+  function requestGpsWalkConfirm(){
+    if (!walkCtx) { view = "home"; render(); return; }
+    if (walkCtx.watchId != null) { navigator.geolocation.clearWatch(walkCtx.watchId); walkCtx.watchId = null; }
+    view = "walkConfirm"; render();
   }
   function onWalkPos(pos){
     if (!walkCtx) return;
@@ -4159,18 +4222,19 @@
     }
   }
   function onWalkErr(){
-    finishGpsWalk(true);
+    finishGpsWalk(true, false);
   }
-  function finishGpsWalk(errored){
+  function finishGpsWalk(errored, couldntWalk){
     if (!walkCtx){ view = "home"; render(); return; }
     var dist = Math.round(walkCtx.distance);
     var fraction = walkCtx.distance / walkCtx.target;
     if (walkCtx.watchId != null) navigator.geolocation.clearWatch(walkCtx.watchId);
     var note;
-    if (errored) note = "Walked " + state.name + " (GPS signal lost — logged manually).";
+    if (errored) { note = "Walked " + state.name + " (GPS signal lost — logged manually)."; fraction = 1; }
+    else if (couldntWalk) { note = "Couldn't walk " + state.name + " today — plans changed."; fraction = 0.15; }
     else if (fraction >= 0.9) note = "Walked " + state.name + " — GPS confirmed " + dist + "m.";
     else note = "Cut the walk short with " + state.name + " — only " + dist + "m confirmed.";
-    applyWalkOutcome(errored ? 1 : fraction, note);
+    applyWalkOutcome(fraction, note);
     walkCtx = null;
     view = "home"; render();
   }
@@ -4185,13 +4249,19 @@
     if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function"){
       DeviceMotionEvent.requestPermission().then(function(resp){
         if (resp === "granted") attach();
-        else finishStepsWalk(true);
-      }).catch(function(){ finishStepsWalk(true); });
+        else finishStepsWalk(true, false);
+      }).catch(function(){ finishStepsWalk(true, false); });
     } else if (typeof DeviceMotionEvent !== "undefined"){
       attach();
     } else {
-      finishStepsWalk(true);
+      finishStepsWalk(true, false);
     }
+  }
+  function requestStepsWalkConfirm(){
+    if (!walkCtx) { view = "home"; render(); return; }
+    window.removeEventListener("devicemotion", onStepMotion);
+    stopLiveTimer();
+    view = "walkConfirm"; render();
   }
   function onStepMotion(e){
     if (!walkCtx || walkCtx.mode !== "steps") return;
@@ -4208,17 +4278,18 @@
       if (countEl) countEl.textContent = walkCtx.steps + " steps detected";
     }
   }
-  function finishStepsWalk(errored){
+  function finishStepsWalk(errored, couldntWalk){
     if (!walkCtx){ view = "home"; render(); return; }
     window.removeEventListener("devicemotion", onStepMotion);
     var steps = walkCtx.steps;
     var minutesWalked = Math.round(walkCtx.activeSeconds/60);
     var fraction = Math.max(0, Math.min(1, walkCtx.activeSeconds/(walkCtx.goalMinutes*60)));
     var note;
-    if (errored) note = "Walked " + state.name + " (motion access unavailable — logged manually).";
+    if (errored) { note = "Walked " + state.name + " (motion access unavailable — logged manually)."; fraction = 1; }
+    else if (couldntWalk) { note = "Couldn't walk " + state.name + " today — plans changed."; fraction = 0.15; }
     else if (fraction >= 0.9) note = "Walked " + state.name + " — " + minutesWalked + " of " + walkCtx.goalMinutes + " min, " + steps + " steps.";
     else note = "Cut the walk short with " + state.name + " — only " + minutesWalked + " of " + walkCtx.goalMinutes + " min.";
-    applyWalkOutcome(errored ? 1 : fraction, note);
+    applyWalkOutcome(fraction, note);
     walkCtx = null;
     stopLiveTimer();
     view = "home"; render();
