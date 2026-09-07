@@ -1,21 +1,26 @@
-<title>The 30-Day Dog</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DogTrial</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
   :root{
-    --bg:#EDECE3;
+    --bg:#F6F4EC;
     --card:#FFFFFF;
-    --card-2:#F6F5EE;
+    --card-2:#EFECE1;
     --ink:#1B2420;
     --ink-soft:#5B6760;
     --ink-faint:#8A938B;
-    --line:#DEDBCE;
-    --accent:#3F6B4A;
-    --accent-soft:#E4ECE3;
-    --warn:#B4762E;
-    --warn-soft:#F3E8D6;
+    --line:#E6E5DE;
+    --accent:#2F5D50;
+    --accent-soft:#DFE9E6;
+    --warn:#C48A3A;
+    --warn-soft:#F5E7D3;
     --bad:#A13D2B;
     --bad-soft:#F4E1DB;
     --shadow: 0 1px 2px rgba(27,36,32,.06), 0 8px 24px rgba(27,36,32,.06);
@@ -48,7 +53,7 @@
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
   html,body{margin:0; background:var(--bg); color:var(--ink);}
   body{
-    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    font-family:"Inter",system-ui,sans-serif;
     line-height:1.45;
     min-height:100vh;
     display:flex;
@@ -113,6 +118,8 @@
   .cost-row{display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:7px 0; border-bottom:1px solid var(--line); font-size:13.5px;}
   .cost-row b{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; white-space:nowrap;}
   .cost-total{border-bottom:none; font-weight:600; margin-top:2px; padding-top:9px; border-top:1px dashed var(--line);}
+  .challenge-list{margin:10px 0 0; padding-left:18px; font-size:13.5px; color:var(--ink-soft);}
+  .challenge-list li{margin-bottom:6px; line-height:1.4;}
   .pup-thumb{flex:none; width:56px; height:52px;}
   .pup-thumb svg, .dog-portrait svg, .pup-thumb img, .dog-portrait img{width:100%; height:100%; display:block; object-fit:contain;}
 
@@ -131,12 +138,10 @@
   .age{color:var(--ink-faint); font-size:13px;}
   .mood-chip{margin-top:8px; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600;}
   .mood-dot{width:8px; height:8px; border-radius:50%;}
+  .day-label{color:var(--ink-faint); font-size:11px; letter-spacing:.05em; text-transform:uppercase;}
+  .next-label{font-family:"Fraunces",serif; font-weight:600; font-size:22px; margin-top:2px;}
 
   /* ---- meters ---- */
-  .meter{margin-bottom:12px;}
-  .meter:last-child{margin-bottom:0;}
-  .meter-label{display:flex; justify-content:space-between; font-size:12.5px; color:var(--ink-soft); margin-bottom:5px;}
-  .meter-label b{color:var(--ink); font-weight:600;}
   .meter-track{height:8px; border-radius:6px; background:var(--card-2); border:1px solid var(--line); overflow:hidden;}
   .meter-fill{height:100%; border-radius:6px; transition:width .4s ease;}
 
@@ -165,11 +170,6 @@
   .j-time{flex:none; width:64px; color:var(--ink-faint); font-family:"IBM Plex Mono",monospace; font-size:11.5px; padding-top:1px;}
   .j-text{color:var(--ink);}
 
-  /* ---- incident report ---- */
-  .incident{padding:12px 0; border-bottom:1px solid var(--line); font-size:14px;}
-  .incident:last-child{border-bottom:none;}
-  .incident .tag{font-family:"IBM Plex Mono",monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--bad); display:block; margin-bottom:3px;}
-  .none-happened{color:var(--ink-soft); font-size:14px; padding:6px 0;}
   .alert-banner{margin-top:14px; padding:10px 12px; border-radius:8px; background:var(--warn-soft); color:var(--warn); font-size:13px; text-align:left; font-weight:600;}
 
   /* ---- activity ring ---- */
@@ -195,27 +195,59 @@
   .big-num{font-family:"Fraunces",serif; font-size:40px; font-weight:600;}
 
   .top-actions{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .reset-confirm{display:flex; align-items:center; gap:8px;}
 
   @media (prefers-reduced-motion: reduce){
     .meter-fill, .cmd-fill{transition:none;}
   }
 </style>
 
+</head>
+<body>
 <div id="app"></div>
 
 <script>
 (function(){
   "use strict";
   var STORAGE_KEY = "thirtyDayDog_v1";
+  var ARCHIVE_KEY = "thirtyDayDog_archive_v1";
   var HOUR = 3600000;
   var DOGDAYS_PER_HOUR = 7/24;
-  var STAGE_BOUNDS = { puppy:[0,60], adolescent:[60,240], adult:[240,Infinity] };
-  var STAGE_LABEL = { puppy:"Puppy", adolescent:"Adolescent", adult:"Adult" };
+  var STAGE_BOUNDS = { puppy:[0,60], adolescent:[60,240], adult:[240,2555], senior:[2555,Infinity] };
+  var STAGE_LABEL = { puppy:"Puppy", adolescent:"Adolescent", adult:"Adult", senior:"Senior" };
+  var START_STAGES = [
+    { id:"puppy", label:"Puppy", note:"Just weaned, a few weeks old.", startDogDays:14 },
+    { id:"adolescent", label:"Adolescent", note:"Past the newborn stage, still learning the rules.", startDogDays:120 },
+    { id:"adult", label:"Adult", note:"Fully grown, settled habits already in place.", startDogDays:600 },
+    { id:"senior", label:"Senior", note:"Older dog — slower, needs closer health attention.", startDogDays:2800 }
+  ];
+  var LIFE_OPTIONS = [
+    { id:"home", label:"Mostly home", hoursAway:1, note:"Remote, retired, or someone's usually around." },
+    { id:"hybrid", label:"Hybrid / part-time", hoursAway:4, note:"A few hours alone on a typical day." },
+    { id:"fulltime", label:"Full-time, in office", hoursAway:9, note:"A typical 9-to-5, plus commute." }
+  ];
+  // Narrative shape for the 30 real days — not levels or unlocks, just a reason
+  // to wonder what tomorrow looks like instead of repeating today.
+  var TRIP_PHASES = [
+    { max:3, label:"Survival", transition: function(name){ return "The first few days with " + name + " are just about keeping up."; } },
+    { max:7, label:"Routine", transition: function(name){ return "You've made it through the hardest adjustment — now it's about building a routine."; } },
+    { max:14, label:"Consequences", transition: function(name){ return "You've got the routine. Now your habits start to show in how " + name + " behaves."; } },
+    { max:21, label:"Real life", transition: function(name){ return "Routine's holding. Now let's see how this fits into the rest of your life — work, plans, the unexpected."; } },
+    { max:27, label:"Commitment", transition: function(name){ return "Three weeks in. This is where the routine either sticks, or starts to wear on you."; } },
+    { max:30, label:"Decision", transition: function(name){ return "Almost there. Time to decide."; } },
+    { max:Infinity, label:"Beyond 30", transition: function(name){ return "Past the 30-day mark — you know this life now."; } }
+  ];
+  function tripPhaseFor(day){
+    for (var i=0;i<TRIP_PHASES.length;i++) if (day <= TRIP_PHASES[i].max) return TRIP_PHASES[i];
+    return TRIP_PHASES[TRIP_PHASES.length-1];
+  }
   var FEED_INTERVAL = { puppy:24/5, adolescent:24/2, adult:24/1 }; // 5x/day, 2x/day, 1x/day
   var BLADDER_INTERVAL = { puppy:3, adolescent:6, adult:8 };
   var WALK_INTERVAL_HOURS = 12; // 2 walks/day, every breed and stage — research is consistent on this
+  var WALK_UNLOCK_AGE_DAYS = 90; // ~3 months: core vaccine course + vet-advised buffer before real outdoor walks (AAHA/WSAVA, Dogs Trust)
   var TOLERANCE_MULT = { puppy:0.3, adolescent:0.6, adult:1 };
   var TRAIN_COOLDOWN_HOURS = 3;
+  var TRAIN_COOLDOWN_HOURS_YOUNG = 1; // under WALK_UNLOCK_AGE_DAYS: shorter, more frequent micro-sessions
   var COMMANDS = [
     { id:"sit", label:"Sit" },
     { id:"stay", label:"Stay" },
@@ -2968,7 +3000,35 @@
     {text:"refused to come out of the crate when you got home", bond:-3, health:0, house:0, type:"anxiety"}
   ];
 
+  // The calm, affectionate side of ownership — shown as behavior, not a "bond %" gauge,
+  // so the trial doesn't read as purely punitive.
+  var POSITIVE_MOMENTS = [
+    function(name){ return name + " settled beside you and stayed there a while."; },
+    function(name){ return name + " brought you a toy."; },
+    function(name){ return name + " fell asleep near your feet."; },
+    function(name){ return name + " followed you from room to room today."; },
+    function(name){ return name + " leaned into you for a scratch."; },
+    function(name){ return "A quiet moment — " + name + " just wanted to be close by."; }
+  ];
+
+  // What actually helps a not-yet-vaccinated puppy, instead of a real walk —
+  // a real choice, not one random button standing in for all of it.
+  var SAFE_ACTIVITIES = [
+    { id:"carry", label:"Carry outside for sights & sounds", note:"No ground time — just safe exposure to the world from your arms.",
+      text: function(name){ return "Carried " + name + " outside for safe sights, sounds and smells — no ground time yet."; } },
+    { id:"explore", label:"Explore a safe room or area", note:"New smells and textures indoors, at their own pace.",
+      text: function(name){ return "Let " + name + " explore a safe room — new smells and textures at their own pace."; } },
+    { id:"handling", label:"Practice handling", note:"Paws, ears, collar, gentle touch — builds comfort for the vet and grooming later.",
+      text: function(name){ return "Practiced handling with " + name + " — paws, ears, collar."; } },
+    { id:"train", label:"Short indoor training", note:"A few minutes of name response or basic cues — puppy attention spans are tiny.",
+      text: function(name){ return "Short indoor training-and-play session with " + name + "."; } },
+    { id:"social", label:"Controlled socialization", note:"A calm, vaccinated dog or person, on your terms.",
+      text: function(name){ return "Controlled socialization for " + name + " with a calm, vaccinated companion."; } }
+  ];
+  function safeActivityById(id){ for (var i=0;i<SAFE_ACTIVITIES.length;i++) if (SAFE_ACTIVITIES[i].id===id) return SAFE_ACTIVITIES[i]; return SAFE_ACTIVITIES[0]; }
+
   function housingById(id){ for (var i=0;i<HOUSING.length;i++) if (HOUSING[i].id===id) return HOUSING[i]; return HOUSING[1]; }
+  function lifeById(id){ for (var i=0;i<LIFE_OPTIONS.length;i++) if (LIFE_OPTIONS[i].id===id) return LIFE_OPTIONS[i]; return LIFE_OPTIONS[1]; }
 
   // Cost model (EUR, French market): ~15g of kibble per kg of body weight per day,
   // Royal Canin averaging ~6.5€/kg across its size-specific formulas.
@@ -2983,7 +3043,14 @@
   function stageOf(dogDays){
     if (dogDays < STAGE_BOUNDS.puppy[1]) return "puppy";
     if (dogDays < STAGE_BOUNDS.adolescent[1]) return "adolescent";
-    return "adult";
+    if (dogDays < STAGE_BOUNDS.adult[1]) return "adult";
+    return "senior";
+  }
+  function canWalkOutside(dogDays){
+    return dogDays >= WALK_UNLOCK_AGE_DAYS;
+  }
+  function trainCooldownHours(dogDays){
+    return canWalkOutside(dogDays) ? TRAIN_COOLDOWN_HOURS : TRAIN_COOLDOWN_HOURS_YOUNG;
   }
   function fmtHours(h){
     if (h < 1) return Math.round(h*60) + "m";
@@ -3007,6 +3074,9 @@
   var view = "onboarding";
   var pendingBreed = BREEDS[0].id;
   var pendingHousing = HOUSING[0].id;
+  var pendingStartStage = START_STAGES[0].id;
+  var pendingLife = LIFE_OPTIONS[1].id;
+  var resetConfirmOpen = false;
   var trainCtx = null; // {commandId, round, results:[], animId, pos, zoneLeft, zoneWidth}
   var liveTimer = null;
 
@@ -3021,26 +3091,114 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e){}
   }
 
-  function newDog(name, breedId, housingId){
+  function loadArchive(){
+    try {
+      var raw = localStorage.getItem(ARCHIVE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch(e){ return []; }
+  }
+  function saveArchive(list){
+    try { localStorage.setItem(ARCHIVE_KEY, JSON.stringify(list)); } catch(e){}
+  }
+  // A finished or abandoned trial isn't deleted — it's kept, so a past attempt
+  // (breed, home, how far it got) stays visible instead of just vanishing.
+  function archiveCurrentTrial(outcome){
+    if (!state) return;
+    var breed = byId(state.breedId);
+    var housing = housingById(state.housingId);
+    var archive = loadArchive();
+    archive.unshift({
+      name: state.name, breedName: breed.name, housingLabel: housing.label,
+      dogDaysReached: Math.round(state.dogDays), tripDaysReached: tripDay()+1,
+      accidentsCount: state.accidentsCount||0, totalHoursAway: Math.round(state.totalHoursAway||0),
+      outcome: outcome, endedAt: Date.now()
+    });
+    if (archive.length > 20) archive.length = 20;
+    saveArchive(archive);
+  }
+
+  function newDog(name, breedId, housingId, startDogDays){
     var now = Date.now();
     var training = {};
     COMMANDS.forEach(function(c){ training[c.id] = 0; });
     return {
       name: name, breedId: breedId, housingId: housingId,
-      startedAt: now, lastTick: now, dogDays: 0,
+      startedAt: now, lastTick: now, dogDays: startDogDays || 0,
       hunger:0, bladder:0, energy:0, bond:40, health:100, houseTraining:5,
       training: training, lastTrainedAt: 0,
       away: null,
       settings: { notifications:false, gpsWalks:false, stepWalks:false },
       lastNotified: { hunger:0, bladder:0, energy:0 },
-      lastHomeAccidentAt: 0,
+      lastHomeAccidentAt: 0, lastPositiveMomentAt: 0, typicalHoursAway: 4, lastPhaseLabel: null,
+      ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
       journal: [{ ts: now, text: name + " came home. The trial starts now." }]
     };
   }
+  function bumpOwnerLoad(amount){
+    state.ownerLoad = clamp((state.ownerLoad||0) + amount);
+  }
+  function costSoFar(breed, realDays){
+    var days = Math.max(0, realDays);
+    var food = estimateMonthlyFoodCost(breed) / 30 * days;
+    return Math.round(VET_STARTER_COST + GEAR_STARTER_COST + food);
+  }
+  function compatibilityScore(){
+    var avgTraining = COMMANDS.reduce(function(s,c){ return s + state.training[c.id]; }, 0) / COMMANDS.length;
+    var score = 70
+      + (state.houseTraining - 50) * 0.3
+      + (avgTraining - 50) * 0.2
+      - state.accidentsCount * 3
+      - Math.max(0, state.ownerLoad - 50) * 0.4;
+    return Math.max(0, Math.min(100, Math.round(score)));
+  }
+  function topChallenges(n){
+    var candidates = [
+      { label:"Cleanup & house-training", score: state.accidentsCount*10 },
+      { label:"Time spent alone", score: state.totalHoursAway },
+      { label:"Keeping up day to day", score: state.ownerLoad },
+      { label:"Bond & settling in", score: 100 - state.bond }
+    ];
+    candidates.sort(function(a,b){ return b.score - a.score; });
+    return candidates.slice(0, n);
+  }
+  function challengeDescription(label){
+    if (label === "Cleanup & house-training") return "Accidents and cleanup kept coming up — worth asking whether you have the patience for a longer house-training runway.";
+    if (label === "Time spent alone") return "This dog was alone more than is comfortable for the breed and housing you chose — a real schedule conflict, not a one-off.";
+    if (label === "Keeping up day to day") return "The day-to-day load stayed heavy through the month — feeding, walks, cleanup, and incidents kept stacking up.";
+    return esc(state.name) + " and you were still settling in by day 30 — that kind of bond usually needs more than a month.";
+  }
+  function compatibilityLabel(score){
+    if (score >= 75) return "Strong match";
+    if (score >= 50) return "Potential challenges";
+    return "Significant mismatch";
+  }
+  function maybeInterceptView(){
+    if (!state) return;
+    var day = tripDay();
+    if (day >= 30 && state.checkpointShownDay < 30){
+      state.checkpointShownDay = 30;
+      save();
+      view = "report30";
+    } else if (day >= 7 && state.checkpointShownDay < 7){
+      state.checkpointShownDay = 7;
+      save();
+      view = "reality7";
+    }
+  }
+  function tripDay(){
+    return Math.floor((Date.now() - state.startedAt) / (24*HOUR));
+  }
 
-  function log(text){
-    state.journal.unshift({ ts: Date.now(), text: text });
+  // Inserts at the right chronological position rather than always at the front,
+  // so a deferred consequence can be logged with the timestamp it actually happened at.
+  function logAt(ts, text){
+    var idx = 0;
+    while (idx < state.journal.length && state.journal[idx].ts > ts) idx++;
+    state.journal.splice(idx, 0, { ts: ts, text: text });
     if (state.journal.length > 60) state.journal.length = 60;
+  }
+  function log(text){
+    logAt(Date.now(), text);
   }
 
   function applyHomeDecay(hours, stage){
@@ -3056,6 +3214,32 @@
     }
   }
 
+  // Roughly once every few hours once the bond is established — never every tick,
+  // or it reads as noise instead of a moment.
+  function maybePositiveMoment(deltaHours){
+    if (state.bond < 45) return;
+    var hoursSince = (Date.now() - (state.lastPositiveMomentAt||0)) / HOUR;
+    if (hoursSince < 3) return;
+    var chance = Math.min(0.9, deltaHours/8) * (state.bond/100);
+    if (Math.random() < chance){
+      var pick = POSITIVE_MOMENTS[Math.floor(Math.random()*POSITIVE_MOMENTS.length)];
+      log(pick(state.name));
+      state.bond = clamp(state.bond + 1);
+      state.lastPositiveMomentAt = Date.now();
+    }
+  }
+
+  // Real elapsed days, not simulated dog age — the 30-day clock keeps moving
+  // even if the dog's own aging is compressed or paused.
+  function checkPhaseTransition(){
+    var day = Math.min(30, tripDay()+1);
+    var phase = tripPhaseFor(day);
+    if (state.lastPhaseLabel && state.lastPhaseLabel !== phase.label){
+      log(phase.transition(state.name));
+    }
+    state.lastPhaseLabel = phase.label;
+  }
+
   function tickHome(now){
     var last = state.lastTick;
     var deltaHours = (now-last)/HOUR;
@@ -3068,16 +3252,32 @@
     if (stageAfter !== stageBefore){
       log(state.name + " is now " + STAGE_LABEL[stageAfter].toLowerCase() + ".");
     }
-    if (stageAfter === "puppy" && state.bladder <= 0 && (now - (state.lastHomeAccidentAt||0)) > 1.5*HOUR){
+    if (!canWalkOutside(state.dogDays) && state.bladder <= 0 && (now - (state.lastHomeAccidentAt||0)) > 0.75*HOUR){
       state.houseTraining = clamp(state.houseTraining - 3);
       state.lastHomeAccidentAt = now;
-      log(state.name + " had an accident on the floor — under 6 months, puppies need a bathroom trip after almost every nap, meal, or play session.");
+      state.accidentsCount = (state.accidentsCount||0) + 1;
+      bumpOwnerLoad(8);
+      log(state.name + " had an accident on the floor — before real walks start, puppies need a bathroom trip after almost every nap, meal, or play session.");
     }
+    maybePositiveMoment(deltaHours);
+    checkPhaseTransition();
+    bumpOwnerLoad(-deltaHours*0.5); // calm, uneventful time settles the load back down
     save();
   }
 
   function computeTolerance(breed, stage, housing){
     return breed.tolerance * TOLERANCE_MULT[stage] * housing.toleranceMult;
+  }
+
+  // Difficulty comes from breed x home x life together, not from the breed alone —
+  // the same husky can be an easy or a rough fit depending on the other two.
+  function lifeFitMessage(breed, housing, stage, hoursAway){
+    var tolerance = computeTolerance(breed, stage, housing);
+    if (!isFinite(tolerance)) return "Pick a starting age above to see how this combination fits.";
+    if (hoursAway <= tolerance) return breed.name + " can comfortably handle about " + Math.round(tolerance) + "h alone at this age — your typical day should fit.";
+    var excess = hoursAway - tolerance;
+    if (excess <= 2) return "This combination may create some challenges — " + breed.name + " can comfortably handle about " + Math.round(tolerance) + "h alone, a bit less than your typical day.";
+    return "This combination may create significant challenges around exercise and alone time — " + breed.name + " can comfortably handle about " + Math.round(tolerance) + "h alone, well under your typical " + hoursAway + "h day.";
   }
 
   function housingRiskNote(housing){
@@ -3094,6 +3294,7 @@
     var housing = housingById(state.housingId);
     applyHomeDecay(actualHours, stage); // baseline physiological need regardless of tolerance
     state.dogDays += actualHours*DOGDAYS_PER_HOUR;
+    checkPhaseTransition();
 
     var tolerance = computeTolerance(breed, stage, housing);
     var excess = Math.max(0, actualHours - tolerance);
@@ -3128,19 +3329,45 @@
 
     state.lastTick = now;
     state.away = null;
+    state.totalHoursAway = (state.totalHoursAway||0) + actualHours;
+    state.accidentsCount = (state.accidentsCount||0) + incidents.filter(function(inc){ return inc.type==="accident"; }).length;
+    bumpOwnerLoad(5 + incidents.length*3 + (crateOverage>0 ? 5 : 0));
 
-    if (incidents.length===0 && crateOverage===0){
-      log(state.name + " handled " + fmtHours(actualHours) + " alone just fine.");
-    } else {
-      log("Home from work (" + fmtHours(actualHours) + " away): " + incidents.length + " thing" + (incidents.length>1?"s":"") + " went wrong.");
+    // Build a real timeline instead of a lump-sum summary: each incident is logged with
+    // the timestamp it actually happened at, spread across the window past tolerance —
+    // action (leaving) -> state (restless) -> delay -> consequence (incident), not a score.
+    var toleranceMs = tolerance*HOUR;
+    var timeline = [{ ts: away.leaveStart, text: "Left for work — said back in " + away.declaredHours + "h." }];
+    if (excess > 0){
+      var restlessTs = away.leaveStart + toleranceMs;
+      var restlessText = state.name + " is becoming restless — past the alone-time " + breed.name + " can comfortably handle right now.";
+      if (!away.awayAlerted) logAt(restlessTs, restlessText);
+      timeline.push({ ts: restlessTs, text: restlessText });
+    }
+    if (incidents.length > 0){
+      var windowMs = Math.max(1, now - (away.leaveStart + toleranceMs));
+      incidents.forEach(function(inc, i){
+        var ts = away.leaveStart + toleranceMs + windowMs * ((i+1) / (incidents.length+1));
+        var text = state.name + " " + inc.text + ".";
+        logAt(ts, text);
+        timeline.push({ ts: ts, text: text });
+      });
     }
     if (crateOverage > 0){
-      log(state.name + " spent " + fmtHours(crateOverage) + " past the recommended crate-time limit.");
+      var crateText = state.name + " spent " + fmtHours(crateOverage) + " past the recommended crate-time limit.";
+      log(crateText);
+      timeline.push({ ts: now, text: crateText });
     }
+    var homeText = (incidents.length===0 && crateOverage===0)
+      ? state.name + " handled " + fmtHours(actualHours) + " alone just fine."
+      : "You're home. " + state.name + " is excited to see you.";
+    log(homeText);
+    timeline.push({ ts: now, text: homeText });
     save();
 
     return { actualHours: actualHours, declaredHours: away.declaredHours, tolerance: tolerance, incidents: incidents,
-      houseTrained: houseTrained, wellTrained: wellTrained, hadRisk: excess>0, housing: housing, crateOverage: crateOverage };
+      houseTrained: houseTrained, wellTrained: wellTrained, hadRisk: excess>0, housing: housing, crateOverage: crateOverage,
+      timeline: timeline };
   }
 
   function checkNotify(){
@@ -3164,16 +3391,64 @@
     return {label:"Struggling", key:"bad"};
   }
 
-  function meterColor(v){
-    if (v>=60) return "var(--accent)";
-    if (v>=30) return "var(--warn)";
-    return "var(--bad)";
-  }
-
   function esc(s){
     return String(s).replace(/[&<>"']/g, function(c){
       return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
     });
+  }
+
+  function dayLabel(){
+    var n = Math.max(1, tripDay()+1);
+    var phase = tripPhaseFor(n);
+    var now = new Date();
+    var weekday = now.toLocaleDateString("en-US", { weekday:"long" });
+    var monthDay = now.toLocaleDateString("en-US", { month:"long", day:"numeric" });
+    return "Day " + Math.min(30, n) + " / 30 · " + phase.label + " · " + weekday + ", " + monthDay;
+  }
+
+  function todaysJournalEntries(){
+    var now = new Date();
+    return state.journal.filter(function(j){
+      return new Date(j.ts).toDateString() === now.toDateString();
+    }).slice().reverse();
+  }
+
+  // Picks the single most urgent thing the dog needs right now, from real decay rates —
+  // not a dashboard of every meter, just what to do next.
+  function computeNextAction(){
+    var stage = stageOf(state.dogDays);
+    var canWalk = canWalkOutside(state.dogDays);
+    var fi = FEED_INTERVAL[stage], bi = BLADDER_INTERVAL[stage];
+
+    function etaMinutes(val, intervalHours){
+      if (!intervalHours) return Infinity;
+      return Math.max(0, val * intervalHours / 100 * 60);
+    }
+
+    var hungerEta = etaMinutes(state.hunger, fi);
+    var bladderEta = etaMinutes(state.bladder, bi);
+    var energyEta = etaMinutes(state.energy, WALK_INTERVAL_HOURS);
+    var outEta = Math.min(bladderEta, energyEta);
+    var outIsBladder = bladderEta <= energyEta;
+
+    var candidates = [
+      { eta: hungerEta, label:"Feeding time", cta:"Feed " + esc(state.name), actionId:"feed" },
+      { eta: outEta,
+        label: outIsBladder ? "Bathroom break" : (canWalk ? "Walk" : "Safe activity"),
+        cta: canWalk ? "Take her out" : "See safe activities",
+        actionId: canWalk ? "walk" : "play" }
+    ];
+    candidates.sort(function(a,b){ return a.eta - b.eta; });
+    var top = candidates[0];
+    var minutes = Math.round(top.eta);
+
+    var etaText;
+    if (!isFinite(minutes)) etaText = "Not urgent right now";
+    else if (minutes <= 0) etaText = "Due now";
+    else if (minutes < 60) etaText = "in about " + minutes + " min";
+    else etaText = "in about " + fmtHours(minutes/60);
+
+    return { label: top.label, cta: top.cta, actionId: top.actionId, etaText: etaText };
   }
 
   // ---------- SVG dog ----------
@@ -3236,8 +3511,12 @@
     else if (view === "awayReport") root.innerHTML = brandStrip() + renderAwayReport(window.__lastReport);
     else if (view === "train") root.innerHTML = brandStrip() + renderTrain();
     else if (view === "journal") root.innerHTML = brandStrip() + renderJournal();
+    else if (view === "reality7") root.innerHTML = brandStrip() + renderReality7();
+    else if (view === "report30") root.innerHTML = brandStrip() + renderReport30();
     else if (view === "walkGps") root.innerHTML = brandStrip() + renderWalkGps();
     else if (view === "walkSteps") root.innerHTML = brandStrip() + renderWalkSteps();
+    else if (view === "walkConfirm") root.innerHTML = brandStrip() + renderWalkConfirm();
+    else if (view === "safeActivities") root.innerHTML = brandStrip() + renderSafeActivities();
     attachHandlers();
     if (view === "atWork") startAtWorkClock();
     else if (view === "walkSteps") startStepsClock();
@@ -3270,11 +3549,40 @@
         '<div class="house-risk"><span class="house-risk-tag">Main risk</span>'+esc(h.risk)+'</div></div>' +
         '</button>';
     }).join("");
+    var stageCards = START_STAGES.map(function(s){
+      var sel = s.id === pendingStartStage;
+      return '<button class="breed-card'+(sel?' selected':'')+'" data-start-stage="'+s.id+'">' +
+        '<div><div class="name">'+esc(s.label)+'</div>' +
+        '<div class="catch">'+esc(s.note)+'</div></div>' +
+        '</button>';
+    }).join("");
+    var lifeCards = LIFE_OPTIONS.map(function(l){
+      var sel = l.id === pendingLife;
+      return '<button class="breed-card'+(sel?' selected':'')+'" data-life="'+l.id+'">' +
+        '<div><div class="name">'+esc(l.label)+'</div>' +
+        '<div class="catch">'+esc(l.note)+'</div></div>' +
+        '</button>';
+    }).join("");
     var selectedBreed = byId(pendingBreed);
+    var selectedHousing = housingById(pendingHousing);
+    var selectedLife = lifeById(pendingLife);
+    var selectedStage = START_STAGES.filter(function(s){ return s.id === pendingStartStage; })[0] || START_STAGES[0];
+    var fitStage = stageOf(selectedStage.startDogDays);
+    var fitMessage = lifeFitMessage(selectedBreed, selectedHousing, fitStage, selectedLife.hoursAway);
     var upfront = VET_STARTER_COST + GEAR_STARTER_COST;
     var monthlyFood = estimateMonthlyFoodCost(selectedBreed);
+    var archive = loadArchive();
+    var archiveCard = archive.length === 0 ? "" :
+      '<div class="card" style="margin-top:14px">' +
+        '<div class="section-title">Past trials</div>' +
+        archive.slice(0,5).map(function(a){
+          return '<div class="j-entry"><div class="j-time" style="width:auto; margin-right:10px;">'+esc(a.tripDaysReached)+'d</div>' +
+            '<div class="j-text">'+esc(a.name)+' — '+esc(a.breedName)+', '+esc(a.housingLabel)+' <span class="muted">('+esc(a.outcome)+')</span></div></div>';
+        }).join("") +
+      '</div>';
     return '' +
-      '<div class="card intro">' +
+      archiveCard +
+      '<div class="card intro" style="margin-top:'+(archive.length?'14px':'0')+'">' +
         '<h1>Before you get a dog,<br>live with one for 30 days.</h1>' +
         '<p>Real feeding windows. Real walks. If you leave for work, the dog is actually alone for that long — and you’ll see exactly what that costs.</p>' +
       '</div>' +
@@ -3287,6 +3595,25 @@
         '<div class="breed-grid">'+cards+'</div>' +
       '</div>' +
       '<div class="card" style="margin-top:14px">' +
+        '<div class="section-title">How old is the dog?</div>' +
+        '<div class="breed-grid">'+stageCards+'</div>' +
+      '</div>' +
+      '<div class="card" style="margin-top:14px">' +
+        '<div class="section-title">Where the dog will live</div>' +
+        '<div class="breed-grid">'+housingCards+'</div>' +
+      '</div>' +
+      '<div class="card" style="margin-top:14px">' +
+        '<div class="section-title">What your typical day looks like</div>' +
+        '<div class="breed-grid">'+lifeCards+'</div>' +
+      '</div>' +
+      '<div class="card" style="margin-top:14px">' +
+        '<div class="section-title">Dog × Home × Life</div>' +
+        '<div class="cost-row"><span>The dog</span><b>'+esc(selectedBreed.name)+'</b></div>' +
+        '<div class="cost-row"><span>The home</span><b>'+esc(selectedHousing.label)+'</b></div>' +
+        '<div class="cost-row"><span>The life</span><b>'+esc(selectedLife.label)+'</b></div>' +
+        '<p class="muted" style="margin-top:10px; font-size:13px;">'+esc(fitMessage)+'</p>' +
+      '</div>' +
+      '<div class="card" style="margin-top:14px">' +
         '<div class="section-title">What this actually costs</div>' +
         '<div class="cost-row"><span>Vet visit + first 2 vaccines</span><b>€'+VET_STARTER_COST+'</b></div>' +
         '<div class="cost-row"><span>Starter gear — bed, collar &amp; leash, bowls, toys</span><b>€'+GEAR_STARTER_COST+'</b></div>' +
@@ -3295,9 +3622,7 @@
         '<p class="muted" style="margin-top:8px; font-size:12px;">Food only — real monthly costs run higher once you add insurance, parasite prevention, and routine vet visits.</p>' +
       '</div>' +
       '<div class="card" style="margin-top:14px">' +
-        '<div class="section-title">Where the dog will live</div>' +
-        '<div class="breed-grid">'+housingCards+'</div>' +
-        '<button class="btn btn-primary" id="start-btn" style="margin-top:16px">Start the trial</button>' +
+        '<button class="btn btn-primary" id="start-btn">Start the trial</button>' +
       '</div>';
   }
 
@@ -3307,11 +3632,8 @@
     var mood = moodOf();
     var weeks = Math.floor(state.dogDays/7);
     var days = Math.floor(state.dogDays%7);
-
-    function meter(label, val){
-      return '<div class="meter"><div class="meter-label"><span>'+label+'</span><b>'+Math.round(val)+'</b></div>' +
-        '<div class="meter-track"><div class="meter-fill" style="width:'+val+'%; background:'+meterColor(val)+'"></div></div></div>';
-    }
+    var next = computeNextAction();
+    var todayEntries = todaysJournalEntries();
 
     var cmdRows = COMMANDS.map(function(c){
       return '<div class="cmd-row"><div class="cmd-name">'+c.label+'</div>' +
@@ -3319,7 +3641,7 @@
         '<button class="btn btn-ghost cmd-btn" data-train="'+c.id+'" style="border:1px solid var(--line)">Train</button></div>';
     }).join("");
 
-    var cooldownLeft = TRAIN_COOLDOWN_HOURS*HOUR - (Date.now() - state.lastTrainedAt);
+    var cooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
     var trainNote = cooldownLeft > 0 ? '<div class="muted mono" style="margin-top:10px; font-size:12px;">Next session available in '+fmtClock(cooldownLeft)+'</div>' : "";
 
     var recentJournal = state.journal.slice(0,3).map(function(j){
@@ -3327,15 +3649,24 @@
     }).join("");
 
     var housing = housingById(state.housingId);
+    var realDaysElapsed = (Date.now() - state.startedAt) / (24*HOUR);
+    var costRunning = costSoFar(breed, realDaysElapsed);
     return '' +
       '<div class="card">' +
         '<div class="top-actions">' +
-          '<span class="badge '+stage+'">'+STAGE_LABEL[stage]+'</span>' +
-          '<button class="btn-ghost" id="reset-btn">Reset</button>' +
+          '<span class="day-label mono">'+dayLabel()+'</span>' +
+          (resetConfirmOpen ?
+            '<span class="reset-confirm">' +
+              '<span class="muted" style="font-size:12px;">Start a new trial?</span>' +
+              '<button class="btn-ghost" id="reset-confirm-btn" style="color:var(--bad)">Yes</button>' +
+              '<button class="btn-ghost" id="reset-cancel-btn">Cancel</button>' +
+            '</span>' :
+            '<button class="btn-ghost" id="reset-btn">Start a new trial</button>') +
         '</div>' +
         '<div class="dog-head">' +
           '<div class="dog-portrait">'+dogVisual(breed, stage)+'</div>' +
           '<div class="dog-id">' +
+            '<span class="badge '+stage+'">'+STAGE_LABEL[stage]+'</span>' +
             '<div class="name">'+esc(state.name)+'</div>' +
             '<div class="age mono">'+weeks+'w '+days+'d old · '+esc(breed.name)+'</div>' +
             '<div class="age" style="margin-top:2px;">'+esc(housing.short)+'</div>' +
@@ -3345,19 +3676,40 @@
       '</div>' +
 
       '<div class="card">' +
-        '<div class="section-title">Needs</div>' +
-        meter("Hunger", state.hunger) +
-        meter("Bladder", state.bladder) +
-        meter("Energy", state.energy) +
-        meter("Bond", state.bond) +
-        meter("Health", state.health) +
+        '<div class="section-title">Next</div>' +
+        '<div class="next-label">'+esc(next.label)+'</div>' +
+        '<div class="muted mono" style="margin-top:2px; font-size:13px;">'+esc(next.etaText)+'</div>' +
+        '<button class="btn btn-primary" id="next-action-btn" data-action="'+next.actionId+'" style="margin-top:14px">'+esc(next.cta)+'</button>' +
+      '</div>' +
+
+      '<div class="card">' +
+        '<div class="section-title">Today</div>' +
+        (todayEntries.length ? todayEntries.map(function(j){
+          var t = new Date(j.ts);
+          var hh = (t.getHours()<10?"0":"")+t.getHours();
+          var mm = (t.getMinutes()<10?"0":"")+t.getMinutes();
+          return '<div class="j-entry"><div class="j-time mono">'+hh+':'+mm+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
+        }).join("") : '<div class="muted">Nothing logged yet today.</div>') +
+      '</div>' +
+
+      '<div class="card">' +
+        '<div class="section-title">This trial so far</div>' +
+        '<div class="cost-row"><span>Walks / play sessions</span><b>'+state.walksCompleted+'</b></div>' +
+        '<div class="cost-row"><span>Accidents cleaned up</span><b>'+state.accidentsCount+'</b></div>' +
+        '<div class="cost-row"><span>Hours you\'ve been away, total</span><b>'+fmtHours(state.totalHoursAway)+'</b></div>' +
+        '<div class="cost-row cost-total"><span>Spent so far</span><b>€'+costRunning+'</b></div>' +
+        '<p class="muted" style="margin-top:8px; font-size:12.5px;">Not the dog\'s stats — yours. How is this fitting into your life?</p>' +
       '</div>' +
 
       '<div class="card">' +
         '<div class="row-btns">' +
           '<button class="btn btn-primary" id="feed-btn">Feed</button>' +
-          '<button class="btn btn-primary" id="walk-btn">Walk</button>' +
+          (canWalkOutside(state.dogDays) ?
+            '<button class="btn btn-primary" id="walk-btn">Walk</button>' :
+            '<button class="btn btn-primary" id="play-btn">See safe activities</button>') +
         '</div>' +
+        (canWalkOutside(state.dogDays) ? "" :
+          '<p class="muted" style="margin-top:8px; font-size:12.5px;">Public walks locked — not fully vaccinated yet, real outdoor walks unlock around 3 months old. Until then: home play, socialization, and being carried outside for exposure without ground time.</p>') +
         '<button class="btn btn-warn" id="leave-btn" style="margin-top:10px">Leave for work</button>' +
       '</div>' +
 
@@ -3403,17 +3755,67 @@
       '</div>';
   }
 
+  function prepRow(label, ready, note){
+    return '<div class="setting-row">' +
+      '<div class="setting-copy">' +
+        '<div class="title"><span class="mood-dot" style="background:'+(ready?"var(--accent)":"var(--warn)")+'; display:inline-block; margin-right:6px;"></span>'+esc(label)+'</div>' +
+        '<div class="caveat">'+esc(note)+'</div>' +
+      '</div>' +
+    '</div>';
+  }
+
   function renderLeaveSetup(){
+    var canWalk = canWalkOutside(state.dogDays);
+    var checklist = [
+      { label:"Bathroom", ready: state.bladder >= 60,
+        note: state.bladder >= 60 ? "Recently relieved." : "Bladder is low — an accident is more likely on a long day." },
+      { label:"Food", ready: state.hunger >= 60,
+        note: state.hunger >= 60 ? "Recently fed." : "Already hungry — that adds up over a long absence." },
+      { label: canWalk ? "Exercise" : "Play",
+        ready: state.energy >= 50,
+        note: state.energy >= 50 ? "Had a chance to burn energy." : "Still has pent-up energy — restlessness sets in sooner." }
+    ];
+    var allReady = checklist.every(function(c){ return c.ready; });
+    var rows = checklist.map(function(c){ return prepRow(c.label, c.ready, c.note); }).join("");
+    var warning = allReady ? "" :
+      '<p class="muted" style="margin-top:10px; font-size:12.5px; color:var(--warn);">Leaving before '+esc(state.name)+' is ready makes the day harder on both of you — you can still go.</p>';
     return '' +
       '<div class="card">' +
-        '<h2>Leave for work</h2>' +
+        '<h2>Leave '+esc(state.name)+' alone?</h2>' +
+        '<div class="section-title" style="margin-top:16px;">Before you leave</div>' +
+        rows +
+        warning +
+      '</div>' +
+      '<div class="card">' +
         '<p class="muted">How many hours will '+esc(state.name)+' actually be alone?</p>' +
         '<div class="field" style="margin-top:14px">' +
-          '<label for="hours-range">Hours away: <b id="hours-out" class="mono">4h</b></label>' +
-          '<input id="hours-range" type="range" min="1" max="12" step="1" value="4" style="width:100%">' +
+          '<label for="hours-range">Hours away: <b id="hours-out" class="mono">'+state.typicalHoursAway+'h</b></label>' +
+          '<input id="hours-range" type="range" min="1" max="12" step="1" value="'+state.typicalHoursAway+'" style="width:100%">' +
         '</div>' +
         '<button class="btn btn-warn" id="confirm-leave" style="margin-top:16px">Leave now</button>' +
         '<button class="btn btn-ghost" id="cancel-leave" style="margin-top:8px; width:100%;">Cancel</button>' +
+      '</div>';
+  }
+
+  function renderSafeActivities(){
+    var cards = SAFE_ACTIVITIES.map(function(a){
+      return '<button class="breed-card" data-activity="'+a.id+'">' +
+        '<div><div class="name">'+esc(a.label)+'</div>' +
+        '<div class="catch">'+esc(a.note)+'</div></div>' +
+        '</button>';
+    }).join("");
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">Public walks locked</div>' +
+        '<h2 style="margin-top:4px;">'+esc(state.name)+' isn\'t ready for public walks yet</h2>' +
+        '<p class="muted" style="margin-top:8px;">Not fully vaccinated — real outdoor walks unlock around 3 months old. Until then, here\'s what actually helps.</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Choose an activity</div>' +
+        '<div class="breed-grid">'+cards+'</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<button class="btn btn-ghost" id="safe-activities-back" style="width:100%; border:1px solid var(--line);">Back</button>' +
       '</div>';
   }
 
@@ -3439,23 +3841,29 @@
 
   function renderAwayReport(report){
     var breed = byId(state.breedId);
-    var list = report.incidents.length === 0
-      ? '<div class="none-happened">Nothing went wrong. '+esc(breed.tolerance+'h')+' of tolerance covered it.</div>'
-      : report.incidents.map(function(inc){
-          return '<div class="incident"><span class="tag">While you were out</span>'+esc(state.name)+' '+esc(inc.text)+'.</div>';
-        }).join("");
+    var timelineHtml = report.timeline.map(function(ev){
+      var t = new Date(ev.ts);
+      var hh = (t.getHours()<10?"0":"")+t.getHours();
+      var mm = (t.getMinutes()<10?"0":"")+t.getMinutes();
+      return '<div class="j-entry"><div class="j-time mono">'+hh+':'+mm+'</div><div class="j-text">'+esc(ev.text)+'</div></div>';
+    }).join("");
     var footnotes = "";
     if (report.hadRisk && report.houseTrained) footnotes += '<p class="muted" style="margin-top:10px; font-size:12.5px;">Solid house-training kept any accident off the list.</p>';
     if (report.hadRisk && report.wellTrained) footnotes += '<p class="muted" style="margin-top:6px; font-size:12.5px;">Training paid off — a well-trained dog copes calmer alone, so fewer things went wrong than the hours alone would suggest.</p>';
-    if (report.crateOverage > 0) footnotes += '<p class="muted" style="margin-top:6px; font-size:12.5px; color:var(--bad);">'+fmtHours(report.crateOverage)+' past the safe crate-time limit — this is where crate use turns into a welfare risk, not just an inconvenience.</p>';
+    if (report.crateOverage > 0) footnotes += '<p class="muted" style="margin-top:6px; font-size:12.5px; color:var(--bad);">This is where crate use turns into a welfare risk, not just an inconvenience.</p>';
     return '' +
       '<div class="card">' +
         '<div class="section-title">Welcome home</div>' +
         '<h2>Away '+fmtHours(report.actualHours)+' — said '+fmtHours(report.declaredHours)+'</h2>' +
         '<p class="muted">'+esc(breed.name)+' can comfortably handle about '+fmtHours(report.tolerance)+' alone at this age ('+esc(report.housing.label)+').</p>' +
-        '<div style="margin-top:10px">'+list+'</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">What happened</div>' +
+        timelineHtml +
         footnotes +
-        '<button class="btn btn-primary" id="ack-report" style="margin-top:16px">Back to '+esc(state.name)+'</button>' +
+      '</div>' +
+      '<div class="card">' +
+        '<button class="btn btn-primary" id="ack-report">Back to '+esc(state.name)+'</button>' +
       '</div>';
   }
 
@@ -3503,6 +3911,21 @@
       '</div>';
   }
 
+  function renderWalkConfirm(){
+    var c = walkCtx;
+    var statLine = c.mode === "steps"
+      ? Math.round(c.activeSeconds/60) + " of " + c.goalMinutes + " min · " + c.steps + " steps"
+      : Math.round(c.distance) + " m of " + c.target + " m";
+    return '' +
+      '<div class="card center">' +
+        '<div class="section-title">Walk complete?</div>' +
+        '<div class="big-num mono" style="font-size:26px;">'+statLine+'</div>' +
+        '<p class="muted" style="margin-top:10px;">Does that match what actually happened?</p>' +
+        '<button class="btn btn-primary" id="confirm-walk-yes" style="margin-top:20px">Confirm walk</button>' +
+        '<button class="btn btn-ghost" id="confirm-walk-no" style="width:100%; border:1px solid var(--line); margin-top:8px;">I couldn\'t walk</button>' +
+      '</div>';
+  }
+
   function renderTrain(){
     var c = trainCtx;
     var cmd = COMMANDS.filter(function(x){return x.id===c.commandId;})[0];
@@ -3522,6 +3945,64 @@
         '</div>' +
         '<div class="round-dots">'+dots+'</div>' +
         '<button class="btn btn-primary" id="tap-btn" style="margin-top:20px">Tap</button>' +
+      '</div>';
+  }
+
+  function renderReality7(){
+    var breed = byId(state.breedId);
+    var cost = costSoFar(breed, 7);
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">One week in</div>' +
+        '<h2 style="margin-top:4px;">Reality check — day 7</h2>' +
+        '<p class="muted" style="margin-top:8px;">Here\'s what the last week actually looked like — not how it felt in the moment.</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="cost-row"><span>Walks / play sessions completed</span><b>'+state.walksCompleted+'</b></div>' +
+        '<div class="cost-row"><span>Accidents cleaned up</span><b>'+state.accidentsCount+'</b></div>' +
+        '<div class="cost-row"><span>Hours left alone, total</span><b>'+fmtHours(state.totalHoursAway)+'</b></div>' +
+        '<div class="cost-row cost-total"><span>Spent so far</span><b>€'+cost+'</b></div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Still want this dog?</div>' +
+        '<button class="btn btn-primary" id="reality-keep" style="margin-top:10px;">Yes — keep going</button>' +
+        '<button class="btn btn-ghost" id="reality-unsure" style="width:100%; border:1px solid var(--line); margin-top:8px;">I\'m not sure</button>' +
+        '<p class="muted" style="margin-top:10px; font-size:12.5px;">Not being sure is useful information, not a wrong answer.</p>' +
+      '</div>';
+  }
+
+  function renderReport30(){
+    var breed = byId(state.breedId);
+    var cost = costSoFar(breed, 30);
+    var avgTraining = Math.round(COMMANDS.reduce(function(s,c){ return s + state.training[c.id]; }, 0) / COMMANDS.length);
+    var score = compatibilityScore();
+    var label = compatibilityLabel(score);
+    var challengeItems = topChallenges(2).map(function(c){
+      return '<li>'+challengeDescription(c.label)+'</li>';
+    }).join("");
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">Your 30-day trial</div>' +
+        '<h2 style="margin-top:4px;">'+esc(state.name)+'\'s report</h2>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Your trial</div>' +
+        '<h2 style="margin-top:4px;">'+label+'</h2>' +
+        '<p class="muted" style="margin-top:6px;">Here\'s what you should think about before adopting.</p>' +
+        '<ul class="challenge-list">'+challengeItems+'</ul>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="cost-row"><span>House training</span><b>'+Math.round(state.houseTraining)+'%</b></div>' +
+        '<div class="cost-row"><span>Avg. command training</span><b>'+avgTraining+'%</b></div>' +
+        '<div class="cost-row"><span>Accidents / missed care</span><b>'+state.accidentsCount+'</b></div>' +
+        '<div class="cost-row"><span>Hours left alone, total</span><b>'+fmtHours(state.totalHoursAway)+'</b></div>' +
+        '<div class="cost-row cost-total"><span>Total cost, 30 days</span><b>€'+cost+'</b></div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">If '+esc(state.name)+' were real tomorrow, would you still adopt?</div>' +
+        '<button class="btn btn-primary" id="report-yes" style="margin-top:10px;">Yes, I\'m ready</button>' +
+        '<button class="btn btn-ghost" id="report-think" style="width:100%; border:1px solid var(--line); margin-top:8px;">I need to think</button>' +
+        '<button class="btn btn-ghost" id="report-no" style="width:100%; border:1px solid var(--line); margin-top:8px;">This isn\'t the right dog for me</button>' +
       '</div>';
   }
 
@@ -3553,11 +4034,25 @@
           render();
         });
       });
+      root.querySelectorAll("[data-start-stage]").forEach(function(el){
+        el.addEventListener("click", function(){
+          pendingStartStage = el.getAttribute("data-start-stage");
+          render();
+        });
+      });
+      root.querySelectorAll("[data-life]").forEach(function(el){
+        el.addEventListener("click", function(){
+          pendingLife = el.getAttribute("data-life");
+          render();
+        });
+      });
       var startBtn = document.getElementById("start-btn");
       if (startBtn) startBtn.addEventListener("click", function(){
         var nameInput = document.getElementById("dogname");
         var name = (nameInput.value || "").trim() || "The dog";
-        state = newDog(name, pendingBreed, pendingHousing);
+        var startStage = START_STAGES.filter(function(s){ return s.id === pendingStartStage; })[0] || START_STAGES[0];
+        state = newDog(name, pendingBreed, pendingHousing, startStage.startDogDays);
+        state.typicalHoursAway = lifeById(pendingLife).hoursAway;
         save();
         view = "home";
         render();
@@ -3565,17 +4060,28 @@
     }
 
     if (view === "home"){
+      var nextBtn = document.getElementById("next-action-btn");
+      if (nextBtn) nextBtn.addEventListener("click", function(){
+        var target = document.getElementById(nextBtn.getAttribute("data-action") + "-btn");
+        if (target) target.click();
+      });
       document.getElementById("feed-btn").addEventListener("click", function(){
         state.hunger = 100; state.bond = clamp(state.bond+1);
         var isPuppy = stageOf(state.dogDays) === "puppy";
         if (isPuppy) state.bladder = clamp(state.bladder - 30);
         log("Fed " + state.name + "." + (isPuppy ? " Expect a bathroom trip within 20 minutes at this age." : ""));
+        bumpOwnerLoad(1);
         save(); render();
       });
-      document.getElementById("walk-btn").addEventListener("click", function(){
+      var walkBtn = document.getElementById("walk-btn");
+      if (walkBtn) walkBtn.addEventListener("click", function(){
         if (state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined") startStepsWalk();
         else if (state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
         else doManualWalk();
+      });
+      var playBtn = document.getElementById("play-btn");
+      if (playBtn) playBtn.addEventListener("click", function(){
+        view = "safeActivities"; render();
       });
       document.getElementById("leave-btn").addEventListener("click", function(){
         view = "leaveSetup"; render();
@@ -3583,17 +4089,28 @@
       document.getElementById("journal-btn").addEventListener("click", function(){
         view = "journal"; render();
       });
-      document.getElementById("reset-btn").addEventListener("click", function(){
-        if (window.confirm("Start over with a new dog? This clears the current trial.")){
-          state = null;
-          try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
-          view = "onboarding";
-          render();
-        }
+      var resetBtn = document.getElementById("reset-btn");
+      if (resetBtn) resetBtn.addEventListener("click", function(){
+        resetConfirmOpen = true;
+        render();
+      });
+      var resetConfirmBtn = document.getElementById("reset-confirm-btn");
+      if (resetConfirmBtn) resetConfirmBtn.addEventListener("click", function(){
+        resetConfirmOpen = false;
+        archiveCurrentTrial("ended early");
+        state = null;
+        try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+        view = "onboarding";
+        render();
+      });
+      var resetCancelBtn = document.getElementById("reset-cancel-btn");
+      if (resetCancelBtn) resetCancelBtn.addEventListener("click", function(){
+        resetConfirmOpen = false;
+        render();
       });
       root.querySelectorAll("[data-train]").forEach(function(el){
         el.addEventListener("click", function(){
-          var cooldownLeft = TRAIN_COOLDOWN_HOURS*HOUR - (Date.now() - state.lastTrainedAt);
+          var cooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
           if (cooldownLeft > 0) return;
           var breed = byId(state.breedId);
           var width = Math.max(12, Math.min(40, 12 + breed.trainability*2.4)) * (state.energy<30 ? 0.7 : 1);
@@ -3650,13 +4167,36 @@
 
     if (view === "walkGps"){
       document.getElementById("end-walk").addEventListener("click", function(){
-        finishGpsWalk(false);
+        requestGpsWalkConfirm();
       });
     }
 
     if (view === "walkSteps"){
       document.getElementById("end-walk").addEventListener("click", function(){
-        finishStepsWalk(false);
+        requestStepsWalkConfirm();
+      });
+    }
+
+    if (view === "walkConfirm"){
+      var isSteps = walkCtx && walkCtx.mode === "steps";
+      document.getElementById("confirm-walk-yes").addEventListener("click", function(){
+        if (isSteps) finishStepsWalk(false, false);
+        else finishGpsWalk(false, false);
+      });
+      document.getElementById("confirm-walk-no").addEventListener("click", function(){
+        if (isSteps) finishStepsWalk(false, true);
+        else finishGpsWalk(false, true);
+      });
+    }
+
+    if (view === "safeActivities"){
+      root.querySelectorAll("[data-activity]").forEach(function(el){
+        el.addEventListener("click", function(){
+          doSafeActivity(el.getAttribute("data-activity"));
+        });
+      });
+      document.getElementById("safe-activities-back").addEventListener("click", function(){
+        view = "home"; render();
       });
     }
 
@@ -3687,13 +4227,42 @@
 
     if (view === "awayReport"){
       document.getElementById("ack-report").addEventListener("click", function(){
-        view = "home"; render();
+        view = "home"; maybeInterceptView(); render();
       });
     }
 
     if (view === "journal"){
       document.getElementById("back-home").addEventListener("click", function(){
         view = "home"; render();
+      });
+    }
+
+    if (view === "reality7"){
+      document.getElementById("reality-keep").addEventListener("click", function(){
+        log("Day 7: decided to keep going.");
+        save(); view = "home"; render();
+      });
+      document.getElementById("reality-unsure").addEventListener("click", function(){
+        log("Day 7: not sure yet — noted, and that's useful information.");
+        save(); view = "home"; render();
+      });
+    }
+
+    if (view === "report30"){
+      document.getElementById("report-yes").addEventListener("click", function(){
+        log("30-day trial complete: ready to adopt.");
+        archiveCurrentTrial("ready to adopt");
+        save(); view = "home"; render();
+      });
+      document.getElementById("report-think").addEventListener("click", function(){
+        log("30-day trial complete: still thinking it over.");
+        archiveCurrentTrial("still deciding");
+        save(); view = "home"; render();
+      });
+      document.getElementById("report-no").addEventListener("click", function(){
+        log("30-day trial complete: not the right dog — a successful outcome, not a failure.");
+        archiveCurrentTrial("not the right dog");
+        save(); view = "home"; render();
       });
     }
 
@@ -3739,6 +4308,7 @@
       state.lastTrainedAt = Date.now();
       var resultWord = ratio>=0.66 ? "went well" : ratio>0 ? "was mixed" : "didn't land";
       log("Training — " + cmd.label + ": " + hits + "/3, session " + resultWord + "." + (isPuppy ? " Playtime like this means another bathroom trip soon." : ""));
+      bumpOwnerLoad(2);
       save();
       trainCtx = null;
       view = "home";
@@ -3763,6 +4333,8 @@
     state.energy = clamp(state.energy + fraction*(100-state.energy));
     state.bond = clamp(state.bond + fraction*3);
     state.houseTraining = clamp(state.houseTraining + fraction*2);
+    state.walksCompleted = (state.walksCompleted||0) + 1;
+    bumpOwnerLoad(3);
     log(note);
     save();
   }
@@ -3770,11 +4342,33 @@
     applyWalkOutcome(1, "Walked " + state.name + ".");
     view = "home"; render();
   }
+  function applyPlayOutcome(note){
+    state.bladder = 100;
+    state.energy = clamp(state.energy + 0.5*(100-state.energy));
+    state.bond = clamp(state.bond + 4);
+    state.houseTraining = clamp(state.houseTraining + 1);
+    state.walksCompleted = (state.walksCompleted||0) + 1;
+    bumpOwnerLoad(2);
+    log(note);
+    save();
+  }
+  function doSafeActivity(activityId){
+    var act = safeActivityById(activityId);
+    applyPlayOutcome(act.text(state.name));
+    view = "home"; render();
+  }
   function startGpsWalk(){
     var breed = byId(state.breedId);
-    walkCtx = { watchId:null, distance:0, lastPos:null, target: Math.round(breed.walkMinutes*80) };
+    walkCtx = { mode:"gps", watchId:null, distance:0, lastPos:null, target: Math.round(breed.walkMinutes*80) };
     view = "walkGps"; render();
     walkCtx.watchId = navigator.geolocation.watchPosition(onWalkPos, onWalkErr, { enableHighAccuracy:true, maximumAge:5000, timeout:15000 });
+  }
+  // Ending the walk asks for confirmation rather than applying the outcome straight away —
+  // a person reviews what was measured before it's logged, per the "no GPS gotchas" rule.
+  function requestGpsWalkConfirm(){
+    if (!walkCtx) { view = "home"; render(); return; }
+    if (walkCtx.watchId != null) { navigator.geolocation.clearWatch(walkCtx.watchId); walkCtx.watchId = null; }
+    view = "walkConfirm"; render();
   }
   function onWalkPos(pos){
     if (!walkCtx) return;
@@ -3793,18 +4387,19 @@
     }
   }
   function onWalkErr(){
-    finishGpsWalk(true);
+    finishGpsWalk(true, false);
   }
-  function finishGpsWalk(errored){
+  function finishGpsWalk(errored, couldntWalk){
     if (!walkCtx){ view = "home"; render(); return; }
     var dist = Math.round(walkCtx.distance);
     var fraction = walkCtx.distance / walkCtx.target;
     if (walkCtx.watchId != null) navigator.geolocation.clearWatch(walkCtx.watchId);
     var note;
-    if (errored) note = "Walked " + state.name + " (GPS signal lost — logged manually).";
+    if (errored) { note = "Walked " + state.name + " (GPS signal lost — logged manually)."; fraction = 1; }
+    else if (couldntWalk) { note = "Couldn't walk " + state.name + " today — plans changed."; fraction = 0.15; }
     else if (fraction >= 0.9) note = "Walked " + state.name + " — GPS confirmed " + dist + "m.";
     else note = "Cut the walk short with " + state.name + " — only " + dist + "m confirmed.";
-    applyWalkOutcome(errored ? 1 : fraction, note);
+    applyWalkOutcome(fraction, note);
     walkCtx = null;
     view = "home"; render();
   }
@@ -3819,13 +4414,19 @@
     if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function"){
       DeviceMotionEvent.requestPermission().then(function(resp){
         if (resp === "granted") attach();
-        else finishStepsWalk(true);
-      }).catch(function(){ finishStepsWalk(true); });
+        else finishStepsWalk(true, false);
+      }).catch(function(){ finishStepsWalk(true, false); });
     } else if (typeof DeviceMotionEvent !== "undefined"){
       attach();
     } else {
-      finishStepsWalk(true);
+      finishStepsWalk(true, false);
     }
+  }
+  function requestStepsWalkConfirm(){
+    if (!walkCtx) { view = "home"; render(); return; }
+    window.removeEventListener("devicemotion", onStepMotion);
+    stopLiveTimer();
+    view = "walkConfirm"; render();
   }
   function onStepMotion(e){
     if (!walkCtx || walkCtx.mode !== "steps") return;
@@ -3842,17 +4443,18 @@
       if (countEl) countEl.textContent = walkCtx.steps + " steps detected";
     }
   }
-  function finishStepsWalk(errored){
+  function finishStepsWalk(errored, couldntWalk){
     if (!walkCtx){ view = "home"; render(); return; }
     window.removeEventListener("devicemotion", onStepMotion);
     var steps = walkCtx.steps;
     var minutesWalked = Math.round(walkCtx.activeSeconds/60);
     var fraction = Math.max(0, Math.min(1, walkCtx.activeSeconds/(walkCtx.goalMinutes*60)));
     var note;
-    if (errored) note = "Walked " + state.name + " (motion access unavailable — logged manually).";
+    if (errored) { note = "Walked " + state.name + " (motion access unavailable — logged manually)."; fraction = 1; }
+    else if (couldntWalk) { note = "Couldn't walk " + state.name + " today — plans changed."; fraction = 0.15; }
     else if (fraction >= 0.9) note = "Walked " + state.name + " — " + minutesWalked + " of " + walkCtx.goalMinutes + " min, " + steps + " steps.";
     else note = "Cut the walk short with " + state.name + " — only " + minutesWalked + " of " + walkCtx.goalMinutes + " min.";
-    applyWalkOutcome(errored ? 1 : fraction, note);
+    applyWalkOutcome(fraction, note);
     walkCtx = null;
     stopLiveTimer();
     view = "home"; render();
@@ -3869,6 +4471,7 @@
     var elapsed = (Date.now() - state.away.leaveStart)/HOUR;
     if (elapsed <= tolerance) return;
     state.away.awayAlerted = true;
+    log(state.name + " is becoming restless — past the alone-time " + breed.name + " can comfortably handle right now.");
     save();
     var alertEl = document.getElementById("atwork-alert");
     if (alertEl) alertEl.innerHTML = anxietyAlertHtml();
@@ -3918,6 +4521,7 @@
     if (state && view === "home"){
       tickHome(Date.now());
       checkNotify();
+      maybeInterceptView();
       render();
     }
   }, 20000);
@@ -3935,6 +4539,14 @@
     if (!state.lastNotified) state.lastNotified = { hunger:0, bladder:0, energy:0 };
     if (!state.housingId) state.housingId = HOUSING[1].id;
     if (state.lastHomeAccidentAt === undefined) state.lastHomeAccidentAt = 0;
+    if (state.lastPositiveMomentAt === undefined) state.lastPositiveMomentAt = 0;
+    if (state.typicalHoursAway === undefined) state.typicalHoursAway = 4;
+    if (state.lastPhaseLabel === undefined) state.lastPhaseLabel = tripPhaseFor(Math.min(30, tripDay()+1)).label;
+    if (state.ownerLoad === undefined) state.ownerLoad = 20;
+    if (state.walksCompleted === undefined) state.walksCompleted = 0;
+    if (state.accidentsCount === undefined) state.accidentsCount = 0;
+    if (state.totalHoursAway === undefined) state.totalHoursAway = 0;
+    if (state.checkpointShownDay === undefined) state.checkpointShownDay = 0;
     if (state.away && state.away.awayAlerted === undefined) state.away.awayAlerted = false;
     if (state.away){
       var now = Date.now();
@@ -3949,6 +4561,7 @@
     } else {
       tickHome(Date.now());
       view = "home";
+      maybeInterceptView();
     }
     render();
   }
@@ -3956,3 +4569,5 @@
   document.addEventListener("DOMContentLoaded", init);
 })();
 </script>
+</body>
+</html>
