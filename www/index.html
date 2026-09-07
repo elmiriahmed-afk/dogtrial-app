@@ -3027,6 +3027,30 @@
   ];
   function safeActivityById(id){ for (var i=0;i<SAFE_ACTIVITIES.length;i++) if (SAFE_ACTIVITIES[i].id===id) return SAFE_ACTIVITIES[i]; return SAFE_ACTIVITIES[0]; }
 
+  // Explains the behavior the first time each type shows up, instead of just logging
+  // that it happened — a trial should teach, not just score.
+  var WHY_THIS_HAPPENS = {
+    chew: "Chewing is normal exploration and teething behavior, especially under a year old — it's not defiance. Redirect toward an appropriate chew toy and manage access to valuables.",
+    accident: "House-training takes weeks of consistent, frequent bathroom trips — an accident is a missed window, not a training failure. More frequent trips out closes the gap faster.",
+    bark: "Barking while alone is usually a stress signal, not stubbornness — the dog is coping with a change it didn't choose. Shorter absences and a calmer departure routine both help.",
+    escape: "Escape attempts are almost always driven by boredom or under-exercise, not a training gap — a tired, mentally stimulated dog rarely looks for a way out.",
+    health: "Heat, exertion or stress can push a dog's body past what it can handle quickly, especially for brachycephalic or young dogs — cooler timing and shorter exposure prevent this.",
+    anxiety: "Pacing, whining or clinginess after time alone is a real stress response, not misbehavior — it usually eases as routine and trust build, and gets worse with punishment.",
+    depression: "Shutting down or going quiet in confinement is a bigger warning sign than an active protest — it usually means the confinement itself needs to be shorter or less frequent."
+  };
+  function markIncidentTypeSeen(type){
+    state.seenIncidentTypes = state.seenIncidentTypes || [];
+    if (state.seenIncidentTypes.indexOf(type) === -1) state.seenIncidentTypes.push(type);
+  }
+  function noteWithWhy(baseText, type){
+    var why = WHY_THIS_HAPPENS[type];
+    if (!why) return baseText;
+    state.seenIncidentTypes = state.seenIncidentTypes || [];
+    if (state.seenIncidentTypes.indexOf(type) !== -1) return baseText;
+    state.seenIncidentTypes.push(type);
+    return baseText + " Why this happens: " + why;
+  }
+
   function housingById(id){ for (var i=0;i<HOUSING.length;i++) if (HOUSING[i].id===id) return HOUSING[i]; return HOUSING[1]; }
   function lifeById(id){ for (var i=0;i<LIFE_OPTIONS.length;i++) if (LIFE_OPTIONS[i].id===id) return LIFE_OPTIONS[i]; return LIFE_OPTIONS[1]; }
 
@@ -3131,6 +3155,7 @@
       lastNotified: { hunger:0, bladder:0, energy:0 },
       lastHomeAccidentAt: 0, lastPositiveMomentAt: 0, typicalHoursAway: 4, lastPhaseLabel: null,
       ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
+      seenIncidentTypes: [],
       journal: [{ ts: now, text: name + " came home. The trial starts now." }]
     };
   }
@@ -3257,6 +3282,7 @@
       state.lastHomeAccidentAt = now;
       state.accidentsCount = (state.accidentsCount||0) + 1;
       bumpOwnerLoad(8);
+      markIncidentTypeSeen("accident"); // this line already explains the why, so don't duplicate it below
       log(state.name + " had an accident on the floor — before real walks start, puppies need a bathroom trip after almost every nap, meal, or play session.");
     }
     maybePositiveMoment(deltaHours);
@@ -3348,7 +3374,7 @@
       var windowMs = Math.max(1, now - (away.leaveStart + toleranceMs));
       incidents.forEach(function(inc, i){
         var ts = away.leaveStart + toleranceMs + windowMs * ((i+1) / (incidents.length+1));
-        var text = state.name + " " + inc.text + ".";
+        var text = noteWithWhy(state.name + " " + inc.text + ".", inc.type);
         logAt(ts, text);
         timeline.push({ ts: ts, text: text });
       });
@@ -4542,6 +4568,7 @@
     if (state.lastPositiveMomentAt === undefined) state.lastPositiveMomentAt = 0;
     if (state.typicalHoursAway === undefined) state.typicalHoursAway = 4;
     if (state.lastPhaseLabel === undefined) state.lastPhaseLabel = tripPhaseFor(Math.min(30, tripDay()+1)).label;
+    if (!state.seenIncidentTypes) state.seenIncidentTypes = [];
     if (state.ownerLoad === undefined) state.ownerLoad = 20;
     if (state.walksCompleted === undefined) state.walksCompleted = 0;
     if (state.accidentsCount === undefined) state.accidentsCount = 0;
