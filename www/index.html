@@ -226,6 +226,21 @@
     { id:"hybrid", label:"Hybrid / part-time", hoursAway:4, note:"A few hours alone on a typical day." },
     { id:"fulltime", label:"Full-time, in office", hoursAway:9, note:"A typical 9-to-5, plus commute." }
   ];
+  // Narrative shape for the 30 real days — not levels or unlocks, just a reason
+  // to wonder what tomorrow looks like instead of repeating today.
+  var TRIP_PHASES = [
+    { max:3, label:"Survival", transition: function(name){ return "The first few days with " + name + " are just about keeping up."; } },
+    { max:7, label:"Routine", transition: function(name){ return "You've made it through the hardest adjustment — now it's about building a routine."; } },
+    { max:14, label:"Consequences", transition: function(name){ return "You've got the routine. Now your habits start to show in how " + name + " behaves."; } },
+    { max:21, label:"Real life", transition: function(name){ return "Routine's holding. Now let's see how this fits into the rest of your life — work, plans, the unexpected."; } },
+    { max:27, label:"Commitment", transition: function(name){ return "Three weeks in. This is where the routine either sticks, or starts to wear on you."; } },
+    { max:30, label:"Decision", transition: function(name){ return "Almost there. Time to decide."; } },
+    { max:Infinity, label:"Beyond 30", transition: function(name){ return "Past the 30-day mark — you know this life now."; } }
+  ];
+  function tripPhaseFor(day){
+    for (var i=0;i<TRIP_PHASES.length;i++) if (day <= TRIP_PHASES[i].max) return TRIP_PHASES[i];
+    return TRIP_PHASES[TRIP_PHASES.length-1];
+  }
   var FEED_INTERVAL = { puppy:24/5, adolescent:24/2, adult:24/1 }; // 5x/day, 2x/day, 1x/day
   var BLADDER_INTERVAL = { puppy:3, adolescent:6, adult:8 };
   var WALK_INTERVAL_HOURS = 12; // 2 walks/day, every breed and stage — research is consistent on this
@@ -2996,6 +3011,22 @@
     function(name){ return "A quiet moment — " + name + " just wanted to be close by."; }
   ];
 
+  // What actually helps a not-yet-vaccinated puppy, instead of a real walk —
+  // a real choice, not one random button standing in for all of it.
+  var SAFE_ACTIVITIES = [
+    { id:"carry", label:"Carry outside for sights & sounds", note:"No ground time — just safe exposure to the world from your arms.",
+      text: function(name){ return "Carried " + name + " outside for safe sights, sounds and smells — no ground time yet."; } },
+    { id:"explore", label:"Explore a safe room or area", note:"New smells and textures indoors, at their own pace.",
+      text: function(name){ return "Let " + name + " explore a safe room — new smells and textures at their own pace."; } },
+    { id:"handling", label:"Practice handling", note:"Paws, ears, collar, gentle touch — builds comfort for the vet and grooming later.",
+      text: function(name){ return "Practiced handling with " + name + " — paws, ears, collar."; } },
+    { id:"train", label:"Short indoor training", note:"A few minutes of name response or basic cues — puppy attention spans are tiny.",
+      text: function(name){ return "Short indoor training-and-play session with " + name + "."; } },
+    { id:"social", label:"Controlled socialization", note:"A calm, vaccinated dog or person, on your terms.",
+      text: function(name){ return "Controlled socialization for " + name + " with a calm, vaccinated companion."; } }
+  ];
+  function safeActivityById(id){ for (var i=0;i<SAFE_ACTIVITIES.length;i++) if (SAFE_ACTIVITIES[i].id===id) return SAFE_ACTIVITIES[i]; return SAFE_ACTIVITIES[0]; }
+
   function housingById(id){ for (var i=0;i<HOUSING.length;i++) if (HOUSING[i].id===id) return HOUSING[i]; return HOUSING[1]; }
   function lifeById(id){ for (var i=0;i<LIFE_OPTIONS.length;i++) if (LIFE_OPTIONS[i].id===id) return LIFE_OPTIONS[i]; return LIFE_OPTIONS[1]; }
 
@@ -3098,7 +3129,7 @@
       away: null,
       settings: { notifications:false, gpsWalks:false, stepWalks:false },
       lastNotified: { hunger:0, bladder:0, energy:0 },
-      lastHomeAccidentAt: 0, lastPositiveMomentAt: 0, typicalHoursAway: 4,
+      lastHomeAccidentAt: 0, lastPositiveMomentAt: 0, typicalHoursAway: 4, lastPhaseLabel: null,
       ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
       journal: [{ ts: now, text: name + " came home. The trial starts now." }]
     };
@@ -3198,6 +3229,17 @@
     }
   }
 
+  // Real elapsed days, not simulated dog age — the 30-day clock keeps moving
+  // even if the dog's own aging is compressed or paused.
+  function checkPhaseTransition(){
+    var day = Math.min(30, tripDay()+1);
+    var phase = tripPhaseFor(day);
+    if (state.lastPhaseLabel && state.lastPhaseLabel !== phase.label){
+      log(phase.transition(state.name));
+    }
+    state.lastPhaseLabel = phase.label;
+  }
+
   function tickHome(now){
     var last = state.lastTick;
     var deltaHours = (now-last)/HOUR;
@@ -3218,6 +3260,7 @@
       log(state.name + " had an accident on the floor — before real walks start, puppies need a bathroom trip after almost every nap, meal, or play session.");
     }
     maybePositiveMoment(deltaHours);
+    checkPhaseTransition();
     bumpOwnerLoad(-deltaHours*0.5); // calm, uneventful time settles the load back down
     save();
   }
@@ -3251,6 +3294,7 @@
     var housing = housingById(state.housingId);
     applyHomeDecay(actualHours, stage); // baseline physiological need regardless of tolerance
     state.dogDays += actualHours*DOGDAYS_PER_HOUR;
+    checkPhaseTransition();
 
     var tolerance = computeTolerance(breed, stage, housing);
     var excess = Math.max(0, actualHours - tolerance);
@@ -3354,11 +3398,12 @@
   }
 
   function dayLabel(){
-    var n = Math.min(30, Math.max(1, tripDay()+1));
+    var n = Math.max(1, tripDay()+1);
+    var phase = tripPhaseFor(n);
     var now = new Date();
     var weekday = now.toLocaleDateString("en-US", { weekday:"long" });
     var monthDay = now.toLocaleDateString("en-US", { month:"long", day:"numeric" });
-    return "Day " + n + " / 30 · " + weekday + ", " + monthDay;
+    return "Day " + Math.min(30, n) + " / 30 · " + phase.label + " · " + weekday + ", " + monthDay;
   }
 
   function todaysJournalEntries(){
@@ -3389,8 +3434,8 @@
     var candidates = [
       { eta: hungerEta, label:"Feeding time", cta:"Feed " + esc(state.name), actionId:"feed" },
       { eta: outEta,
-        label: outIsBladder ? "Bathroom break" : (canWalk ? "Walk" : "Play & socialize"),
-        cta: canWalk ? "Take her out" : "Play with " + esc(state.name),
+        label: outIsBladder ? "Bathroom break" : (canWalk ? "Walk" : "Safe activity"),
+        cta: canWalk ? "Take her out" : "See safe activities",
         actionId: canWalk ? "walk" : "play" }
     ];
     candidates.sort(function(a,b){ return a.eta - b.eta; });
@@ -3471,6 +3516,7 @@
     else if (view === "walkGps") root.innerHTML = brandStrip() + renderWalkGps();
     else if (view === "walkSteps") root.innerHTML = brandStrip() + renderWalkSteps();
     else if (view === "walkConfirm") root.innerHTML = brandStrip() + renderWalkConfirm();
+    else if (view === "safeActivities") root.innerHTML = brandStrip() + renderSafeActivities();
     attachHandlers();
     if (view === "atWork") startAtWorkClock();
     else if (view === "walkSteps") startStepsClock();
@@ -3660,10 +3706,10 @@
           '<button class="btn btn-primary" id="feed-btn">Feed</button>' +
           (canWalkOutside(state.dogDays) ?
             '<button class="btn btn-primary" id="walk-btn">Walk</button>' :
-            '<button class="btn btn-primary" id="play-btn">Play &amp; socialize</button>') +
+            '<button class="btn btn-primary" id="play-btn">See safe activities</button>') +
         '</div>' +
         (canWalkOutside(state.dogDays) ? "" :
-          '<p class="muted" style="margin-top:8px; font-size:12.5px;">Too young for real outdoor walks — not fully vaccinated yet. Real walks unlock around 3 months old. For now: home play, socialization, and being carried outside for exposure without ground time.</p>') +
+          '<p class="muted" style="margin-top:8px; font-size:12.5px;">Public walks locked — not fully vaccinated yet, real outdoor walks unlock around 3 months old. Until then: home play, socialization, and being carried outside for exposure without ground time.</p>') +
         '<button class="btn btn-warn" id="leave-btn" style="margin-top:10px">Leave for work</button>' +
       '</div>' +
 
@@ -3748,6 +3794,28 @@
         '</div>' +
         '<button class="btn btn-warn" id="confirm-leave" style="margin-top:16px">Leave now</button>' +
         '<button class="btn btn-ghost" id="cancel-leave" style="margin-top:8px; width:100%;">Cancel</button>' +
+      '</div>';
+  }
+
+  function renderSafeActivities(){
+    var cards = SAFE_ACTIVITIES.map(function(a){
+      return '<button class="breed-card" data-activity="'+a.id+'">' +
+        '<div><div class="name">'+esc(a.label)+'</div>' +
+        '<div class="catch">'+esc(a.note)+'</div></div>' +
+        '</button>';
+    }).join("");
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">Public walks locked</div>' +
+        '<h2 style="margin-top:4px;">'+esc(state.name)+' isn\'t ready for public walks yet</h2>' +
+        '<p class="muted" style="margin-top:8px;">Not fully vaccinated — real outdoor walks unlock around 3 months old. Until then, here\'s what actually helps.</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Choose an activity</div>' +
+        '<div class="breed-grid">'+cards+'</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<button class="btn btn-ghost" id="safe-activities-back" style="width:100%; border:1px solid var(--line);">Back</button>' +
       '</div>';
   }
 
@@ -4013,7 +4081,7 @@
       });
       var playBtn = document.getElementById("play-btn");
       if (playBtn) playBtn.addEventListener("click", function(){
-        doPlaySession();
+        view = "safeActivities"; render();
       });
       document.getElementById("leave-btn").addEventListener("click", function(){
         view = "leaveSetup"; render();
@@ -4118,6 +4186,17 @@
       document.getElementById("confirm-walk-no").addEventListener("click", function(){
         if (isSteps) finishStepsWalk(false, true);
         else finishGpsWalk(false, true);
+      });
+    }
+
+    if (view === "safeActivities"){
+      root.querySelectorAll("[data-activity]").forEach(function(el){
+        el.addEventListener("click", function(){
+          doSafeActivity(el.getAttribute("data-activity"));
+        });
+      });
+      document.getElementById("safe-activities-back").addEventListener("click", function(){
+        view = "home"; render();
       });
     }
 
@@ -4273,14 +4352,9 @@
     log(note);
     save();
   }
-  function doPlaySession(){
-    var openers = [
-      "Played and socialized " + state.name + " at home — too young for real walks yet.",
-      "Short indoor training-and-play session with " + state.name + ".",
-      "Carried " + state.name + " outside for safe sights, sounds and smells — no ground time yet."
-    ];
-    var note = openers[Math.floor(Math.random()*openers.length)];
-    applyPlayOutcome(note);
+  function doSafeActivity(activityId){
+    var act = safeActivityById(activityId);
+    applyPlayOutcome(act.text(state.name));
     view = "home"; render();
   }
   function startGpsWalk(){
@@ -4467,6 +4541,7 @@
     if (state.lastHomeAccidentAt === undefined) state.lastHomeAccidentAt = 0;
     if (state.lastPositiveMomentAt === undefined) state.lastPositiveMomentAt = 0;
     if (state.typicalHoursAway === undefined) state.typicalHoursAway = 4;
+    if (state.lastPhaseLabel === undefined) state.lastPhaseLabel = tripPhaseFor(Math.min(30, tripDay()+1)).label;
     if (state.ownerLoad === undefined) state.ownerLoad = 20;
     if (state.walksCompleted === undefined) state.walksCompleted = 0;
     if (state.accidentsCount === undefined) state.accidentsCount = 0;
