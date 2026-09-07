@@ -215,6 +215,13 @@
   .top-actions{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
   .reset-confirm{display:flex; align-items:center; gap:8px;}
 
+  /* ---- bottom tab bar ---- */
+  .tab-bar{position:fixed; left:0; right:0; bottom:0; display:flex; justify-content:center; z-index:20; pointer-events:none;}
+  .tab-bar-inner{pointer-events:auto; width:100%; max-width:440px; margin:0 14px; display:flex; background:var(--card); border-radius:20px; box-shadow:var(--shadow); padding:8px 4px calc(8px + env(safe-area-inset-bottom,0px)); gap:2px;}
+  .tab-btn{flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; background:transparent; border:none; padding:6px 2px; border-radius:14px; color:var(--ink-faint); font-size:10px; font-weight:700; font-family:"Inter",system-ui,sans-serif;}
+  .tab-btn .tab-icon{font-size:17px; line-height:1;}
+  .tab-btn.active{color:var(--accent); background:var(--accent-soft);}
+
   @media (prefers-reduced-motion: reduce){
     .meter-fill, .cmd-fill{transition:none;}
   }
@@ -431,6 +438,7 @@
 
   var state = null;
   var view = "onboarding";
+  var activeTab = "today";
   var pendingBreed = BREEDS[0].id;
   var pendingHousing = HOUSING[0].id;
   var pendingStartStage = START_STAGES[0].id;
@@ -1020,32 +1028,170 @@
       '</div>';
   }
 
+  var TABS = [
+    {id:"today", label:"Today", icon:"🏠"},
+    {id:"health", label:"Health", icon:"❤️"},
+    {id:"walks", label:"Walks", icon:"🐾"},
+    {id:"training", label:"Training", icon:"🎓"},
+    {id:"costs", label:"Costs", icon:"💶"},
+    {id:"life", label:"Life", icon:"🧭"},
+    {id:"report", label:"Report", icon:"📊"}
+  ];
+
+  function renderTabBar(){
+    var btns = TABS.map(function(t){
+      return '<button class="tab-btn'+(activeTab===t.id?" active":"")+'" data-tab="'+t.id+'">' +
+        '<span class="tab-icon">'+t.icon+'</span><span>'+t.label+'</span></button>';
+    }).join("");
+    return '<div class="tab-bar"><div class="tab-bar-inner">'+btns+'</div></div>';
+  }
+
+  function renderTabToday(){
+    var next = computeNextAction();
+    var todayEntries = todaysJournalEntries();
+    var recentJournal = state.journal.slice(0,3).map(function(j){
+      return '<div class="j-entry"><div class="j-time">'+timeAgo(j.ts)+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
+    }).join("");
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">Next</div>' +
+        '<div class="next-label">'+esc(next.label)+'</div>' +
+        '<div class="muted mono" style="margin-top:2px; font-size:13px;">'+esc(next.etaText)+'</div>' +
+        '<button class="btn btn-primary" id="next-action-btn" data-action="'+next.actionId+'" style="margin-top:14px">'+esc(next.cta)+'</button>' +
+      '</div>' +
+
+      '<div class="card">' +
+        '<div class="section-title">Today</div>' +
+        (todayEntries.length ? todayEntries.map(function(j){
+          var t = new Date(j.ts);
+          var hh = (t.getHours()<10?"0":"")+t.getHours();
+          var mm = (t.getMinutes()<10?"0":"")+t.getMinutes();
+          return '<div class="j-entry"><div class="j-time mono">'+hh+':'+mm+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
+        }).join("") : '<div class="muted">Nothing logged yet today.</div>') +
+      '</div>' +
+
+      '<div class="card">' +
+        '<div class="row-btns">' +
+          '<button class="btn btn-primary" id="feed-btn">Feed</button>' +
+          '<button class="btn btn-warn" id="leave-btn">Leave for work</button>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="card">' +
+        '<div class="top-actions" style="margin-bottom:6px;"><div class="section-title" style="margin-bottom:0">Journal</div><button class="btn-ghost" id="journal-btn">View all</button></div>' +
+        (recentJournal || '<div class="muted">Nothing yet.</div>') +
+      '</div>';
+  }
+
+  function renderTabHealth(){
+    var bladderComfort = clamp(100 - state.bladder);
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">Wellness</div>' +
+        '<div class="stat-grid">' +
+          '<div class="stat-tile"><div class="stat-icon" style="background:var(--accent-soft);">🍖</div><div class="stat-value">'+Math.round(state.hunger)+'%</div><div class="stat-label">Fed</div></div>' +
+          '<div class="stat-tile"><div class="stat-icon" style="background:var(--teal-soft);">⚡</div><div class="stat-value">'+Math.round(state.energy)+'%</div><div class="stat-label">Energy</div></div>' +
+          '<div class="stat-tile"><div class="stat-icon" style="background:var(--warn-soft);">🚽</div><div class="stat-value">'+Math.round(bladderComfort)+'%</div><div class="stat-label">Bladder comfort</div></div>' +
+          '<div class="stat-tile"><div class="stat-icon" style="background:var(--purple-soft);">💗</div><div class="stat-value">'+Math.round(state.bond)+'%</div><div class="stat-label">Bond</div></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">House training — '+Math.round(state.houseTraining)+'%</div>' +
+        '<div class="meter-track"><div class="meter-fill" style="width:'+state.houseTraining+'%; background:var(--accent)"></div></div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="cost-row"><span>Accidents cleaned up</span><b>'+state.accidentsCount+'</b></div>' +
+        '<div class="cost-row"><span>Overall health</span><b>'+Math.round(state.health)+'%</b></div>' +
+      '</div>';
+  }
+
+  function renderTabWalks(){
+    var walkable = canWalkOutside(state.dogDays);
+    return '' +
+      '<div class="card">' +
+        '<div class="stat-grid">' +
+          '<div class="stat-tile"><div class="stat-icon" style="background:var(--accent-soft);">🐾</div><div class="stat-value">'+state.walksCompleted+'</div><div class="stat-label">Walks / play sessions</div></div>' +
+          '<div class="stat-tile"><div class="stat-icon" style="background:var(--teal-soft);">⏱️</div><div class="stat-value">'+fmtHours(state.totalHoursAway)+'</div><div class="stat-label">Hours away, total</div></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="card">' +
+        (walkable ?
+          '<button class="btn btn-primary" id="walk-btn">Walk</button>' :
+          '<button class="btn btn-primary" id="play-btn">See safe activities</button>') +
+        (walkable ? "" :
+          '<p class="muted" style="margin-top:8px; font-size:12.5px;">Public walks locked — not fully vaccinated yet, real outdoor walks unlock around 3 months old. Until then: home play, socialization, and being carried outside for exposure without ground time.</p>') +
+      '</div>';
+  }
+
+  function renderTabTraining(){
+    var cmdRows = COMMANDS.map(function(c){
+      return '<div class="cmd-row"><div class="cmd-name">'+c.label+'</div>' +
+        '<div class="cmd-bar"><div class="cmd-fill" style="width:'+state.training[c.id]+'%"></div></div>' +
+        '<button class="btn btn-ghost cmd-btn" data-train="'+c.id+'" style="border:1px solid var(--line)">Train</button></div>';
+    }).join("");
+    var cooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
+    var trainNote = cooldownLeft > 0 ? '<div class="muted mono" style="margin-top:10px; font-size:12px;">Next session available in '+fmtClock(cooldownLeft)+'</div>' : "";
+    return '<div class="card"><div class="section-title">Training</div>' + cmdRows + trainNote + '</div>';
+  }
+
+  function renderTabCosts(breed, realDaysElapsed){
+    var costRunning = costSoFar(breed, realDaysElapsed);
+    var foodSoFar = Math.round(estimateMonthlyFoodCost(breed) / 30 * Math.max(0, realDaysElapsed));
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">Spent so far</div>' +
+        '<div class="next-label">€'+costRunning+'</div>' +
+        '<div class="cost-row" style="margin-top:10px;"><span>Vet visit + first 2 vaccines</span><b>€'+VET_STARTER_COST+'</b></div>' +
+        '<div class="cost-row"><span>Starter gear — bed, collar &amp; leash, bowls, toys</span><b>€'+GEAR_STARTER_COST+'</b></div>' +
+        '<div class="cost-row cost-total"><span>Food so far</span><b>€'+foodSoFar+'</b></div>' +
+        '<p class="muted" style="margin-top:8px; font-size:12.5px;">Not the dog\'s stats — yours. How is this fitting into your life?</p>' +
+      '</div>';
+  }
+
+  function renderTabLife(breed, housing){
+    var stage = stageOf(state.dogDays);
+    var fit = lifeFitMessage(breed, housing, stage, state.typicalHoursAway);
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">Dog × Home × Life</div>' +
+        '<p class="muted" style="margin-top:2px;">'+fit+'</p>' +
+      '</div>' +
+      renderSettingsCard();
+  }
+
+  function renderTabReport(){
+    var day = tripDay();
+    var score = compatibilityScore();
+    var label = compatibilityLabel(score);
+    var challengeItems = topChallenges(2).map(function(c){
+      return '<li>'+challengeDescription(c.label)+'</li>';
+    }).join("");
+    var progress = Math.max(0, Math.min(100, Math.round(day/30*100)));
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">Day '+Math.max(0, Math.min(day,30))+' of 30</div>' +
+        '<div class="meter-track"><div class="meter-fill" style="width:'+progress+'%; background:var(--purple)"></div></div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">If the trial ended today</div>' +
+        '<h2 style="margin-top:4px;">'+label+'</h2>' +
+        '<ul class="challenge-list">'+challengeItems+'</ul>' +
+      '</div>' +
+      (day >= 30 ?
+        '<div class="card"><button class="btn btn-primary" id="report-tab-view30">See your full 30-day report</button></div>' :
+        '<div class="card"><p class="muted">Full report unlocks on day 30.</p></div>');
+  }
+
   function renderHome(){
     var breed = byId(state.breedId);
     var stage = stageOf(state.dogDays);
     var mood = moodOf();
     var weeks = Math.floor(state.dogDays/7);
     var days = Math.floor(state.dogDays%7);
-    var next = computeNextAction();
-    var todayEntries = todaysJournalEntries();
-
-    var cmdRows = COMMANDS.map(function(c){
-      return '<div class="cmd-row"><div class="cmd-name">'+c.label+'</div>' +
-        '<div class="cmd-bar"><div class="cmd-fill" style="width:'+state.training[c.id]+'%"></div></div>' +
-        '<button class="btn btn-ghost cmd-btn" data-train="'+c.id+'" style="border:1px solid var(--line)">Train</button></div>';
-    }).join("");
-
-    var cooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
-    var trainNote = cooldownLeft > 0 ? '<div class="muted mono" style="margin-top:10px; font-size:12px;">Next session available in '+fmtClock(cooldownLeft)+'</div>' : "";
-
-    var recentJournal = state.journal.slice(0,3).map(function(j){
-      return '<div class="j-entry"><div class="j-time">'+timeAgo(j.ts)+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
-    }).join("");
-
     var housing = housingById(state.housingId);
     var realDaysElapsed = (Date.now() - state.startedAt) / (24*HOUR);
-    var costRunning = costSoFar(breed, realDaysElapsed);
-    return '' +
+
+    var header = '' +
       '<div class="card">' +
         '<div class="top-actions">' +
           '<span class="day-label mono">'+dayLabel()+'</span>' +
@@ -1067,62 +1213,18 @@
             '<div class="mood-chip"><span class="mood-dot" style="background:'+(mood.key==="good"?"var(--accent)":mood.key==="warn"?"var(--warn)":"var(--bad)")+'"></span>'+mood.label+'</div>' +
           '</div>' +
         '</div>' +
-      '</div>' +
-
-      '<div class="card">' +
-        '<div class="section-title">Next</div>' +
-        '<div class="next-label">'+esc(next.label)+'</div>' +
-        '<div class="muted mono" style="margin-top:2px; font-size:13px;">'+esc(next.etaText)+'</div>' +
-        '<button class="btn btn-primary" id="next-action-btn" data-action="'+next.actionId+'" style="margin-top:14px">'+esc(next.cta)+'</button>' +
-      '</div>' +
-
-      '<div class="card">' +
-        '<div class="section-title">Today</div>' +
-        (todayEntries.length ? todayEntries.map(function(j){
-          var t = new Date(j.ts);
-          var hh = (t.getHours()<10?"0":"")+t.getHours();
-          var mm = (t.getMinutes()<10?"0":"")+t.getMinutes();
-          return '<div class="j-entry"><div class="j-time mono">'+hh+':'+mm+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
-        }).join("") : '<div class="muted">Nothing logged yet today.</div>') +
-      '</div>' +
-
-      '<div class="card">' +
-        '<div class="section-title">This trial so far</div>' +
-        '<div class="cost-row"><span>Walks / play sessions</span><b>'+state.walksCompleted+'</b></div>' +
-        '<div class="cost-row"><span>Accidents cleaned up</span><b>'+state.accidentsCount+'</b></div>' +
-        '<div class="cost-row"><span>Hours you\'ve been away, total</span><b>'+fmtHours(state.totalHoursAway)+'</b></div>' +
-        '<div class="cost-row cost-total"><span>Spent so far</span><b>€'+costRunning+'</b></div>' +
-        '<p class="muted" style="margin-top:8px; font-size:12.5px;">Not the dog\'s stats — yours. How is this fitting into your life?</p>' +
-      '</div>' +
-
-      '<div class="card">' +
-        '<div class="row-btns">' +
-          '<button class="btn btn-primary" id="feed-btn">Feed</button>' +
-          (canWalkOutside(state.dogDays) ?
-            '<button class="btn btn-primary" id="walk-btn">Walk</button>' :
-            '<button class="btn btn-primary" id="play-btn">See safe activities</button>') +
-        '</div>' +
-        (canWalkOutside(state.dogDays) ? "" :
-          '<p class="muted" style="margin-top:8px; font-size:12.5px;">Public walks locked — not fully vaccinated yet, real outdoor walks unlock around 3 months old. Until then: home play, socialization, and being carried outside for exposure without ground time.</p>') +
-        '<button class="btn btn-warn" id="leave-btn" style="margin-top:10px">Leave for work</button>' +
-      '</div>' +
-
-      '<div class="card">' +
-        '<div class="section-title">House training — '+Math.round(state.houseTraining)+'%</div>' +
-        '<div class="meter-track"><div class="meter-fill" style="width:'+state.houseTraining+'%; background:var(--accent)"></div></div>' +
-      '</div>' +
-
-      '<div class="card">' +
-        '<div class="section-title">Training</div>' +
-        cmdRows + trainNote +
-      '</div>' +
-
-      renderSettingsCard() +
-
-      '<div class="card">' +
-        '<div class="top-actions" style="margin-bottom:6px;"><div class="section-title" style="margin-bottom:0">Journal</div><button class="btn-ghost" id="journal-btn">View all</button></div>' +
-        (recentJournal || '<div class="muted">Nothing yet.</div>') +
       '</div>';
+
+    var content;
+    if (activeTab === "health") content = renderTabHealth();
+    else if (activeTab === "walks") content = renderTabWalks();
+    else if (activeTab === "training") content = renderTabTraining();
+    else if (activeTab === "costs") content = renderTabCosts(breed, realDaysElapsed);
+    else if (activeTab === "life") content = renderTabLife(breed, housing);
+    else if (activeTab === "report") content = renderTabReport();
+    else content = renderTabToday();
+
+    return header + content + '<div style="height:84px"></div>' + renderTabBar();
   }
 
   function settingRow(id, title, caveat, checked){
@@ -1454,12 +1556,19 @@
     }
 
     if (view === "home"){
+      root.querySelectorAll("[data-tab]").forEach(function(el){
+        el.addEventListener("click", function(){
+          activeTab = el.getAttribute("data-tab");
+          render();
+        });
+      });
       var nextBtn = document.getElementById("next-action-btn");
       if (nextBtn) nextBtn.addEventListener("click", function(){
         var target = document.getElementById(nextBtn.getAttribute("data-action") + "-btn");
         if (target) target.click();
       });
-      document.getElementById("feed-btn").addEventListener("click", function(){
+      var feedBtn = document.getElementById("feed-btn");
+      if (feedBtn) feedBtn.addEventListener("click", function(){
         state.hunger = 100; state.bond = clamp(state.bond+1);
         var isPuppy = stageOf(state.dogDays) === "puppy";
         if (isPuppy) state.bladder = clamp(state.bladder - 30);
@@ -1477,11 +1586,17 @@
       if (playBtn) playBtn.addEventListener("click", function(){
         view = "safeActivities"; render();
       });
-      document.getElementById("leave-btn").addEventListener("click", function(){
+      var leaveBtn = document.getElementById("leave-btn");
+      if (leaveBtn) leaveBtn.addEventListener("click", function(){
         view = "leaveSetup"; render();
       });
-      document.getElementById("journal-btn").addEventListener("click", function(){
+      var journalBtn = document.getElementById("journal-btn");
+      if (journalBtn) journalBtn.addEventListener("click", function(){
         view = "journal"; render();
+      });
+      var reportTabBtn = document.getElementById("report-tab-view30");
+      if (reportTabBtn) reportTabBtn.addEventListener("click", function(){
+        view = "report30"; render();
       });
       var resetBtn = document.getElementById("reset-btn");
       if (resetBtn) resetBtn.addEventListener("click", function(){
@@ -1520,7 +1635,7 @@
         });
       });
       var notifToggle = document.getElementById("notif-toggle");
-      notifToggle.addEventListener("change", function(){
+      if (notifToggle) notifToggle.addEventListener("change", function(){
         if (notifToggle.checked){
           if (!("Notification" in window)){
             notifToggle.checked = false;
@@ -1538,7 +1653,7 @@
         }
       });
       var gpsToggle = document.getElementById("gps-toggle");
-      gpsToggle.addEventListener("change", function(){
+      if (gpsToggle) gpsToggle.addEventListener("change", function(){
         if (gpsToggle.checked && !("geolocation" in navigator)){
           gpsToggle.checked = false;
           window.alert("This browser doesn't support location.");
@@ -1548,7 +1663,7 @@
         save();
       });
       var stepsToggle = document.getElementById("steps-toggle");
-      stepsToggle.addEventListener("change", function(){
+      if (stepsToggle) stepsToggle.addEventListener("change", function(){
         if (stepsToggle.checked && typeof DeviceMotionEvent === "undefined"){
           stepsToggle.checked = false;
           window.alert("This browser doesn't support motion sensing.");
