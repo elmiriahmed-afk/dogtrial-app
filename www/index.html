@@ -210,6 +210,7 @@
 (function(){
   "use strict";
   var STORAGE_KEY = "thirtyDayDog_v1";
+  var ARCHIVE_KEY = "thirtyDayDog_archive_v1";
   var HOUR = 3600000;
   var DOGDAYS_PER_HOUR = 7/24;
   var STAGE_BOUNDS = { puppy:[0,60], adolescent:[60,240], adult:[240,2555], senior:[2555,Infinity] };
@@ -219,6 +220,11 @@
     { id:"adolescent", label:"Adolescent", note:"Past the newborn stage, still learning the rules.", startDogDays:120 },
     { id:"adult", label:"Adult", note:"Fully grown, settled habits already in place.", startDogDays:600 },
     { id:"senior", label:"Senior", note:"Older dog — slower, needs closer health attention.", startDogDays:2800 }
+  ];
+  var LIFE_OPTIONS = [
+    { id:"home", label:"Mostly home", hoursAway:1, note:"Remote, retired, or someone's usually around." },
+    { id:"hybrid", label:"Hybrid / part-time", hoursAway:4, note:"A few hours alone on a typical day." },
+    { id:"fulltime", label:"Full-time, in office", hoursAway:9, note:"A typical 9-to-5, plus commute." }
   ];
   var FEED_INTERVAL = { puppy:24/5, adolescent:24/2, adult:24/1 }; // 5x/day, 2x/day, 1x/day
   var BLADDER_INTERVAL = { puppy:3, adolescent:6, adult:8 };
@@ -2991,6 +2997,7 @@
   ];
 
   function housingById(id){ for (var i=0;i<HOUSING.length;i++) if (HOUSING[i].id===id) return HOUSING[i]; return HOUSING[1]; }
+  function lifeById(id){ for (var i=0;i<LIFE_OPTIONS.length;i++) if (LIFE_OPTIONS[i].id===id) return LIFE_OPTIONS[i]; return LIFE_OPTIONS[1]; }
 
   // Cost model (EUR, French market): ~15g of kibble per kg of body weight per day,
   // Royal Canin averaging ~6.5€/kg across its size-specific formulas.
@@ -3037,6 +3044,7 @@
   var pendingBreed = BREEDS[0].id;
   var pendingHousing = HOUSING[0].id;
   var pendingStartStage = START_STAGES[0].id;
+  var pendingLife = LIFE_OPTIONS[1].id;
   var resetConfirmOpen = false;
   var trainCtx = null; // {commandId, round, results:[], animId, pos, zoneLeft, zoneWidth}
   var liveTimer = null;
@@ -3052,6 +3060,32 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e){}
   }
 
+  function loadArchive(){
+    try {
+      var raw = localStorage.getItem(ARCHIVE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch(e){ return []; }
+  }
+  function saveArchive(list){
+    try { localStorage.setItem(ARCHIVE_KEY, JSON.stringify(list)); } catch(e){}
+  }
+  // A finished or abandoned trial isn't deleted — it's kept, so a past attempt
+  // (breed, home, how far it got) stays visible instead of just vanishing.
+  function archiveCurrentTrial(outcome){
+    if (!state) return;
+    var breed = byId(state.breedId);
+    var housing = housingById(state.housingId);
+    var archive = loadArchive();
+    archive.unshift({
+      name: state.name, breedName: breed.name, housingLabel: housing.label,
+      dogDaysReached: Math.round(state.dogDays), tripDaysReached: tripDay()+1,
+      accidentsCount: state.accidentsCount||0, totalHoursAway: Math.round(state.totalHoursAway||0),
+      outcome: outcome, endedAt: Date.now()
+    });
+    if (archive.length > 20) archive.length = 20;
+    saveArchive(archive);
+  }
+
   function newDog(name, breedId, housingId, startDogDays){
     var now = Date.now();
     var training = {};
@@ -3064,7 +3098,7 @@
       away: null,
       settings: { notifications:false, gpsWalks:false, stepWalks:false },
       lastNotified: { hunger:0, bladder:0, energy:0 },
-      lastHomeAccidentAt: 0, lastPositiveMomentAt: 0,
+      lastHomeAccidentAt: 0, lastPositiveMomentAt: 0, typicalHoursAway: 4,
       ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
       journal: [{ ts: now, text: name + " came home. The trial starts now." }]
     };
@@ -3190,6 +3224,17 @@
 
   function computeTolerance(breed, stage, housing){
     return breed.tolerance * TOLERANCE_MULT[stage] * housing.toleranceMult;
+  }
+
+  // Difficulty comes from breed x home x life together, not from the breed alone —
+  // the same husky can be an easy or a rough fit depending on the other two.
+  function lifeFitMessage(breed, housing, stage, hoursAway){
+    var tolerance = computeTolerance(breed, stage, housing);
+    if (!isFinite(tolerance)) return "Pick a starting age above to see how this combination fits.";
+    if (hoursAway <= tolerance) return breed.name + " can comfortably handle about " + Math.round(tolerance) + "h alone at this age — your typical day should fit.";
+    var excess = hoursAway - tolerance;
+    if (excess <= 2) return "This combination may create some challenges — " + breed.name + " can comfortably handle about " + Math.round(tolerance) + "h alone, a bit less than your typical day.";
+    return "This combination may create significant challenges around exercise and alone time — " + breed.name + " can comfortably handle about " + Math.round(tolerance) + "h alone, well under your typical " + hoursAway + "h day.";
   }
 
   function housingRiskNote(housing){
@@ -3465,11 +3510,33 @@
         '<div class="catch">'+esc(s.note)+'</div></div>' +
         '</button>';
     }).join("");
+    var lifeCards = LIFE_OPTIONS.map(function(l){
+      var sel = l.id === pendingLife;
+      return '<button class="breed-card'+(sel?' selected':'')+'" data-life="'+l.id+'">' +
+        '<div><div class="name">'+esc(l.label)+'</div>' +
+        '<div class="catch">'+esc(l.note)+'</div></div>' +
+        '</button>';
+    }).join("");
     var selectedBreed = byId(pendingBreed);
+    var selectedHousing = housingById(pendingHousing);
+    var selectedLife = lifeById(pendingLife);
+    var selectedStage = START_STAGES.filter(function(s){ return s.id === pendingStartStage; })[0] || START_STAGES[0];
+    var fitStage = stageOf(selectedStage.startDogDays);
+    var fitMessage = lifeFitMessage(selectedBreed, selectedHousing, fitStage, selectedLife.hoursAway);
     var upfront = VET_STARTER_COST + GEAR_STARTER_COST;
     var monthlyFood = estimateMonthlyFoodCost(selectedBreed);
+    var archive = loadArchive();
+    var archiveCard = archive.length === 0 ? "" :
+      '<div class="card" style="margin-top:14px">' +
+        '<div class="section-title">Past trials</div>' +
+        archive.slice(0,5).map(function(a){
+          return '<div class="j-entry"><div class="j-time" style="width:auto; margin-right:10px;">'+esc(a.tripDaysReached)+'d</div>' +
+            '<div class="j-text">'+esc(a.name)+' — '+esc(a.breedName)+', '+esc(a.housingLabel)+' <span class="muted">('+esc(a.outcome)+')</span></div></div>';
+        }).join("") +
+      '</div>';
     return '' +
-      '<div class="card intro">' +
+      archiveCard +
+      '<div class="card intro" style="margin-top:'+(archive.length?'14px':'0')+'">' +
         '<h1>Before you get a dog,<br>live with one for 30 days.</h1>' +
         '<p>Real feeding windows. Real walks. If you leave for work, the dog is actually alone for that long — and you’ll see exactly what that costs.</p>' +
       '</div>' +
@@ -3486,6 +3553,21 @@
         '<div class="breed-grid">'+stageCards+'</div>' +
       '</div>' +
       '<div class="card" style="margin-top:14px">' +
+        '<div class="section-title">Where the dog will live</div>' +
+        '<div class="breed-grid">'+housingCards+'</div>' +
+      '</div>' +
+      '<div class="card" style="margin-top:14px">' +
+        '<div class="section-title">What your typical day looks like</div>' +
+        '<div class="breed-grid">'+lifeCards+'</div>' +
+      '</div>' +
+      '<div class="card" style="margin-top:14px">' +
+        '<div class="section-title">Dog × Home × Life</div>' +
+        '<div class="cost-row"><span>The dog</span><b>'+esc(selectedBreed.name)+'</b></div>' +
+        '<div class="cost-row"><span>The home</span><b>'+esc(selectedHousing.label)+'</b></div>' +
+        '<div class="cost-row"><span>The life</span><b>'+esc(selectedLife.label)+'</b></div>' +
+        '<p class="muted" style="margin-top:10px; font-size:13px;">'+esc(fitMessage)+'</p>' +
+      '</div>' +
+      '<div class="card" style="margin-top:14px">' +
         '<div class="section-title">What this actually costs</div>' +
         '<div class="cost-row"><span>Vet visit + first 2 vaccines</span><b>€'+VET_STARTER_COST+'</b></div>' +
         '<div class="cost-row"><span>Starter gear — bed, collar &amp; leash, bowls, toys</span><b>€'+GEAR_STARTER_COST+'</b></div>' +
@@ -3494,9 +3576,7 @@
         '<p class="muted" style="margin-top:8px; font-size:12px;">Food only — real monthly costs run higher once you add insurance, parasite prevention, and routine vet visits.</p>' +
       '</div>' +
       '<div class="card" style="margin-top:14px">' +
-        '<div class="section-title">Where the dog will live</div>' +
-        '<div class="breed-grid">'+housingCards+'</div>' +
-        '<button class="btn btn-primary" id="start-btn" style="margin-top:16px">Start the trial</button>' +
+        '<button class="btn btn-primary" id="start-btn">Start the trial</button>' +
       '</div>';
   }
 
@@ -3663,8 +3743,8 @@
       '<div class="card">' +
         '<p class="muted">How many hours will '+esc(state.name)+' actually be alone?</p>' +
         '<div class="field" style="margin-top:14px">' +
-          '<label for="hours-range">Hours away: <b id="hours-out" class="mono">4h</b></label>' +
-          '<input id="hours-range" type="range" min="1" max="12" step="1" value="4" style="width:100%">' +
+          '<label for="hours-range">Hours away: <b id="hours-out" class="mono">'+state.typicalHoursAway+'h</b></label>' +
+          '<input id="hours-range" type="range" min="1" max="12" step="1" value="'+state.typicalHoursAway+'" style="width:100%">' +
         '</div>' +
         '<button class="btn btn-warn" id="confirm-leave" style="margin-top:16px">Leave now</button>' +
         '<button class="btn btn-ghost" id="cancel-leave" style="margin-top:8px; width:100%;">Cancel</button>' +
@@ -3892,12 +3972,19 @@
           render();
         });
       });
+      root.querySelectorAll("[data-life]").forEach(function(el){
+        el.addEventListener("click", function(){
+          pendingLife = el.getAttribute("data-life");
+          render();
+        });
+      });
       var startBtn = document.getElementById("start-btn");
       if (startBtn) startBtn.addEventListener("click", function(){
         var nameInput = document.getElementById("dogname");
         var name = (nameInput.value || "").trim() || "The dog";
         var startStage = START_STAGES.filter(function(s){ return s.id === pendingStartStage; })[0] || START_STAGES[0];
         state = newDog(name, pendingBreed, pendingHousing, startStage.startDogDays);
+        state.typicalHoursAway = lifeById(pendingLife).hoursAway;
         save();
         view = "home";
         render();
@@ -3942,6 +4029,7 @@
       var resetConfirmBtn = document.getElementById("reset-confirm-btn");
       if (resetConfirmBtn) resetConfirmBtn.addEventListener("click", function(){
         resetConfirmOpen = false;
+        archiveCurrentTrial("ended early");
         state = null;
         try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
         view = "onboarding";
@@ -4084,14 +4172,17 @@
     if (view === "report30"){
       document.getElementById("report-yes").addEventListener("click", function(){
         log("30-day trial complete: ready to adopt.");
+        archiveCurrentTrial("ready to adopt");
         save(); view = "home"; render();
       });
       document.getElementById("report-think").addEventListener("click", function(){
         log("30-day trial complete: still thinking it over.");
+        archiveCurrentTrial("still deciding");
         save(); view = "home"; render();
       });
       document.getElementById("report-no").addEventListener("click", function(){
         log("30-day trial complete: not the right dog — a successful outcome, not a failure.");
+        archiveCurrentTrial("not the right dog");
         save(); view = "home"; render();
       });
     }
@@ -4375,6 +4466,7 @@
     if (!state.housingId) state.housingId = HOUSING[1].id;
     if (state.lastHomeAccidentAt === undefined) state.lastHomeAccidentAt = 0;
     if (state.lastPositiveMomentAt === undefined) state.lastPositiveMomentAt = 0;
+    if (state.typicalHoursAway === undefined) state.typicalHoursAway = 4;
     if (state.ownerLoad === undefined) state.ownerLoad = 20;
     if (state.walksCompleted === undefined) state.walksCompleted = 0;
     if (state.accidentsCount === undefined) state.accidentsCount = 0;
