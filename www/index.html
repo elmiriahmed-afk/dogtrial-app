@@ -494,7 +494,7 @@
       hunger:0, bladder:0, energy:0, bond:40, health:100, houseTraining:5,
       training: training, lastTrainedAt: 0,
       away: null,
-      settings: { notifications:false, gpsWalks:false, stepWalks:false },
+      settings: { notifications:false, gpsWalks:false, stepWalks:true },
       lastNotified: { hunger:0, bladder:0, energy:0 },
       lastHomeAccidentAt: 0, lastPositiveMomentAt: 0, typicalHoursAway: 4, lastPhaseLabel: null,
       ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
@@ -1243,7 +1243,7 @@
           "Uses your browser's notifications. Only fires while this tab is open or backgrounded — it can't wake a fully closed browser. Real background alerts need the native app in Phase 3.",
           s.notifications) +
         settingRow("steps-toggle", "Verify walks with steps",
-          "Uses your phone's motion sensor to fill a ring only while you're actually moving, toward this breed's real walk length. An approximate pedometer, not as precise as a fitness tracker, but far more honest than a tap. iOS will ask for a motion-access permission the first time. Off by default.",
+          "Uses your phone's motion sensor to fill a ring only while you're actually moving, toward this breed's real walk length. An approximate pedometer, not as precise as a fitness tracker, but far more honest than a tap. iOS will ask for a motion-access permission the first time. On by default.",
           s.stepWalks) +
         settingRow("gps-toggle", "Verify walks with GPS",
           "Confirms you actually moved during a walk, using your device location only while a walk is active. Off by default.",
