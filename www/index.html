@@ -228,8 +228,10 @@
   var FEED_INTERVAL = { puppy:24/5, adolescent:24/2, adult:24/1 }; // 5x/day, 2x/day, 1x/day
   var BLADDER_INTERVAL = { puppy:3, adolescent:6, adult:8 };
   var WALK_INTERVAL_HOURS = 12; // 2 walks/day, every breed and stage — research is consistent on this
+  var WALK_UNLOCK_AGE_DAYS = 90; // ~3 months: core vaccine course + vet-advised buffer before real outdoor walks (AAHA/WSAVA, Dogs Trust)
   var TOLERANCE_MULT = { puppy:0.3, adolescent:0.6, adult:1 };
   var TRAIN_COOLDOWN_HOURS = 3;
+  var TRAIN_COOLDOWN_HOURS_YOUNG = 1; // under WALK_UNLOCK_AGE_DAYS: shorter, more frequent micro-sessions
   var COMMANDS = [
     { id:"sit", label:"Sit" },
     { id:"stay", label:"Stay" },
@@ -3000,6 +3002,12 @@
     if (dogDays < STAGE_BOUNDS.adult[1]) return "adult";
     return "senior";
   }
+  function canWalkOutside(dogDays){
+    return dogDays >= WALK_UNLOCK_AGE_DAYS;
+  }
+  function trainCooldownHours(dogDays){
+    return canWalkOutside(dogDays) ? TRAIN_COOLDOWN_HOURS : TRAIN_COOLDOWN_HOURS_YOUNG;
+  }
   function fmtHours(h){
     if (h < 1) return Math.round(h*60) + "m";
     return (Math.round(h*10)/10) + "h";
@@ -3085,10 +3093,10 @@
     if (stageAfter !== stageBefore){
       log(state.name + " is now " + STAGE_LABEL[stageAfter].toLowerCase() + ".");
     }
-    if (stageAfter === "puppy" && state.bladder <= 0 && (now - (state.lastHomeAccidentAt||0)) > 1.5*HOUR){
+    if (!canWalkOutside(state.dogDays) && state.bladder <= 0 && (now - (state.lastHomeAccidentAt||0)) > 0.75*HOUR){
       state.houseTraining = clamp(state.houseTraining - 3);
       state.lastHomeAccidentAt = now;
-      log(state.name + " had an accident on the floor — under 6 months, puppies need a bathroom trip after almost every nap, meal, or play session.");
+      log(state.name + " had an accident on the floor — before real walks start, puppies need a bathroom trip after almost every nap, meal, or play session.");
     }
     save();
   }
@@ -3347,7 +3355,7 @@
         '<button class="btn btn-ghost cmd-btn" data-train="'+c.id+'" style="border:1px solid var(--line)">Train</button></div>';
     }).join("");
 
-    var cooldownLeft = TRAIN_COOLDOWN_HOURS*HOUR - (Date.now() - state.lastTrainedAt);
+    var cooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
     var trainNote = cooldownLeft > 0 ? '<div class="muted mono" style="margin-top:10px; font-size:12px;">Next session available in '+fmtClock(cooldownLeft)+'</div>' : "";
 
     var recentJournal = state.journal.slice(0,3).map(function(j){
@@ -3390,8 +3398,12 @@
       '<div class="card">' +
         '<div class="row-btns">' +
           '<button class="btn btn-primary" id="feed-btn">Feed</button>' +
-          '<button class="btn btn-primary" id="walk-btn">Walk</button>' +
+          (canWalkOutside(state.dogDays) ?
+            '<button class="btn btn-primary" id="walk-btn">Walk</button>' :
+            '<button class="btn btn-primary" id="play-btn">Play &amp; socialize</button>') +
         '</div>' +
+        (canWalkOutside(state.dogDays) ? "" :
+          '<p class="muted" style="margin-top:8px; font-size:12.5px;">Too young for real outdoor walks — not fully vaccinated yet. Real walks unlock around 3 months old. For now: home play, socialization, and being carried outside for exposure without ground time.</p>') +
         '<button class="btn btn-warn" id="leave-btn" style="margin-top:10px">Leave for work</button>' +
       '</div>' +
 
@@ -3613,10 +3625,15 @@
         log("Fed " + state.name + "." + (isPuppy ? " Expect a bathroom trip within 20 minutes at this age." : ""));
         save(); render();
       });
-      document.getElementById("walk-btn").addEventListener("click", function(){
+      var walkBtn = document.getElementById("walk-btn");
+      if (walkBtn) walkBtn.addEventListener("click", function(){
         if (state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined") startStepsWalk();
         else if (state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
         else doManualWalk();
+      });
+      var playBtn = document.getElementById("play-btn");
+      if (playBtn) playBtn.addEventListener("click", function(){
+        doPlaySession();
       });
       document.getElementById("leave-btn").addEventListener("click", function(){
         view = "leaveSetup"; render();
@@ -3644,7 +3661,7 @@
       });
       root.querySelectorAll("[data-train]").forEach(function(el){
         el.addEventListener("click", function(){
-          var cooldownLeft = TRAIN_COOLDOWN_HOURS*HOUR - (Date.now() - state.lastTrainedAt);
+          var cooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
           if (cooldownLeft > 0) return;
           var breed = byId(state.breedId);
           var width = Math.max(12, Math.min(40, 12 + breed.trainability*2.4)) * (state.energy<30 ? 0.7 : 1);
@@ -3819,6 +3836,24 @@
   }
   function doManualWalk(){
     applyWalkOutcome(1, "Walked " + state.name + ".");
+    view = "home"; render();
+  }
+  function applyPlayOutcome(note){
+    state.bladder = 100;
+    state.energy = clamp(state.energy + 0.5*(100-state.energy));
+    state.bond = clamp(state.bond + 4);
+    state.houseTraining = clamp(state.houseTraining + 1);
+    log(note);
+    save();
+  }
+  function doPlaySession(){
+    var openers = [
+      "Played and socialized " + state.name + " at home — too young for real walks yet.",
+      "Short indoor training-and-play session with " + state.name + ".",
+      "Carried " + state.name + " outside for safe sights, sounds and smells — no ground time yet."
+    ];
+    var note = openers[Math.floor(Math.random()*openers.length)];
+    applyPlayOutcome(note);
     view = "home"; render();
   }
   function startGpsWalk(){
