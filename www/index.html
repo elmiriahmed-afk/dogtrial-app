@@ -687,6 +687,7 @@
       lastNotified: { hunger:0, bladder:0, energy:0 },
       lastHomeAccidentAt: 0, lastPositiveMomentAt: 0, typicalHoursAway: 4, lastPhaseLabel: null,
       ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
+      awaySessions: [], incidentTally: {},
       emergencyInfo: { vetName:"", vetPhone:"", allergies:"", microchipId:"" },
       journal: [{ ts: now, text: name + " came home. The trial starts now." }]
     };
@@ -698,6 +699,21 @@
     var days = Math.max(0, realDays);
     var food = estimateMonthlyFoodCost(breed) / 30 * days;
     return Math.round(VET_STARTER_COST + GEAR_STARTER_COST + food);
+  }
+  function longestAwaySession(){
+    var sessions = state.awaySessions || [];
+    return sessions.reduce(function(max, s){ return Math.max(max, s.hours); }, 0);
+  }
+  var INCIDENT_LABELS = { accident:"accident", chew:"chewed item", bark:"bark complaint", anxiety:"anxious moment", escape:"escape attempt", health:"health scare", depression:"withdrawn moment" };
+  function incidentSummaryLine(){
+    var tally = state.incidentTally || {};
+    var parts = Object.keys(tally).filter(function(k){ return tally[k] > 0; }).map(function(k){
+      var n = tally[k];
+      var label = INCIDENT_LABELS[k] || k;
+      return n + " " + label + (n===1?"":"s");
+    });
+    if (!parts.length) return "";
+    return "This trial so far: " + parts.join(", ") + ".";
   }
   function compatibilityScore(){
     var avgTraining = COMMANDS.reduce(function(s,c){ return s + state.training[c.id]; }, 0) / COMMANDS.length;
@@ -888,6 +904,11 @@
     state.away = null;
     state.totalHoursAway = (state.totalHoursAway||0) + actualHours;
     state.accidentsCount = (state.accidentsCount||0) + incidents.filter(function(inc){ return inc.type==="accident"; }).length;
+    if (!state.awaySessions) state.awaySessions = [];
+    state.awaySessions.push({ hours: actualHours, ts: now });
+    if (state.awaySessions.length > 60) state.awaySessions.shift();
+    if (!state.incidentTally) state.incidentTally = {};
+    incidents.forEach(function(inc){ state.incidentTally[inc.type] = (state.incidentTally[inc.type]||0) + 1; });
     bumpOwnerLoad(5 + incidents.length*3 + (crateOverage>0 ? 5 : 0));
 
     // Build a real timeline instead of a lump-sum summary: each incident is logged with
@@ -1420,10 +1441,20 @@
   function renderTabLife(breed, housing){
     var stage = stageOf(state.dogDays);
     var fit = lifeFitMessage(breed, housing, stage, state.typicalHoursAway);
+    var realDaysElapsed = (Date.now() - state.startedAt) / (24*HOUR);
+    var longest = longestAwaySession();
+    var incidentLine = incidentSummaryLine();
     return '' +
       '<div class="card">' +
         '<div class="section-title">Dog × Home × Life</div>' +
         '<p class="muted" style="margin-top:2px;">'+fit+'</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Your pattern</div>' +
+        (longest > 0 ? '<p class="muted">Longest single stretch away so far: <b>'+fmtHours(longest)+'</b>.</p>' : "") +
+        '<p class="muted"'+(longest>0 ? ' style="margin-top:8px;"' : "")+'>'+esc(state.name)+' has been alone for <b>'+fmtHours(state.totalHoursAway)+'</b> in total across this trial.</p>' +
+        '<p class="muted" style="margin-top:8px;">Real spend so far: <b>€'+costSoFar(breed, realDaysElapsed)+'</b>.</p>' +
+        (incidentLine ? '<p class="muted" style="margin-top:8px;">'+incidentLine+'</p>' : '<p class="muted" style="margin-top:8px;">No incidents logged yet — early days.</p>') +
       '</div>' +
       renderSettingsCard() +
       '<div class="card">' +
@@ -2496,6 +2527,8 @@
     if (state.walksCompleted === undefined) state.walksCompleted = 0;
     if (state.accidentsCount === undefined) state.accidentsCount = 0;
     if (state.totalHoursAway === undefined) state.totalHoursAway = 0;
+    if (!state.awaySessions) state.awaySessions = [];
+    if (!state.incidentTally) state.incidentTally = {};
     if (state.checkpointShownDay === undefined) state.checkpointShownDay = 0;
     if (!state.emergencyInfo) state.emergencyInfo = { vetName:"", vetPhone:"", allergies:"", microchipId:"" };
     if (state.away && state.away.awayAlerted === undefined) state.away.awayAlerted = false;
