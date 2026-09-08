@@ -445,6 +445,26 @@
     var pool = FEEDING_DAILY_TIPS.concat([FEEDING_TIP[breed.id] || ""]).filter(Boolean);
     return pool[Math.max(0, day) % pool.length];
   }
+  var POTTY_TIPS = [
+    "Take your puppy to the same spot every time — a consistent location speeds up the association.",
+    "Reward within a few seconds of your puppy finishing, not after you're already back inside.",
+    "A puppy usually needs a bathroom trip after waking up, after eating, and after playing — those are the moments to watch closest.",
+    "A calm word said while your puppy goes can become its own cue over time.",
+    "Watch for the signs: circling, sniffing the floor, or suddenly heading toward a door.",
+    "Accidents are part of house training, not a setback — punishing a puppy after the fact doesn't teach them what they should have done instead.",
+    "A predictable feeding schedule makes toileting more predictable too — random meal times mean random bathroom needs.",
+    "An adult's bladder lasts much longer than a young puppy's overnight — expect at least one night trip for the first several weeks.",
+    "If accidents keep happening in the same indoor spot, that spot likely still smells like a toilet to the dog, even after cleaning."
+  ];
+  function pottyTipForDay(day){
+    return POTTY_TIPS[Math.max(0, day) % POTTY_TIPS.length];
+  }
+  var CLEANUP_TIPS = [
+    "Blot, don't rub — rubbing pushes the mess deeper into carpet fibers.",
+    "Use an enzymatic cleaner, not a standard household one — enzymes break down the odor compounds that regular cleaners just mask.",
+    "Avoid ammonia-based cleaners on accidents — the smell is chemically close to urine and can encourage a dog to go there again.",
+    "Clean as soon as you notice it — the longer it sits, the harder the smell is to fully remove."
+  ];
   var COMMAND_INFO = {
     sit: {
       why: "A foundational behavior — most other cues build on a reliable sit.",
@@ -1297,10 +1317,17 @@
       '<div class="card">' +
         '<div class="section-title">House training — '+Math.round(state.houseTraining)+'%</div>' +
         '<div class="meter-track"><div class="meter-fill" style="width:'+state.houseTraining+'%; background:var(--accent)"></div></div>' +
+        '<div class="cost-row" style="margin-top:12px; border-bottom:none;"><span>Accidents cleaned up</span><b>'+state.accidentsCount+'</b></div>' +
+        '<p class="muted" style="font-size:12.5px;">It\'s normal for house training to take weeks — most puppies still have occasional accidents even with a consistent routine, especially before 4–5 months old.</p>' +
+        '<div class="section-title" style="margin-top:6px; margin-bottom:4px;">Tip of the day</div>' +
+        '<p class="muted" style="font-size:13px;">'+pottyTipForDay(tripDay())+'</p>' +
       '</div>' +
       '<div class="card">' +
-        '<div class="cost-row"><span>Accidents cleaned up</span><b>'+state.accidentsCount+'</b></div>' +
-        '<div class="cost-row"><span>Overall health</span><b>'+Math.round(state.health)+'%</b></div>' +
+        '<div class="section-title">Cleaning up properly</div>' +
+        '<ul class="challenge-list">'+CLEANUP_TIPS.map(function(t){ return '<li>'+t+'</li>'; }).join("")+'</ul>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="cost-row" style="border-bottom:none;"><span>Overall health</span><b>'+Math.round(state.health)+'%</b></div>' +
       '</div>';
   }
 
