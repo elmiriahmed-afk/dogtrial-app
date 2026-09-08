@@ -427,6 +427,24 @@
     frenchie: "Keep portions controlled. Maintaining a healthy weight is particularly important for dogs with a compact build and potential breathing sensitivity.",
     amstaff: "Muscular, active dogs may have higher energy needs, but body condition and activity matter more than breed alone."
   };
+  var FEEDING_DAILY_TIPS = [
+    "Treats count toward the daily total — a good rule of thumb is no more than 10% of daily calories from treats.",
+    "Sudden food changes can upset a dog's stomach. Any switch in food should happen gradually, over about a week.",
+    "A consistent feeding schedule helps with house-training — regular meals mean a more predictable bathroom schedule.",
+    "Fresh water should be available at all times, not just at mealtimes.",
+    "A fast eater can be slowed down with a slow-feeder bowl, or by spreading food out on a flat surface.",
+    "Weight is a better guide than the bag's feeding chart — those numbers are averages, not tailored to this dog.",
+    "Puppies need more frequent, smaller meals than adults, because their stomachs are still small and their energy needs are high.",
+    "A senior dog's calorie needs typically drop as activity decreases — watch body condition, not just the scale.",
+    "Table scraps aren't just a diet risk — they also teach begging habits that are hard to unlearn.",
+    "A sudden loss of appetite is one of the earliest signs something's off — worth noting if a meal gets skipped entirely.",
+    "Food and water bowls should be washed daily — bacteria builds up quickly, especially in wet-food bowls.",
+    "Overweight dogs are at higher risk for joint problems — portions matter more than they might seem to."
+  ];
+  function feedingTipForDay(breed, day){
+    var pool = FEEDING_DAILY_TIPS.concat([FEEDING_TIP[breed.id] || ""]).filter(Boolean);
+    return pool[Math.max(0, day) % pool.length];
+  }
   var COMMAND_INFO = {
     sit: {
       why: "A foundational behavior — most other cues build on a reliable sit.",
@@ -466,6 +484,31 @@
       tryThis: "Start in a low-distraction space. The moment the leash slackens on its own, mark it and reward."
     }
   };
+  // A 30-day curriculum rather than "always drill whichever command is weakest" —
+  // sit first (easiest foundation), then stay (builds on it), then come (safety-critical,
+  // needs the dog a bit more settled first), then leash manners (needs real-world exposure,
+  // so it comes latest), then a review block rotating all four for the final week.
+  var TRAINING_PROGRAM_PHASES = [
+    { max:5, id:"sit", label:"Foundations" },
+    { max:10, id:"stay", label:"Building on it" },
+    { max:16, id:"come", label:"Recall & safety" },
+    { max:23, id:"leash", label:"Leash manners" },
+    { max:30, id:"review", label:"Review & polish" }
+  ];
+  function trainingFocusForDay(day){
+    day = Math.max(1, Math.min(30, day));
+    for (var i=0;i<TRAINING_PROGRAM_PHASES.length;i++){
+      var phase = TRAINING_PROGRAM_PHASES[i];
+      if (day <= phase.max){
+        if (phase.id === "review"){
+          var order = ["sit","stay","come","leash"];
+          return { commandId: order[day % order.length], label: phase.label };
+        }
+        return { commandId: phase.id, label: phase.label };
+      }
+    }
+    return { commandId:"sit", label:TRAINING_PROGRAM_PHASES[0].label };
+  }
   function byId(id){ for (var i=0;i<BREEDS.length;i++) if (BREEDS[i].id===id) return BREEDS[i]; return BREEDS[0]; }
   function clamp(v){ return Math.max(0, Math.min(100, v)); }
   function stageOf(dogDays){
@@ -560,6 +603,7 @@
       lastNotified: { hunger:0, bladder:0, energy:0 },
       lastHomeAccidentAt: 0, lastPositiveMomentAt: 0, typicalHoursAway: 4, lastPhaseLabel: null,
       ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
+      emergencyInfo: { vetName:"", vetPhone:"", allergies:"", microchipId:"" },
       journal: [{ ts: now, text: name + " came home. The trial starts now." }]
     };
   }
@@ -981,6 +1025,8 @@
     else if (view === "walkSteps") root.innerHTML = brandStrip() + renderWalkSteps();
     else if (view === "walkConfirm") root.innerHTML = brandStrip() + renderWalkConfirm();
     else if (view === "safeActivities") root.innerHTML = brandStrip() + renderSafeActivities();
+    else if (view === "emergency") root.innerHTML = brandStrip() + renderEmergencyHub();
+    else if (view === "milestones") root.innerHTML = brandStrip() + renderMilestones();
     attachHandlers();
     if (view === "atWork") startAtWorkClock();
     else if (view === "walkSteps") startStepsClock();
@@ -1121,7 +1167,7 @@
     var hh = (now.getHours()<10?"0":"")+now.getHours();
     var mm = (now.getMinutes()<10?"0":"")+now.getMinutes();
     var fed = state.hunger >= 90;
-    var tip = FEEDING_TIP[breed.id] || "";
+    var tip = feedingTipForDay(breed, tripDay());
     var header, sub;
     if (fed){
       var nextAt = new Date(Date.now() + FEED_INTERVAL[stage]*HOUR);
@@ -1141,7 +1187,8 @@
         '<div class="cost-row" style="margin-top:10px;"><span>Daily amount, at '+breed.weightKg+' kg</span><b>'+rangeLow+'–'+rangeHigh+' g</b></div>' +
         '<div class="cost-row"><span>'+mealName+' portion</span><b>'+perMeal+' g dry food</b></div>' +
         '<div class="cost-row" style="border-bottom:none;"><span>Water</span><b>Fresh water available</b></div>' +
-        '<p class="muted" style="margin-top:10px; font-size:13px;">'+tip+'</p>' +
+        '<div class="section-title" style="margin-top:14px; margin-bottom:4px;">Tip of the day</div>' +
+        '<p class="muted" style="font-size:13px;">'+tip+'</p>' +
         (fed ? "" : '<button class="btn btn-primary" id="feed-btn" style="margin-top:14px;">Feed '+esc(state.name)+'</button>') +
         '<p class="muted" style="margin-top:10px; font-size:11.5px;">Feeding amounts are estimates. Always follow the food manufacturer\'s feeding guide and adjust with a veterinarian when needed.</p>' +
       '</div>';
@@ -1227,7 +1274,9 @@
     var cooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
     var trainNote = cooldownLeft > 0 ? '<div class="muted mono" style="margin-top:12px; font-size:12px;">Next session available in '+fmtClock(cooldownLeft)+'</div>' : "";
 
-    var focus = COMMANDS.slice().sort(function(a,b){ return state.training[a.id] - state.training[b.id]; })[0];
+    var programDay = Math.max(1, Math.min(30, tripDay()+1));
+    var program = trainingFocusForDay(programDay);
+    var focus = COMMANDS.filter(function(c){ return c.id === program.commandId; })[0];
     var info = COMMAND_INFO[focus.id];
     var tipsHTML = info.tips.map(function(t){ return '<li>'+t+'</li>'; }).join("");
 
@@ -1239,7 +1288,7 @@
 
     return '' +
       '<div class="card">' +
-        '<div class="section-title">Today\'s focus</div>' +
+        '<div class="section-title">Day '+programDay+' of 30 · '+program.label+'</div>' +
         '<div class="next-label" style="font-size:19px;">🧠 '+esc(focus.label)+'</div>' +
         '<p class="muted" style="margin-top:6px;">'+info.why+'</p>' +
         '<ul class="challenge-list" style="margin-top:10px;">'+tipsHTML+'</ul>' +
@@ -1277,7 +1326,12 @@
         '<div class="section-title">Dog × Home × Life</div>' +
         '<p class="muted" style="margin-top:2px;">'+fit+'</p>' +
       '</div>' +
-      renderSettingsCard();
+      renderSettingsCard() +
+      '<div class="card">' +
+        '<div class="section-title">In case of emergency</div>' +
+        '<p class="muted" style="font-size:13px;">Toxic foods, your vet\'s number, and medical notes — handy for you or a sitter.</p>' +
+        '<button class="btn btn-primary" id="emergency-btn" style="margin-top:12px;">Open emergency &amp; sitter info</button>' +
+      '</div>';
   }
 
   function renderTabReport(){
@@ -1297,6 +1351,11 @@
         '<div class="section-title">If the trial ended today</div>' +
         '<h2 style="margin-top:4px;">'+label+'</h2>' +
         '<ul class="challenge-list">'+challengeItems+'</ul>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Look back</div>' +
+        '<p class="muted" style="font-size:13px;">A day-by-day scrapbook of the trial so far.</p>' +
+        '<button class="btn btn-primary" id="milestones-btn" style="margin-top:12px;">View milestones</button>' +
       '</div>' +
       (day >= 30 ?
         '<div class="card"><button class="btn btn-primary" id="report-tab-view30">See your full 30-day report</button></div>' :
@@ -1625,6 +1684,55 @@
       '</div>';
   }
 
+  var TOXIC_FOODS = [
+    "Chocolate & caffeine — contains theobromine, which affects the heart and nervous system.",
+    "Grapes & raisins — can cause sudden kidney failure, even in small amounts.",
+    "Onions, garlic & chives — damage red blood cells over time.",
+    "Xylitol (in gum, some peanut butters) — causes a rapid insulin spike and liver damage.",
+    "Alcohol — affects a dog's system far more severely than a human's.",
+    "Cooked bones — can splinter and cause internal injury.",
+    "Macadamia nuts — can cause weakness, vomiting and tremors."
+  ];
+
+  function renderEmergencyHub(){
+    var breed = byId(state.breedId);
+    var stage = stageOf(state.dogDays);
+    var e = state.emergencyInfo;
+    var feedsPerDay = feedsPerDayFor(stage);
+    var toxicItems = TOXIC_FOODS.map(function(t){ return '<li>'+t+'</li>'; }).join("");
+    return '' +
+      '<div class="card">' +
+        '<div class="top-actions"><h2 style="font-size:19px">Emergency &amp; sitter info</h2><button class="btn-ghost" id="back-home">Back</button></div>' +
+        '<p class="muted">A quick reference for you or anyone looking after '+esc(state.name)+'.</p>' +
+      '</div>' +
+
+      '<div class="card">' +
+        '<div class="section-title">If something toxic was eaten</div>' +
+        '<p class="muted" style="font-size:13px;">Contact a vet or animal poison control right away — don\'t wait for symptoms, and don\'t induce vomiting unless a vet tells you to.</p>' +
+        '<ul class="challenge-list" style="margin-top:10px;">'+toxicItems+'</ul>' +
+      '</div>' +
+
+      '<div class="card">' +
+        '<div class="section-title">Your vet</div>' +
+        '<div class="field" style="margin-top:8px;"><label>Vet name</label><input type="text" id="ef-vetName" value="'+esc(e.vetName)+'" placeholder="Not set yet"></div>' +
+        '<div class="field" style="margin-top:12px;"><label>Vet phone</label><input type="text" id="ef-vetPhone" value="'+esc(e.vetPhone)+'" placeholder="Not set yet"></div>' +
+        (e.vetPhone ? '<a class="btn btn-primary" href="tel:'+esc(e.vetPhone)+'" style="margin-top:14px; text-decoration:none;">Call '+esc(e.vetName || "vet")+'</a>' : "") +
+      '</div>' +
+
+      '<div class="card">' +
+        '<div class="section-title">Medical notes</div>' +
+        '<div class="field"><label>Allergies</label><input type="text" id="ef-allergies" value="'+esc(e.allergies)+'" placeholder="None on file"></div>' +
+        '<div class="field" style="margin-top:12px;"><label>Microchip ID</label><input type="text" id="ef-microchipId" value="'+esc(e.microchipId)+'" placeholder="Not set yet"></div>' +
+      '</div>' +
+
+      '<div class="card">' +
+        '<div class="section-title">For a sitter, at a glance</div>' +
+        '<div class="cost-row"><span>Feeding</span><b>'+feedsPerDay+'x/day, '+dailyFoodGrams(breed)+' g total</b></div>' +
+        '<div class="cost-row"><span>House training</span><b>'+Math.round(state.houseTraining)+'%</b></div>' +
+        '<div class="cost-row" style="border-bottom:none;"><span>Walks so far</span><b>'+state.walksCompleted+'</b></div>' +
+      '</div>';
+  }
+
   function renderJournal(){
     var items = state.journal.map(function(j){
       return '<div class="j-entry"><div class="j-time">'+timeAgo(j.ts)+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
@@ -1634,6 +1742,54 @@
         '<div class="top-actions"><h2 style="font-size:19px">Journal</h2><button class="btn-ghost" id="back-home">Back</button></div>' +
         (items || '<div class="muted">Nothing yet.</div>') +
       '</div>';
+  }
+
+  function renderMilestones(){
+    var breed = byId(state.breedId);
+    var day = tripDay();
+    var realDaysElapsed = (Date.now() - state.startedAt) / (24*HOUR);
+    var avgTraining = Math.round(COMMANDS.reduce(function(s,c){ return s + state.training[c.id]; }, 0) / COMMANDS.length);
+
+    var groups = [];
+    state.journal.forEach(function(j){
+      var key = new Date(j.ts).toDateString();
+      var group = groups.length && groups[groups.length-1].key === key ? groups[groups.length-1] : null;
+      if (!group){ group = { key:key, ts:j.ts, entries:[] }; groups.push(group); }
+      group.entries.push(j);
+    });
+    // state.journal is already newest-first, but entries can be inserted out of
+    // chronological order (see logAt) — grouping by run assumes the common case;
+    // an out-of-order backdated entry just lands in the nearest matching group or starts a new one.
+
+    var groupsHTML = groups.map(function(g){
+      var d = new Date(g.ts);
+      var weekday = d.toLocaleDateString("en-US", { weekday:"long" });
+      var monthDay = d.toLocaleDateString("en-US", { month:"long", day:"numeric" });
+      var entries = g.entries.map(function(j){
+        var isMilestone = j.text.indexOf("✓") === 0;
+        return '<div class="j-entry"><div class="j-time">'+timeAgo(j.ts)+'</div>' +
+          '<div class="j-text"'+(isMilestone ? ' style="color:var(--accent); font-weight:600;"' : '')+'>'+esc(j.text)+'</div></div>';
+      }).join("");
+      return '<div class="card">' +
+        '<div class="section-title">'+weekday+', '+monthDay+'</div>' +
+        entries +
+      '</div>';
+    }).join("");
+
+    return '' +
+      '<div class="card">' +
+        '<div class="top-actions"><h2 style="font-size:19px">Milestones</h2><button class="btn-ghost" id="back-home">Back</button></div>' +
+        '<p class="muted">'+esc(state.name)+'\'s 30-day rehearsal, day by day. Highlighted lines are completed actions.</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="stat-grid">' +
+          '<div class="stat-tile"><div class="stat-icon" style="background:var(--purple-soft);">📅</div><div class="stat-value">'+Math.min(30, Math.max(0,day))+'/30</div><div class="stat-label">Days in</div></div>' +
+          '<div class="stat-tile"><div class="stat-icon" style="background:var(--accent-soft);">🐾</div><div class="stat-value">'+state.walksCompleted+'</div><div class="stat-label">Walks</div></div>' +
+          '<div class="stat-tile"><div class="stat-icon" style="background:var(--teal-soft);">🎓</div><div class="stat-value">'+avgTraining+'%</div><div class="stat-label">Avg. training</div></div>' +
+          '<div class="stat-tile"><div class="stat-icon" style="background:var(--warn-soft);">💶</div><div class="stat-value">€'+costSoFar(breed, realDaysElapsed)+'</div><div class="stat-label">Spent so far</div></div>' +
+        '</div>' +
+      '</div>' +
+      (groupsHTML || '<div class="card"><div class="muted">Nothing logged yet.</div></div>');
   }
 
   // ---------- handlers ----------
@@ -1721,6 +1877,14 @@
       var reportTabBtn = document.getElementById("report-tab-view30");
       if (reportTabBtn) reportTabBtn.addEventListener("click", function(){
         view = "report30"; render();
+      });
+      var emergencyBtn = document.getElementById("emergency-btn");
+      if (emergencyBtn) emergencyBtn.addEventListener("click", function(){
+        view = "emergency"; render();
+      });
+      var milestonesBtn = document.getElementById("milestones-btn");
+      if (milestonesBtn) milestonesBtn.addEventListener("click", function(){
+        view = "milestones"; render();
       });
       var resetBtn = document.getElementById("reset-btn");
       if (resetBtn) resetBtn.addEventListener("click", function(){
@@ -1867,6 +2031,26 @@
     if (view === "journal"){
       document.getElementById("back-home").addEventListener("click", function(){
         view = "home"; render();
+      });
+    }
+
+    if (view === "milestones"){
+      document.getElementById("back-home").addEventListener("click", function(){
+        view = "home"; render();
+      });
+    }
+
+    if (view === "emergency"){
+      document.getElementById("back-home").addEventListener("click", function(){
+        view = "home"; render();
+      });
+      [["ef-vetName","vetName"],["ef-vetPhone","vetPhone"],["ef-allergies","allergies"],["ef-microchipId","microchipId"]].forEach(function(pair){
+        var el = document.getElementById(pair[0]);
+        if (!el) return;
+        el.addEventListener("change", function(){
+          state.emergencyInfo[pair[1]] = el.value;
+          save(); render();
+        });
       });
     }
 
@@ -2214,6 +2398,7 @@
     if (state.accidentsCount === undefined) state.accidentsCount = 0;
     if (state.totalHoursAway === undefined) state.totalHoursAway = 0;
     if (state.checkpointShownDay === undefined) state.checkpointShownDay = 0;
+    if (!state.emergencyInfo) state.emergencyInfo = { vetName:"", vetPhone:"", allergies:"", microchipId:"" };
     if (state.away && state.away.awayAlerted === undefined) state.away.awayAlerted = false;
     if (state.away){
       var now = Date.now();
