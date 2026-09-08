@@ -149,7 +149,7 @@
   .age{color:var(--ink-faint); font-size:13px;}
   .mood-chip{margin-top:8px; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600;}
   .mood-dot{width:8px; height:8px; border-radius:50%;}
-  .day-label{color:var(--ink-faint); font-size:11px; letter-spacing:.05em; text-transform:uppercase; font-weight:700;}
+  .day-label{color:var(--ink-faint); font-size:11px; letter-spacing:.05em; text-transform:uppercase; font-weight:700; flex:1; min-width:0; padding-top:2px;}
   .next-label{font-family:"Poppins",system-ui,sans-serif; font-weight:700; font-size:22px; margin-top:2px;}
 
   /* ---- meters ---- */
@@ -212,7 +212,8 @@
   .muted{color:var(--ink-soft); font-size:14px;}
   .big-num{font-family:"Poppins",system-ui,sans-serif; font-size:40px; font-weight:700;}
 
-  .top-actions{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .top-actions{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:14px;}
+  .top-actions #reset-btn, .top-actions .reset-confirm{flex:none; white-space:nowrap;}
   .reset-confirm{display:flex; align-items:center; gap:8px;}
 
   /* ---- bottom tab bar ---- */
@@ -466,7 +467,8 @@
     "Accidents are part of house training, not a setback — punishing a puppy after the fact doesn't teach them what they should have done instead.",
     "A predictable feeding schedule makes toileting more predictable too — random meal times mean random bathroom needs.",
     "An adult's bladder lasts much longer than a young puppy's overnight — expect at least one night trip for the first several weeks.",
-    "If accidents keep happening in the same indoor spot, that spot likely still smells like a toilet to the dog, even after cleaning."
+    "If accidents keep happening in the same indoor spot, that spot likely still smells like a toilet to the dog, even after cleaning.",
+    "The moment your puppy wakes up, take them straight to a pee pad or a private garden — not a space other dogs use, if they're not fully vaccinated yet. Waking up is one of the most predictable bathroom triggers there is."
   ];
   function pottyTipForDay(day){
     return POTTY_TIPS[Math.max(0, day) % POTTY_TIPS.length];
@@ -477,6 +479,32 @@
     "Avoid ammonia-based cleaners on accidents — the smell is chemically close to urine and can encourage a dog to go there again.",
     "Clean as soon as you notice it — the longer it sits, the harder the smell is to fully remove."
   ];
+  // Turns an accident into a normalizing, actionable note instead of just a fact —
+  // age sets how much slack it deserves, but the cleanup advice is always the same.
+  function accidentGuidance(stage){
+    if (stage === "puppy") return "Normal at this age — puppies don't have full bladder control yet. Clean it up with an enzymatic cleaner (not ammonia) and get back to the routine; no need to scold after the fact.";
+    if (stage === "adolescent") return "Still common at this stage, especially if the routine slipped. An enzymatic cleaner keeps the spot from becoming a repeat target.";
+    return "Worth a closer look if this keeps happening, but a one-off is usually just a missed opportunity — clean with an enzymatic cleaner, not ammonia.";
+  }
+  // Explains the behavior the first time each type shows up, instead of just logging that
+  // it happened — a trial should teach, not just score. "accident" isn't here: it already
+  // gets accidentGuidance() above, tailored by age, on every occurrence instead of once.
+  var WHY_THIS_HAPPENS = {
+    chew: "Chewing is normal exploration and teething behavior, especially under a year old — it's not defiance. Redirect toward an appropriate chew toy and manage access to valuables.",
+    bark: "Barking while alone is usually a stress signal, not stubbornness — the dog is coping with a change it didn't choose. Shorter absences and a calmer departure routine both help.",
+    escape: "Escape attempts are almost always driven by boredom or under-exercise, not a training gap — a tired, mentally stimulated dog rarely looks for a way out.",
+    health: "Heat, exertion or stress can push a dog's body past what it can handle quickly, especially for brachycephalic or young dogs — cooler timing and shorter exposure prevent this.",
+    anxiety: "Pacing, whining or clinginess after time alone is a real stress response, not misbehavior — it usually eases as routine and trust build, and gets worse with punishment.",
+    depression: "Shutting down or going quiet in confinement is a bigger warning sign than an active protest — it usually means the confinement itself needs to be shorter or less frequent."
+  };
+  function noteWithWhy(baseText, type){
+    var why = WHY_THIS_HAPPENS[type];
+    if (!why) return baseText;
+    state.seenIncidentTypes = state.seenIncidentTypes || [];
+    if (state.seenIncidentTypes.indexOf(type) !== -1) return baseText;
+    state.seenIncidentTypes.push(type);
+    return baseText + " Why this happens: " + why;
+  }
   var COMMAND_INFO = {
     sit: {
       why: "A foundational behavior — most other cues build on a reliable sit.",
@@ -687,7 +715,7 @@
       lastNotified: { hunger:0, bladder:0, energy:0 },
       lastHomeAccidentAt: 0, lastPositiveMomentAt: 0, typicalHoursAway: 4, lastPhaseLabel: null,
       ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
-      awaySessions: [], incidentTally: {},
+      awaySessions: [], incidentTally: {}, seenIncidentTypes: [],
       emergencyInfo: { vetName:"", vetPhone:"", allergies:"", microchipId:"" },
       journal: [{ ts: now, text: name + " came home. The trial starts now." }]
     };
@@ -839,7 +867,7 @@
       state.lastHomeAccidentAt = now;
       state.accidentsCount = (state.accidentsCount||0) + 1;
       bumpOwnerLoad(8);
-      log(state.name + " had an accident on the floor — before real walks start, puppies need a bathroom trip after almost every nap, meal, or play session.");
+      log(state.name + " had an accident on the floor — before real walks start, puppies need a bathroom trip after almost every nap, meal, or play session. " + accidentGuidance(stageAfter));
     }
     maybePositiveMoment(deltaHours);
     checkPhaseTransition();
@@ -936,6 +964,7 @@
       incidents.forEach(function(inc, i){
         var ts = away.leaveStart + toleranceMs + windowMs * ((i+1) / (incidents.length+1));
         var text = state.name + " " + inc.text + ".";
+        text = inc.type === "accident" ? text + " " + accidentGuidance(stage) : noteWithWhy(text, inc.type);
         logAt(ts, text);
         timeline.push({ ts: ts, text: text });
       });
@@ -2544,6 +2573,7 @@
     if (state.totalHoursAway === undefined) state.totalHoursAway = 0;
     if (!state.awaySessions) state.awaySessions = [];
     if (!state.incidentTally) state.incidentTally = {};
+    if (!state.seenIncidentTypes) state.seenIncidentTypes = [];
     if (state.checkpointShownDay === undefined) state.checkpointShownDay = 0;
     if (!state.emergencyInfo) state.emergencyInfo = { vetName:"", vetPhone:"", allergies:"", microchipId:"" };
     if (state.away && state.away.awayAlerted === undefined) state.away.awayAlerted = false;
