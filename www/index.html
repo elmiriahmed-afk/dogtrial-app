@@ -484,6 +484,42 @@
       tryThis: "Start in a low-distraction space. The moment the leash slackens on its own, mark it and reward."
     }
   };
+  // Comprehension check, not a reflex game — three questions pulled straight from the
+  // why/tips shown on the card, so scoring well actually means the information landed.
+  var COMMAND_QUIZ = {
+    sit: [
+      { q: "When should you say the word “Sit”?", options: ["Before the dog starts sitting, to prompt it", "Just as the behavior starts", "Only after several seconds of sitting"], correct: 1 },
+      { q: "What should you do right after the correct behavior?", options: ["Wait a few seconds before rewarding", "Reward immediately", "Repeat the command three times"], correct: 1 },
+      { q: "How many times should you say the command in one attempt?", options: ["Once", "Three times", "Until the dog responds"], correct: 0 },
+      { q: "What's the better way to end a training session?", options: ["Many repetitions, even if it gets frustrating", "On a success, even if it's just one good repetition", "Only once the dog is tired"], correct: 1 }
+    ],
+    stay: [
+      { q: "What does “Stay” mainly build?", options: ["Physical strength", "Impulse control", "Speed"], correct: 1 },
+      { q: "When starting out, how long should a stay last?", options: ["A very short duration", "At least one minute", "Until the dog moves on its own"], correct: 0 },
+      { q: "What should increase gradually, one at a time?", options: ["Duration and distance together", "Duration, then distance, separately", "Only the reward size"], correct: 1 },
+      { q: "What should you reward during a stay?", options: ["Only the final release", "Calm, settled behavior", "Barking"], correct: 1 }
+    ],
+    come: [
+      { q: "Why is “Come” especially important?", options: ["It's the easiest command to teach", "It's a key safety behavior", "It's required before every meal"], correct: 1 },
+      { q: "Where should recall training start?", options: ["In a busy park", "Close by, with no distractions", "At maximum distance"], correct: 1 },
+      { q: "What should you never do when calling a dog?", options: ["Use an upbeat voice", "Call it for something unpleasant", "Reward it for coming"], correct: 1 },
+      { q: "Compared to whatever the dog is doing, coming to you should always be:", options: ["Less interesting", "More rewarding", "About the same"], correct: 1 }
+    ],
+    leash: [
+      { q: "What should you do the instant the leash goes tight?", options: ["Pull back gently", "Stop moving", "Speed up"], correct: 1 },
+      { q: "What should you reward during a walk?", options: ["Only reaching the destination", "Walking near you specifically", "Pulling ahead"], correct: 1 },
+      { q: "Why does a calm walking habit matter?", options: ["It looks better to others", "It prevents pulling injuries and makes walks enjoyable", "It's required by law"], correct: 1 },
+      { q: "How should new distractions be introduced?", options: ["All at once", "One at a time", "Never — avoid them entirely"], correct: 1 }
+    ]
+  };
+  function pickQuizQuestions(commandId, n){
+    var bank = (COMMAND_QUIZ[commandId] || []).slice();
+    for (var i = bank.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = bank[i]; bank[i] = bank[j]; bank[j] = tmp;
+    }
+    return bank.slice(0, n);
+  }
   // A 30-day curriculum rather than "always drill whichever command is weakest" —
   // sit first (easiest foundation), then stay (builds on it), then come (safety-critical,
   // needs the dog a bit more settled first), then leash manners (needs real-world exposure,
@@ -565,7 +601,7 @@
   var pendingStartStage = START_STAGES[0].id;
   var pendingLife = LIFE_OPTIONS[1].id;
   var resetConfirmOpen = false;
-  var trainCtx = null; // {commandId, round, results:[], animId, pos, zoneLeft, zoneWidth}
+  var quizCtx = null; // {commandId, questions:[{q,options,correct}], answers:[idx|null]}
   var liveTimer = null;
 
   function load(){
@@ -1033,7 +1069,7 @@
     else if (view === "leaveSetup") root.innerHTML = brandStrip() + renderLeaveSetup();
     else if (view === "atWork") root.innerHTML = brandStrip() + renderAtWork();
     else if (view === "awayReport") root.innerHTML = brandStrip() + renderAwayReport(window.__lastReport);
-    else if (view === "train") root.innerHTML = brandStrip() + renderTrain();
+    else if (view === "trainQuiz") root.innerHTML = brandStrip() + renderTrainQuiz();
     else if (view === "journal") root.innerHTML = brandStrip() + renderJournal();
     else if (view === "reality7") root.innerHTML = brandStrip() + renderReality7();
     else if (view === "report30") root.innerHTML = brandStrip() + renderReport30();
@@ -1620,25 +1656,34 @@
       '</div>';
   }
 
-  function renderTrain(){
-    var c = trainCtx;
+  function quizOptionStyle(selected){
+    return selected
+      ? 'width:100%; text-align:left; border:1.5px solid var(--accent); background:var(--accent-soft); color:var(--accent); margin-top:8px;'
+      : 'width:100%; text-align:left; border:1px solid var(--line); margin-top:8px;';
+  }
+  function renderTrainQuiz(){
+    var c = quizCtx;
     var cmd = COMMANDS.filter(function(x){return x.id===c.commandId;})[0];
-    var dots = [0,1,2].map(function(i){
-      var cls = i < c.results.length ? (c.results[i] ? "hit" : "miss") : "";
-      return '<span class="'+cls+'"></span>';
+    var allAnswered = c.answers.every(function(a){ return a !== null; });
+    var questionsHTML = c.questions.map(function(item, qi){
+      var optsHTML = item.options.map(function(opt, oi){
+        var selected = c.answers[qi] === oi;
+        return '<button class="btn btn-ghost" data-q="'+qi+'" data-opt="'+oi+'" style="'+quizOptionStyle(selected)+'">'+esc(opt)+'</button>';
+      }).join("");
+      return '<div class="card" style="margin-top:14px;">' +
+        '<div class="section-title">Question '+(qi+1)+' of '+c.questions.length+'</div>' +
+        '<p style="font-weight:600; margin-top:4px;">'+esc(item.q)+'</p>' +
+        optsHTML +
+      '</div>';
     }).join("");
     return '' +
-      '<div class="card center">' +
-        '<div class="section-title">Training — '+esc(cmd.label)+'</div>' +
-        '<p class="muted">Tap when the marker is inside the zone.</p>' +
-        '<div class="track-wrap">' +
-          '<div class="track" id="track">' +
-            '<div class="zone" style="left:'+c.zoneLeft+'%; width:'+c.zoneWidth+'%"></div>' +
-            '<div class="marker" id="marker" style="left:0%"></div>' +
-          '</div>' +
-        '</div>' +
-        '<div class="round-dots">'+dots+'</div>' +
-        '<button class="btn btn-primary" id="tap-btn" style="margin-top:20px">Tap</button>' +
+      '<div class="card">' +
+        '<div class="section-title">Quick check — '+esc(cmd.label)+'</div>' +
+        '<p class="muted">A few questions on what you just read — this is what actually reinforces the training, not a reflex test.</p>' +
+      '</div>' +
+      questionsHTML +
+      '<div class="card" style="margin-top:14px;">' +
+        '<button class="btn btn-primary" id="quiz-submit"'+(allAnswered ? '' : ' disabled')+'>Submit answers</button>' +
       '</div>';
   }
 
@@ -1925,17 +1970,14 @@
         el.addEventListener("click", function(){
           var cooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
           if (cooldownLeft > 0) return;
-          var breed = byId(state.breedId);
-          var width = Math.max(12, Math.min(40, 12 + breed.trainability*2.4)) * (state.energy<30 ? 0.7 : 1);
-          trainCtx = {
-            commandId: el.getAttribute("data-train"),
-            round: 0, results: [],
-            zoneLeft: Math.random()*(100-width),
-            zoneWidth: width,
-            pos: 0
+          var commandId = el.getAttribute("data-train");
+          var questions = pickQuizQuestions(commandId, 3);
+          quizCtx = {
+            commandId: commandId,
+            questions: questions,
+            answers: questions.map(function(){ return null; })
           };
-          view = "train"; render();
-          startTrainAnim();
+          view = "trainQuiz"; render();
         });
       });
       var notifToggle = document.getElementById("notif-toggle");
@@ -2099,57 +2141,42 @@
       });
     }
 
-    if (view === "train"){
-      document.getElementById("tap-btn").addEventListener("click", onTap);
+    if (view === "trainQuiz"){
+      root.querySelectorAll("[data-q]").forEach(function(el){
+        el.addEventListener("click", function(){
+          var qi = parseInt(el.getAttribute("data-q"), 10);
+          var oi = parseInt(el.getAttribute("data-opt"), 10);
+          quizCtx.answers[qi] = oi;
+          render();
+        });
+      });
+      var quizSubmitBtn = document.getElementById("quiz-submit");
+      if (quizSubmitBtn) quizSubmitBtn.addEventListener("click", onQuizSubmit);
     }
   }
 
-  // ---------- training animation ----------
-  var trainAnimStart = null, trainAnimId = null;
-  function startTrainAnim(){
-    trainAnimStart = performance.now();
-    var period = 1100;
-    function loop(now){
-      var t = ((now-trainAnimStart) % period) / period;
-      var pos = t < 0.5 ? t*2*100 : (1-t)*2*100;
-      trainCtx.pos = pos;
-      var marker = document.getElementById("marker");
-      if (marker) marker.style.left = pos + "%";
-      if (view === "train") trainAnimId = requestAnimationFrame(loop);
-    }
-    trainAnimId = requestAnimationFrame(loop);
-  }
-  function stopTrainAnim(){
-    if (trainAnimId) cancelAnimationFrame(trainAnimId);
-    trainAnimId = null;
-  }
-  function onTap(){
-    var c = trainCtx;
-    var hit = c.pos >= c.zoneLeft && c.pos <= (c.zoneLeft + c.zoneWidth);
-    c.results.push(hit);
-    if (c.results.length >= 3){
-      stopTrainAnim();
-      var breed = byId(state.breedId);
-      var hits = c.results.filter(Boolean).length;
-      var ratio = hits/3;
-      var cmd = COMMANDS.filter(function(x){return x.id===c.commandId;})[0];
-      state.training[c.commandId] = clamp(state.training[c.commandId] + ratio*(5+breed.trainability));
-      state.bond = clamp(state.bond + ratio*3);
-      state.energy = clamp(state.energy - 10);
-      var isPuppy = stageOf(state.dogDays) === "puppy";
-      if (isPuppy) state.bladder = clamp(state.bladder - 15);
-      state.lastTrainedAt = Date.now();
-      var checkmark = ratio>=0.66 ? "✓ " : "";
-      var resultWord = ratio>=0.66 ? "went well" : ratio>0 ? "was mixed" : "didn't land";
-      log(checkmark + cmd.label + " practiced — " + hits + "/3 reps, session " + resultWord + "." + (isPuppy ? " Playtime like this means another bathroom trip soon." : ""));
-      bumpOwnerLoad(2);
-      save();
-      trainCtx = null;
-      view = "home";
-      render();
-    } else {
-      render();
-    }
+  function onQuizSubmit(){
+    var c = quizCtx;
+    if (!c || c.answers.indexOf(null) !== -1) return;
+    var breed = byId(state.breedId);
+    var correct = c.questions.filter(function(item, i){ return c.answers[i] === item.correct; }).length;
+    var total = c.questions.length;
+    var ratio = correct/total;
+    var cmd = COMMANDS.filter(function(x){return x.id===c.commandId;})[0];
+    state.training[c.commandId] = clamp(state.training[c.commandId] + ratio*(5+breed.trainability));
+    state.bond = clamp(state.bond + ratio*3);
+    state.energy = clamp(state.energy - 10);
+    var isPuppy = stageOf(state.dogDays) === "puppy";
+    if (isPuppy) state.bladder = clamp(state.bladder - 15);
+    state.lastTrainedAt = Date.now();
+    var checkmark = ratio>=0.66 ? "✓ " : "";
+    var resultWord = ratio>=0.66 ? "went well" : ratio>0 ? "was mixed" : "needs another look";
+    log(checkmark + cmd.label + " practiced — quiz " + correct + "/" + total + " correct, session " + resultWord + "." + (isPuppy ? " Playtime like this means another bathroom trip soon." : ""));
+    bumpOwnerLoad(2);
+    save();
+    quizCtx = null;
+    view = "home";
+    render();
   }
 
   // ---------- walks ----------
