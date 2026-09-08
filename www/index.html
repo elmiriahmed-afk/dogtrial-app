@@ -1494,6 +1494,7 @@
         '<div class="big-num mono" id="walk-dist">0 m / '+target+' m</div>' +
         '<div class="meter-track" style="margin-top:6px;"><div class="meter-fill" id="walk-bar" style="width:0%; background:var(--accent)"></div></div>' +
         '<button class="btn btn-primary" id="end-walk" style="margin-top:20px">End walk</button>' +
+        '<p class="muted" style="margin-top:12px; font-size:12px;">Keep DogTrial open and your screen on during the walk — tracking pauses if your phone locks or you switch apps.</p>' +
       '</div>';
   }
 
@@ -1525,6 +1526,7 @@
         '</div>' +
         '<div class="muted mono" id="walk-steps-count" style="margin-top:12px; font-size:12.5px;">'+steps+' steps detected</div>' +
         '<button class="btn btn-primary" id="end-walk" style="margin-top:16px">End walk</button>' +
+        '<p class="muted" style="margin-top:12px; font-size:12px;">Keep DogTrial open and your screen on during the walk — tracking pauses if your phone locks or you switch apps.</p>' +
       '</div>';
   }
 
@@ -1952,6 +1954,33 @@
 
   // ---------- walks ----------
   var walkCtx = null;
+
+  // Screen Wake Lock: without it, iOS/Android auto-locks the screen mid-walk and
+  // both the devicemotion listener (steps) and the GPS watch effectively freeze,
+  // so the walk silently stops counting. Re-requested on visibilitychange because
+  // the OS releases the lock the moment the page is backgrounded any other way
+  // (switching apps, manually pressing the power button), and a fresh request is
+  // needed once the user comes back while still mid-walk.
+  var wakeLock = null;
+  function requestWakeLock(){
+    if (!("wakeLock" in navigator)) return;
+    navigator.wakeLock.request("screen").then(function(lock){
+      wakeLock = lock;
+      lock.addEventListener("release", function(){ wakeLock = null; });
+    }).catch(function(){ wakeLock = null; });
+  }
+  function releaseWakeLock(){
+    if (wakeLock){
+      wakeLock.release().catch(function(){});
+      wakeLock = null;
+    }
+  }
+  document.addEventListener("visibilitychange", function(){
+    if (document.visibilityState === "visible" && walkCtx && (walkCtx.mode === "steps" || walkCtx.mode === "gps") && !wakeLock){
+      requestWakeLock();
+    }
+  });
+
   function haversine(lat1, lon1, lat2, lon2){
     var R = 6371000;
     var toRad = function(d){ return d*Math.PI/180; };
@@ -1993,6 +2022,7 @@
     var breed = byId(state.breedId);
     walkCtx = { mode:"gps", watchId:null, distance:0, lastPos:null, target: Math.round(breed.walkMinutes*80) };
     view = "walkGps"; render();
+    requestWakeLock();
     walkCtx.watchId = navigator.geolocation.watchPosition(onWalkPos, onWalkErr, { enableHighAccuracy:true, maximumAge:5000, timeout:15000 });
   }
   // Ending the walk asks for confirmation rather than applying the outcome straight away —
@@ -2000,6 +2030,7 @@
   function requestGpsWalkConfirm(){
     if (!walkCtx) { view = "home"; render(); return; }
     if (walkCtx.watchId != null) { navigator.geolocation.clearWatch(walkCtx.watchId); walkCtx.watchId = null; }
+    releaseWakeLock();
     view = "walkConfirm"; render();
   }
   function onWalkPos(pos){
@@ -2026,6 +2057,7 @@
     var dist = Math.round(walkCtx.distance);
     var fraction = walkCtx.distance / walkCtx.target;
     if (walkCtx.watchId != null) navigator.geolocation.clearWatch(walkCtx.watchId);
+    releaseWakeLock();
     var note;
     if (errored) { note = "Walked " + state.name + " (GPS signal lost — logged manually)."; fraction = 1; }
     else if (couldntWalk) { note = "Couldn't walk " + state.name + " today — plans changed."; fraction = 0.15; }
@@ -2040,6 +2072,7 @@
     var breed = byId(state.breedId);
     walkCtx = { mode:"steps", steps:0, filtered:9.8, lastStepTime:0, activeSeconds:0, goalMinutes: breed.walkMinutes };
     view = "walkSteps"; render();
+    requestWakeLock();
     function attach(){
       window.addEventListener("devicemotion", onStepMotion);
     }
@@ -2058,6 +2091,7 @@
     if (!walkCtx) { view = "home"; render(); return; }
     window.removeEventListener("devicemotion", onStepMotion);
     stopLiveTimer();
+    releaseWakeLock();
     view = "walkConfirm"; render();
   }
   function onStepMotion(e){
@@ -2078,6 +2112,7 @@
   function finishStepsWalk(errored, couldntWalk){
     if (!walkCtx){ view = "home"; render(); return; }
     window.removeEventListener("devicemotion", onStepMotion);
+    releaseWakeLock();
     var steps = walkCtx.steps;
     var minutesWalked = Math.round(walkCtx.activeSeconds/60);
     var fraction = Math.max(0, Math.min(1, walkCtx.activeSeconds/(walkCtx.goalMinutes*60)));
