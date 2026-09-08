@@ -487,27 +487,43 @@
   // A 30-day curriculum rather than "always drill whichever command is weakest" —
   // sit first (easiest foundation), then stay (builds on it), then come (safety-critical,
   // needs the dog a bit more settled first), then leash manners (needs real-world exposure,
-  // so it comes latest), then a review block rotating all four for the final week.
-  var TRAINING_PROGRAM_PHASES = [
-    { max:5, id:"sit", label:"Foundations" },
-    { max:10, id:"stay", label:"Building on it" },
-    { max:16, id:"come", label:"Recall & safety" },
-    { max:23, id:"leash", label:"Leash manners" },
-    { max:30, id:"review", label:"Review & polish" }
+  // so it comes latest), then a review block rotating all four for the final week. Every
+  // day has its own specific detail/exercise, not just a repeated command across a block.
+  var TRAINING_DAY_PLAN = [
+    { commandId:"sit", phase:"Foundations", detail:"First sessions: lure into a sit with a treat right above the nose, and reward the instant the hips touch the floor." },
+    { commandId:"sit", phase:"Foundations", detail:"Add the word “Sit” just as the behavior starts, not before — timing teaches the dog what the cue means." },
+    { commandId:"sit", phase:"Foundations", detail:"Try it with an empty hand instead of a visible treat, then reward from a pocket or pouch afterward." },
+    { commandId:"sit", phase:"Foundations", detail:"Ask for a sit before something the dog wants: before meals, before the leash goes on, before a door opens." },
+    { commandId:"sit", phase:"Foundations", detail:"Test it somewhere new — a different room, or just facing a different direction. Consistency across contexts matters more than repetition in one spot." },
+    { commandId:"stay", phase:"Building on it", detail:"Introduce “Stay”: ask for a sit, hold a flat palm out, wait one second, then reward before releasing with a clear release word." },
+    { commandId:"stay", phase:"Building on it", detail:"Stretch the stay to 3–5 seconds. If the dog breaks early, that's information — go back to a shorter time before it happened." },
+    { commandId:"stay", phase:"Building on it", detail:"Add one step back before releasing. Distance before duration — one variable at a time." },
+    { commandId:"stay", phase:"Building on it", detail:"Practice a stay while you do something ordinary nearby — pick something up, turn away briefly." },
+    { commandId:"stay", phase:"Building on it", detail:"Combine what's built so far: sit, then stay while you walk fully out of the room and back." },
+    { commandId:"come", phase:"Recall & safety", detail:"Start recall in a hallway or small room with no distractions. Crouch, say the name and “Come” once, and reward enthusiastically." },
+    { commandId:"come", phase:"Recall & safety", detail:"Practice recall from a slightly greater distance, still indoors." },
+    { commandId:"come", phase:"Recall & safety", detail:"Add a mild distraction — a toy on the floor, someone else in the room — and reward heavily for choosing to come anyway." },
+    { commandId:"come", phase:"Recall & safety", detail:"Practice recall right after a nap or when the dog is already looking for you — an easy win reinforces the pattern." },
+    { commandId:"come", phase:"Recall & safety", detail:"Try recall in the garden or another securely enclosed outdoor space, if available." },
+    { commandId:"come", phase:"Recall & safety", detail:"Randomize when you call — not just at the end of play, so “Come” never predicts the fun stopping." },
+    { commandId:"leash", phase:"Leash manners", detail:"Start indoors or somewhere quiet: clip the leash on, stand still, and reward a loose leash and checking in with you." },
+    { commandId:"leash", phase:"Leash manners", detail:"Take a few steps. The moment the leash goes tight, stop moving — don't pull back, just wait for slack." },
+    { commandId:"leash", phase:"Leash manners", detail:"Reward for walking near you specifically, not just for the absence of pulling." },
+    { commandId:"leash", phase:"Leash manners", detail:"Practice past one mild distraction at a time — another person, a smell, a parked bike." },
+    { commandId:"leash", phase:"Leash manners", detail:"Add direction changes — a leash that stays loose through a turn is harder than a straight line." },
+    { commandId:"leash", phase:"Leash manners", detail:"Try a slightly busier route, for a short distance only — length matters less than consistency here." },
+    { commandId:"leash", phase:"Leash manners", detail:"A full walk attempt, whatever length is realistic today — the first time everything gets combined outside." },
+    { commandId:"sit", phase:"Review & polish", detail:"Revisit sit somewhere genuinely distracting — this is the real test of what's been learned." },
+    { commandId:"stay", phase:"Review & polish", detail:"Push the stay duration further now that the foundation has had a few weeks to settle." },
+    { commandId:"come", phase:"Review & polish", detail:"Recall with real distance and at least one clear distraction." },
+    { commandId:"leash", phase:"Review & polish", detail:"A full walk, paying attention specifically to loose-leash moments." },
+    { commandId:"sit", phase:"Review & polish", detail:"Chain it: sit, then stay, then release into a walk — one flowing sequence." },
+    { commandId:"stay", phase:"Review & polish", detail:"Stay, then call the dog to you out of the stay — deliberately blending two skills." },
+    { commandId:"come", phase:"Review & polish", detail:"A relaxed run-through of everything — no pressure, just see where things stand after a month." }
   ];
-  function trainingFocusForDay(day){
+  function trainingPlanForDay(day){
     day = Math.max(1, Math.min(30, day));
-    for (var i=0;i<TRAINING_PROGRAM_PHASES.length;i++){
-      var phase = TRAINING_PROGRAM_PHASES[i];
-      if (day <= phase.max){
-        if (phase.id === "review"){
-          var order = ["sit","stay","come","leash"];
-          return { commandId: order[day % order.length], label: phase.label };
-        }
-        return { commandId: phase.id, label: phase.label };
-      }
-    }
-    return { commandId:"sit", label:TRAINING_PROGRAM_PHASES[0].label };
+    return TRAINING_DAY_PLAN[day-1];
   }
   function byId(id){ for (var i=0;i<BREEDS.length;i++) if (BREEDS[i].id===id) return BREEDS[i]; return BREEDS[0]; }
   function clamp(v){ return Math.max(0, Math.min(100, v)); }
@@ -1275,8 +1291,8 @@
     var trainNote = cooldownLeft > 0 ? '<div class="muted mono" style="margin-top:12px; font-size:12px;">Next session available in '+fmtClock(cooldownLeft)+'</div>' : "";
 
     var programDay = Math.max(1, Math.min(30, tripDay()+1));
-    var program = trainingFocusForDay(programDay);
-    var focus = COMMANDS.filter(function(c){ return c.id === program.commandId; })[0];
+    var plan = trainingPlanForDay(programDay);
+    var focus = COMMANDS.filter(function(c){ return c.id === plan.commandId; })[0];
     var info = COMMAND_INFO[focus.id];
     var tipsHTML = info.tips.map(function(t){ return '<li>'+t+'</li>'; }).join("");
 
@@ -1288,11 +1304,11 @@
 
     return '' +
       '<div class="card">' +
-        '<div class="section-title">Day '+programDay+' of 30 · '+program.label+'</div>' +
+        '<div class="section-title">Day '+programDay+' of 30 · '+plan.phase+'</div>' +
         '<div class="next-label" style="font-size:19px;">🧠 '+esc(focus.label)+'</div>' +
         '<p class="muted" style="margin-top:6px;">'+info.why+'</p>' +
         '<ul class="challenge-list" style="margin-top:10px;">'+tipsHTML+'</ul>' +
-        '<p class="muted" style="margin-top:10px; font-size:13px;"><b>Try this:</b> '+info.tryThis+'</p>' +
+        '<p class="muted" style="margin-top:10px; font-size:13px;"><b>Today\'s session:</b> '+plan.detail+'</p>' +
         (info.keySentence ? '<p class="muted" style="margin-top:8px; font-size:13px; font-style:italic;">'+info.keySentence+'</p>' : "") +
         '<div class="cmd-bar" style="margin-top:14px;"><div class="cmd-fill" style="width:'+state.training[focus.id]+'%"></div></div>' +
         '<button class="btn btn-primary" data-train="'+focus.id+'" style="margin-top:12px;">Train '+esc(focus.label)+'</button>' +
