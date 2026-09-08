@@ -782,6 +782,15 @@
     if (state.bond >= 35) return name + " never fully settled in — real moments of connection, but also real distance, especially after a hard day.";
     return name + " struggled to settle with you this month — frequent distress, and the bond didn't get the chance to build the way it needed to.";
   }
+  // Present-tense read of the same bond value, for the Health tab — where it's mid-trial rather
+  // than a retrospective, so the tense and framing differ from relationshipNarrative() above.
+  function bondStatusLine(){
+    var name = esc(state.name);
+    if (state.bond >= 75) return name + " settles beside you without being asked, and comes when called.";
+    if (state.bond >= 55) return name + " is warming up — follows you between rooms, but still has cautious moments.";
+    if (state.bond >= 35) return name + " is still finding its footing with you — some connection, some distance.";
+    return name + " is still cautious around you — trust is only starting to build.";
+  }
   function maybeInterceptView(){
     if (!state) return;
     var day = tripDay();
@@ -1390,8 +1399,11 @@
           '<div class="stat-tile"><div class="stat-icon" style="background:var(--accent-soft);">🍖</div><div class="stat-value">'+Math.round(state.hunger)+'%</div><div class="stat-label">Fed</div></div>' +
           '<div class="stat-tile"><div class="stat-icon" style="background:var(--teal-soft);">⚡</div><div class="stat-value">'+Math.round(state.energy)+'%</div><div class="stat-label">Energy</div></div>' +
           '<div class="stat-tile"><div class="stat-icon" style="background:var(--warn-soft);">🚽</div><div class="stat-value">'+Math.round(bladderComfort)+'%</div><div class="stat-label">Bladder comfort</div></div>' +
-          '<div class="stat-tile"><div class="stat-icon" style="background:var(--purple-soft);">💗</div><div class="stat-value">'+Math.round(state.bond)+'%</div><div class="stat-label">Bond</div></div>' +
         '</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Bond</div>' +
+        '<p class="muted" style="margin-top:2px;">'+bondStatusLine()+'</p>' +
       '</div>' +
       '<div class="card">' +
         '<div class="section-title">House training — '+Math.round(state.houseTraining)+'%</div>' +
