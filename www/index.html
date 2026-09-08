@@ -745,6 +745,15 @@
     if (score >= 50) return "Potential challenges";
     return "Significant mismatch";
   }
+  // A behavioral read of the bond built up over the trial, for the 30-day report —
+  // no "Bond: 83%", just what that number would actually look like day to day.
+  function relationshipNarrative(){
+    var name = esc(state.name);
+    if (state.bond >= 75) return name + " settled into a real routine with you this month — coming when called, staying close without being asked, comfortable being handled.";
+    if (state.bond >= 55) return name + " grew noticeably more comfortable around you over the month — still had off moments, but the bond was building.";
+    if (state.bond >= 35) return name + " never fully settled in — real moments of connection, but also real distance, especially after a hard day.";
+    return name + " struggled to settle with you this month — frequent distress, and the bond didn't get the chance to build the way it needed to.";
+  }
   function maybeInterceptView(){
     if (!state) return;
     var day = tripDay();
@@ -1799,21 +1808,27 @@
     }).join("");
     return '' +
       '<div class="card">' +
-        '<div class="section-title">Your 30-day trial</div>' +
-        '<h2 style="margin-top:4px;">'+esc(state.name)+'\'s report</h2>' +
+        '<div class="section-title">30 days with '+esc(state.name)+'</div>' +
+        '<h2 style="margin-top:4px;">Your trial is complete</h2>' +
       '</div>' +
       '<div class="card">' +
-        '<div class="section-title">Your trial</div>' +
+        '<div class="section-title">What actually happened</div>' +
+        '<div class="cost-row cost-total"><span>Total cost, 30 days</span><b>€'+cost+'</b></div>' +
+        '<div class="cost-row"><span>Hours left alone, total</span><b>'+fmtHours(state.totalHoursAway)+'</b></div>' +
+        '<div class="cost-row"><span>Walks / play sessions</span><b>'+state.walksCompleted+'</b></div>' +
+        '<div class="cost-row"><span>Accidents / missed care</span><b>'+state.accidentsCount+'</b></div>' +
+        '<div class="cost-row"><span>House training</span><b>'+Math.round(state.houseTraining)+'%</b></div>' +
+        '<div class="cost-row" style="border-bottom:none;"><span>Avg. command training</span><b>'+avgTraining+'%</b></div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Your relationship</div>' +
+        '<p class="muted" style="margin-top:2px;">'+relationshipNarrative()+'</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Potential challenges</div>' +
         '<h2 style="margin-top:4px;">'+label+'</h2>' +
         '<p class="muted" style="margin-top:6px;">Here\'s what you should think about before adopting.</p>' +
         '<ul class="challenge-list">'+challengeItems+'</ul>' +
-      '</div>' +
-      '<div class="card">' +
-        '<div class="cost-row"><span>House training</span><b>'+Math.round(state.houseTraining)+'%</b></div>' +
-        '<div class="cost-row"><span>Avg. command training</span><b>'+avgTraining+'%</b></div>' +
-        '<div class="cost-row"><span>Accidents / missed care</span><b>'+state.accidentsCount+'</b></div>' +
-        '<div class="cost-row"><span>Hours left alone, total</span><b>'+fmtHours(state.totalHoursAway)+'</b></div>' +
-        '<div class="cost-row cost-total"><span>Total cost, 30 days</span><b>€'+cost+'</b></div>' +
       '</div>' +
       '<div class="card">' +
         '<div class="section-title">If '+esc(state.name)+' were real tomorrow, would you still adopt?</div>' +
