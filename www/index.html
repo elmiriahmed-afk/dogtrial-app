@@ -1226,61 +1226,69 @@
     return '<div class="tab-bar"><div class="tab-bar-inner">'+btns+'</div></div>';
   }
 
+  // Lean by design: this is the "Now" card only when feeding is the day's most
+  // urgent thing (see renderTabToday) — one number, one line of context, one tip,
+  // one button. The fuller ration breakdown lives in the Costs tab instead of here.
   function renderFeedCard(){
     var breed = byId(state.breedId);
     var stage = stageOf(state.dogDays);
-    var now = new Date();
-    var mealName = mealNameForHour(now.getHours());
-    var dailyGrams = dailyFoodGrams(breed);
+    var mealName = mealNameForHour(new Date().getHours());
     var feedsPerDay = feedsPerDayFor(stage);
-    var perMeal = Math.round(dailyGrams/feedsPerDay/5)*5;
-    var rangeLow = Math.round(dailyGrams*0.9/5)*5;
-    var rangeHigh = Math.round(dailyGrams*1.1/5)*5;
-    var hh = (now.getHours()<10?"0":"")+now.getHours();
-    var mm = (now.getMinutes()<10?"0":"")+now.getMinutes();
+    var perMeal = Math.round(dailyFoodGrams(breed)/feedsPerDay/5)*5;
     var fed = state.hunger >= 90;
-    var tip = feedingTipForDay(breed, tripDay());
-    var header, sub;
     if (fed){
       var nextAt = new Date(Date.now() + FEED_INTERVAL[stage]*HOUR);
-      var nh = (nextAt.getHours()<10?"0":"")+nextAt.getHours();
-      var nm = (nextAt.getMinutes()<10?"0":"")+nextAt.getMinutes();
-      header = "✓ " + mealName + " completed · " + hh + ":" + mm;
-      sub = "Next meal: " + nh + ":" + nm;
-    } else {
-      header = "🍽️ Time to eat";
-      sub = esc(state.name) + " needs a meal now.";
+      return '' +
+        '<div class="card">' +
+          '<div class="section-title">Now</div>' +
+          '<div class="next-label" style="font-size:19px;">✓ '+mealName+' completed</div>' +
+          '<p class="muted" style="margin-top:2px;">Next meal around '+pad2(nextAt.getHours())+':'+pad2(nextAt.getMinutes())+'.</p>' +
+        '</div>';
     }
     return '' +
       '<div class="card">' +
-        '<div class="section-title">Feeding</div>' +
-        '<div class="next-label" style="font-size:19px;">'+header+'</div>' +
-        '<p class="muted" style="margin-top:2px;">'+sub+'</p>' +
-        '<div class="cost-row" style="margin-top:10px;"><span>Daily amount, at '+breed.weightKg+' kg</span><b>'+rangeLow+'–'+rangeHigh+' g</b></div>' +
-        '<div class="cost-row"><span>'+mealName+' portion</span><b>'+perMeal+' g dry food</b></div>' +
-        '<div class="cost-row" style="border-bottom:none;"><span>Water</span><b>Fresh water available</b></div>' +
-        '<div class="section-title" style="margin-top:14px; margin-bottom:4px;">Tip of the day</div>' +
-        '<p class="muted" style="font-size:13px;">'+tip+'</p>' +
-        (fed ? "" : '<button class="btn btn-primary" id="feed-btn" style="margin-top:14px;">Feed '+esc(state.name)+'</button>') +
-        '<p class="muted" style="margin-top:10px; font-size:11.5px;">Feeding amounts are estimates. Always follow the food manufacturer\'s feeding guide and adjust with a veterinarian when needed.</p>' +
+        '<div class="section-title">Now · '+mealName+'</div>' +
+        '<div class="next-label" style="font-size:28px;">'+perMeal+' g</div>' +
+        '<p class="muted" style="margin-top:4px; font-size:13px;">'+esc(state.name)+' is '+breed.weightKg+' kg and currently eats '+feedsPerDay+' meal'+(feedsPerDay>1?'s':'')+' a day.</p>' +
+        '<p class="muted" style="margin-top:8px; font-size:13px;">💡 '+feedingTipForDay(breed, tripDay())+'</p>' +
+        '<button class="btn btn-primary" id="feed-btn" style="margin-top:14px;">Feed '+esc(state.name)+'</button>' +
       '</div>';
   }
 
   function renderTabToday(){
+    var stage = stageOf(state.dogDays);
     var next = computeNextAction();
     var todayEntries = todaysJournalEntries();
     var recentJournal = state.journal.slice(0,3).map(function(j){
       return '<div class="j-entry"><div class="j-time">'+timeAgo(j.ts)+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
     }).join("");
-    return '' +
+
+    var nowCard = next.actionId === "feed" ? renderFeedCard() : '' +
       '<div class="card">' +
-        '<div class="section-title">Next</div>' +
+        '<div class="section-title">Now</div>' +
         '<div class="next-label">'+esc(next.label)+'</div>' +
         '<div class="muted mono" style="margin-top:2px; font-size:13px;">'+esc(next.etaText)+'</div>' +
         '<button class="btn btn-primary" id="next-action-btn" data-action="'+next.actionId+'" style="margin-top:14px">'+esc(next.cta)+'</button>' +
-      '</div>' +
+      '</div>';
 
-      renderFeedCard() +
+    var laterRows = "";
+    if (next.actionId !== "feed"){
+      var mealAt = new Date(Date.now() + Math.max(0, state.hunger * FEED_INTERVAL[stage] / 100 * 60) * 60000);
+      laterRows += '<div class="cost-row"><span>🍽️ Meal</span><b>~'+pad2(mealAt.getHours())+':'+pad2(mealAt.getMinutes())+'</b></div>';
+    }
+    var trainCooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
+    var trainWhen = trainCooldownLeft > 0
+      ? (function(){ var at = new Date(Date.now()+trainCooldownLeft); return pad2(at.getHours())+":"+pad2(at.getMinutes()); })()
+      : "Available now";
+    laterRows += '<div class="cost-row" style="border-bottom:none;"><span>🧠 Training</span><b>'+trainWhen+'</b></div>';
+
+    return '' +
+      nowCard +
+
+      '<div class="card">' +
+        '<div class="section-title">Later</div>' +
+        laterRows +
+      '</div>' +
 
       '<div class="card">' +
         '<div class="section-title">Today</div>' +
