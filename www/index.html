@@ -1939,8 +1939,17 @@
       });
       var nextBtn = document.getElementById("next-action-btn");
       if (nextBtn) nextBtn.addEventListener("click", function(){
-        var target = document.getElementById(nextBtn.getAttribute("data-action") + "-btn");
-        if (target) target.click();
+        var action = nextBtn.getAttribute("data-action");
+        if (action === "feed"){
+          var fb = document.getElementById("feed-btn");
+          if (fb) fb.click();
+        } else if (action === "walk"){
+          if (state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined") startStepsWalk();
+          else if (state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
+          else doManualWalk();
+        } else if (action === "play"){
+          view = "safeActivities"; render();
+        }
       });
       var feedBtn = document.getElementById("feed-btn");
       if (feedBtn) feedBtn.addEventListener("click", function(){
