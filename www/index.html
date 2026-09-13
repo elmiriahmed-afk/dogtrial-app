@@ -167,6 +167,7 @@
 
   /* ---- training GIF slot (placeholder until real clips exist) ---- */
   .gif-slot{display:flex; align-items:center; justify-content:center; height:140px; border-radius:16px; background:var(--card-2); font-size:56px;}
+  video.gif-slot{height:180px; width:100%; object-fit:cover; background:var(--card-2);}
 
   /* ---- training ---- */
   .cmd-row{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px solid var(--line);}
@@ -282,19 +283,19 @@
   // changes by breed/age is the short note attached underneath (see BREED_TRAINING_NOTE
   // and AGE_TRAINING_NOTE below), not the technique itself.
   var TRAINING_SKILLS = [
-    { id:"sit", label:"Sit", icon:"🐕",
+    { id:"sit", label:"Sit", icon:"🐕", media:"media/training/sit.mp4",
       whatToDo:"Hold a small treat above your dog's nose and slowly move it back. As their bottom touches the floor, reward immediately.",
       quiz:{ q:"Your dog sits. When should you reward?", options:["Before they sit","Immediately after they sit","A few seconds later"], correct:1, explanation:"Rewarding early (before or during the sit) reinforces the movement, not the finished position — timing is what teaches the behavior.", bonus:"A reliable sit is the foundation most other cues build on, including stay and wait at the door." } },
-    { id:"down", label:"Down", icon:"⬇️",
+    { id:"down", label:"Down", icon:"⬇️", media:"media/training/down.mp4",
       whatToDo:"Guide the treat from your dog's nose down to the floor and slowly forward. Reward when their body reaches the ground.",
       quiz:{ q:"What should you do when your dog lies down?", options:["Keep moving the treat","Reward immediately","Wait until they stand up again"], correct:1, explanation:"Moving the treat before the dog's body is fully down often gets the dog to stand back up to follow it — wait for full contact with the floor.", bonus:"Down is also a calming position — many dogs settle faster from a down than from a sit." } },
-    { id:"release", label:"Release / OK", icon:"🆗",
+    { id:"release", label:"Release / OK", icon:"🆗", media:"media/training/release.mp4",
       whatToDo:"Your dog also needs to know when a command is finished. Use the same release word every time.",
       quiz:{ q:"Why use a release cue?", options:["To make the dog move faster","To clearly tell the dog when the exercise is finished","To punish the dog for moving"], correct:1, explanation:"Without a clear release cue, a dog has no way to know when an exercise is actually over, which can make \u201cstay\u201d feel inconsistent.", bonus:"Using the same release word every time, not mixed with other phrases, makes the boundary much clearer to the dog." } },
-    { id:"come", label:"Come", icon:"📣",
+    { id:"come", label:"Come", icon:"📣", media:"media/training/come.mp4",
       whatToDo:"Make coming back to you rewarding. Call once, encourage your dog toward you, and reward when they arrive.",
       quiz:{ q:"Your dog comes back to you. What should you do?", options:["Scold them for being slow","Reward them for coming back","Immediately call them again"], correct:1, explanation:"Scolding a dog for coming back, even slowly, teaches them that coming to you can be risky, which weakens recall over time.", bonus:"Recall is one of the few commands worth rewarding heavily every single time, even after months of training." } },
-    { id:"stay", label:"Stay", icon:"✋",
+    { id:"stay", label:"Stay", icon:"✋", media:"media/training/stay.mp4",
       whatToDo:"Start with only a few seconds. Reward your dog for staying still before gradually increasing the distance and time.",
       quiz:{ q:"What should you increase first?", options:["Everything at once","One difficulty at a time","The distance as much as possible"], correct:1, explanation:"Increasing duration and distance at the same time makes it much harder for the dog to succeed — split it into one variable at a time.", bonus:"Distance is usually harder for dogs to hold than time — many trainers build duration first, then add distance." } },
     { id:"leaveit", label:"Leave it", icon:"🚫",
@@ -1522,8 +1523,9 @@
   }
 
   function trainingMediaHTML(skill){
-    // Placeholder for the real demo clip (in production via Videvid) — swap this one
-    // function for an <img>/<video> tag once assets exist; nothing else needs to change.
+    if (skill.media) {
+      return '<video class="gif-slot" src="'+skill.media+'" autoplay loop muted playsinline></video>';
+    }
     return '<div class="gif-slot">'+skill.icon+'</div>';
   }
   function renderTabTraining(){
