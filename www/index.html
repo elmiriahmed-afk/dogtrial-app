@@ -161,6 +161,8 @@
   /* ---- stat tiles (wellness-style) ---- */
   .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
   .stat-tile{background:var(--card-2); border-radius:18px; padding:14px;}
+  .stat-tile[data-stat]{cursor:pointer;}
+  .stat-tile[data-stat]:active{opacity:0.75;}
   .stat-tile .stat-icon{width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; margin-bottom:8px;}
   .stat-tile .stat-value{font-family:"Poppins",system-ui,sans-serif; font-size:20px; font-weight:700; line-height:1;}
   .stat-tile .stat-label{color:var(--ink-soft); font-size:12px; margin-top:3px;}
@@ -1283,6 +1285,9 @@
     else if (view === "walkConfirm") root.innerHTML = brandStrip() + renderWalkConfirm();
     else if (view === "safeActivities") root.innerHTML = brandStrip() + renderSafeActivities();
     else if (view === "emergency") root.innerHTML = brandStrip() + renderEmergencyHub();
+    else if (view === "healthFeedInfo") root.innerHTML = brandStrip() + renderHealthFeedInfo();
+    else if (view === "healthEnergyInfo") root.innerHTML = brandStrip() + renderHealthEnergyInfo();
+    else if (view === "healthBladderInfo") root.innerHTML = brandStrip() + renderHealthBladderInfo();
     else if (view === "milestones") root.innerHTML = brandStrip() + renderMilestones();
     attachHandlers();
     if (view === "atWork") startAtWorkClock();
@@ -1502,9 +1507,9 @@
       '<div class="card">' +
         '<div class="section-title">Wellness</div>' +
         '<div class="stat-grid">' +
-          '<div class="stat-tile"><div class="stat-icon" style="background:var(--accent-soft);">🍖</div><div class="stat-value">'+Math.round(state.hunger)+'%</div><div class="stat-label">Fed</div></div>' +
-          '<div class="stat-tile"><div class="stat-icon" style="background:var(--teal-soft);">⚡</div><div class="stat-value">'+Math.round(state.energy)+'%</div><div class="stat-label">Energy</div></div>' +
-          '<div class="stat-tile"><div class="stat-icon" style="background:var(--warn-soft);">🚽</div><div class="stat-value">'+Math.round(bladderComfort)+'%</div><div class="stat-label">Bladder comfort</div></div>' +
+          '<div class="stat-tile" data-stat="feed"><div class="stat-icon" style="background:var(--accent-soft);">🍖</div><div class="stat-value">'+Math.round(state.hunger)+'%</div><div class="stat-label">Fed</div></div>' +
+          '<div class="stat-tile" data-stat="energy"><div class="stat-icon" style="background:var(--teal-soft);">⚡</div><div class="stat-value">'+Math.round(state.energy)+'%</div><div class="stat-label">Energy</div></div>' +
+          '<div class="stat-tile" data-stat="bladder"><div class="stat-icon" style="background:var(--warn-soft);">🚽</div><div class="stat-value">'+Math.round(bladderComfort)+'%</div><div class="stat-label">Bladder comfort</div></div>' +
         '</div>' +
       '</div>' +
       '<div class="card">' +
@@ -1525,6 +1530,92 @@
       '</div>' +
       '<div class="card">' +
         '<div class="cost-row" style="border-bottom:none;"><span>Overall health</span><b>'+Math.round(state.health)+'%</b></div>' +
+      '</div>';
+  }
+
+  function renderHealthFeedInfo(){
+    var breed = byId(state.breedId);
+    var stage = stageOf(state.dogDays);
+    var feedsPerDay = feedsPerDayFor(stage);
+    var perMeal = Math.round(dailyFoodGrams(breed)/feedsPerDay/5)*5;
+    var toxicItems = TOXIC_FOODS.map(function(t){ return '<li>'+t+'</li>'; }).join("");
+    return '' +
+      '<div class="card">' +
+        '<div class="top-actions"><h2 style="font-size:19px">Feeding — '+esc(breed.name)+'</h2><button class="btn-ghost" id="back-home">Back</button></div>' +
+        '<p class="muted">'+esc(state.name)+' is '+breed.weightKg+' kg. At this weight, that works out to '+dailyFoodGrams(breed)+' g of food a day.</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">How to split it</div>' +
+        '<div class="cost-row"><span>Meals per day</span><b>'+feedsPerDay+'x</b></div>' +
+        '<div class="cost-row" style="border-bottom:none;"><span>Per meal</span><b>'+perMeal+' g</b></div>' +
+        '<p class="muted" style="margin-top:10px; font-size:12.5px;">The daily total is roughly 15g of food per kg of body weight — a common starting point for adult maintenance. Adjust up or down over a few weeks based on body condition, and check the feeding guide on the food bag for your specific brand.</p>' +
+      '</div>' +
+      (FEEDING_TIP[breed.id] ? '<div class="card">' +
+        '<div class="section-title">Specific to '+esc(breed.name)+'</div>' +
+        '<p class="muted" style="font-size:13px;">'+FEEDING_TIP[breed.id]+'</p>' +
+      '</div>' : "") +
+      '<div class="card">' +
+        '<div class="section-title">General feeding tips</div>' +
+        '<ul class="challenge-list">'+FEEDING_DAILY_TIPS.slice(0,5).map(function(t){ return '<li>'+t+'</li>'; }).join("")+'</ul>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Never give</div>' +
+        '<ul class="challenge-list">'+toxicItems+'</ul>' +
+      '</div>';
+  }
+
+  function renderHealthEnergyInfo(){
+    var breed = byId(state.breedId);
+    var stage = stageOf(state.dogDays);
+    var programDay = Math.max(1, Math.min(30, tripDay()+1));
+    var skillId = skillForDay(programDay);
+    var skill = trainingSkillById(skillId);
+    return '' +
+      '<div class="card">' +
+        '<div class="top-actions"><h2 style="font-size:19px">Energy &amp; training</h2><button class="btn-ghost" id="back-home">Back</button></div>' +
+        '<p class="muted">Pent-up energy usually means the dog needs an outlet — exercise, but also mental work like today\'s training skill.</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Today\'s skill — '+esc(skill.label)+'</div>' +
+        '<p class="muted" style="margin-top:6px;">'+skill.whatToDo+'</p>' +
+        (BREED_TRAINING_NOTE[breed.id] ? '<p class="muted" style="margin-top:8px; font-size:13px;">🐾 '+BREED_TRAINING_NOTE[breed.id]+'</p>' : "") +
+        (AGE_TRAINING_NOTE[stage] ? '<p class="muted" style="margin-top:6px; font-size:13px;">'+AGE_TRAINING_NOTE[stage]+'</p>' : "") +
+        '<button class="btn btn-primary" id="energy-go-train" style="margin-top:14px;">Go train</button>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Small ways to burn energy today</div>' +
+        '<ul class="challenge-list">' +
+          '<li>A few short training reps (2-3 minutes) tire a dog\'s brain as much as a walk tires its legs.</li>' +
+          '<li>Sniffing games — scatter a few pieces of kibble in the grass or on the floor and let them search.</li>' +
+          '<li>A short tug or fetch session indoors if the weather or age stage limits outdoor time.</li>' +
+          '<li>Rotate toys — a "new" toy that has just been put away for a week gets far more engagement.</li>' +
+        '</ul>' +
+      '</div>';
+  }
+
+  function renderHealthBladderInfo(){
+    var stage = stageOf(state.dogDays);
+    var bi = BLADDER_INTERVAL[stage];
+    return '' +
+      '<div class="card">' +
+        '<div class="top-actions"><h2 style="font-size:19px">Bladder comfort</h2><button class="btn-ghost" id="back-home">Back</button></div>' +
+        '<p class="muted">At this age, expect a bathroom trip roughly every '+bi+' hours.</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">If an accident happens</div>' +
+        '<p class="muted" style="font-size:13px;">'+accidentGuidance(stage)+'</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Tip of the day</div>' +
+        '<p class="muted" style="font-size:13px;">'+pottyTipForDay(tripDay())+'</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">House training tips</div>' +
+        '<ul class="challenge-list">'+POTTY_TIPS.slice(0,6).map(function(t){ return '<li>'+t+'</li>'; }).join("")+'</ul>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Cleaning up properly</div>' +
+        '<ul class="challenge-list">'+CLEANUP_TIPS.map(function(t){ return '<li>'+t+'</li>'; }).join("")+'</ul>' +
       '</div>';
   }
 
@@ -2240,6 +2331,15 @@
           render();
         });
       });
+      root.querySelectorAll("[data-stat]").forEach(function(el){
+        el.addEventListener("click", function(){
+          var stat = el.getAttribute("data-stat");
+          if (stat === "feed") view = "healthFeedInfo";
+          else if (stat === "energy") view = "healthEnergyInfo";
+          else if (stat === "bladder") view = "healthBladderInfo";
+          render();
+        });
+      });
       var nextBtn = document.getElementById("next-action-btn");
       if (nextBtn) nextBtn.addEventListener("click", function(){
         var action = nextBtn.getAttribute("data-action");
@@ -2451,6 +2551,23 @@
           state.emergencyInfo[pair[1]] = el.value;
           save(); render();
         });
+      });
+    }
+
+    if (view === "healthFeedInfo" || view === "healthBladderInfo"){
+      document.getElementById("back-home").addEventListener("click", function(){
+        view = "home"; render();
+      });
+    }
+
+    if (view === "healthEnergyInfo"){
+      document.getElementById("back-home").addEventListener("click", function(){
+        view = "home"; render();
+      });
+      var goTrainBtn = document.getElementById("energy-go-train");
+      if (goTrainBtn) goTrainBtn.addEventListener("click", function(){
+        activeTab = "training";
+        view = "home"; render();
       });
     }
 
