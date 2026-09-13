@@ -284,49 +284,49 @@
   var TRAINING_SKILLS = [
     { id:"sit", label:"Sit", icon:"🐕",
       whatToDo:"Hold a small treat above your dog's nose and slowly move it back. As their bottom touches the floor, reward immediately.",
-      quiz:{ q:"Your dog sits. When should you reward?", options:["Before they sit","Immediately after they sit","A few seconds later"], correct:1 } },
+      quiz:{ q:"Your dog sits. When should you reward?", options:["Before they sit","Immediately after they sit","A few seconds later"], correct:1, explanation:"Rewarding early (before or during the sit) reinforces the movement, not the finished position — timing is what teaches the behavior.", bonus:"A reliable sit is the foundation most other cues build on, including stay and wait at the door." } },
     { id:"down", label:"Down", icon:"⬇️",
       whatToDo:"Guide the treat from your dog's nose down to the floor and slowly forward. Reward when their body reaches the ground.",
-      quiz:{ q:"What should you do when your dog lies down?", options:["Keep moving the treat","Reward immediately","Wait until they stand up again"], correct:1 } },
+      quiz:{ q:"What should you do when your dog lies down?", options:["Keep moving the treat","Reward immediately","Wait until they stand up again"], correct:1, explanation:"Moving the treat before the dog's body is fully down often gets the dog to stand back up to follow it — wait for full contact with the floor.", bonus:"Down is also a calming position — many dogs settle faster from a down than from a sit." } },
     { id:"release", label:"Release / OK", icon:"🆗",
       whatToDo:"Your dog also needs to know when a command is finished. Use the same release word every time.",
-      quiz:{ q:"Why use a release cue?", options:["To make the dog move faster","To clearly tell the dog when the exercise is finished","To punish the dog for moving"], correct:1 } },
+      quiz:{ q:"Why use a release cue?", options:["To make the dog move faster","To clearly tell the dog when the exercise is finished","To punish the dog for moving"], correct:1, explanation:"Without a clear release cue, a dog has no way to know when an exercise is actually over, which can make \u201cstay\u201d feel inconsistent.", bonus:"Using the same release word every time, not mixed with other phrases, makes the boundary much clearer to the dog." } },
     { id:"come", label:"Come", icon:"📣",
       whatToDo:"Make coming back to you rewarding. Call once, encourage your dog toward you, and reward when they arrive.",
-      quiz:{ q:"Your dog comes back to you. What should you do?", options:["Scold them for being slow","Reward them for coming back","Immediately call them again"], correct:1 } },
+      quiz:{ q:"Your dog comes back to you. What should you do?", options:["Scold them for being slow","Reward them for coming back","Immediately call them again"], correct:1, explanation:"Scolding a dog for coming back, even slowly, teaches them that coming to you can be risky, which weakens recall over time.", bonus:"Recall is one of the few commands worth rewarding heavily every single time, even after months of training." } },
     { id:"stay", label:"Stay", icon:"✋",
       whatToDo:"Start with only a few seconds. Reward your dog for staying still before gradually increasing the distance and time.",
-      quiz:{ q:"What should you increase first?", options:["Everything at once","One difficulty at a time","The distance as much as possible"], correct:1 } },
+      quiz:{ q:"What should you increase first?", options:["Everything at once","One difficulty at a time","The distance as much as possible"], correct:1, explanation:"Increasing duration and distance at the same time makes it much harder for the dog to succeed — split it into one variable at a time.", bonus:"Distance is usually harder for dogs to hold than time — many trainers build duration first, then add distance." } },
     { id:"leaveit", label:"Leave it", icon:"🚫",
       whatToDo:"Let your dog discover that ignoring something can earn a better reward. Do not force their mouth away from the object.",
-      quiz:{ q:"When should you reward “leave it”?", options:["When the dog grabs the object","When the dog disengages from it","Before the dog notices it"], correct:1 } },
+      quiz:{ q:"When should you reward “leave it”?", options:["When the dog grabs the object","When the dog disengages from it","Before the dog notices it"], correct:1, explanation:"Rewarding the moment a dog reaches for or grabs the item teaches the opposite of what you want — the reward has to follow disengagement.", bonus:"\u201cLeave it\u201d also works well for management outside the house — dropped food, trash, or something unsafe on a walk." } },
     { id:"leash", label:"Loose-leash walking", icon:"🦮",
       whatToDo:"A loose leash is the goal. When your dog pulls, stop moving. Resume when the leash becomes loose again.",
-      quiz:{ q:"Your dog starts pulling. What should you do?", options:["Pull harder","Stop and wait for the leash to loosen","Keep walking faster"], correct:1 } },
+      quiz:{ q:"Your dog starts pulling. What should you do?", options:["Pull harder","Stop and wait for the leash to loosen","Keep walking faster"], correct:1, explanation:"Pulling harder or speeding up can turn into a tug-of-war, and can also teach the dog that pulling gets them where they want to go faster.", bonus:"Consistency matters more than any single walk — even stopping every time the leash tightens adds up fast." } },
     { id:"nojump", label:"No jumping", icon:"🚷",
       whatToDo:"Give attention when all four paws are on the floor. Jumping should not be what earns attention.",
-      quiz:{ q:"What behavior should earn attention?", options:["Jumping","Barking","Four paws on the floor"], correct:2 } },
+      quiz:{ q:"What behavior should earn attention?", options:["Jumping","Barking","Four paws on the floor"], correct:2, explanation:"Giving attention while a dog is jumping, even to say \u201coff,\u201d often still functions as a reward from the dog's point of view.", bonus:"Asking for an alternative behavior, like a sit, at the door gives the dog something to do instead of jumping." } },
     { id:"settle", label:"Settle on a mat", icon:"🧘",
       whatToDo:"Teach your dog that settling is a behavior too. Reward calmness instead of constantly entertaining them.",
-      quiz:{ q:"What are you rewarding here?", options:["Movement","Excitement","Calm behavior"], correct:2 } },
+      quiz:{ q:"What are you rewarding here?", options:["Movement","Excitement","Calm behavior"], correct:2, explanation:"Rewarding a dog in the middle of getting excited or moving around reinforces that motion, not the calm behavior you're after.", bonus:"A \u201csettle\u201d cue on a specific mat can become a portable calm spot you can bring to new places." } },
     { id:"crate", label:"Crate / safe space", icon:"🏠",
       whatToDo:"Make the crate a safe place, not a punishment. Start with the door open and let your dog choose to enter.",
-      quiz:{ q:"What should the crate represent?", options:["Punishment","A safe, positive space","A place to leave the dog whenever you are busy"], correct:1 } },
+      quiz:{ q:"What should the crate represent?", options:["Punishment","A safe, positive space","A place to leave the dog whenever you are busy"], correct:1, explanation:"If the crate is only ever used to confine a dog when the owner is busy, it starts to feel more like punishment than safety.", bonus:"Feeding meals in the crate with the door open is a simple way to build a positive association early on." } },
     { id:"chew", label:"Redirect chewing", icon:"🦴",
       whatToDo:"Puppies explore with their mouths. Redirect unwanted chewing toward something they are allowed to chew.",
-      quiz:{ q:"Your puppy chews furniture. What is the better response?", options:["Punish the puppy","Redirect them to an appropriate chew","Ignore all chewing"], correct:1 } },
+      quiz:{ q:"Your puppy chews furniture. What is the better response?", options:["Punish the puppy","Redirect them to an appropriate chew","Ignore all chewing"], correct:1, explanation:"Punishing a puppy after the fact doesn't connect to the chewing itself — it just teaches the puppy that you're unpredictable.", bonus:"Rotating a few different chew toys keeps them interesting instead of becoming background objects the puppy ignores." } },
     { id:"potty", label:"Potty reward", icon:"🚽",
       whatToDo:"Reward immediately after your dog finishes in the right place. Timing helps them understand what earned the reward.",
-      quiz:{ q:"When should you reward?", options:["Before the dog finishes","Immediately after they finish","When you get back home"], correct:1 } },
+      quiz:{ q:"When should you reward?", options:["Before the dog finishes","Immediately after they finish","When you get back home"], correct:1, explanation:"Waiting until you're back inside disconnects the reward from the behavior — the dog needs to make the connection in the moment.", bonus:"A consistent bathroom spot and a calm verbal cue said every time can eventually turn going potty into something you can ask for." } },
     { id:"handling", label:"Handling paws & ears", icon:"🤲",
       whatToDo:"Practice gentle handling in short sessions. Touch paws, ears and other areas calmly, then reward your dog.",
-      quiz:{ q:"How should handling practice begin?", options:["With long sessions","With brief, calm interactions","By holding the dog still until they stop resisting"], correct:1 } },
+      quiz:{ q:"How should handling practice begin?", options:["With long sessions","With brief, calm interactions","By holding the dog still until they stop resisting"], correct:1, explanation:"Holding a dog still until it stops resisting can teach it that struggling is pointless rather than that handling is safe — it often increases stress.", bonus:"Regular short handling sessions make real vet visits and grooming appointments much less stressful later." } },
     { id:"waitdoor", label:"Wait at the door", icon:"🚪",
       whatToDo:"Practice waiting before going through doors. Start with only a few seconds and reward calm waiting.",
-      quiz:{ q:"What are you teaching?", options:["The dog to rush through the door","The dog to wait for your release cue","The dog to bark before going outside"], correct:1 } },
+      quiz:{ q:"What are you teaching?", options:["The dog to rush through the door","The dog to wait for your release cue","The dog to bark before going outside"], correct:1, explanation:"Letting the dog rush through the door reinforces the exact behavior — barreling out — that \u201cwait\u201d is meant to prevent.", bonus:"This same \u201cwait\u201d skill transfers directly to car doors and crate doors, anywhere a sudden dash could be dangerous." } },
     { id:"distraction", label:"Real-life distraction", icon:"🌍",
       whatToDo:"Real life is full of distractions. Your goal is not perfect obedience — it's helping your dog reconnect with you.",
-      quiz:{ q:"What matters most when a distraction appears?", options:["Your dog must never look at it","Your dog can disengage and reconnect with you","You should pull the leash immediately"], correct:1 } }
+      quiz:{ q:"What matters most when a distraction appears?", options:["Your dog must never look at it","Your dog can disengage and reconnect with you","You should pull the leash immediately"], correct:1, explanation:"Expecting a dog to never notice anything around it isn't realistic — the actual goal is a dog that can notice something and still choose you.", bonus:"This is often the last skill to fully click, because it depends on sit, stay, and come already being solid." } }
   ];
   function trainingSkillById(id){
     for (var i=0;i<TRAINING_SKILLS.length;i++) if (TRAINING_SKILLS[i].id===id) return TRAINING_SKILLS[i];
@@ -600,12 +600,24 @@
   // Same idea as the training quiz: a quick decision-based check, not a memory test,
   // pulled from the same feeding facts already shown on the card and in the tips above.
   var FEEDING_QUIZ = [
-    { q:"It's mealtime and your dog is circling the bowl excitedly. What's the best approach?", options:["Feed immediately, no matter what","Ask for a calm sit before placing the bowl down","Wait until the excitement disappears completely"], correct:1 },
-    { q:"Your dog left food in the bowl yesterday. What should you do today?", options:["Add extra food to make up for it","Feed the same measured portion and keep an eye on appetite","Switch to a different food right away"], correct:1 },
-    { q:"You want to give a treat between meals. What's the right approach?", options:["Treats don't count toward the daily total","Count it toward the day's total food","Always add a full extra meal"], correct:1 },
-    { q:"Your dog gulps food down in seconds. What helps?", options:["A slow-feeder bowl, or spreading food on a flat surface","Feeding even faster portions","Removing water access during meals"], correct:0 },
-    { q:"You're switching to a new food brand. What's the safest way?", options:["Switch all at once","Mix it in gradually over about a week","Only feed the new food once the old one runs out"], correct:1 },
-    { q:"When should fresh water be available?", options:["Only at mealtimes","At all times, not just during meals","Only after exercise"], correct:1 }
+    { q:"It's mealtime and your dog is circling the bowl excitedly. What's the best approach?", options:["Feed immediately, no matter what","Ask for a calm sit before placing the bowl down","Wait until the excitement disappears completely"], correct:1,
+      explanation:"Feeding into excitement — jumping, whining, circling — can reinforce that exact behavior at every mealtime, which adds up over weeks.",
+      bonus:"A calm sit before the bowl goes down is a two-second habit that pays off at every meal for the rest of the dog's life." },
+    { q:"Your dog left food in the bowl yesterday. What should you do today?", options:["Add extra food to make up for it","Feed the same measured portion and keep an eye on appetite","Switch to a different food right away"], correct:1,
+      explanation:"Automatically adding more food after a skipped meal can quietly increase the daily amount over time without anyone noticing.",
+      bonus:"A skipped meal once in a while is usually normal — it's a pattern over several days that's actually worth watching." },
+    { q:"You want to give a treat between meals. What's the right approach?", options:["Treats don't count toward the daily total","Count it toward the day's total food","Always add a full extra meal"], correct:1,
+      explanation:"Treats given on top of the daily food total are one of the most common, invisible ways dogs end up overweight.",
+      bonus:"A good rule of thumb: treats should make up no more than about 10% of a dog's daily calories." },
+    { q:"Your dog gulps food down in seconds. What helps?", options:["A slow-feeder bowl, or spreading food on a flat surface","Feeding even faster portions","Removing water access during meals"], correct:0,
+      explanation:"Feeding faster or removing water doesn't slow eating down — it usually makes gulping worse and increases the risk of discomfort.",
+      bonus:"A slow-feeder bowl or a muffin tin with food spread across the cups can turn a 30-second meal into several relaxed minutes." },
+    { q:"You're switching to a new food brand. What's the safest way?", options:["Switch all at once","Mix it in gradually over about a week","Only feed the new food once the old one runs out"], correct:1,
+      explanation:"Switching food all at once is one of the most common causes of an upset stomach in dogs with no other health issues.",
+      bonus:"A gradual week-long mix — a little more new food each day — gives the gut time to adjust." },
+    { q:"When should fresh water be available?", options:["Only at mealtimes","At all times, not just during meals","Only after exercise"], correct:1,
+      explanation:"Restricting water to mealtimes only can lead to a dog gulping large amounts at once, which isn't as healthy as steady access.",
+      bonus:"Dogs regulate their own water intake well when it's always available — the bowl just needs to be kept fresh and clean." }
   ];
   function pickFeedingQuestion(){
     return FEEDING_QUIZ[Math.floor(Math.random()*FEEDING_QUIZ.length)];
@@ -701,6 +713,8 @@
   var quizCtx = null; // {skillId, answer:idx|null}
   var difficultyCtx = null; // {skillId, correct}
   var feedQuizCtx = null; // {question, answer:idx|null}
+  var feedFeedbackCtx = null; // {question, correct}
+  var quizFeedbackCtx = null; // {skillId, correct}
   function mmss(ms){
     var s = Math.max(0, Math.round(ms/1000));
     return pad2(Math.floor(s/60)) + ":" + pad2(s%60);
@@ -1231,8 +1245,10 @@
     else if (view === "atWork") root.innerHTML = brandStrip() + renderAtWork();
     else if (view === "awayReport") root.innerHTML = brandStrip() + renderAwayReport(window.__lastReport);
     else if (view === "feedQuiz") root.innerHTML = brandStrip() + renderFeedQuiz();
+    else if (view === "feedFeedback") root.innerHTML = brandStrip() + renderFeedFeedback();
     else if (view === "trainPractice") root.innerHTML = brandStrip() + renderTrainPractice();
     else if (view === "trainQuiz") root.innerHTML = brandStrip() + renderTrainQuiz();
+    else if (view === "trainFeedback") root.innerHTML = brandStrip() + renderTrainFeedback();
     else if (view === "trainDifficulty") root.innerHTML = brandStrip() + renderTrainDifficulty();
     else if (view === "journal") root.innerHTML = brandStrip() + renderJournal();
     else if (view === "reality7") root.innerHTML = brandStrip() + renderReality7();
@@ -1888,7 +1904,22 @@
         optsHTML +
       '</div>' +
       '<div class="card" style="margin-top:14px;">' +
-        '<button class="btn btn-primary" id="feed-quiz-submit"'+(c.answer===null ? ' disabled' : '')+'>Feed '+esc(state.name)+'</button>' +
+        '<button class="btn btn-primary" id="feed-quiz-submit"'+(c.answer===null ? ' disabled' : '')+'>Submit answer</button>' +
+      '</div>';
+  }
+  function renderFeedFeedback(){
+    var c = feedFeedbackCtx;
+    var quiz = c.question;
+    return '' +
+      '<div class="card center">' +
+        '<div class="section-title">'+(c.correct ? "✓ Correct!" : "✗ Not quite")+'</div>' +
+        (c.correct
+          ? '<p class="muted" style="margin-top:8px;">💡 '+quiz.bonus+'</p>'
+          : '' +
+            '<p class="muted" style="margin-top:8px;">The better answer: <b>'+esc(quiz.options[quiz.correct])+'</b></p>' +
+            '<p class="muted" style="margin-top:8px;">'+quiz.explanation+'</p>'
+        ) +
+        '<button class="btn btn-primary" id="feed-feedback-continue" style="margin-top:16px;">Feed '+esc(state.name)+'</button>' +
       '</div>';
   }
   function renderTrainQuiz(){
@@ -1910,6 +1941,22 @@
       '</div>' +
       '<div class="card" style="margin-top:14px;">' +
         '<button class="btn btn-primary" id="quiz-submit"'+(c.answer===null ? ' disabled' : '')+'>Submit</button>' +
+      '</div>';
+  }
+  function renderTrainFeedback(){
+    var c = quizFeedbackCtx;
+    var skill = trainingSkillById(c.skillId);
+    var quiz = skill.quiz;
+    return '' +
+      '<div class="card center">' +
+        '<div class="section-title">'+(c.correct ? "✓ Correct!" : "✗ Not quite")+'</div>' +
+        (c.correct
+          ? '<p class="muted" style="margin-top:8px;">💡 '+quiz.bonus+'</p>'
+          : '' +
+            '<p class="muted" style="margin-top:8px;">The correct answer: <b>'+esc(quiz.options[quiz.correct])+'</b></p>' +
+            '<p class="muted" style="margin-top:8px;">'+quiz.explanation+'</p>'
+        ) +
+        '<button class="btn btn-primary" id="train-feedback-continue" style="margin-top:16px;">Continue</button>' +
       '</div>';
   }
   function renderTrainDifficulty(){
@@ -2406,6 +2453,11 @@
       if (feedQuizSubmitBtn) feedQuizSubmitBtn.addEventListener("click", onFeedQuizSubmit);
     }
 
+    if (view === "feedFeedback"){
+      var feedFeedbackBtn = document.getElementById("feed-feedback-continue");
+      if (feedFeedbackBtn) feedFeedbackBtn.addEventListener("click", onFeedFeedbackContinue);
+    }
+
     if (view === "trainQuiz"){
       root.querySelectorAll("[data-opt]").forEach(function(el){
         el.addEventListener("click", function(){
@@ -2415,6 +2467,11 @@
       });
       var quizSubmitBtn = document.getElementById("quiz-submit");
       if (quizSubmitBtn) quizSubmitBtn.addEventListener("click", onQuizSubmit);
+    }
+
+    if (view === "trainFeedback"){
+      var trainFeedbackBtn = document.getElementById("train-feedback-continue");
+      if (trainFeedbackBtn) trainFeedbackBtn.addEventListener("click", onTrainFeedbackContinue);
     }
 
     if (view === "trainDifficulty"){
@@ -2430,14 +2487,23 @@
     var c = feedQuizCtx;
     if (!c || c.answer === null) return;
     var correct = c.answer === c.question.correct;
+    feedFeedbackCtx = { question: c.question, correct: correct };
+    feedQuizCtx = null;
+    view = "feedFeedback";
+    render();
+  }
+
+  function onFeedFeedbackContinue(){
+    var c = feedFeedbackCtx;
+    if (!c){ view = "home"; render(); return; }
     state.hunger = 100; state.bond = clamp(state.bond+1);
     var isPuppy = stageOf(state.dogDays) === "puppy";
     if (isPuppy) state.bladder = clamp(state.bladder - 30);
     var mealName = mealNameForHour(new Date().getHours());
-    var checkmark = correct ? "✓ " : "";
-    log(checkmark + mealName + " completed — " + state.name + " ate well." + (correct ? "" : " (quiz missed — worth another look at the feeding tips)") + (isPuppy ? " Expect a bathroom trip within 20 minutes at this age." : ""));
+    var checkmark = c.correct ? "✓ " : "";
+    log(checkmark + mealName + " completed — " + state.name + " ate well." + (c.correct ? "" : " (quiz missed — worth another look at the feeding tips)") + (isPuppy ? " Expect a bathroom trip within 20 minutes at this age." : ""));
     bumpOwnerLoad(1);
-    feedQuizCtx = null;
+    feedFeedbackCtx = null;
     save();
     view = "home"; render();
   }
@@ -2447,8 +2513,17 @@
     if (!c || c.answer === null) return;
     var skill = trainingSkillById(c.skillId);
     var correct = c.answer === skill.quiz.correct;
-    difficultyCtx = { skillId: c.skillId, correct: correct };
+    quizFeedbackCtx = { skillId: c.skillId, correct: correct };
     quizCtx = null;
+    view = "trainFeedback";
+    render();
+  }
+
+  function onTrainFeedbackContinue(){
+    var c = quizFeedbackCtx;
+    if (!c){ view = "home"; render(); return; }
+    difficultyCtx = { skillId: c.skillId, correct: c.correct };
+    quizFeedbackCtx = null;
     view = "trainDifficulty";
     render();
   }
