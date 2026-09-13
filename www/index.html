@@ -858,6 +858,54 @@
     if (score >= 50) return "Potential challenges";
     return "Significant mismatch";
   }
+  // Turns the same raw signals behind compatibilityScore() into a nuanced verdict —
+  // "ready for X, not yet for Y" — instead of one pass/fail label, per the product
+  // audit's Day-30 report feedback.
+  function adopterProfileSignals(){
+    var breed = byId(state.breedId);
+    return {
+      breed: breed,
+      highEnergyBreed: breed.energy >= 7,
+      struggledWithLoad: state.ownerLoad >= 55 || state.accidentsCount >= 4,
+      puppyStruggle: state.accidentsCount >= 3 || state.houseTraining < 50,
+      scheduleStrained: (state.totalHoursAway/30) > Math.max(state.typicalHoursAway||4, breed.tolerance) + 1
+    };
+  }
+  function adopterProfileHeadline(){
+    var s = adopterProfileSignals();
+    var energyOK = !(s.highEnergyBreed && s.struggledWithLoad);
+    var stageOK = !s.puppyStruggle;
+    var headline;
+    if (energyOK && stageOK) {
+      headline = "You're ready for a dog like " + esc(s.breed.name) + " — the energy level and the daily demands both landed within what you handled well this month.";
+    } else if (energyOK && !stageOK) {
+      headline = "You handled " + esc(s.breed.name) + "'s energy level fine, but the puppy phase itself — house-training, accidents — was the harder part. You look more ready for an adult, already house-trained dog than for a puppy right now.";
+    } else if (!energyOK && stageOK) {
+      headline = "The training side went fine, but " + esc(s.breed.name) + "'s energy level stretched you thin. A calmer, lower-energy breed would likely suit you better than another dog this driven.";
+    } else {
+      headline = "This month surfaced real strain on two fronts — " + esc(s.breed.name) + "'s energy level and the demands of the puppy phase. A calmer, already house-trained adult dog would remove a lot of that load.";
+    }
+    if (s.scheduleStrained) {
+      headline += " On top of that, your schedule leaves a dog alone longer than this breed's comfort window — worth solving before adopting, regardless of breed.";
+    }
+    return headline;
+  }
+  function adopterProfileLines(){
+    var s = adopterProfileSignals();
+    var breed = s.breed;
+    var lines = [];
+    if (s.highEnergyBreed && s.struggledWithLoad) lines.push("A high-energy dog like " + esc(breed.name) + " kept you stretched thin — a lower-energy breed would ease that without needing you to change your routine.");
+    else if (s.highEnergyBreed) lines.push("You kept up with " + esc(breed.name) + "'s high energy level without it overwhelming you.");
+    else if (s.struggledWithLoad) lines.push("Even " + esc(breed.name) + "'s calmer energy level stretched your routine thin this month.");
+    else lines.push(esc(breed.name) + "'s energy level suited your routine well.");
+
+    if (s.puppyStruggle) lines.push("House-training and accidents were a real recurring cost — an already house-trained adult dog would remove a big chunk of that, if a puppy isn't essential to you.");
+    else lines.push("House-training wasn't a major sticking point this month.");
+
+    if (s.scheduleStrained) lines.push("This dog was regularly alone longer than " + esc(breed.name) + "'s comfort window (~" + breed.tolerance + "h) — a schedule conflict that time alone won't fix.");
+    else lines.push("Your actual schedule stayed within a comfortable range for this breed's tolerance for time alone.");
+    return lines;
+  }
   // A behavioral read of the bond built up over the trial, for the 30-day report —
   // no "Bond: 83%", just what that number would actually look like day to day.
   function relationshipNarrative(){
@@ -2246,6 +2294,11 @@
         '<h2 style="margin-top:4px;">'+label+'</h2>' +
         '<p class="muted" style="margin-top:6px;">Here\'s what you should think about before adopting.</p>' +
         '<ul class="challenge-list">'+challengeItems+'</ul>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Your adopter profile</div>' +
+        '<p style="margin-top:6px; font-weight:600; line-height:1.4;">'+adopterProfileHeadline()+'</p>' +
+        '<ul class="challenge-list" style="margin-top:10px;">'+adopterProfileLines().map(function(l){ return '<li>'+l+'</li>'; }).join("")+'</ul>' +
       '</div>' +
       '<div class="card">' +
         '<div class="section-title">If '+esc(state.name)+' were real tomorrow, would you still adopt?</div>' +
