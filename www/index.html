@@ -1709,9 +1709,18 @@
     }
     return '<div class="gif-slot">'+skill.icon+'</div>';
   }
+  // A dog that's uncomfortable or keyed up doesn't actually learn — training is gated on
+  // the same "green" bar used on the Health tab, not just a cooldown timer.
+  var TRAIN_READY_THRESHOLD = 30;
+  function trainingBlockReason(){
+    if (state.bladder < TRAIN_READY_THRESHOLD) return "needs a bathroom break first";
+    if (state.energy < TRAIN_READY_THRESHOLD) return "is too keyed up to focus right now";
+    return null;
+  }
   function renderTabTraining(){
     var cooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
     var trainNote = cooldownLeft > 0 ? '<div class="muted mono" style="margin-top:12px; font-size:12px;">Next session available in '+fmtClock(cooldownLeft)+'</div>' : "";
+    var blockReason = trainingBlockReason();
 
     var stage = stageOf(state.dogDays);
     var breed = byId(state.breedId);
@@ -1725,8 +1734,15 @@
       var s = trainingSkillById(id);
       return '<div class="cmd-row"><div class="cmd-name">'+s.icon+' '+s.label+'</div>' +
         '<div class="cmd-bar"><div class="cmd-fill" style="width:'+state.training[id]+'%"></div></div>' +
-        '<button class="btn btn-ghost cmd-btn" data-train="'+id+'" style="border:1px solid var(--line)">Train</button></div>';
+        (blockReason ? '' : '<button class="btn btn-ghost cmd-btn" data-train="'+id+'" style="border:1px solid var(--line)">Train</button>') +
+        '</div>';
     }).join("");
+
+    var startArea = blockReason ?
+      '<p class="muted" style="margin-top:12px; font-size:13px;">🚫 '+esc(state.name)+' '+blockReason+' — training won\'t stick until that\'s handled.</p>' +
+      '<button class="btn btn-primary" id="train-blocked-gohome" style="margin-top:10px;">Take care of it first</button>' :
+      '<button class="btn btn-primary" data-train="'+skillId+'" style="margin-top:12px;">Start session</button>' +
+      trainNote;
 
     return '' +
       '<div class="card">' +
@@ -1737,8 +1753,7 @@
         (BREED_TRAINING_NOTE[breed.id] ? '<p class="muted" style="margin-top:8px; font-size:13px;">🐾 '+BREED_TRAINING_NOTE[breed.id]+'</p>' : "") +
         (AGE_TRAINING_NOTE[stage] ? '<p class="muted" style="margin-top:6px; font-size:13px;">'+AGE_TRAINING_NOTE[stage]+'</p>' : "") +
         '<div class="cmd-bar" style="margin-top:14px;"><div class="cmd-fill" style="width:'+state.training[skillId]+'%"></div></div>' +
-        '<button class="btn btn-primary" data-train="'+skillId+'" style="margin-top:12px;">Start session</button>' +
-        trainNote +
+        startArea +
       '</div>' +
       (otherRows ? '<div class="card"><div class="section-title">Other skills so far</div>' + otherRows + '</div>' : '');
   }
@@ -2522,6 +2537,7 @@
         el.addEventListener("click", function(){
           var cooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
           if (cooldownLeft > 0) return;
+          if (trainingBlockReason()) return;
           var skillId = el.getAttribute("data-train");
           var stage = stageOf(state.dogDays);
           practiceCtx = {
@@ -2531,6 +2547,10 @@
           };
           view = "trainPractice"; render();
         });
+      });
+      var trainBlockedBtn = document.getElementById("train-blocked-gohome");
+      if (trainBlockedBtn) trainBlockedBtn.addEventListener("click", function(){
+        activeTab = "today"; render();
       });
       var notifToggle = document.getElementById("notif-toggle");
       if (notifToggle) notifToggle.addEventListener("change", function(){
