@@ -1100,7 +1100,7 @@
 
   function checkNotify(){
     if (!state || !state.settings.notifications || !("Notification" in window) || Notification.permission !== "granted") return;
-    var checks = [["hunger","is hungry"],["bladder","needs a walk, badly"],["energy","has too much pent-up energy"]];
+    var checks = [["hunger","is pacing by the food bowl, waiting"],["bladder","is circling by the door and whining"],["energy","is bouncing off the walls with pent-up energy"]];
     checks.forEach(function(pair){
       var key = pair[0];
       if (state[key] < 20 && Date.now() - (state.lastNotified[key]||0) > 2*HOUR){
@@ -1462,6 +1462,9 @@
       '</div>';
   }
 
+  function isLateNightHour(h){
+    return h >= 22 || h < 6;
+  }
   function renderTabToday(){
     var stage = stageOf(state.dogDays);
     var next = computeNextAction();
@@ -1470,7 +1473,20 @@
       return '<div class="j-entry"><div class="j-time">'+timeAgo(j.ts)+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
     }).join("");
 
-    var nowCard = next.actionId === "feed" ? renderFeedCard() : '' +
+    var now = new Date();
+    var showLateBathroomChoice = next.actionId === "walk" && next.label === "Bathroom break" &&
+      next.etaText === "Due now" && isLateNightHour(now.getHours());
+
+    var nowCard = next.actionId === "feed" ? renderFeedCard() :
+      showLateBathroomChoice ? '' +
+        '<div class="card">' +
+          '<div class="section-title">Now · '+pad2(now.getHours())+':'+pad2(now.getMinutes())+'</div>' +
+          '<div class="next-label" style="font-size:19px;">'+esc(state.name)+' needs to go out — it\'s the middle of the night.</div>' +
+          '<p class="muted" style="margin-top:8px; font-size:13px;">Take them out now, or risk an accident by morning.</p>' +
+          '<button class="btn btn-primary" id="microchoice-go" style="margin-top:14px;">Go out (15 min)</button>' +
+          '<button class="btn btn-ghost" id="microchoice-ignore" style="margin-top:8px; border:1px solid var(--line); width:100%;">Ignore for now</button>' +
+        '</div>' :
+      '' +
       '<div class="card">' +
         '<div class="section-title">Now</div>' +
         '<div class="next-label">'+esc(next.label)+'</div>' +
@@ -2444,6 +2460,10 @@
           view = "safeActivities"; render();
         }
       });
+      var mcGoBtn = document.getElementById("microchoice-go");
+      if (mcGoBtn) mcGoBtn.addEventListener("click", onLateBathroomGoOut);
+      var mcIgnoreBtn = document.getElementById("microchoice-ignore");
+      if (mcIgnoreBtn) mcIgnoreBtn.addEventListener("click", onLateBathroomIgnore);
       var feedBtn = document.getElementById("feed-btn");
       if (feedBtn) feedBtn.addEventListener("click", function(){
         feedQuizCtx = { question: pickFeedingQuestion(), answer: null };
@@ -2848,6 +2868,28 @@
     bumpOwnerLoad(3);
     log(note);
     save();
+  }
+  function onLateBathroomGoOut(){
+    applyWalkOutcome(0.4, "Took " + state.name + " out in the middle of the night — a quick bathroom trip, at the cost of your own sleep.");
+    bumpOwnerLoad(3);
+    save();
+    view = "home"; render();
+  }
+  function onLateBathroomIgnore(){
+    var stage = stageOf(state.dogDays);
+    var accidentHappens = Math.random() < 0.8;
+    if (accidentHappens){
+      state.houseTraining = clamp(state.houseTraining - 3);
+      state.bond = clamp(state.bond - 2);
+      state.accidentsCount = (state.accidentsCount||0) + 1;
+      bumpOwnerLoad(6);
+      log(state.name + " had an accident overnight — ignoring a bathroom trip that late usually catches up by morning. " + accidentGuidance(stage));
+    } else {
+      state.bladder = clamp(state.bladder - 10);
+      log("You let it ride past bedtime — " + state.name + " held it through the night this time, but it was close.");
+    }
+    save();
+    view = "home"; render();
   }
   function doManualWalk(){
     applyWalkOutcome(1, "Walked " + state.name + ".");
