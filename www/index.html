@@ -597,6 +597,19 @@
     var pool = FEEDING_DAILY_TIPS.concat([FEEDING_TIP[breed.id] || ""]).filter(Boolean);
     return pool[Math.max(0, day) % pool.length];
   }
+  // Same idea as the training quiz: a quick decision-based check, not a memory test,
+  // pulled from the same feeding facts already shown on the card and in the tips above.
+  var FEEDING_QUIZ = [
+    { q:"It's mealtime and your dog is circling the bowl excitedly. What's the best approach?", options:["Feed immediately, no matter what","Ask for a calm sit before placing the bowl down","Wait until the excitement disappears completely"], correct:1 },
+    { q:"Your dog left food in the bowl yesterday. What should you do today?", options:["Add extra food to make up for it","Feed the same measured portion and keep an eye on appetite","Switch to a different food right away"], correct:1 },
+    { q:"You want to give a treat between meals. What's the right approach?", options:["Treats don't count toward the daily total","Count it toward the day's total food","Always add a full extra meal"], correct:1 },
+    { q:"Your dog gulps food down in seconds. What helps?", options:["A slow-feeder bowl, or spreading food on a flat surface","Feeding even faster portions","Removing water access during meals"], correct:0 },
+    { q:"You're switching to a new food brand. What's the safest way?", options:["Switch all at once","Mix it in gradually over about a week","Only feed the new food once the old one runs out"], correct:1 },
+    { q:"When should fresh water be available?", options:["Only at mealtimes","At all times, not just during meals","Only after exercise"], correct:1 }
+  ];
+  function pickFeedingQuestion(){
+    return FEEDING_QUIZ[Math.floor(Math.random()*FEEDING_QUIZ.length)];
+  }
   var POTTY_TIPS = [
     "Take your puppy to the same spot every time — a consistent location speeds up the association.",
     "Reward within a few seconds of your puppy finishing, not after you're already back inside.",
@@ -687,6 +700,7 @@
   var practiceCtx = null; // {skillId, totalMs, startedAt}
   var quizCtx = null; // {skillId, answer:idx|null}
   var difficultyCtx = null; // {skillId, correct}
+  var feedQuizCtx = null; // {question, answer:idx|null}
   function mmss(ms){
     var s = Math.max(0, Math.round(ms/1000));
     return pad2(Math.floor(s/60)) + ":" + pad2(s%60);
@@ -1216,6 +1230,7 @@
     else if (view === "leaveSetup") root.innerHTML = brandStrip() + renderLeaveSetup();
     else if (view === "atWork") root.innerHTML = brandStrip() + renderAtWork();
     else if (view === "awayReport") root.innerHTML = brandStrip() + renderAwayReport(window.__lastReport);
+    else if (view === "feedQuiz") root.innerHTML = brandStrip() + renderFeedQuiz();
     else if (view === "trainPractice") root.innerHTML = brandStrip() + renderTrainPractice();
     else if (view === "trainQuiz") root.innerHTML = brandStrip() + renderTrainQuiz();
     else if (view === "trainDifficulty") root.innerHTML = brandStrip() + renderTrainDifficulty();
@@ -1856,6 +1871,26 @@
         '<div class="big-num mono" id="practice-countdown" style="margin-top:10px;">'+mmss(remaining)+'</div>' +
       '</div>';
   }
+  function renderFeedQuiz(){
+    var c = feedQuizCtx;
+    var item = c.question;
+    var optsHTML = item.options.map(function(opt, oi){
+      var selected = c.answer === oi;
+      return '<button class="btn btn-ghost" data-feedopt="'+oi+'" style="'+quizOptionStyle(selected)+'">'+esc(opt)+'</button>';
+    }).join("");
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">Quick check — Feeding</div>' +
+        '<p class="muted">One question on real feeding practice, before '+esc(state.name)+' eats.</p>' +
+      '</div>' +
+      '<div class="card" style="margin-top:14px;">' +
+        '<p style="font-weight:600;">'+esc(item.q)+'</p>' +
+        optsHTML +
+      '</div>' +
+      '<div class="card" style="margin-top:14px;">' +
+        '<button class="btn btn-primary" id="feed-quiz-submit"'+(c.answer===null ? ' disabled' : '')+'>Feed '+esc(state.name)+'</button>' +
+      '</div>';
+  }
   function renderTrainQuiz(){
     var c = quizCtx;
     var skill = trainingSkillById(c.skillId);
@@ -2133,13 +2168,8 @@
       });
       var feedBtn = document.getElementById("feed-btn");
       if (feedBtn) feedBtn.addEventListener("click", function(){
-        state.hunger = 100; state.bond = clamp(state.bond+1);
-        var isPuppy = stageOf(state.dogDays) === "puppy";
-        if (isPuppy) state.bladder = clamp(state.bladder - 30);
-        var mealName = mealNameForHour(new Date().getHours());
-        log("✓ " + mealName + " completed — " + state.name + " ate well." + (isPuppy ? " Expect a bathroom trip within 20 minutes at this age." : ""));
-        bumpOwnerLoad(1);
-        save(); render();
+        feedQuizCtx = { question: pickFeedingQuestion(), answer: null };
+        view = "feedQuiz"; render();
       });
       var walkBtn = document.getElementById("walk-btn");
       if (walkBtn) walkBtn.addEventListener("click", function(){
@@ -2365,6 +2395,17 @@
       });
     }
 
+    if (view === "feedQuiz"){
+      root.querySelectorAll("[data-feedopt]").forEach(function(el){
+        el.addEventListener("click", function(){
+          feedQuizCtx.answer = parseInt(el.getAttribute("data-feedopt"), 10);
+          render();
+        });
+      });
+      var feedQuizSubmitBtn = document.getElementById("feed-quiz-submit");
+      if (feedQuizSubmitBtn) feedQuizSubmitBtn.addEventListener("click", onFeedQuizSubmit);
+    }
+
     if (view === "trainQuiz"){
       root.querySelectorAll("[data-opt]").forEach(function(el){
         el.addEventListener("click", function(){
@@ -2383,6 +2424,22 @@
         });
       });
     }
+  }
+
+  function onFeedQuizSubmit(){
+    var c = feedQuizCtx;
+    if (!c || c.answer === null) return;
+    var correct = c.answer === c.question.correct;
+    state.hunger = 100; state.bond = clamp(state.bond+1);
+    var isPuppy = stageOf(state.dogDays) === "puppy";
+    if (isPuppy) state.bladder = clamp(state.bladder - 30);
+    var mealName = mealNameForHour(new Date().getHours());
+    var checkmark = correct ? "✓ " : "";
+    log(checkmark + mealName + " completed — " + state.name + " ate well." + (correct ? "" : " (quiz missed — worth another look at the feeding tips)") + (isPuppy ? " Expect a bathroom trip within 20 minutes at this age." : ""));
+    bumpOwnerLoad(1);
+    feedQuizCtx = null;
+    save();
+    view = "home"; render();
   }
 
   function onQuizSubmit(){
