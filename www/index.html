@@ -169,6 +169,13 @@
   .gif-slot{display:flex; align-items:center; justify-content:center; height:140px; border-radius:16px; background:var(--card-2); font-size:56px;}
   video.gif-slot{height:180px; width:100%; object-fit:cover; background:var(--card-2);}
 
+  /* ---- step-by-step breakdown shown above the practice video ---- */
+  .step-row{display:flex; gap:10px; padding:10px 0; border-bottom:1px solid var(--line); text-align:left;}
+  .step-row:last-child{border-bottom:none;}
+  .step-num{flex:none; width:22px; height:22px; border-radius:999px; background:var(--accent-soft); color:var(--accent); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;}
+  .step-text{font-size:14px; font-weight:600; line-height:1.35;}
+  .step-info{font-size:12.5px; color:var(--ink-soft); margin-top:3px; line-height:1.35;}
+
   /* ---- training ---- */
   .cmd-row{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px solid var(--line);}
   .cmd-row:last-child{border-bottom:none;}
@@ -285,48 +292,63 @@
   var TRAINING_SKILLS = [
     { id:"sit", label:"Sit", icon:"🐕", media:"media/training/sit.mp4",
       whatToDo:"Hold a small treat above your dog's nose and slowly move it back. As their bottom touches the floor, reward immediately.",
+      steps:[{text:"Hold a small treat right above your dog's nose.", info:"Keep it close enough to smell, but don't let them grab it."}, {text:"Slowly move the treat back and slightly up, over their head.", info:"Following the treat naturally tips their head back and lowers their hips into a sit."}, {text:"The instant their bottom touches the floor, reward and praise.", info:"Rewarding even a second late teaches the wrong moment — timing matters more than duration."}],
       quiz:{ q:"Your dog sits. When should you reward?", options:["Before they sit","Immediately after they sit","A few seconds later"], correct:1, explanation:"Rewarding early (before or during the sit) reinforces the movement, not the finished position — timing is what teaches the behavior.", bonus:"A reliable sit is the foundation most other cues build on, including stay and wait at the door." } },
     { id:"down", label:"Down", icon:"⬇️", media:"media/training/down.mp4",
       whatToDo:"Guide the treat from your dog's nose down to the floor and slowly forward. Reward when their body reaches the ground.",
+      steps:[{text:"Start with your dog sitting, treat at nose level.", info:"Down is easier to teach from a sit than from standing."}, {text:"Lower the treat straight down to the floor, then slightly forward.", info:"Moving it forward encourages them to stretch into the down instead of just dropping their head."}, {text:"Reward the moment their chest and elbows touch the ground.", info:"If they pop back up to follow the treat, you moved it too fast — slow down next rep."}],
       quiz:{ q:"What should you do when your dog lies down?", options:["Keep moving the treat","Reward immediately","Wait until they stand up again"], correct:1, explanation:"Moving the treat before the dog's body is fully down often gets the dog to stand back up to follow it — wait for full contact with the floor.", bonus:"Down is also a calming position — many dogs settle faster from a down than from a sit." } },
     { id:"release", label:"Release / OK", icon:"🆗", media:"media/training/release.mp4",
       whatToDo:"Your dog also needs to know when a command is finished. Use the same release word every time.",
+      steps:[{text:"Ask for a sit or stay first, and let your dog hold it briefly.", info:"The release only means something if there's a position to release from."}, {text:"Pick one release word, like “Okay” or “Free,” and use it every single time.", info:"Mixing words makes the boundary blurry for the dog."}, {text:"Say the word, then encourage movement with your body or a step back.", info:"Pairing the word with movement the first few times helps the dog connect the two faster."}],
       quiz:{ q:"Why use a release cue?", options:["To make the dog move faster","To clearly tell the dog when the exercise is finished","To punish the dog for moving"], correct:1, explanation:"Without a clear release cue, a dog has no way to know when an exercise is actually over, which can make \u201cstay\u201d feel inconsistent.", bonus:"Using the same release word every time, not mixed with other phrases, makes the boundary much clearer to the dog." } },
     { id:"come", label:"Come", icon:"📣", media:"media/training/come.mp4",
       whatToDo:"Make coming back to you rewarding. Call once, encourage your dog toward you, and reward when they arrive.",
+      steps:[{text:"Start a few steps away in a low-distraction space.", info:"Set your dog up to succeed early — don't test recall from across the yard yet."}, {text:"Call your dog's name once in a happy, upbeat tone, then crouch or open your arms.", info:"Repeating the cue over and over teaches dogs to ignore the first few calls."}, {text:"Reward generously the moment they reach you.", info:"Recall is one of the few cues worth over-rewarding, even months into training."}],
       quiz:{ q:"Your dog comes back to you. What should you do?", options:["Scold them for being slow","Reward them for coming back","Immediately call them again"], correct:1, explanation:"Scolding a dog for coming back, even slowly, teaches them that coming to you can be risky, which weakens recall over time.", bonus:"Recall is one of the few commands worth rewarding heavily every single time, even after months of training." } },
     { id:"stay", label:"Stay", icon:"✋", media:"media/training/stay.mp4",
       whatToDo:"Start with only a few seconds. Reward your dog for staying still before gradually increasing the distance and time.",
+      steps:[{text:"Ask for a sit, then hold a flat palm toward your dog.", info:"The hand signal becomes a clear, silent cue on its own over time."}, {text:"Take one small step back, keeping eye contact.", info:"One variable at a time — don't add distance and time together yet."}, {text:"Step back to your dog and reward while they're still in position.", info:"Rewarding after they break the stay accidentally reinforces breaking it."}],
       quiz:{ q:"What should you increase first?", options:["Everything at once","One difficulty at a time","The distance as much as possible"], correct:1, explanation:"Increasing duration and distance at the same time makes it much harder for the dog to succeed — split it into one variable at a time.", bonus:"Distance is usually harder for dogs to hold than time — many trainers build duration first, then add distance." } },
     { id:"leaveit", label:"Leave it", icon:"🚫", media:"media/training/leaveit.mp4",
       whatToDo:"Let your dog discover that ignoring something can earn a better reward. Do not force their mouth away from the object.",
+      steps:[{text:"Show a closed fist with a treat inside.", info:"Keeping it closed removes the option to succeed by grabbing."}, {text:"Let your dog sniff, lick, or paw at your fist without reacting.", info:"Staying still and quiet here is key — don't repeat “leave it” over and over."}, {text:"The moment they turn away or back off, mark it and reward with a different treat.", info:"Rewarding from your other hand teaches leaving something for something better."}],
       quiz:{ q:"When should you reward “leave it”?", options:["When the dog grabs the object","When the dog disengages from it","Before the dog notices it"], correct:1, explanation:"Rewarding the moment a dog reaches for or grabs the item teaches the opposite of what you want — the reward has to follow disengagement.", bonus:"\u201cLeave it\u201d also works well for management outside the house — dropped food, trash, or something unsafe on a walk." } },
     { id:"leash", label:"Loose-leash walking", icon:"🦮", media:"media/training/leash.mp4",
       whatToDo:"A loose leash is the goal. When your dog pulls, stop moving. Resume when the leash becomes loose again.",
+      steps:[{text:"Start walking with a relaxed, slack leash.", info:"Notice the exact moment the leash goes tight — that's your cue to react."}, {text:"The instant the leash tightens, stop walking completely.", info:"Your feet becoming immovable is a much clearer signal than pulling back."}, {text:"Wait for slack to return, then resume walking calmly.", info:"This can be slow at first, but most dogs adjust within days."}],
       quiz:{ q:"Your dog starts pulling. What should you do?", options:["Pull harder","Stop and wait for the leash to loosen","Keep walking faster"], correct:1, explanation:"Pulling harder or speeding up can turn into a tug-of-war, and can also teach the dog that pulling gets them where they want to go faster.", bonus:"Consistency matters more than any single walk — even stopping every time the leash tightens adds up fast." } },
     { id:"nojump", label:"No jumping", icon:"🚷", media:"media/training/nojump.mp4",
       whatToDo:"Give attention when all four paws are on the floor. Jumping should not be what earns attention.",
+      steps:[{text:"Have someone approach or come home as normal.", info:"Practicing during a real greeting is more effective than a staged one."}, {text:"The moment your dog jumps, turn away and withhold attention.", info:"No pushing, no “no” — any reaction at all can still feel like a reward to an excited dog."}, {text:"Once all four paws are on the floor, crouch down and reward the calm greeting.", info:"Rewarding the instant they settle teaches that four paws down pays off."}],
       quiz:{ q:"What behavior should earn attention?", options:["Jumping","Barking","Four paws on the floor"], correct:2, explanation:"Giving attention while a dog is jumping, even to say \u201coff,\u201d often still functions as a reward from the dog's point of view.", bonus:"Asking for an alternative behavior, like a sit, at the door gives the dog something to do instead of jumping." } },
     { id:"settle", label:"Settle on a mat", icon:"🧘", media:"media/training/settle.mp4",
       whatToDo:"Teach your dog that settling is a behavior too. Reward calmness instead of constantly entertaining them.",
+      steps:[{text:"Place a mat or bed nearby and guide your dog onto it.", info:"Choose a mat you can bring to other rooms later — it becomes portable."}, {text:"Let them lie down fully and relax.", info:"Resist the urge to keep talking or petting — the goal is calm, not more excitement."}, {text:"Reward with a calm voice or a treat placed gently, not tossed.", info:"A tossed treat can spark them back up right as they're settling."}],
       quiz:{ q:"What are you rewarding here?", options:["Movement","Excitement","Calm behavior"], correct:2, explanation:"Rewarding a dog in the middle of getting excited or moving around reinforces that motion, not the calm behavior you're after.", bonus:"A \u201csettle\u201d cue on a specific mat can become a portable calm spot you can bring to new places." } },
     { id:"crate", label:"Crate / safe space", icon:"🏠",
       whatToDo:"Make the crate a safe place, not a punishment. Start with the door open and let your dog choose to enter.",
+      steps:[{text:"Leave the crate door open and drop a treat just inside.", info:"No pressure, no pushing — let curiosity do the work."}, {text:"Let your dog walk in and out freely at their own pace.", info:"Forcing entry even once can undo days of positive association."}, {text:"Once they're comfortable going in, feed a meal inside with the door still open.", info:"Only close the door once the crate is already a place they choose to go."}],
       quiz:{ q:"What should the crate represent?", options:["Punishment","A safe, positive space","A place to leave the dog whenever you are busy"], correct:1, explanation:"If the crate is only ever used to confine a dog when the owner is busy, it starts to feel more like punishment than safety.", bonus:"Feeding meals in the crate with the door open is a simple way to build a positive association early on." } },
     { id:"chew", label:"Redirect chewing", icon:"🦴",
       whatToDo:"Puppies explore with their mouths. Redirect unwanted chewing toward something they are allowed to chew.",
+      steps:[{text:"Notice your puppy chewing something off-limits.", info:"Puppies chew to explore and relieve teething discomfort — it's not defiance."}, {text:"Calmly remove or block access to the item, no scolding.", info:"A startled or harsh reaction can make a puppy chew in secret instead of stopping."}, {text:"Offer an appropriate chew toy right away and praise them for using it.", info:"Rotating a few toys keeps them interesting instead of ignored."}],
       quiz:{ q:"Your puppy chews furniture. What is the better response?", options:["Punish the puppy","Redirect them to an appropriate chew","Ignore all chewing"], correct:1, explanation:"Punishing a puppy after the fact doesn't connect to the chewing itself — it just teaches the puppy that you're unpredictable.", bonus:"Rotating a few different chew toys keeps them interesting instead of becoming background objects the puppy ignores." } },
     { id:"potty", label:"Potty reward", icon:"🚽",
       whatToDo:"Reward immediately after your dog finishes in the right place. Timing helps them understand what earned the reward.",
+      steps:[{text:"Take your dog to the same designated spot each time.", info:"A consistent spot builds a stronger scent association faster."}, {text:"Stay quiet and let them finish completely.", info:"Talking or moving mid-business can interrupt and delay them."}, {text:"Reward with a treat and praise within seconds of finishing.", info:"Waiting until you're back inside is too late for the dog to connect the two."}],
       quiz:{ q:"When should you reward?", options:["Before the dog finishes","Immediately after they finish","When you get back home"], correct:1, explanation:"Waiting until you're back inside disconnects the reward from the behavior — the dog needs to make the connection in the moment.", bonus:"A consistent bathroom spot and a calm verbal cue said every time can eventually turn going potty into something you can ask for." } },
     { id:"handling", label:"Handling paws & ears", icon:"🤲",
       whatToDo:"Practice gentle handling in short sessions. Touch paws, ears and other areas calmly, then reward your dog.",
+      steps:[{text:"Sit calmly with your dog and gently touch one paw.", info:"Keep the very first sessions under 10-15 seconds."}, {text:"Release and reward immediately, even if they only tolerated it briefly.", info:"You're rewarding calm tolerance, not a perfect hold."}, {text:"Repeat with ears, then gradually build up duration over several days.", info:"Rushing this step is the most common reason dogs struggle at the vet or groomer later."}],
       quiz:{ q:"How should handling practice begin?", options:["With long sessions","With brief, calm interactions","By holding the dog still until they stop resisting"], correct:1, explanation:"Holding a dog still until it stops resisting can teach it that struggling is pointless rather than that handling is safe — it often increases stress.", bonus:"Regular short handling sessions make real vet visits and grooming appointments much less stressful later." } },
     { id:"waitdoor", label:"Wait at the door", icon:"🚪",
       whatToDo:"Practice waiting before going through doors. Start with only a few seconds and reward calm waiting.",
+      steps:[{text:"Ask your dog to sit facing the door.", info:"Doors are naturally exciting, so start with a well-known cue like sit."}, {text:"Open the door slightly and pause.", info:"If they move, calmly close it and reset — no scolding needed."}, {text:"Once they hold still, give a clear release cue and let them go through.", info:"This same pattern works for car doors and crate doors too."}],
       quiz:{ q:"What are you teaching?", options:["The dog to rush through the door","The dog to wait for your release cue","The dog to bark before going outside"], correct:1, explanation:"Letting the dog rush through the door reinforces the exact behavior — barreling out — that \u201cwait\u201d is meant to prevent.", bonus:"This same \u201cwait\u201d skill transfers directly to car doors and crate doors, anywhere a sudden dash could be dangerous." } },
     { id:"distraction", label:"Real-life distraction", icon:"🌍",
       whatToDo:"Real life is full of distractions. Your goal is not perfect obedience — it's helping your dog reconnect with you.",
+      steps:[{text:"Walk your dog somewhere with mild, real distractions — another person or dog at a distance.", info:"Don't jump straight to the busiest environment you can find."}, {text:"When they notice the distraction, wait to see if they check back in with you.", info:"A quick glance back is worth rewarding, even if it takes a few seconds."}, {text:"If they reconnect with you, reward and continue the walk calmly.", info:"The goal isn't to prevent noticing distractions — it's a dog that can notice and still choose you."}],
       quiz:{ q:"What matters most when a distraction appears?", options:["Your dog must never look at it","Your dog can disengage and reconnect with you","You should pull the leash immediately"], correct:1, explanation:"Expecting a dog to never notice anything around it isn't realistic — the actual goal is a dog that can notice something and still choose you.", bonus:"This is often the last skill to fully click, because it depends on sit, stay, and come already being solid." } }
   ];
   function trainingSkillById(id){
@@ -1877,11 +1899,26 @@
       ? 'width:100%; text-align:left; border:1.5px solid var(--accent); background:var(--accent-soft); color:var(--accent); margin-top:8px;'
       : 'width:100%; text-align:left; border:1px solid var(--line); margin-top:8px;';
   }
+  function trainingStepsHTML(skill){
+    if (!skill.steps || !skill.steps.length) return "";
+    var rows = skill.steps.map(function(s, i){
+      return '<div class="step-row">' +
+        '<div class="step-num">'+(i+1)+'</div>' +
+        '<div><div class="step-text">'+esc(s.text)+'</div>' +
+        '<div class="step-info">'+esc(s.info)+'</div></div>' +
+      '</div>';
+    }).join("");
+    return '<div class="card" style="margin-bottom:14px;">' +
+      '<div class="section-title">Steps — '+esc(skill.label)+'</div>' +
+      rows +
+    '</div>';
+  }
   function renderTrainPractice(){
     var c = practiceCtx;
     var skill = trainingSkillById(c.skillId);
     var remaining = Math.max(0, c.totalMs - (Date.now() - c.startedAt));
     return '' +
+      trainingStepsHTML(skill) +
       '<div class="card center">' +
         '<div class="section-title">Practice — '+esc(skill.label)+'</div>' +
         trainingMediaHTML(skill) +
