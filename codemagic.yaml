@@ -44,6 +44,13 @@ workflows:
   android-workflow:
     name: DogTrial Android
     max_build_duration: 60
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+          source: true
     environment:
       android_signing:
         - dogtrial_keystore
