@@ -222,12 +222,16 @@
   .step-info{font-size:12.5px; color:var(--ink-soft); margin-top:3px; line-height:1.35;}
 
   /* ---- training ---- */
-  .cmd-row{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px solid var(--line);}
+  .cmd-row{display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--line);}
   .cmd-row:last-child{border-bottom:none;}
-  .cmd-name{font-size:14px; font-weight:600; width:110px; flex:none;}
-  .cmd-bar{flex:1; height:7px; border-radius:999px; background:var(--card-2); overflow:hidden;}
-  .cmd-fill{height:100%; background:var(--purple); border-radius:999px;}
-  .cmd-btn{flex:none; font-size:12px; padding:7px 13px; width:auto; border-radius:999px;}
+  .cmd-icon{flex:none; width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff;}
+  .cmd-body{flex:1; min-width:0;}
+  .cmd-top{display:flex; justify-content:space-between; align-items:baseline; gap:8px;}
+  .cmd-name{font-size:14px; font-weight:600;}
+  .cmd-pct{font-family:"Poppins",system-ui,sans-serif; font-weight:600; font-size:13px; color:var(--ink-soft); flex:none;}
+  .cmd-bar{width:100%; height:7px; border-radius:999px; background:var(--card-2); overflow:hidden; margin-top:7px;}
+  .cmd-fill{height:100%; background:var(--grad-accent); border-radius:999px;}
+  .cmd-btn{flex:none; font-size:12px; padding:7px 13px; width:auto; border-radius:999px; margin-left:2px;}
 
   .track-wrap{margin:22px 0 8px;}
   .track{position:relative; height:22px; border-radius:11px; background:var(--card-2); border:1px solid var(--line);}
@@ -258,6 +262,13 @@
   .friction-icon{flex:none; width:34px; height:34px; border-radius:10px; background:var(--grad-warn); box-shadow:var(--glow-warn); color:#241704; display:flex; align-items:center; justify-content:center;}
   .friction-body .friction-title{font-family:"Poppins",system-ui,sans-serif; font-weight:600; font-size:14.5px;}
   .friction-body .friction-desc{font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;}
+  .home-env-card{display:flex; gap:14px; align-items:center; background:var(--card-2); border:1px solid var(--line); border-radius:16px; padding:12px; margin-top:12px;}
+  .home-env-photo{flex:none; width:64px; height:64px; border-radius:12px; overflow:hidden;}
+  .home-env-facts{flex:1; min-width:0;}
+  .home-env-facts .fact-row{display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink-soft); margin-top:4px;}
+  .home-env-facts .fact-row svg{flex:none; color:var(--ink-faint);}
+  .report-dog-photo{position:absolute; top:-6px; right:-6px; width:88px; height:88px; border-radius:50%; overflow:hidden; box-shadow:0 0 0 3px var(--card), 0 0 0 5px rgba(133,142,255,.35);}
+  .report-dog-photo img{width:100%; height:100%; object-fit:cover;}
 
   .alert-banner{margin-top:14px; padding:10px 12px; border-radius:14px; background:var(--warn-soft); color:var(--warn); font-size:13px; text-align:left; font-weight:600;}
 
@@ -584,16 +595,61 @@
     { id:"garden", label:"Garden", short:"Has a garden",
       note:"Real outdoor access at home — more tolerance, less boredom.",
       risk:"Mostly boredom if left too long — there's room to burn energy, so it rarely turns into anything worse.",
-      toleranceMult:1.4, rollAdjust:-1, confinement:false },
+      toleranceMult:1.4, rollAdjust:-1, confinement:false,
+      sizeTag:"40 – 120 m²", outdoorTag:"Garden access", localeTag:"Suburban area" },
     { id:"terrace", label:"Apartment with terrace", short:"Apartment + terrace",
       note:"Some fresh air, but the space stays confined — the risk of boredom-chewing is still real.",
       risk:"Boredom-driven chewing, plus indoor accidents — especially for a puppy, who needs a bathroom trip after almost every nap, meal, or play session.",
-      toleranceMult:1.1, rollAdjust:0, confinement:false },
+      toleranceMult:1.1, rollAdjust:0, confinement:false,
+      sizeTag:"< 80 m²", outdoorTag:"Outdoor space", localeTag:"Urban area" },
     { id:"cage", label:"Apartment with a crate", short:"Crated while you're out",
       note:"No property damage — but the real risk is distress and depression if the crate gets used too often or too long.",
       risk:"Little to no chewing or mess — but anxiety and depression from confinement, which is a welfare risk, not just an inconvenience.",
-      toleranceMult:0.6, rollAdjust:0, confinement:true }
+      toleranceMult:0.6, rollAdjust:0, confinement:true,
+      sizeTag:"< 60 m²", outdoorTag:"No outdoor access", localeTag:"Urban area" }
   ];
+  // Small illustrated scenes (not literal photos — no such asset exists) so the
+  // Life tab's home-environment card reads as a picture, not just an icon.
+  function housingIllustration(housingId){
+    if (housingId === "garden"){
+      return '<svg viewBox="0 0 100 76" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">' +
+        '<rect width="100" height="76" fill="#1B2A3A"/>' +
+        '<rect y="46" width="100" height="30" fill="#20351F"/>' +
+        '<circle cx="80" cy="16" r="10" fill="#3A4A6B"/>' +
+        '<path d="M20 46 20 26 35 14 50 26 50 46Z" fill="#4A5A7A"/>' +
+        '<path d="M14 28 35 12 56 28Z" fill="#8B5E3C"/>' +
+        '<rect x="30" y="32" width="10" height="14" fill="#2A3A56"/>' +
+        '<circle cx="70" cy="50" r="12" fill="#2F4A2A"/>' +
+        '<rect x="68" y="46" width="4" height="18" fill="#5A3A22"/>' +
+      '</svg>';
+    }
+    if (housingId === "cage"){
+      return '<svg viewBox="0 0 100 76" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">' +
+        '<rect width="100" height="76" fill="#151E2E"/>' +
+        '<rect x="10" y="6" width="80" height="70" fill="#2A3650"/>' +
+        '<rect x="18" y="16" width="16" height="16" fill="#4A5A78"/>' +
+        '<rect x="42" y="16" width="16" height="16" fill="#3A4868"/>' +
+        '<rect x="66" y="16" width="16" height="16" fill="#4A5A78"/>' +
+        '<rect x="18" y="40" width="16" height="16" fill="#3A4868"/>' +
+        '<rect x="42" y="40" width="16" height="16" fill="#4A5A78"/>' +
+        '<rect x="66" y="40" width="16" height="16" fill="#3A4868"/>' +
+        '<rect x="40" y="60" width="20" height="16" fill="#20283A"/>' +
+      '</svg>';
+    }
+    return '<svg viewBox="0 0 100 76" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">' +
+      '<rect width="100" height="76" fill="#182640"/>' +
+      '<rect x="4" y="10" width="60" height="66" fill="#2E3E5C"/>' +
+      '<rect x="12" y="18" width="14" height="14" fill="#5A6E96"/>' +
+      '<rect x="32" y="18" width="14" height="14" fill="#4A5C82"/>' +
+      '<rect x="12" y="40" width="14" height="14" fill="#4A5C82"/>' +
+      '<rect x="32" y="40" width="14" height="14" fill="#5A6E96"/>' +
+      '<rect x="12" y="62" width="34" height="14" fill="#232E44"/>' +
+      '<rect x="50" y="30" width="46" height="46" fill="#233252"/>' +
+      '<rect x="58" y="40" width="10" height="10" fill="#4A5C82"/>' +
+      '<rect x="76" y="40" width="10" height="10" fill="#5A6E96"/>' +
+      '<rect x="58" y="58" width="28" height="4" fill="#111a2c"/>' +
+    '</svg>';
+  }
 
   var CONFINEMENT_INCIDENTS = [
     {text:"paced circles in the crate, whining", bond:-3, health:-1, house:0, type:"anxiety"},
@@ -904,6 +960,7 @@
       lastHomeAccidentAt: 0, lastPositiveMomentAt: 0, typicalHoursAway: 4, lastPhaseLabel: null,
       ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
       awaySessions: [], incidentTally: {}, seenIncidentTypes: [], trainingLog: [], selectedExpenses: [],
+      walkMinutesToday: 0, walkMinutesDay: 0, lastWalkVerified: false,
       emergencyInfo: { vetName:"", vetPhone:"", allergies:"", microchipId:"" },
       journal: [{ ts: now, text: name + " came home. The trial starts now." }]
     };
@@ -920,6 +977,13 @@
   function longestAwaySession(){
     var sessions = state.awaySessions || [];
     return sessions.reduce(function(max, s){ return Math.max(max, s.hours); }, 0);
+  }
+  function todayAloneHours(){
+    var sessions = state.awaySessions || [];
+    var today = new Date().toDateString();
+    return sessions.reduce(function(sum, s){
+      return new Date(s.ts).toDateString() === today ? sum + s.hours : sum;
+    }, 0);
   }
   var INCIDENT_LABELS = { accident:"accident", chew:"chewed item", bark:"bark complaint", anxiety:"anxious moment", escape:"escape attempt", health:"health scare", depression:"withdrawn moment" };
   function incidentSummaryLine(){
@@ -1391,7 +1455,7 @@
           '<circle cx="'+mid+'" cy="'+mid+'" r="'+r+'" fill="none" stroke="url(#'+gradId+')" stroke-width="'+stroke+'" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+offset+'" transform="rotate(-90 '+mid+' '+mid+')" style="transition:stroke-dashoffset 300ms ease;"/>' +
         '</svg>' +
         '<div class="status-ring-center">' +
-          '<div class="status-ring-value">'+pct+'%</div>' +
+          (opts.centerIcon ? '<span style="color:var(--'+colorKey+'); display:flex;">'+icon(opts.centerIcon, Math.round(size*0.32))+'</span>' : '<div class="status-ring-value">'+pct+'%</div>') +
           (label ? '<div class="status-ring-label">'+label+'</div>' : '') +
         '</div>' +
       '</div>' +
@@ -1992,22 +2056,61 @@
       '</div>';
   }
 
+  function todayWalkMinutes(){
+    return state.walkMinutesDay === tripDay() ? (state.walkMinutesToday||0) : 0;
+  }
   function renderTabWalks(){
     var walkable = canWalkOutside(state.dogDays);
+    var breed = byId(state.breedId);
+    var minutesToday = todayWalkMinutes();
+    var goal = breed.walkMinutes || 30;
+    var pastWalks = state.journal.filter(function(j){
+      return j.text.indexOf("Walked ") === 0 || j.text.indexOf("Cut the walk short") === 0;
+    }).slice(0, 4);
+    var pastWalksHTML = pastWalks.map(function(j){
+      var d = new Date(j.ts);
+      var dateStr = d.toLocaleDateString("en-US", { month:"short", day:"numeric" });
+      return '<div class="timeline-item" style="padding-bottom:14px;">' +
+        '<span class="timeline-line"></span>' +
+        '<span class="timeline-dot" style="background:var(--grad-teal); box-shadow:var(--glow-teal);">'+icon('paw',14)+'</span>' +
+        '<span class="timeline-body">' +
+          '<div class="timeline-time">'+dateStr+'</div>' +
+          '<div class="timeline-title" style="font-size:13.5px;">'+esc(j.text)+'</div>' +
+        '</span>' +
+      '</div>';
+    }).join("");
     return '' +
       '<div class="card">' +
-        '<div class="stat-grid">' +
-          '<div class="stat-tile"><div class="stat-icon" style="background:var(--accent-soft); color:var(--accent);">'+icon('paw',18)+'</div><div class="stat-value">'+state.walksCompleted+'</div><div class="stat-label">Walks / play sessions</div></div>' +
-          '<div class="stat-tile"><div class="stat-icon" style="background:var(--teal-soft); color:var(--teal);">'+icon('clock',18)+'</div><div class="stat-value">'+fmtHours(state.totalHoursAway)+'</div><div class="stat-label">Hours away, total</div></div>' +
+        '<div class="section-title">Today\'s activity</div>' +
+        '<div style="display:flex; align-items:center; gap:16px; margin-top:10px;">' +
+          circularStatus(goal ? (minutesToday/goal*100) : 0, {size:76, stroke:8, colorKey:"accent", centerIcon:"paw"}) +
+          '<div style="flex:1;">' +
+            '<div class="next-label" style="font-size:26px;">'+minutesToday+' min</div>' +
+            '<div class="muted" style="font-size:13px; margin-top:2px;">Walk / Play</div>' +
+          '</div>' +
+          (state.lastWalkVerified && minutesToday > 0 ? '<span class="expense-badge" style="background:var(--teal-soft); color:var(--teal); display:flex; align-items:center; gap:4px;">'+icon('check',11)+'Verified</span>' : '') +
         '</div>' +
       '</div>' +
       '<div class="card">' +
+        '<div class="section-title">Outdoor walks</div>' +
         (walkable ?
-          '<button class="btn btn-primary" id="walk-btn">Walk</button>' :
-          '<button class="btn btn-primary" id="play-btn">See safe activities</button>') +
-        (walkable ? "" :
-          '<p class="muted" style="margin-top:8px; font-size:12.5px;">Public walks locked — not fully vaccinated yet, real outdoor walks unlock around 3 months old. Until then: home play, socialization, and being carried outside for exposure without ground time.</p>') +
-      '</div>';
+          '<button class="btn btn-primary" id="walk-btn" style="margin-top:10px;">Walk</button>' :
+          '<div class="extras-card" style="margin-top:10px; align-items:flex-start;">' +
+            '<span class="extras-icon" style="background:var(--card-2); box-shadow:none; color:var(--ink-soft);">'+icon('lock',18)+'</span>' +
+            '<span class="extras-body">' +
+              '<div class="expense-label">Currently locked</div>' +
+              '<p class="muted" style="font-size:12.5px; margin-top:4px;">'+esc(state.name)+' isn\'t fully vaccinated yet. Try safe activities at home instead.</p>' +
+              '<button class="btn btn-primary" id="play-btn" style="margin-top:12px;">See safe activities</button>' +
+            '</span>' +
+          '</div>') +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="stat-grid">' +
+          statTile({icon:"paw", color:"accent", value:String(state.walksCompleted), label:"Walks / play sessions"}) +
+          statTile({icon:"clock", color:"teal", value:fmtHours(state.totalHoursAway), label:"Hours away, total"}) +
+        '</div>' +
+      '</div>' +
+      (pastWalksHTML ? '<div class="card"><div class="section-title">Past walks</div><div class="timeline" style="margin-top:10px;">'+pastWalksHTML+'</div></div>' : '');
   }
 
   function trainingMediaHTML(skill){
@@ -2037,10 +2140,17 @@
     var isNewToday = TRAINING_SCHEDULE.some(function(s){ return s.day === programDay && s.skill === skillId; });
 
     var unlocked = unlockedSkillIds(programDay);
-    var otherRows = unlocked.filter(function(id){ return id !== skillId; }).map(function(id){
+    var CMD_ROW_COLORS = ["accent","teal","warn","purple"];
+    var otherRows = unlocked.filter(function(id){ return id !== skillId; }).map(function(id, idx){
       var s = trainingSkillById(id);
-      return '<div class="cmd-row"><div class="cmd-name" style="display:flex; align-items:center; gap:8px;"><span style="color:var(--ink-faint); display:flex;">'+icon(s.icon, 16)+'</span>'+s.label+'</div>' +
-        '<div class="cmd-bar"><div class="cmd-fill" style="width:'+state.training[id]+'%"></div></div>' +
+      var color = CMD_ROW_COLORS[idx % CMD_ROW_COLORS.length];
+      var pct = Math.round(state.training[id]);
+      return '<div class="cmd-row">' +
+        '<span class="cmd-icon" style="background:var(--grad-'+color+'); box-shadow:var(--glow-'+color+');">'+icon(s.icon, 16)+'</span>' +
+        '<span class="cmd-body">' +
+          '<span class="cmd-top"><span class="cmd-name">'+s.label+'</span><span class="cmd-pct">'+pct+'%</span></span>' +
+          '<div class="cmd-bar"><div class="cmd-fill" style="width:'+pct+'%; background:var(--grad-'+color+');"></div></div>' +
+        '</span>' +
         (blockReason ? '' : '<button class="btn btn-ghost cmd-btn" data-train="'+id+'" style="border:1px solid var(--line)">Train</button>') +
         '</div>';
     }).join("");
@@ -2062,7 +2172,7 @@
         '<div class="cmd-bar" style="margin-top:14px;"><div class="cmd-fill" style="width:'+state.training[skillId]+'%"></div></div>' +
         startArea +
       '</div>' +
-      (otherRows ? '<div class="card"><div class="section-title">Other skills so far</div>' + otherRows + '</div>' : '');
+      (otherRows ? '<div class="card"><div class="section-title">Skills progress</div>' + otherRows + '</div>' : '');
   }
 
   function monthlyExtrasTotal(){
@@ -2130,17 +2240,39 @@
     var realDaysElapsed = (Date.now() - state.startedAt) / (24*HOUR);
     var longest = longestAwaySession();
     var incidentLine = incidentSummaryLine();
+    var aloneToday = todayAloneHours();
+    var alonePct = Math.min(100, Math.round(aloneToday/Math.max(1,state.typicalHoursAway)*100));
+    var totalIncidents = totalIncidentsCount();
     return '' +
       '<div class="card">' +
-        '<div class="section-title">Dog × Home × Life</div>' +
-        '<p class="muted" style="margin-top:2px;">'+fit+'</p>' +
+        '<div class="section-title">Your life</div>' +
+        '<p class="muted" style="margin-top:2px;">How does this fit into your routine?</p>' +
+        '<div class="home-env-card">' +
+          '<div class="home-env-photo">'+housingIllustration(housing.id)+'</div>' +
+          '<div class="home-env-facts">' +
+            '<div class="expense-label" style="font-size:14px;">'+esc(housing.short)+'</div>' +
+            '<div class="fact-row">'+icon('home',12)+'<span>'+housing.sizeTag+'</span></div>' +
+            '<div class="fact-row">'+icon('globe',12)+'<span>'+housing.outdoorTag+'</span></div>' +
+            '<div class="fact-row">'+icon('compass',12)+'<span>'+housing.localeTag+'</span></div>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Alone time</div>' +
+        '<div style="display:flex; align-items:center; gap:10px; margin-top:8px;">' +
+          '<span class="extras-icon" style="background:var(--grad-purple); box-shadow:var(--glow-purple); width:30px; height:30px;">'+icon('clock',15)+'</span>' +
+          '<span class="next-label" style="font-size:22px;">'+fmtHours(aloneToday)+'</span>' +
+        '</div>' +
+        '<div class="muted" style="font-size:12.5px; margin-top:2px;">Today</div>' +
+        '<div class="meter-track" style="margin-top:10px;"><div class="meter-fill" style="width:'+alonePct+'%; background:var(--grad-accent);"></div></div>' +
       '</div>' +
       '<div class="card">' +
         '<div class="section-title">Your pattern</div>' +
         (longest > 0 ? '<p class="muted">Longest single stretch away so far: <b>'+fmtHours(longest)+'</b>.</p>' : "") +
         '<p class="muted"'+(longest>0 ? ' style="margin-top:8px;"' : "")+'>'+esc(state.name)+' has been alone for <b>'+fmtHours(state.totalHoursAway)+'</b> in total across this trial.</p>' +
-        '<p class="muted" style="margin-top:8px;">Real spend so far: <b>€'+costSoFar(breed, realDaysElapsed)+'</b>.</p>' +
-        (incidentLine ? '<p class="muted" style="margin-top:8px;">'+incidentLine+'</p>' : '<p class="muted" style="margin-top:8px;">No incidents logged yet — early days.</p>') +
+        (incidentLine ? '<p class="muted" style="margin-top:8px;">'+incidentLine+'</p>' : '') +
+        '<div class="fact-row" style="margin-top:10px; font-size:13px; color:var(--ink);">'+icon('wallet',14)+'<span>Real spend: €'+costSoFar(breed, realDaysElapsed)+'</span></div>' +
+        '<div class="fact-row" style="font-size:13px; color:var(--ink);">'+icon('x',14)+'<span>Incidents: '+totalIncidents+'</span></div>' +
       '</div>' +
       renderSettingsCard() +
       '<div class="card">' +
@@ -2589,10 +2721,13 @@
       '</div>';
     }).join("");
     return '' +
-      '<div class="card">' +
-        '<div class="section-title">Your 30 days</div>' +
-        '<h2 style="margin-top:4px;">You lived with '+esc(state.name)+' for 30 real days.</h2>' +
-        '<p class="muted" style="margin-top:6px;">Here\'s what happened.</p>' +
+      '<div class="card" style="position:relative; overflow:hidden;">' +
+        (breed.icon ? '<div class="report-dog-photo"><img src="'+breed.icon+'" alt="'+esc(breed.name)+'"></div>' : '') +
+        '<div style="max-width:78%;">' +
+          '<div class="section-title">Your 30 days</div>' +
+          '<h2 style="margin-top:4px;">You lived with '+esc(state.name)+' for 30 real days.</h2>' +
+          '<p class="muted" style="margin-top:6px;">Here\'s what happened.</p>' +
+        '</div>' +
       '</div>' +
       '<div class="card">' +
         '<div class="stat-grid">' +
@@ -3318,8 +3453,13 @@
     var a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)*Math.sin(dLon/2);
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   }
-  function applyWalkOutcome(fraction, note){
+  function applyWalkOutcome(fraction, note, verified, minutesOverride){
     fraction = Math.max(0.15, Math.min(1, fraction));
+    var breed = byId(state.breedId);
+    var day = tripDay();
+    if (state.walkMinutesDay !== day){ state.walkMinutesDay = day; state.walkMinutesToday = 0; }
+    state.walkMinutesToday = (state.walkMinutesToday||0) + (minutesOverride !== undefined ? minutesOverride : Math.round(fraction*breed.walkMinutes));
+    state.lastWalkVerified = !!verified;
     state.bladder = 100;
     state.energy = clamp(state.energy + fraction*(100-state.energy));
     state.bond = clamp(state.bond + fraction*3);
@@ -3415,7 +3555,7 @@
     else if (couldntWalk) { note = "Couldn't walk " + state.name + " today — plans changed."; fraction = 0.15; }
     else if (fraction >= 0.9) note = "Walked " + state.name + " — GPS confirmed " + dist + "m.";
     else note = "Cut the walk short with " + state.name + " — only " + dist + "m confirmed.";
-    applyWalkOutcome(fraction, note);
+    applyWalkOutcome(fraction, note, !errored && !couldntWalk);
     walkCtx = null;
     view = "home"; render();
   }
@@ -3473,7 +3613,7 @@
     else if (couldntWalk) { note = "Couldn't walk " + state.name + " today — plans changed."; fraction = 0.15; }
     else if (fraction >= 0.9) note = "Walked " + state.name + " — " + minutesWalked + " of " + walkCtx.goalMinutes + " min, " + steps + " steps.";
     else note = "Cut the walk short with " + state.name + " — only " + minutesWalked + " of " + walkCtx.goalMinutes + " min.";
-    applyWalkOutcome(fraction, note);
+    applyWalkOutcome(fraction, note, !errored && !couldntWalk, minutesWalked);
     walkCtx = null;
     stopLiveTimer();
     view = "home"; render();
@@ -3586,6 +3726,9 @@
     if (!state.seenIncidentTypes) state.seenIncidentTypes = [];
     if (!state.trainingLog) state.trainingLog = [];
     if (!state.selectedExpenses) state.selectedExpenses = [];
+    if (state.walkMinutesToday === undefined) state.walkMinutesToday = 0;
+    if (state.walkMinutesDay === undefined) state.walkMinutesDay = 0;
+    if (state.lastWalkVerified === undefined) state.lastWalkVerified = false;
     TRAINING_SKILLS.forEach(function(s){ if (state.training[s.id] === undefined) state.training[s.id] = 0; });
     if (state.checkpointShownDay === undefined) state.checkpointShownDay = 0;
     if (!state.emergencyInfo) state.emergencyInfo = { vetName:"", vetPhone:"", allergies:"", microchipId:"" };
