@@ -197,6 +197,10 @@
   .age{color:var(--ink-faint); font-size:13px;}
   .mood-chip{margin-top:8px; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600;}
   .mood-dot{width:8px; height:8px; border-radius:50%;}
+  input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:3px; background:var(--card-2); outline:none; margin:6px 0;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:var(--grad-accent); box-shadow:var(--glow-accent), 0 0 0 4px var(--bg); cursor:pointer;}
+  input[type=range]::-moz-range-thumb{width:22px; height:22px; border-radius:50%; border:none; background:var(--grad-accent); box-shadow:var(--glow-accent), 0 0 0 4px var(--bg); cursor:pointer;}
+  input[type=range]::-moz-range-track{background:var(--card-2); height:6px; border-radius:3px;}
   .day-label{color:var(--ink-faint); font-size:11px; letter-spacing:.05em; text-transform:uppercase; font-weight:700; flex:1; min-width:0; padding-top:2px;}
   .page-header{padding:2px 2px 16px;}
   .page-header h1{font-size:26px;}
@@ -2439,10 +2443,12 @@
       '</div>';
   }
 
-  function prepRow(label, ready, note){
+  function prepRow(label, ready, note, iconName){
+    var color = ready ? "teal" : "warn";
     return '<div class="setting-row">' +
+      '<span class="extras-icon" style="width:32px; height:32px; border-radius:9px; background:var(--grad-'+color+'); box-shadow:var(--glow-'+color+');">'+icon(iconName,16)+'</span>' +
       '<div class="setting-copy">' +
-        '<div class="title"><span class="mood-dot" style="background:'+(ready?"var(--accent)":"var(--warn)")+'; display:inline-block; margin-right:6px;"></span>'+esc(label)+'</div>' +
+        '<div class="title">'+esc(label)+'</div>' +
         '<div class="caveat">'+esc(note)+'</div>' +
       '</div>' +
     '</div>';
@@ -2451,16 +2457,16 @@
   function renderLeaveSetup(){
     var canWalk = canWalkOutside(state.dogDays);
     var checklist = [
-      { label:"Bathroom", ready: state.bladder >= 60,
+      { label:"Bathroom", icon:"droplet", ready: state.bladder >= 60,
         note: state.bladder >= 60 ? "Recently relieved." : "Bladder is low — an accident is more likely on a long day." },
-      { label:"Food", ready: state.hunger >= 60,
+      { label:"Food", icon:"bowl", ready: state.hunger >= 60,
         note: state.hunger >= 60 ? "Recently fed." : "Already hungry — that adds up over a long absence." },
-      { label: canWalk ? "Exercise" : "Play",
+      { label: canWalk ? "Exercise" : "Play", icon:"bolt",
         ready: state.energy >= 50,
         note: state.energy >= 50 ? "Had a chance to burn energy." : "Still has pent-up energy — restlessness sets in sooner." }
     ];
     var allReady = checklist.every(function(c){ return c.ready; });
-    var rows = checklist.map(function(c){ return prepRow(c.label, c.ready, c.note); }).join("");
+    var rows = checklist.map(function(c){ return prepRow(c.label, c.ready, c.note, c.icon); }).join("");
     var warning = allReady ? "" :
       '<p class="muted" style="margin-top:10px; font-size:12.5px; color:var(--warn);">Leaving before '+esc(state.name)+' is ready makes the day harder on both of you — you can still go.</p>';
     return '' +
