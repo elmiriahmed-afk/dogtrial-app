@@ -192,6 +192,9 @@
   .mood-chip{margin-top:8px; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600;}
   .mood-dot{width:8px; height:8px; border-radius:50%;}
   .day-label{color:var(--ink-faint); font-size:11px; letter-spacing:.05em; text-transform:uppercase; font-weight:700; flex:1; min-width:0; padding-top:2px;}
+  .page-header{padding:2px 2px 16px;}
+  .page-header h1{font-size:26px;}
+  .page-header p{margin-top:4px; font-size:14px;}
   .next-label{font-family:"Poppins",system-ui,sans-serif; font-weight:700; font-size:22px; margin-top:2px;}
 
   /* ---- meters ---- */
@@ -212,7 +215,18 @@
 
   /* ---- training GIF slot (placeholder until real clips exist) ---- */
   .gif-slot{display:flex; align-items:center; justify-content:center; height:140px; border-radius:16px; background:var(--card-2); font-size:56px;}
-  video.gif-slot{height:180px; width:100%; object-fit:cover; background:var(--card-2);}
+  video.gif-slot{height:180px; width:100%; object-fit:cover; background:var(--card-2); display:block;}
+  .training-video-wrap{position:relative; border-radius:16px; overflow:hidden;}
+  .training-video-wrap .gif-slot{border-radius:0;}
+  .training-caption{
+    position:absolute; left:0; right:0; bottom:0; padding:14px 16px 14px;
+    background:linear-gradient(180deg, rgba(11,14,21,0) 0%, rgba(11,14,21,.55) 40%, rgba(11,14,21,.92) 100%);
+    display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+  }
+  .training-caption-label{font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft);}
+  .training-caption-title{font-family:"Poppins",system-ui,sans-serif; font-weight:700; font-size:19px; color:#fff; margin-top:2px;}
+  .training-caption-sub{font-size:12.5px; color:var(--ink-soft); margin-top:2px;}
+  .training-caption-chevron{color:var(--ink-soft); flex:none; padding-bottom:2px;}
 
   /* ---- step-by-step breakdown shown above the practice video ---- */
   .step-row{display:flex; gap:10px; padding:10px 0; border-bottom:1px solid var(--line); text-align:left;}
@@ -1637,6 +1651,7 @@
     else if (view === "healthBladderInfo") root.innerHTML = brandStrip() + renderHealthBladderInfo();
     else if (view === "healthReproInfo") root.innerHTML = brandStrip() + renderHealthReproInfo();
     else if (view === "milestones") root.innerHTML = brandStrip() + renderMilestones();
+    else if (view === "allSkills") root.innerHTML = brandStrip() + renderAllSkills();
     attachHandlers();
     if (view === "atWork") startAtWorkClock();
     else if (view === "walkSteps") startStepsClock();
@@ -2161,18 +2176,27 @@
       '<button class="btn btn-primary" data-train="'+skillId+'" style="margin-top:12px;">Start session</button>' +
       trainNote;
 
+    var sessionMins = skill.sessionMinutes || 3;
     return '' +
       '<div class="card">' +
         '<div class="section-title">Day '+programDay+' of 30 · '+(isNewToday ? "New skill" : "Practice")+'</div>' +
-        trainingMediaHTML(skill) +
-        '<div class="next-label" style="font-size:19px; margin-top:12px;">'+esc(skill.label)+'</div>' +
-        '<p class="muted" style="margin-top:6px;">'+skill.whatToDo+'</p>' +
+        '<div class="training-video-wrap" style="margin-top:10px;">' +
+          trainingMediaHTML(skill) +
+          '<div class="training-caption">' +
+            '<span>' +
+              '<div class="training-caption-label">Today\'s skill</div>' +
+              '<div class="training-caption-title">'+esc(skill.label)+'</div>' +
+              '<div class="training-caption-sub">'+sessionMins+' min session</div>' +
+            '</span>' +
+            '<span class="training-caption-chevron" style="font-size:18px; font-weight:700;">&rsaquo;</span>' +
+          '</div>' +
+        '</div>' +
+        '<p class="muted" style="margin-top:12px;">'+skill.whatToDo+'</p>' +
         (BREED_TRAINING_NOTE[breed.id] ? '<p class="muted" style="margin-top:8px; font-size:13px;">'+icon('paw',13)+' '+BREED_TRAINING_NOTE[breed.id]+'</p>' : "") +
         (AGE_TRAINING_NOTE[stage] ? '<p class="muted" style="margin-top:6px; font-size:13px;">'+AGE_TRAINING_NOTE[stage]+'</p>' : "") +
-        '<div class="cmd-bar" style="margin-top:14px;"><div class="cmd-fill" style="width:'+state.training[skillId]+'%"></div></div>' +
         startArea +
       '</div>' +
-      (otherRows ? '<div class="card"><div class="section-title">Skills progress</div>' + otherRows + '</div>' : '');
+      (otherRows ? '<div class="card"><div class="top-actions" style="margin-bottom:6px;"><div class="section-title" style="margin-bottom:0">Skills progress</div><button class="btn-ghost" id="skills-view-all">View all</button></div>' + otherRows + '</div>' : '');
   }
 
   function monthlyExtrasTotal(){
@@ -2310,6 +2334,22 @@
         '<div class="card"><p class="muted">Full report unlocks on day 30.</p></div>');
   }
 
+  var TAB_PAGE_HEADER = {
+    health: { title:"Health", subtitle:function(){ return esc(state.name)+"'s current condition"; } },
+    walks: { title:"Walks", subtitle:function(){ return "Activity, exercise and outdoor time"; } },
+    training: { title:"Training", subtitle:function(){ return "Build good habits, step by step."; } },
+    costs: { title:"Costs", subtitle:function(){ return "Real money spent during your trial"; } },
+    life: { title:"Your life", subtitle:function(){ return "How does this fit into your routine?"; } },
+    report: { title:"Report", subtitle:function(){ return "Your trial's progress so far"; } }
+  };
+  function pageHeaderHTML(tabId){
+    var def = TAB_PAGE_HEADER[tabId];
+    if (!def) return "";
+    return '<div class="page-header">' +
+      '<h1>'+def.title+'</h1>' +
+      '<p class="muted">'+def.subtitle()+'</p>' +
+    '</div>';
+  }
   function renderHome(){
     var breed = byId(state.breedId);
     var stage = stageOf(state.dogDays);
@@ -2319,7 +2359,7 @@
     var housing = housingById(state.housingId);
     var realDaysElapsed = (Date.now() - state.startedAt) / (24*HOUR);
 
-    var header = '' +
+    var header = activeTab !== "today" ? pageHeaderHTML(activeTab) : '' +
       '<div class="card">' +
         '<div class="top-actions">' +
           '<span class="day-label mono">'+dayLabel()+'</span>' +
@@ -2913,6 +2953,41 @@
       (groupsHTML || '<div class="card"><div class="muted">Nothing yet.</div></div>');
   }
 
+  function renderAllSkills(){
+    var programDay = Math.max(1, Math.min(30, tripDay()+1));
+    var unlocked = unlockedSkillIds(programDay);
+    var locked = TRAINING_SKILLS.filter(function(s){ return unlocked.indexOf(s.id) === -1; });
+    var COLORS = ["accent","teal","warn","purple"];
+    var unlockedRows = unlocked.map(function(id, idx){
+      var s = trainingSkillById(id);
+      var color = COLORS[idx % COLORS.length];
+      var pct = Math.round(state.training[id]);
+      return '<div class="cmd-row">' +
+        '<span class="cmd-icon" style="background:var(--grad-'+color+'); box-shadow:var(--glow-'+color+');">'+icon(s.icon, 16)+'</span>' +
+        '<span class="cmd-body">' +
+          '<span class="cmd-top"><span class="cmd-name">'+s.label+'</span><span class="cmd-pct">'+pct+'%</span></span>' +
+          '<div class="cmd-bar"><div class="cmd-fill" style="width:'+pct+'%; background:var(--grad-'+color+');"></div></div>' +
+        '</span>' +
+      '</div>';
+    }).join("");
+    var lockedRows = locked.map(function(s){
+      return '<div class="cmd-row">' +
+        '<span class="cmd-icon" style="background:var(--card-2); color:var(--ink-faint);">'+icon('lock', 16)+'</span>' +
+        '<span class="cmd-body">' +
+          '<span class="cmd-top"><span class="cmd-name" style="color:var(--ink-faint);">'+s.label+'</span></span>' +
+          '<div class="muted" style="font-size:12px; margin-top:2px;">Unlocks later in the trial</div>' +
+        '</span>' +
+      '</div>';
+    }).join("");
+    return '' +
+      '<div class="card">' +
+        '<div class="top-actions"><h2 style="font-size:19px">All skills</h2><button class="btn-ghost" id="back-home">Back</button></div>' +
+        '<p class="muted" style="font-size:13px; margin-top:-4px;">Every command introduced so far, plus what\'s still to come.</p>' +
+      '</div>' +
+      '<div class="card">' + unlockedRows + '</div>' +
+      (lockedRows ? '<div class="card">' + lockedRows + '</div>' : '');
+  }
+
   function renderMilestones(){
     var breed = byId(state.breedId);
     var day = tripDay();
@@ -3077,6 +3152,10 @@
       if (journalBtn) journalBtn.addEventListener("click", function(){
         view = "journal"; render();
       });
+      var skillsViewAllBtn = document.getElementById("skills-view-all");
+      if (skillsViewAllBtn) skillsViewAllBtn.addEventListener("click", function(){
+        view = "allSkills"; render();
+      });
       var reportTabBtn = document.getElementById("report-tab-view30");
       if (reportTabBtn) reportTabBtn.addEventListener("click", function(){
         view = "report30"; render();
@@ -3240,6 +3319,12 @@
     }
 
     if (view === "milestones"){
+      document.getElementById("back-home").addEventListener("click", function(){
+        view = "home"; render();
+      });
+    }
+
+    if (view === "allSkills"){
       document.getElementById("back-home").addEventListener("click", function(){
         view = "home"; render();
       });
