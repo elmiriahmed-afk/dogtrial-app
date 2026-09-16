@@ -142,6 +142,12 @@
   .extras-amount{font-family:"Poppins",system-ui,sans-serif; font-weight:700; font-size:19px; margin-top:2px;}
   .extras-amount span{font-family:"Inter",system-ui,sans-serif; font-weight:500; font-size:13px; color:var(--ink-soft);}
   .extras-yearly{font-size:12px; color:var(--ink-faint); margin-top:2px;}
+
+  .status-ring{position:relative; margin:6px auto 0;}
+  .status-ring-center{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+  .status-ring-value{font-family:"Poppins",system-ui,sans-serif; font-weight:700; font-size:30px; line-height:1;}
+  .status-ring-label{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-top:4px;}
+  .status-ring-sub{text-align:center; margin-top:10px; font-size:13px; color:var(--ink-soft);}
   .challenge-list{margin:10px 0 0; padding-left:18px; font-size:13.5px; color:var(--ink-soft);}
   .challenge-list li{margin-bottom:6px; line-height:1.4;}
   .pup-thumb{flex:none; width:56px; height:56px; border-radius:50%; overflow:hidden;}
@@ -1213,8 +1219,11 @@
     });
   }
 
+  function wellnessScore(){
+    return state.hunger*0.15 + state.bladder*0.15 + state.energy*0.15 + state.bond*0.3 + state.health*0.25;
+  }
   function moodOf(){
-    var score = state.hunger*0.15 + state.bladder*0.15 + state.energy*0.15 + state.bond*0.3 + state.health*0.25;
+    var score = wellnessScore();
     if (score>=78) return {label:"Content", key:"good"};
     if (score>=55) return {label:"Restless", key:"warn"};
     if (score>=32) return {label:"Distressed", key:"bad"};
@@ -1262,6 +1271,34 @@
     var s = size || 20;
     var body = ICON_PATHS[name] || ICON_PATHS.target;
     return '<svg class="icon-svg" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+body+'</svg>';
+  }
+
+  // Circular status ring — a live-state summary (NOT a permanent score), used
+  // for the Health "Wellness" module and similar single-number summaries.
+  function circularStatus(percent, opts){
+    opts = opts || {};
+    var size = opts.size || 140;
+    var stroke = opts.stroke || 10;
+    var color = opts.color || "var(--accent)";
+    var label = opts.label || "";
+    var sublabel = opts.sublabel || "";
+    var pct = Math.max(0, Math.min(100, Math.round(percent)));
+    var r = (size - stroke) / 2;
+    var c = 2 * Math.PI * r;
+    var offset = c * (1 - pct / 100);
+    var mid = size / 2;
+    return '' +
+      '<div class="status-ring" style="width:'+size+'px; height:'+size+'px;">' +
+        '<svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'">' +
+          '<circle cx="'+mid+'" cy="'+mid+'" r="'+r+'" fill="none" stroke="var(--line)" stroke-width="'+stroke+'"/>' +
+          '<circle cx="'+mid+'" cy="'+mid+'" r="'+r+'" fill="none" stroke="'+color+'" stroke-width="'+stroke+'" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+offset+'" transform="rotate(-90 '+mid+' '+mid+')" style="transition:stroke-dashoffset 300ms ease;"/>' +
+        '</svg>' +
+        '<div class="status-ring-center">' +
+          '<div class="status-ring-value">'+pct+'%</div>' +
+          (label ? '<div class="status-ring-label">'+label+'</div>' : '') +
+        '</div>' +
+      '</div>' +
+      (sublabel ? '<div class="status-ring-sub">'+sublabel+'</div>' : '');
   }
 
   function dayLabel(){
@@ -1684,10 +1721,13 @@
   }
   function renderTabHealth(){
     var bladderComfort = clamp(100 - state.bladder);
+    var mood = moodOf();
+    var ringColor = mood.key === "good" ? "var(--teal)" : mood.key === "warn" ? "var(--warn)" : "var(--bad)";
     return '' +
       '<div class="card">' +
-        '<div class="section-title">Wellness</div>' +
-        '<div class="stat-grid">' +
+        '<div class="section-title" style="text-align:center;">Wellness</div>' +
+        circularStatus(wellnessScore(), {size:132, stroke:10, color:ringColor, label:"Wellness", sublabel:mood.label}) +
+        '<div class="stat-grid" style="margin-top:16px;">' +
           '<div class="stat-tile" data-stat="feed"><div class="stat-icon" style="background:var(--accent-soft); color:var(--accent);">'+icon('bowl',18)+'</div><div class="stat-value">'+Math.round(state.hunger)+'%</div><div class="stat-label">Fed</div></div>' +
           '<div class="stat-tile" data-stat="energy"><div class="stat-icon" style="background:var(--teal-soft); color:var(--teal);">'+icon('bolt',18)+'</div><div class="stat-value">'+Math.round(state.energy)+'%</div><div class="stat-label">Energy</div></div>' +
           '<div class="stat-tile" data-stat="bladder"><div class="stat-icon" style="background:var(--warn-soft); color:var(--warn);">'+icon('droplet',18)+'</div><div class="stat-value">'+Math.round(bladderComfort)+'%</div><div class="stat-label">Bladder comfort</div></div>' +
