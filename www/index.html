@@ -624,6 +624,19 @@
     var pool = FEEDING_DAILY_TIPS.concat([FEEDING_TIP[breed.id] || ""]).filter(Boolean);
     return pool[Math.max(0, day) % pool.length];
   }
+  // Returns 4 distinct tips for the day, offset so the combination changes
+  // day to day across the full 30-day span instead of repeating one at a time.
+  function feedingInfoItemsForDay(breed, day){
+    var pool = FEEDING_DAILY_TIPS.concat([FEEDING_TIP[breed.id] || ""]).filter(Boolean);
+    var n = pool.length;
+    var count = Math.min(4, n);
+    var start = (Math.max(0, day) * 3) % n;
+    var items = [];
+    for (var i = 0; i < count; i++){
+      items.push(pool[(start + i) % n]);
+    }
+    return items;
+  }
   // Same idea as the training quiz: a quick decision-based check, not a memory test,
   // pulled from the same feeding facts already shown on the card and in the tips above.
   var FEEDING_QUIZ = [
@@ -1211,7 +1224,7 @@
       { eta: hungerEta, label:"Feeding time", cta:"Feed " + esc(state.name), actionId:"feed" },
       { eta: outEta,
         label: outIsBladder ? "Bathroom break" : (canWalk ? "Walk" : "Safe activity"),
-        cta: canWalk ? "Take her out" : "See safe activities",
+        cta: canWalk ? "Take " + dogPronoun("object") + " out" : "See safe activities",
         actionId: canWalk ? "walk" : "play" }
     ];
     candidates.sort(function(a,b){ return a.eta - b.eta; });
@@ -1583,6 +1596,13 @@
 
   function dogSex(){
     return state.sex === "male" ? "male" : "female";
+  }
+  // object: him/her, subject: he/she, possessive: his/her
+  function dogPronoun(form){
+    var male = dogSex() === "male";
+    if (form === "subject") return male ? "he" : "she";
+    if (form === "possessive") return male ? "his" : "her";
+    return male ? "him" : "her"; // object (default)
   }
   function renderTabHealth(){
     var bladderComfort = clamp(100 - state.bladder);
@@ -2151,12 +2171,22 @@
   function renderFeedQuiz(){
     var c = feedQuizCtx;
     var item = c.question;
+    var breed = byId(state.breedId);
+    var stage = stageOf(state.dogDays);
+    var feedsPerDay = feedsPerDayFor(stage);
+    var perMeal = Math.round(dailyFoodGrams(breed)/feedsPerDay/5)*5;
     var optsHTML = item.options.map(function(opt, oi){
       var selected = c.answer === oi;
       return '<button class="btn btn-ghost" data-feedopt="'+oi+'" style="'+quizOptionStyle(selected)+'">'+esc(opt)+'</button>';
     }).join("");
+    var infoItems = feedingInfoItemsForDay(breed, tripDay());
     return '' +
       '<div class="card">' +
+        '<div class="section-title">Feeding info</div>' +
+        '<p class="muted" style="margin-top:2px; font-size:13px;">'+esc(state.name)+' is '+breed.weightKg+' kg — '+perMeal+' g per meal, '+feedsPerDay+' meal'+(feedsPerDay>1?'s':'')+' a day.</p>' +
+        '<ul class="challenge-list" style="margin-top:10px;">'+infoItems.map(function(t){ return '<li>'+t+'</li>'; }).join("")+'</ul>' +
+      '</div>' +
+      '<div class="card" style="margin-top:14px;">' +
         '<div class="section-title">Quick check — Feeding</div>' +
         '<p class="muted">One question on real feeding practice, before '+esc(state.name)+' eats.</p>' +
       '</div>' +
