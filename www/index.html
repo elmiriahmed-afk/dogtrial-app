@@ -61,6 +61,17 @@
   button:focus-visible, input:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
   .mono{font-family:"Inter",system-ui,sans-serif; font-weight:600; font-variant-numeric:tabular-nums;}
 
+  /* ---- splash ---- */
+  .splash{position:fixed; inset:0; z-index:30; overflow:hidden; background:#0B0E2A;}
+  .splash-bg{position:absolute; inset:0;}
+  .splash-bg svg{width:100%; height:100%; display:block;}
+  .splash-content{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:60px 28px calc(40px + env(safe-area-inset-bottom,0px));}
+  .splash-top{text-align:center; margin-top:8px;}
+  .splash-mark{width:56px; height:56px; margin:0 auto 14px; border-radius:50%; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.25); display:flex; align-items:center; justify-content:center; color:#C7CBFF; box-shadow:0 0 26px rgba(157,164,255,.35);}
+  .splash-word{font-family:"Poppins",system-ui,sans-serif; font-weight:800; font-size:28px; letter-spacing:.04em; color:#fff;}
+  .splash-tagline{margin-top:10px; font-size:14.5px; line-height:1.5; color:#D3D6EE;}
+  .splash-bottom{max-width:440px; margin:0 auto; width:100%;}
+
   /* ---- brand strip ---- */
   .brand{display:flex; align-items:center; gap:8px; margin-bottom:18px; color:var(--ink-soft);}
   .brand .mark{width:9px; height:9px; border-radius:50%; background:var(--accent);}
@@ -902,7 +913,7 @@
   }
 
   var state = null;
-  var view = "onboarding";
+  var view = "splash";
   var activeTab = "today";
   var pendingBreed = BREEDS[0].id;
   var pendingHousing = HOUSING[0].id;
@@ -1627,7 +1638,8 @@
   // ---------- render ----------
   function render(){
     var root = document.getElementById("app");
-    if (view === "onboarding") root.innerHTML = brandStrip() + renderOnboarding();
+    if (view === "splash") root.innerHTML = renderSplash();
+    else if (view === "onboarding") root.innerHTML = brandStrip() + renderOnboarding();
     else if (view === "home") root.innerHTML = brandStrip() + renderHome();
     else if (view === "leaveSetup") root.innerHTML = brandStrip() + renderLeaveSetup();
     else if (view === "atWork") root.innerHTML = brandStrip() + renderAtWork();
@@ -1660,6 +1672,61 @@
 
   function brandStrip(){
     return '<div class="brand"><span class="mark"></span><span>The 30-Day Dog</span></div>';
+  }
+
+  // No real photo asset exists for the welcome hero, so this is an illustrated
+  // dusk scene (gradient sky + mountain silhouettes + a simple sitting-dog
+  // shape) built entirely in SVG, rather than faking a stock photo.
+  function splashSceneSVG(){
+    return '' +
+      '<svg viewBox="0 0 400 600" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">' +
+        '<defs>' +
+          '<linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">' +
+            '<stop offset="0%" stop-color="#0B0E2A"/>' +
+            '<stop offset="45%" stop-color="#2E2F5E"/>' +
+            '<stop offset="78%" stop-color="#5B4E72"/>' +
+            '<stop offset="100%" stop-color="#8C6B5E"/>' +
+          '</linearGradient>' +
+          '<radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">' +
+            '<stop offset="0%" stop-color="#FFD9A0" stop-opacity="0.55"/>' +
+            '<stop offset="100%" stop-color="#FFD9A0" stop-opacity="0"/>' +
+          '</radialGradient>' +
+          '<linearGradient id="dogGrad" x1="0" y1="0" x2="1" y2="1">' +
+            '<stop offset="0%" stop-color="#E3AA6E"/>' +
+            '<stop offset="100%" stop-color="#8A5A32"/>' +
+          '</linearGradient>' +
+        '</defs>' +
+        '<rect width="400" height="600" fill="url(#skyGrad)"/>' +
+        '<ellipse cx="230" cy="360" rx="190" ry="110" fill="url(#sunGlow)"/>' +
+        '<path d="M0 430 L60 360 L120 410 L190 340 L250 400 L400 350 L400 600 L0 600 Z" fill="#2A2A52" opacity="0.75"/>' +
+        '<path d="M0 470 L90 410 L170 450 L260 400 L340 440 L400 420 L400 600 L0 600 Z" fill="#181A3A"/>' +
+        '<path d="M20 600 L20 430 Q60 360 130 340 Q180 330 210 360 L230 600 Z" fill="#12142E"/>' +
+        '<g transform="translate(110,290)">' +
+          '<path d="M6 148 Q-6 130 2 108 Q10 96 24 100 Q18 122 22 146 Z" fill="url(#dogGrad)"/>' +
+          '<ellipse cx="40" cy="98" rx="30" ry="42" transform="rotate(-6 40 98)" fill="url(#dogGrad)"/>' +
+          '<rect x="54" y="110" width="13" height="46" rx="6" fill="url(#dogGrad)"/>' +
+          '<ellipse cx="50" cy="58" rx="17" ry="22" transform="rotate(-18 50 58)" fill="url(#dogGrad)"/>' +
+          '<circle cx="66" cy="36" r="21" fill="url(#dogGrad)"/>' +
+          '<path d="M52 22 Q42 30 46 48 Q54 46 56 32 Z" fill="#7A4E2A"/>' +
+          '<ellipse cx="87" cy="40" rx="11" ry="7" transform="rotate(6 87 40)" fill="url(#dogGrad)"/>' +
+        '</g>' +
+      '</svg>';
+  }
+  function renderSplash(){
+    return '' +
+      '<div class="splash">' +
+        '<div class="splash-bg">'+splashSceneSVG()+'</div>' +
+        '<div class="splash-content">' +
+          '<div class="splash-top">' +
+            '<div class="splash-mark">'+icon('paw',30)+'</div>' +
+            '<div class="splash-word">DOGTRIAL</div>' +
+            '<p class="splash-tagline">A real-time simulation<br>of dog ownership.</p>' +
+          '</div>' +
+          '<div class="splash-bottom">' +
+            '<button class="btn btn-primary" id="splash-start">Get started</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
   }
 
   function renderOnboarding(){
@@ -3040,6 +3107,13 @@
   function attachHandlers(){
     var root = document.getElementById("app");
 
+    if (view === "splash"){
+      var splashStartBtn = document.getElementById("splash-start");
+      if (splashStartBtn) splashStartBtn.addEventListener("click", function(){
+        view = "onboarding"; render();
+      });
+    }
+
     if (view === "onboarding"){
       root.querySelectorAll("[data-breed]").forEach(function(el){
         el.addEventListener("click", function(){
@@ -3790,7 +3864,7 @@
   function init(){
     state = load();
     if (!state){
-      view = "onboarding";
+      view = "splash";
       render();
       return;
     }
