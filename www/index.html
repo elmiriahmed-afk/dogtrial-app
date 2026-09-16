@@ -32,6 +32,17 @@
     --bad:#FF6F7D;
     --bad-soft:rgba(255,111,125,.14);
     --shadow: 0 2px 6px rgba(0,0,0,.3), 0 14px 30px rgba(0,0,0,.35);
+
+    --grad-accent: linear-gradient(135deg, #9DA4FF, #6C74E8);
+    --grad-teal: linear-gradient(135deg, #7BEBC4, #2AAE85);
+    --grad-warn: linear-gradient(135deg, #FFD08A, #F0982E);
+    --grad-bad: linear-gradient(135deg, #FF9FAC, #E1495F);
+    --grad-purple: linear-gradient(135deg, #C2C7FF, #8388F0);
+    --glow-accent: 0 6px 18px -4px rgba(133,142,255,.65);
+    --glow-teal: 0 6px 18px -4px rgba(82,214,163,.55);
+    --glow-warn: 0 6px 18px -4px rgba(255,189,99,.55);
+    --glow-bad: 0 6px 18px -4px rgba(255,111,125,.55);
+    --glow-purple: 0 6px 18px -4px rgba(157,164,255,.55);
   }
 
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
@@ -57,11 +68,12 @@
 
   /* ---- cards / generic ---- */
   .card{
-    background:var(--card);
+    background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,0) 40%), var(--card);
     border:1px solid var(--line);
     border-radius:20px;
-    box-shadow:none;
+    box-shadow: 0 1px 0 rgba(255,255,255,.05) inset, 0 16px 36px -22px rgba(0,0,0,.65);
     padding:20px;
+    position:relative;
   }
   .card + .card{margin-top:14px;}
   .stack{display:flex; flex-direction:column; gap:14px;}
@@ -74,11 +86,20 @@
   }
   .btn:disabled{opacity:.45; cursor:not-allowed;}
   .btn:active:not(:disabled){transform:scale(.985);}
-  .btn-primary{background:var(--accent); border-color:var(--accent); color:#fff; box-shadow:0 8px 30px rgba(133,142,255,.22); font-family:"Poppins",system-ui,sans-serif;}
-  .btn-primary:active:not(:disabled){background:var(--accent-dark);}
-  .btn-primary:hover:not(:disabled){filter:brightness(1.04); transform:translateY(-1px);}
-  .btn-warn{background:var(--warn); border-color:var(--warn); color:#0B0E15;}
+  .btn-primary{
+    background:var(--grad-accent); border-color:transparent; color:#fff; font-family:"Poppins",system-ui,sans-serif;
+    box-shadow: var(--glow-accent), 0 0 0 1px rgba(255,255,255,.08) inset;
+  }
+  .btn-primary:active:not(:disabled){filter:brightness(.92);}
+  .btn-primary:hover:not(:disabled){filter:brightness(1.06); transform:translateY(-1px);}
+  .btn-warn{background:var(--grad-warn); border-color:transparent; color:#241704; box-shadow: var(--glow-warn), 0 0 0 1px rgba(255,255,255,.08) inset; font-family:"Poppins",system-ui,sans-serif;}
   .btn-ghost{background:transparent; border-color:transparent; color:var(--ink-soft); width:auto; min-height:auto; padding:6px 8px; font-size:13px;}
+  .btn-chip{
+    display:inline-flex; align-items:center; gap:6px; width:auto; min-height:auto;
+    background:rgba(244,245,250,.12); border:1px solid rgba(244,245,250,.22); color:var(--ink);
+    padding:8px 14px; font-size:12.5px; font-weight:600; border-radius:999px;
+  }
+  .btn-chip:active{background:rgba(244,245,250,.2);}
   .row-btns{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
 
   /* ---- onboarding ---- */
@@ -113,7 +134,7 @@
   }
   .expense-card:hover{background:var(--card-2); border-color:var(--border-elevated); transform:translateY(-1px);}
   .expense-card:active{background:#10141D; transform:scale(.985);}
-  .expense-card.selected{border-color:var(--accent); background:var(--surface-3); box-shadow:0 0 0 3px rgba(133,142,255,.08);}
+  .expense-card.selected{border-color:var(--accent); background:var(--surface-3); box-shadow:0 0 0 3px rgba(133,142,255,.08), var(--glow-accent);}
   .expense-icon{
     flex:none; width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center;
     color:#fff;
@@ -122,7 +143,7 @@
     flex:none; width:22px; height:22px; margin-top:1px; border-radius:50%; border:1.5px solid var(--line);
     background:var(--card-2); display:flex; align-items:center; justify-content:center; color:#fff;
   }
-  .expense-card.selected .expense-check{border-color:var(--accent); background:var(--accent);}
+  .expense-card.selected .expense-check{border-color:var(--accent); background:var(--grad-accent); box-shadow:var(--glow-accent);}
   .expense-body{flex:1; min-width:0;}
   .expense-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px;}
   .expense-label{font-family:"Poppins",system-ui,sans-serif; font-weight:600; font-size:15px;}
@@ -136,7 +157,7 @@
     display:flex; align-items:center; gap:12px; width:100%; text-align:left;
     background:var(--surface-3); border:1px solid var(--border-elevated); border-radius:16px; padding:14px 16px;
   }
-  .extras-icon{flex:none; width:36px; height:36px; border-radius:10px; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center;}
+  .extras-icon{flex:none; width:36px; height:36px; border-radius:10px; background:var(--grad-accent); box-shadow:var(--glow-accent); color:#fff; display:flex; align-items:center; justify-content:center;}
   .extras-body{flex:1; min-width:0;}
   .extras-label{font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft);}
   .extras-amount{font-family:"Poppins",system-ui,sans-serif; font-weight:700; font-size:19px; margin-top:2px;}
@@ -156,7 +177,7 @@
 
   /* ---- dashboard header ---- */
   .dog-head{display:flex; align-items:center; gap:14px;}
-  .dog-portrait{width:104px; height:104px; flex:none; border-radius:50%; overflow:hidden;}
+  .dog-portrait{width:104px; height:104px; flex:none; border-radius:50%; overflow:hidden; box-shadow:0 0 0 3px var(--card), 0 0 0 5px rgba(133,142,255,.4), 0 8px 24px -6px rgba(133,142,255,.5);}
   .dog-id .name{font-size:22px; font-weight:700; font-family:"Poppins",system-ui,sans-serif;}
   .stage-row{display:flex; align-items:center; gap:8px; margin-top:4px;}
   .badge{
@@ -184,7 +205,7 @@
   .stat-tile{background:var(--card-2); border-radius:18px; padding:14px;}
   .stat-tile[data-stat]{cursor:pointer;}
   .stat-tile[data-stat]:active{opacity:0.75;}
-  .stat-tile .stat-icon{width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; margin-bottom:8px;}
+  .stat-tile .stat-icon{width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; margin-bottom:8px; color:#fff;}
   .stat-tile .stat-value{font-family:"Poppins",system-ui,sans-serif; font-size:20px; font-weight:700; line-height:1;}
   .stat-tile .stat-label{color:var(--ink-soft); font-size:12px; margin-top:3px;}
   .stat-tile .stat-sublabel{color:var(--ink-faint); font-size:11px; margin-top:5px; font-weight:600;}
@@ -234,7 +255,7 @@
   .timeline-sub{font-size:12.5px; color:var(--ink-soft); margin-top:1px;}
   .friction-card{display:flex; gap:12px; align-items:flex-start; padding:14px 0;}
   .friction-card + .friction-card{border-top:1px solid var(--line);}
-  .friction-icon{flex:none; width:34px; height:34px; border-radius:10px; background:var(--warn-soft); color:var(--warn); display:flex; align-items:center; justify-content:center;}
+  .friction-icon{flex:none; width:34px; height:34px; border-radius:10px; background:var(--grad-warn); box-shadow:var(--glow-warn); color:#241704; display:flex; align-items:center; justify-content:center;}
   .friction-body .friction-title{font-family:"Poppins",system-ui,sans-serif; font-weight:600; font-size:14.5px;}
   .friction-body .friction-desc{font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;}
 
@@ -1264,7 +1285,7 @@
   }
   function wellnessRingColor(){
     var mood = moodOf();
-    return mood.key === "good" ? "var(--teal)" : mood.key === "warn" ? "var(--warn)" : "var(--bad)";
+    return mood.key === "good" ? "teal" : mood.key === "warn" ? "warn" : "bad";
   }
   // Short chip-style sublabels for the compact stat tiles — a quick qualitative
   // read, distinct from the full sentences used elsewhere (e.g. bondStatusLine).
@@ -1338,11 +1359,20 @@
 
   // Circular status ring — a live-state summary (NOT a permanent score), used
   // for the Health "Wellness" module and similar single-number summaries.
+  var RING_GRAD_ID = 0;
+  var COLOR_GRAD_STOPS = {
+    accent: ["#9DA4FF", "#6C74E8"],
+    teal: ["#7BEBC4", "#2AAE85"],
+    warn: ["#FFD08A", "#F0982E"],
+    bad: ["#FF9FAC", "#E1495F"],
+    purple: ["#C2C7FF", "#8388F0"]
+  };
   function circularStatus(percent, opts){
     opts = opts || {};
     var size = opts.size || 140;
     var stroke = opts.stroke || 10;
-    var color = opts.color || "var(--accent)";
+    var colorKey = opts.colorKey || "accent";
+    var stops = COLOR_GRAD_STOPS[colorKey] || COLOR_GRAD_STOPS.accent;
     var label = opts.label || "";
     var sublabel = opts.sublabel || "";
     var pct = Math.max(0, Math.min(100, Math.round(percent)));
@@ -1350,11 +1380,15 @@
     var c = 2 * Math.PI * r;
     var offset = c * (1 - pct / 100);
     var mid = size / 2;
+    var gradId = "ringGrad" + (RING_GRAD_ID++);
     return '' +
-      '<div class="status-ring" style="width:'+size+'px; height:'+size+'px;">' +
+      '<div class="status-ring" style="width:'+size+'px; height:'+size+'px; filter:drop-shadow(0 6px 18px rgba(0,0,0,.35));">' +
         '<svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'">' +
+          '<defs><linearGradient id="'+gradId+'" x1="0%" y1="0%" x2="100%" y2="100%">' +
+            '<stop offset="0%" stop-color="'+stops[0]+'"/><stop offset="100%" stop-color="'+stops[1]+'"/>' +
+          '</linearGradient></defs>' +
           '<circle cx="'+mid+'" cy="'+mid+'" r="'+r+'" fill="none" stroke="var(--line)" stroke-width="'+stroke+'"/>' +
-          '<circle cx="'+mid+'" cy="'+mid+'" r="'+r+'" fill="none" stroke="'+color+'" stroke-width="'+stroke+'" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+offset+'" transform="rotate(-90 '+mid+' '+mid+')" style="transition:stroke-dashoffset 300ms ease;"/>' +
+          '<circle cx="'+mid+'" cy="'+mid+'" r="'+r+'" fill="none" stroke="url(#'+gradId+')" stroke-width="'+stroke+'" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+offset+'" transform="rotate(-90 '+mid+' '+mid+')" style="transition:stroke-dashoffset 300ms ease;"/>' +
         '</svg>' +
         '<div class="status-ring-center">' +
           '<div class="status-ring-value">'+pct+'%</div>' +
@@ -1366,7 +1400,7 @@
 
   function statTile(opts){
     return '<div class="stat-tile"'+(opts.stat?' data-stat="'+opts.stat+'"':'')+'>' +
-      '<div class="stat-icon" style="background:var(--'+opts.color+'-soft); color:var(--'+opts.color+');">'+icon(opts.icon,18)+'</div>' +
+      '<div class="stat-icon" style="background:var(--grad-'+opts.color+'); box-shadow:var(--glow-'+opts.color+');">'+icon(opts.icon,18)+'</div>' +
       '<div class="stat-value">'+opts.value+'</div>' +
       '<div class="stat-label">'+opts.label+'</div>' +
       (opts.sublabel ? '<div class="stat-sublabel">'+opts.sublabel+'</div>' : '') +
@@ -1758,7 +1792,7 @@
     var wellnessCard = '' +
       '<div class="card">' +
         '<div class="section-title" style="text-align:center;">Wellness</div>' +
-        circularStatus(wellnessScore(), {size:120, stroke:9, color:wellnessRingColor(), label:"Wellness", sublabel:mood.label}) +
+        circularStatus(wellnessScore(), {size:120, stroke:9, colorKey:wellnessRingColor(), label:"Wellness", sublabel:mood.label}) +
         '<div class="stat-grid" style="margin-top:16px;">' +
           statTile({stat:"feed", icon:"bowl", color:"accent", value:Math.round(state.hunger)+"%", label:"Fed", sublabel:fedSublabel()}) +
           statTile({stat:"energy", icon:"bolt", color:"teal", value:Math.round(state.energy)+"%", label:"Energy", sublabel:energySublabel()}) +
@@ -1812,7 +1846,7 @@
     return '' +
       '<div class="card">' +
         '<div class="section-title" style="text-align:center;">Wellness</div>' +
-        circularStatus(wellnessScore(), {size:132, stroke:10, color:wellnessRingColor(), label:"Wellness", sublabel:mood.label}) +
+        circularStatus(wellnessScore(), {size:132, stroke:10, colorKey:wellnessRingColor(), label:"Wellness", sublabel:mood.label}) +
         '<div class="stat-grid" style="margin-top:16px;">' +
           statTile({stat:"feed", icon:"bowl", color:"accent", value:Math.round(state.hunger)+"%", label:"Fed", sublabel:fedSublabel()}) +
           statTile({stat:"energy", icon:"bolt", color:"teal", value:Math.round(state.energy)+"%", label:"Energy", sublabel:energySublabel()}) +
@@ -2042,7 +2076,7 @@
     var isOn = selected.indexOf(e.id) !== -1;
     var priceLabel = "€"+e.cost+(e.period === "monthly" ? "/mo" : "");
     return '<button class="expense-card'+(isOn?' selected':'')+'" data-expense="'+e.id+'">' +
-      '<span class="expense-icon" style="background:var(--'+e.color+');">'+icon(e.icon,18)+'</span>' +
+      '<span class="expense-icon" style="background:var(--grad-'+e.color+'); box-shadow:var(--glow-'+e.color+');">'+icon(e.icon,18)+'</span>' +
       '<span class="expense-body">' +
         '<span class="expense-top"><span class="expense-label">'+e.label+'</span><b>'+priceLabel+'</b></span>' +
         '<span class="expense-note">'+e.note+'</span>' +
@@ -2163,7 +2197,7 @@
               '<button class="btn-ghost" id="reset-confirm-btn" style="color:var(--bad)">Yes</button>' +
               '<button class="btn-ghost" id="reset-cancel-btn">Cancel</button>' +
             '</span>' :
-            '<button class="btn-ghost" id="reset-btn">Start a new trial</button>') +
+            '<button class="btn-chip" id="reset-btn">Start a new trial</button>') +
         '</div>' +
         '<div class="dog-head">' +
           '<div class="dog-portrait">'+dogVisual(breed, stage)+'</div>' +
@@ -2724,7 +2758,7 @@
         return '' +
           '<div class="timeline-item">' +
             '<span class="timeline-line"></span>' +
-            '<span class="timeline-dot" style="background:var(--'+v.color+');">'+icon(v.iconName,14)+'</span>' +
+            '<span class="timeline-dot" style="background:var(--grad-'+v.color+'); box-shadow:var(--glow-'+v.color+');">'+icon(v.iconName,14)+'</span>' +
             '<span class="timeline-body">' +
               '<div class="timeline-time">'+hhmm+'</div>' +
               '<div class="timeline-title">'+esc(j.text)+'</div>' +
