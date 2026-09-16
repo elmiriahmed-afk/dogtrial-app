@@ -127,6 +127,23 @@
   .cost-row{display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:7px 0; border-bottom:1px solid var(--line); font-size:13.5px;}
   .cost-row b{font-family:"Inter",system-ui,sans-serif; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap;}
   .cost-total{border-bottom:none; font-weight:600; margin-top:2px; padding-top:9px; border-top:1px dashed var(--line);}
+  .expense-list{display:flex; flex-direction:column; gap:10px;}
+  .expense-card{
+    border:1.5px solid var(--line); border-radius:16px; padding:12px 14px; background:var(--card-2);
+    text-align:left; display:flex; gap:11px; align-items:flex-start; width:100%;
+  }
+  .expense-card.selected{border-color:var(--accent); background:var(--accent-soft);}
+  .expense-check{
+    flex:none; width:20px; height:20px; margin-top:1px; border-radius:50%; border:1.5px solid var(--line);
+    background:var(--card); display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700; color:#fff;
+  }
+  .expense-card.selected .expense-check{border-color:var(--accent); background:var(--accent);}
+  .expense-body{flex:1; min-width:0;}
+  .expense-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px;}
+  .expense-label{font-weight:700; font-size:14px;}
+  .expense-top b{font-family:"Inter",system-ui,sans-serif; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .expense-note{font-size:12.5px; margin-top:3px;}
   .challenge-list{margin:10px 0 0; padding-left:18px; font-size:13.5px; color:var(--ink-soft);}
   .challenge-list li{margin-bottom:6px; line-height:1.4;}
   .pup-thumb{flex:none; width:56px; height:56px; border-radius:50%; overflow:hidden;}
@@ -575,6 +592,26 @@
   // Royal Canin averaging ~6.5€/kg across its size-specific formulas.
   var VET_STARTER_COST = 160;   // consultation + first 2 vaccines (primo-vaccination)
   var GEAR_STARTER_COST = 140;  // bed/crate, collar & leash, bowls, toys
+  // Real costs beyond food that most first-time owners don't budget for —
+  // shown as opt-in choices so the running total reflects decisions the
+  // person actually made, not a number forced on them.
+  var OPTIONAL_EXPENSES = [
+    { id:"insurance", label:"Pet insurance", note:"Covers vet bills if something goes wrong.", cost:25, period:"monthly" },
+    { id:"daycare", label:"Dog walker / daycare", note:"Someone to cover the dog on long work days.", cost:200, period:"monthly" },
+    { id:"grooming", label:"Professional grooming", note:"Baths, nail trims, coat care.", cost:40, period:"monthly" },
+    { id:"parasite", label:"Flea, tick &amp; worming prevention", note:"Monthly protection most vets recommend.", cost:15, period:"monthly" },
+    { id:"toys", label:"Toys &amp; treats", note:"Keeps the dog mentally stimulated.", cost:20, period:"monthly" },
+    { id:"training_classes", label:"Group training classes", note:"A structured course beyond what you teach alone.", cost:120, period:"once" },
+    { id:"sitter", label:"Pet sitter for travel", note:"Coverage for a trip during the trial.", cost:35, period:"once" }
+  ];
+  function selectedExpensesCostSoFar(realDays){
+    var days = Math.max(0, realDays);
+    var ids = (state && state.selectedExpenses) || [];
+    return OPTIONAL_EXPENSES.reduce(function(sum, e){
+      if (ids.indexOf(e.id) === -1) return sum;
+      return sum + (e.period === "monthly" ? (e.cost / 30 * days) : e.cost);
+    }, 0);
+  }
   function estimateMonthlyFoodCost(breed){
     var kgPerMonth = breed.weightKg * 15 * 30 / 1000;
     return Math.round(kgPerMonth * 6.5);
@@ -813,7 +850,7 @@
       lastNotified: { hunger:0, bladder:0, energy:0 },
       lastHomeAccidentAt: 0, lastPositiveMomentAt: 0, typicalHoursAway: 4, lastPhaseLabel: null,
       ownerLoad: 20, walksCompleted: 0, accidentsCount: 0, totalHoursAway: 0, checkpointShownDay: 0,
-      awaySessions: [], incidentTally: {}, seenIncidentTypes: [], trainingLog: [],
+      awaySessions: [], incidentTally: {}, seenIncidentTypes: [], trainingLog: [], selectedExpenses: [],
       emergencyInfo: { vetName:"", vetPhone:"", allergies:"", microchipId:"" },
       journal: [{ ts: now, text: name + " came home. The trial starts now." }]
     };
@@ -824,7 +861,8 @@
   function costSoFar(breed, realDays){
     var days = Math.max(0, realDays);
     var food = estimateMonthlyFoodCost(breed) / 30 * days;
-    return Math.round(VET_STARTER_COST + GEAR_STARTER_COST + food);
+    var optional = selectedExpensesCostSoFar(days);
+    return Math.round(VET_STARTER_COST + GEAR_STARTER_COST + food + optional);
   }
   function longestAwaySession(){
     var sessions = state.awaySessions || [];
@@ -1829,14 +1867,33 @@
   function renderTabCosts(breed, realDaysElapsed){
     var costRunning = costSoFar(breed, realDaysElapsed);
     var foodSoFar = Math.round(estimateMonthlyFoodCost(breed) / 30 * Math.max(0, realDaysElapsed));
+    var optionalSoFar = Math.round(selectedExpensesCostSoFar(realDaysElapsed));
+    var selected = state.selectedExpenses || [];
+    var optionalCards = OPTIONAL_EXPENSES.map(function(e){
+      var isOn = selected.indexOf(e.id) !== -1;
+      var priceLabel = "€"+e.cost+(e.period === "monthly" ? "/mo" : "");
+      return '<button class="expense-card'+(isOn?' selected':'')+'" data-expense="'+e.id+'">' +
+        '<span class="expense-check">'+(isOn?"✓":"")+'</span>' +
+        '<span class="expense-body">' +
+          '<span class="expense-top"><span class="expense-label">'+e.label+'</span><b>'+priceLabel+'</b></span>' +
+          '<span class="expense-note muted">'+e.note+'</span>' +
+        '</span>' +
+      '</button>';
+    }).join("");
     return '' +
       '<div class="card">' +
         '<div class="section-title">Spent so far</div>' +
         '<div class="next-label">€'+costRunning+'</div>' +
         '<div class="cost-row" style="margin-top:10px;"><span>Vet visit + first 2 vaccines</span><b>€'+VET_STARTER_COST+'</b></div>' +
         '<div class="cost-row"><span>Starter gear — bed, collar &amp; leash, bowls, toys</span><b>€'+GEAR_STARTER_COST+'</b></div>' +
-        '<div class="cost-row cost-total"><span>Food so far</span><b>€'+foodSoFar+'</b></div>' +
+        '<div class="cost-row"><span>Food so far</span><b>€'+foodSoFar+'</b></div>' +
+        (optionalSoFar > 0 ? '<div class="cost-row cost-total"><span>Optional expenses chosen</span><b>€'+optionalSoFar+'</b></div>' : '') +
         '<p class="muted" style="margin-top:8px; font-size:12.5px;">Not the dog\'s stats — yours. How is this fitting into your life?</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Optional expenses</div>' +
+        '<p class="muted" style="font-size:12.5px; margin-bottom:10px;">Tap the ones you\'d actually pay for — your running total updates to match.</p>' +
+        '<div class="expense-list">'+optionalCards+'</div>' +
       '</div>';
   }
 
@@ -2534,6 +2591,16 @@
           render();
         });
       });
+      root.querySelectorAll("[data-expense]").forEach(function(el){
+        el.addEventListener("click", function(){
+          var id = el.getAttribute("data-expense");
+          state.selectedExpenses = state.selectedExpenses || [];
+          var idx = state.selectedExpenses.indexOf(id);
+          if (idx === -1) state.selectedExpenses.push(id); else state.selectedExpenses.splice(idx, 1);
+          save();
+          render();
+        });
+      });
       root.querySelectorAll("[data-stat]").forEach(function(el){
         el.addEventListener("click", function(){
           var stat = el.getAttribute("data-stat");
@@ -3228,6 +3295,7 @@
     if (!state.incidentTally) state.incidentTally = {};
     if (!state.seenIncidentTypes) state.seenIncidentTypes = [];
     if (!state.trainingLog) state.trainingLog = [];
+    if (!state.selectedExpenses) state.selectedExpenses = [];
     TRAINING_SKILLS.forEach(function(s){ if (state.training[s.id] === undefined) state.training[s.id] = 0; });
     if (state.checkpointShownDay === undefined) state.checkpointShownDay = 0;
     if (!state.emergencyInfo) state.emergencyInfo = { vetName:"", vetPhone:"", allergies:"", microchipId:"" };
