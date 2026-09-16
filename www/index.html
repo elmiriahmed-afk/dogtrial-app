@@ -2297,7 +2297,12 @@
     var optionalCards = OPTIONAL_EXPENSES.map(function(e){ return expenseCardHTML(e, selected); }).join("");
     return '' +
       '<div class="card">' +
-        '<div class="section-title">Spent so far</div>' +
+        '<div class="top-actions" style="margin-bottom:2px; align-items:center;">' +
+          '<span class="section-title" style="margin-bottom:0; display:flex; align-items:center; gap:8px;">' +
+            '<span class="extras-icon" style="width:26px; height:26px; border-radius:8px;">'+icon('wallet',14)+'</span>Spent so far' +
+          '</span>' +
+          '<span class="training-caption-chevron" style="color:var(--ink-faint);">&rsaquo;</span>' +
+        '</div>' +
         '<div class="next-label">€'+costRunning+'</div>' +
         (monthlyExtras > 0 ? '<p class="muted" style="margin-top:6px; font-size:13px;">+ €'+monthlyExtras+' / month if your current routine continues</p>' : '') +
         '<div class="cost-row" style="margin-top:10px;"><span>Food so far</span><b>€'+foodSoFar+'</b></div>' +
@@ -2336,8 +2341,7 @@
     var totalIncidents = totalIncidentsCount();
     return '' +
       '<div class="card">' +
-        '<div class="section-title">Your life</div>' +
-        '<p class="muted" style="margin-top:2px;">How does this fit into your routine?</p>' +
+        '<div class="section-title">Home environment</div>' +
         '<div class="home-env-card">' +
           '<div class="home-env-photo">'+housingIllustration(housing.id)+'</div>' +
           '<div class="home-env-facts">' +
