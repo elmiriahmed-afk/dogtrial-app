@@ -618,6 +618,13 @@
   // Real costs beyond food that most first-time owners don't budget for —
   // shown as opt-in choices so the running total reflects decisions the
   // person actually made, not a number forced on them.
+  // The two starter costs are real choices too, not a charge forced on the
+  // person before they've decided anything — they start unselected, same as
+  // every other expense below, so "Spent so far" begins at €0.
+  var STARTER_EXPENSES = [
+    { id:"vet_starter", label:"Vet visit + first 2 vaccines", note:"Initial consultation and primo-vaccination.", cost:VET_STARTER_COST, period:"once", unitLabel:"One-time", icon:"medical", color:"bad" },
+    { id:"gear_starter", label:"Starter gear", note:"Bed, collar & leash, bowls, toys.", cost:GEAR_STARTER_COST, period:"once", unitLabel:"One-time", icon:"home", color:"accent" }
+  ];
   var OPTIONAL_EXPENSES = [
     { id:"insurance", label:"Pet insurance", note:"Helps cover eligible veterinary bills when something goes wrong.", cost:30, period:"monthly", unitLabel:"Monthly", icon:"shield", color:"accent" },
     { id:"walker", label:"Dog walker", note:"Someone takes your dog out when your schedule doesn't allow it.", cost:160, period:"monthly", unitLabel:"Monthly", icon:"paw", color:"accent" },
@@ -632,7 +639,7 @@
   function selectedExpensesCostSoFar(realDays){
     var days = Math.max(0, realDays);
     var ids = (state && state.selectedExpenses) || [];
-    return OPTIONAL_EXPENSES.reduce(function(sum, e){
+    return STARTER_EXPENSES.concat(OPTIONAL_EXPENSES).reduce(function(sum, e){
       if (ids.indexOf(e.id) === -1) return sum;
       return sum + (e.period === "monthly" ? (e.cost / 30 * days) : e.cost);
     }, 0);
@@ -887,7 +894,7 @@
     var days = Math.max(0, realDays);
     var food = estimateMonthlyFoodCost(breed) / 30 * days;
     var optional = selectedExpensesCostSoFar(days);
-    return Math.round(VET_STARTER_COST + GEAR_STARTER_COST + food + optional);
+    return Math.round(food + optional);
   }
   function longestAwaySession(){
     var sessions = state.awaySessions || [];
@@ -2031,6 +2038,19 @@
       return sum + e.cost;
     }, 0);
   }
+  function expenseCardHTML(e, selected){
+    var isOn = selected.indexOf(e.id) !== -1;
+    var priceLabel = "€"+e.cost+(e.period === "monthly" ? "/mo" : "");
+    return '<button class="expense-card'+(isOn?' selected':'')+'" data-expense="'+e.id+'">' +
+      '<span class="expense-icon" style="background:var(--'+e.color+');">'+icon(e.icon,18)+'</span>' +
+      '<span class="expense-body">' +
+        '<span class="expense-top"><span class="expense-label">'+e.label+'</span><b>'+priceLabel+'</b></span>' +
+        '<span class="expense-note">'+e.note+'</span>' +
+        '<span class="expense-badge">'+e.unitLabel+'</span>' +
+      '</span>' +
+      '<span class="expense-check">'+(isOn?icon('check',12):'')+'</span>' +
+    '</button>';
+  }
   function renderTabCosts(breed, realDaysElapsed){
     var costRunning = costSoFar(breed, realDaysElapsed);
     var foodSoFar = Math.round(estimateMonthlyFoodCost(breed) / 30 * Math.max(0, realDaysElapsed));
@@ -2038,29 +2058,21 @@
     var monthlyExtras = monthlyExtrasTotal();
     var annualExtras = monthlyExtras * 12;
     var selected = state.selectedExpenses || [];
-    var optionalCards = OPTIONAL_EXPENSES.map(function(e){
-      var isOn = selected.indexOf(e.id) !== -1;
-      var priceLabel = "€"+e.cost+(e.period === "monthly" ? "/mo" : "");
-      return '<button class="expense-card'+(isOn?' selected':'')+'" data-expense="'+e.id+'">' +
-        '<span class="expense-icon" style="background:var(--'+e.color+');">'+icon(e.icon,18)+'</span>' +
-        '<span class="expense-body">' +
-          '<span class="expense-top"><span class="expense-label">'+e.label+'</span><b>'+priceLabel+'</b></span>' +
-          '<span class="expense-note">'+e.note+'</span>' +
-          '<span class="expense-badge">'+e.unitLabel+'</span>' +
-        '</span>' +
-        '<span class="expense-check">'+(isOn?icon('check',12):'')+'</span>' +
-      '</button>';
-    }).join("");
+    var starterCards = STARTER_EXPENSES.map(function(e){ return expenseCardHTML(e, selected); }).join("");
+    var optionalCards = OPTIONAL_EXPENSES.map(function(e){ return expenseCardHTML(e, selected); }).join("");
     return '' +
       '<div class="card">' +
         '<div class="section-title">Spent so far</div>' +
         '<div class="next-label">€'+costRunning+'</div>' +
         (monthlyExtras > 0 ? '<p class="muted" style="margin-top:6px; font-size:13px;">+ €'+monthlyExtras+' / month if your current routine continues</p>' : '') +
-        '<div class="cost-row" style="margin-top:10px;"><span>Vet visit + first 2 vaccines</span><b>€'+VET_STARTER_COST+'</b></div>' +
-        '<div class="cost-row"><span>Starter gear — bed, collar &amp; leash, bowls, toys</span><b>€'+GEAR_STARTER_COST+'</b></div>' +
-        '<div class="cost-row"><span>Food so far</span><b>€'+foodSoFar+'</b></div>' +
-        (optionalSoFar > 0 ? '<div class="cost-row cost-total"><span>Optional expenses chosen</span><b>€'+optionalSoFar+'</b></div>' : '') +
-        '<p class="muted" style="margin-top:8px; font-size:12.5px;">Not the dog\'s stats — yours. How is this fitting into your life?</p>' +
+        '<div class="cost-row" style="margin-top:10px;"><span>Food so far</span><b>€'+foodSoFar+'</b></div>' +
+        (optionalSoFar > 0 ? '<div class="cost-row cost-total"><span>Expenses chosen</span><b>€'+optionalSoFar+'</b></div>' : '') +
+        '<p class="muted" style="margin-top:8px; font-size:12.5px;">Not the dog\'s stats — yours. How is this fitting into your life? Nothing here is charged until you tap it below.</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">Getting started</div>' +
+        '<p class="muted" style="font-size:13px; margin-bottom:14px;">The two costs almost every new owner faces on day one — tap the ones you\'re paying for.</p>' +
+        '<div class="expense-list">'+starterCards+'</div>' +
       '</div>' +
       '<div class="card">' +
         '<div class="section-title">Optional expenses</div>' +
