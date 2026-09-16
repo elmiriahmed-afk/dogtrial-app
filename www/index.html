@@ -187,6 +187,7 @@
   .stat-tile .stat-icon{width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; margin-bottom:8px;}
   .stat-tile .stat-value{font-family:"Poppins",system-ui,sans-serif; font-size:20px; font-weight:700; line-height:1;}
   .stat-tile .stat-label{color:var(--ink-soft); font-size:12px; margin-top:3px;}
+  .stat-tile .stat-sublabel{color:var(--ink-faint); font-size:11px; margin-top:5px; font-weight:600;}
 
   /* ---- training GIF slot (placeholder until real clips exist) ---- */
   .gif-slot{display:flex; align-items:center; justify-content:center; height:140px; border-radius:16px; background:var(--card-2); font-size:56px;}
@@ -221,6 +222,21 @@
   .j-entry:last-child{border-bottom:none;}
   .j-time{flex:none; width:64px; color:var(--ink-faint); font-weight:700; font-size:11.5px; padding-top:1px;}
   .j-text{color:var(--ink);}
+  .timeline{position:relative;}
+  .timeline-item{position:relative; display:flex; gap:12px; padding-bottom:18px;}
+  .timeline-item:last-child{padding-bottom:0;}
+  .timeline-item:last-child .timeline-line{display:none;}
+  .timeline-dot{flex:none; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:1; color:#fff;}
+  .timeline-line{position:absolute; left:13px; top:28px; bottom:0; width:2px; background:var(--line);}
+  .timeline-body{flex:1; min-width:0; padding-top:2px;}
+  .timeline-time{font-size:11px; color:var(--ink-faint); font-weight:700; letter-spacing:.03em;}
+  .timeline-title{font-family:"Poppins",system-ui,sans-serif; font-weight:600; font-size:14.5px; margin-top:2px;}
+  .timeline-sub{font-size:12.5px; color:var(--ink-soft); margin-top:1px;}
+  .friction-card{display:flex; gap:12px; align-items:flex-start; padding:14px 0;}
+  .friction-card + .friction-card{border-top:1px solid var(--line);}
+  .friction-icon{flex:none; width:34px; height:34px; border-radius:10px; background:var(--warn-soft); color:var(--warn); display:flex; align-items:center; justify-content:center;}
+  .friction-body .friction-title{font-family:"Poppins",system-ui,sans-serif; font-weight:600; font-size:14.5px;}
+  .friction-body .friction-desc{font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;}
 
   .alert-banner{margin-top:14px; padding:10px 12px; border-radius:14px; background:var(--warn-soft); color:var(--warn); font-size:13px; text-align:left; font-weight:600;}
 
@@ -913,6 +929,16 @@
     if (label === "Keeping up day to day") return "The day-to-day load stayed heavy through the month — feeding, walks, cleanup, and incidents kept stacking up.";
     return esc(state.name) + " and you were still settling in by day 30 — that kind of bond usually needs more than a month.";
   }
+  function challengeIcon(label){
+    if (label === "Cleanup & house-training") return "droplet";
+    if (label === "Time spent alone") return "door";
+    if (label === "Keeping up day to day") return "bolt";
+    return "heart";
+  }
+  function totalIncidentsCount(){
+    var tally = state.incidentTally || {};
+    return Object.keys(tally).reduce(function(sum, k){ return sum + tally[k]; }, 0);
+  }
   function compatibilityLabel(score){
     if (score >= 75) return "Strong match";
     if (score >= 50) return "Potential challenges";
@@ -1229,6 +1255,36 @@
     if (score>=32) return {label:"Distressed", key:"bad"};
     return {label:"Struggling", key:"bad"};
   }
+  function wellnessRingColor(){
+    var mood = moodOf();
+    return mood.key === "good" ? "var(--teal)" : mood.key === "warn" ? "var(--warn)" : "var(--bad)";
+  }
+  // Short chip-style sublabels for the compact stat tiles — a quick qualitative
+  // read, distinct from the full sentences used elsewhere (e.g. bondStatusLine).
+  function fedSublabel(){
+    var stage = stageOf(state.dogDays);
+    var fi = FEED_INTERVAL[stage];
+    var mins = Math.round(Math.max(0, state.hunger * (fi||0) / 100 * 60));
+    if (mins <= 0) return "Meal due now";
+    if (mins < 60) return "Next meal in " + mins + "m";
+    return "Next meal in " + fmtHours(mins/60);
+  }
+  function energySublabel(){
+    if (state.energy >= 70) return "High";
+    if (state.energy >= 40) return "Normal";
+    return "Low";
+  }
+  function bladderSublabel(comfort){
+    if (comfort >= 70) return "Good";
+    if (comfort >= 40) return "OK";
+    return "Needs a break";
+  }
+  function bondSublabel(){
+    if (state.bond >= 75) return "Strong bond";
+    if (state.bond >= 55) return "Getting closer";
+    if (state.bond >= 35) return "Still adjusting";
+    return "Just met";
+  }
 
   function esc(s){
     return String(s).replace(/[&<>"']/g, function(c){
@@ -1299,6 +1355,15 @@
         '</div>' +
       '</div>' +
       (sublabel ? '<div class="status-ring-sub">'+sublabel+'</div>' : '');
+  }
+
+  function statTile(opts){
+    return '<div class="stat-tile"'+(opts.stat?' data-stat="'+opts.stat+'"':'')+'>' +
+      '<div class="stat-icon" style="background:var(--'+opts.color+'-soft); color:var(--'+opts.color+');">'+icon(opts.icon,18)+'</div>' +
+      '<div class="stat-value">'+opts.value+'</div>' +
+      '<div class="stat-label">'+opts.label+'</div>' +
+      (opts.sublabel ? '<div class="stat-sublabel">'+opts.sublabel+'</div>' : '') +
+    '</div>';
   }
 
   function dayLabel(){
@@ -1681,7 +1746,22 @@
       : "Available now";
     laterRows += '<div class="cost-row" style="border-bottom:none;"><span style="display:flex; align-items:center; gap:6px;">'+icon('cap',14)+'Training</span><b>'+trainWhen+'</b></div>';
 
+    var bladderComfort = clamp(100 - state.bladder);
+    var mood = moodOf();
+    var wellnessCard = '' +
+      '<div class="card">' +
+        '<div class="section-title" style="text-align:center;">Wellness</div>' +
+        circularStatus(wellnessScore(), {size:120, stroke:9, color:wellnessRingColor(), label:"Wellness", sublabel:mood.label}) +
+        '<div class="stat-grid" style="margin-top:16px;">' +
+          statTile({stat:"feed", icon:"bowl", color:"accent", value:Math.round(state.hunger)+"%", label:"Fed", sublabel:fedSublabel()}) +
+          statTile({stat:"energy", icon:"bolt", color:"teal", value:Math.round(state.energy)+"%", label:"Energy", sublabel:energySublabel()}) +
+          statTile({stat:"bladder", icon:"droplet", color:"warn", value:Math.round(bladderComfort)+"%", label:"Bladder comfort", sublabel:bladderSublabel(bladderComfort)}) +
+          statTile({icon:"heart", color:"purple", value:Math.round(state.bond)+"%", label:"Bond", sublabel:bondSublabel()}) +
+        '</div>' +
+      '</div>';
+
     return '' +
+      wellnessCard +
       nowCard +
 
       '<div class="card">' +
@@ -1722,15 +1802,15 @@
   function renderTabHealth(){
     var bladderComfort = clamp(100 - state.bladder);
     var mood = moodOf();
-    var ringColor = mood.key === "good" ? "var(--teal)" : mood.key === "warn" ? "var(--warn)" : "var(--bad)";
     return '' +
       '<div class="card">' +
         '<div class="section-title" style="text-align:center;">Wellness</div>' +
-        circularStatus(wellnessScore(), {size:132, stroke:10, color:ringColor, label:"Wellness", sublabel:mood.label}) +
+        circularStatus(wellnessScore(), {size:132, stroke:10, color:wellnessRingColor(), label:"Wellness", sublabel:mood.label}) +
         '<div class="stat-grid" style="margin-top:16px;">' +
-          '<div class="stat-tile" data-stat="feed"><div class="stat-icon" style="background:var(--accent-soft); color:var(--accent);">'+icon('bowl',18)+'</div><div class="stat-value">'+Math.round(state.hunger)+'%</div><div class="stat-label">Fed</div></div>' +
-          '<div class="stat-tile" data-stat="energy"><div class="stat-icon" style="background:var(--teal-soft); color:var(--teal);">'+icon('bolt',18)+'</div><div class="stat-value">'+Math.round(state.energy)+'%</div><div class="stat-label">Energy</div></div>' +
-          '<div class="stat-tile" data-stat="bladder"><div class="stat-icon" style="background:var(--warn-soft); color:var(--warn);">'+icon('droplet',18)+'</div><div class="stat-value">'+Math.round(bladderComfort)+'%</div><div class="stat-label">Bladder comfort</div></div>' +
+          statTile({stat:"feed", icon:"bowl", color:"accent", value:Math.round(state.hunger)+"%", label:"Fed", sublabel:fedSublabel()}) +
+          statTile({stat:"energy", icon:"bolt", color:"teal", value:Math.round(state.energy)+"%", label:"Energy", sublabel:energySublabel()}) +
+          statTile({stat:"bladder", icon:"droplet", color:"warn", value:Math.round(bladderComfort)+"%", label:"Bladder comfort", sublabel:bladderSublabel(bladderComfort)}) +
+          statTile({icon:"heart", color:"purple", value:Math.round(state.bond)+"%", label:"Bond", sublabel:bondSublabel()}) +
         '</div>' +
       '</div>' +
       '<div class="card" data-stat="repro" style="cursor:pointer;">' +
@@ -2451,14 +2531,36 @@
     var avgTraining = Math.round(avgTrainingProgress());
     var score = compatibilityScore();
     var label = compatibilityLabel(score);
-    var challengeItems = topChallenges(2).map(function(c){
-      return '<li>'+challengeDescription(c.label)+'</li>';
+    var friction = topChallenges(2);
+    var timeTogetherHours = Math.max(0, 30*24 - state.totalHoursAway);
+    var frictionCards = friction.map(function(c){
+      return '<div class="friction-card">' +
+        '<span class="friction-icon">'+icon(challengeIcon(c.label),18)+'</span>' +
+        '<span class="friction-body">' +
+          '<div class="friction-title">'+esc(c.label)+'</div>' +
+          '<div class="friction-desc">'+challengeDescription(c.label)+'</div>' +
+        '</span>' +
+      '</div>';
     }).join("");
     return '' +
       '<div class="card">' +
-        '<div class="section-title">30 days with '+esc(state.name)+'</div>' +
-        '<h2 style="margin-top:4px;">Your trial is complete</h2>' +
+        '<div class="section-title">Your 30 days</div>' +
+        '<h2 style="margin-top:4px;">You lived with '+esc(state.name)+' for 30 real days.</h2>' +
+        '<p class="muted" style="margin-top:6px;">Here\'s what happened.</p>' +
       '</div>' +
+      '<div class="card">' +
+        '<div class="stat-grid">' +
+          statTile({icon:"clock", color:"accent", value:Math.round(timeTogetherHours)+"h", label:"Time together"}) +
+          statTile({icon:"door", color:"warn", value:fmtHours(state.totalHoursAway), label:"Alone time, total"}) +
+          statTile({icon:"x", color:"bad", value:String(totalIncidentsCount()), label:"Incidents"}) +
+          statTile({icon:"wallet", color:"teal", value:"€"+cost, label:"Money spent"}) +
+        '</div>' +
+      '</div>' +
+      (frictionCards ? '' +
+        '<div class="card">' +
+          '<div class="section-title">Your friction points</div>' +
+          frictionCards +
+        '</div>' : '') +
       '<div class="card">' +
         '<div class="section-title">What actually happened</div>' +
         '<div class="cost-row cost-total"><span>Total cost, 30 days</span><b>€'+cost+'</b></div>' +
@@ -2478,10 +2580,8 @@
         '<p class="muted" style="margin-top:2px;">'+relationshipNarrative()+'</p>' +
       '</div>' +
       '<div class="card">' +
-        '<div class="section-title">Potential challenges</div>' +
+        '<div class="section-title">If the trial ended today</div>' +
         '<h2 style="margin-top:4px;">'+label+'</h2>' +
-        '<p class="muted" style="margin-top:6px;">Here\'s what you should think about before adopting.</p>' +
-        '<ul class="challenge-list">'+challengeItems+'</ul>' +
       '</div>' +
       '<div class="card">' +
         '<div class="section-title">Your adopter profile</div>' +
@@ -2578,15 +2678,58 @@
       '</div>';
   }
 
+  // No structured event type is stored per entry — a light keyword read decides
+  // the timeline dot's color/icon without needing a data model change.
+  function journalEntryVisual(text){
+    var t = text.toLowerCase();
+    if (t.indexOf("accident") !== -1 || t.indexOf("destroy") !== -1 || t.indexOf("chewed") !== -1 || t.indexOf("distress") !== -1)
+      return { color:"bad", iconName:"x" };
+    if (t.indexOf("left home") !== -1 || t.indexOf("alone") !== -1)
+      return { color:"warn", iconName:"door" };
+    return { color:"teal", iconName:"check" };
+  }
+  function dayGroupLabel(ts){
+    var d = new Date(ts), now = new Date();
+    var startOfDay = function(x){ return new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime(); };
+    var diffDays = Math.round((startOfDay(now) - startOfDay(d)) / (24*HOUR));
+    if (diffDays === 0) return "Today";
+    if (diffDays === 1) return "Yesterday";
+    return d.toLocaleDateString("en-US", { weekday:"long", month:"long", day:"numeric" });
+  }
   function renderJournal(){
-    var items = state.journal.map(function(j){
-      return '<div class="j-entry"><div class="j-time">'+timeAgo(j.ts)+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
+    var groups = [];
+    state.journal.forEach(function(j){
+      var label = dayGroupLabel(j.ts);
+      var group = groups.length && groups[groups.length-1].label === label ? groups[groups.length-1] : null;
+      if (!group){ group = { label:label, entries:[] }; groups.push(group); }
+      group.entries.push(j);
+    });
+    var groupsHTML = groups.map(function(g){
+      var items = g.entries.map(function(j){
+        var v = journalEntryVisual(j.text);
+        var t = new Date(j.ts);
+        var hhmm = pad2(t.getHours())+':'+pad2(t.getMinutes());
+        return '' +
+          '<div class="timeline-item">' +
+            '<span class="timeline-line"></span>' +
+            '<span class="timeline-dot" style="background:var(--'+v.color+');">'+icon(v.iconName,14)+'</span>' +
+            '<span class="timeline-body">' +
+              '<div class="timeline-time">'+hhmm+'</div>' +
+              '<div class="timeline-title">'+esc(j.text)+'</div>' +
+            '</span>' +
+          '</div>';
+      }).join("");
+      return '<div class="card">' +
+        '<div class="section-title">'+g.label+'</div>' +
+        '<div class="timeline" style="margin-top:10px;">'+items+'</div>' +
+      '</div>';
     }).join("");
     return '' +
       '<div class="card">' +
         '<div class="top-actions"><h2 style="font-size:19px">Journal</h2><button class="btn-ghost" id="back-home">Back</button></div>' +
-        (items || '<div class="muted">Nothing yet.</div>') +
-      '</div>';
+        '<p class="muted" style="font-size:13px; margin-top:-4px;">A daily log of what happens.</p>' +
+      '</div>' +
+      (groupsHTML || '<div class="card"><div class="muted">Nothing yet.</div></div>');
   }
 
   function renderMilestones(){
