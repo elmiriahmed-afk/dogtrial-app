@@ -6,8 +6,6 @@ workflows:
     integrations:
       app_store_connect: dogtrial_asc
     environment:
-      groups:
-        - app_store_credentials
       vars:
         BUNDLE_ID: "dog.dogtrial.app"
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
