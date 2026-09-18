@@ -91,7 +91,8 @@
   .moment-bubble-close{flex:none; background:none; border:none; color:var(--ink-faint); padding:2px; cursor:pointer;}
   @keyframes momentIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
   .moment-overlay-backdrop{position:fixed; inset:0; background:rgba(6,8,15,.6); z-index:26;}
-  .moment-card{position:fixed; left:16px; right:16px; bottom:0; max-width:408px; margin:0 auto; z-index:27; background:var(--card); border:1px solid var(--border-elevated); border-radius:20px 20px 0 0; padding:20px 18px calc(20px + env(safe-area-inset-bottom,0px)); box-shadow:var(--shadow); animation:momentCardIn .25s ease;}
+  .moment-card{position:fixed; left:16px; right:16px; bottom:0; max-width:408px; margin:0 auto; z-index:27; background:var(--card); border:1px solid var(--border-elevated); border-radius:20px 20px 0 0; padding:20px 18px calc(20px + env(safe-area-inset-bottom,0px)); box-shadow:var(--shadow); animation:momentCardIn .25s ease; overflow:hidden;}
+  .moment-card-photo{width:calc(100% + 36px); margin:-20px -18px 14px; height:150px; object-fit:cover; display:block;}
   .moment-card-top{display:flex; align-items:center; gap:8px;}
   .moment-card-label{font-size:10px; font-weight:800; letter-spacing:.08em; color:var(--ink-faint); text-transform:uppercase; flex:1;}
   .moment-card-close{background:none; border:none; color:var(--ink-faint); padding:4px; cursor:pointer;}
@@ -343,6 +344,7 @@
   .friction-body .friction-desc{font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;}
   .home-env-card{display:flex; gap:14px; align-items:center; background:var(--card-2); border:1px solid var(--line); border-radius:16px; padding:12px; margin-top:12px;}
   .home-env-photo{flex:none; width:64px; height:64px; border-radius:12px; overflow:hidden;}
+  .home-env-photo img{width:100%; height:100%; display:block; object-fit:cover;}
   .home-env-facts{flex:1; min-width:0;}
   .home-env-facts .fact-row{display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink-soft); margin-top:4px;}
   .home-env-facts .fact-row svg{flex:none; color:var(--ink-faint);}
@@ -687,47 +689,17 @@
       toleranceMult:0.6, rollAdjust:0, confinement:true,
       sizeTag:"< 60 m²", outdoorTag:"No outdoor access", localeTag:"Urban area" }
   ];
-  // Small illustrated scenes (not literal photos — no such asset exists) so the
-  // Life tab's home-environment card reads as a picture, not just an icon.
+  // Onboarding card thumbnail vs. the Life tab's home-environment card use
+  // different crops of the same housing type, except "garden" which has two
+  // distinct photos (exterior for the card, interior for the Life tab).
+  function housingCardPhoto(housingId){
+    if (housingId === "garden") return "garden_card.jpg";
+    if (housingId === "cage") return "cage.jpg";
+    return "terrace.jpg";
+  }
   function housingIllustration(housingId){
-    if (housingId === "garden"){
-      return '<svg viewBox="0 0 100 76" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">' +
-        '<rect width="100" height="76" fill="#1B2A3A"/>' +
-        '<rect y="46" width="100" height="30" fill="#20351F"/>' +
-        '<circle cx="80" cy="16" r="10" fill="#3A4A6B"/>' +
-        '<path d="M20 46 20 26 35 14 50 26 50 46Z" fill="#4A5A7A"/>' +
-        '<path d="M14 28 35 12 56 28Z" fill="#8B5E3C"/>' +
-        '<rect x="30" y="32" width="10" height="14" fill="#2A3A56"/>' +
-        '<circle cx="70" cy="50" r="12" fill="#2F4A2A"/>' +
-        '<rect x="68" y="46" width="4" height="18" fill="#5A3A22"/>' +
-      '</svg>';
-    }
-    if (housingId === "cage"){
-      return '<svg viewBox="0 0 100 76" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">' +
-        '<rect width="100" height="76" fill="#151E2E"/>' +
-        '<rect x="10" y="6" width="80" height="70" fill="#2A3650"/>' +
-        '<rect x="18" y="16" width="16" height="16" fill="#4A5A78"/>' +
-        '<rect x="42" y="16" width="16" height="16" fill="#3A4868"/>' +
-        '<rect x="66" y="16" width="16" height="16" fill="#4A5A78"/>' +
-        '<rect x="18" y="40" width="16" height="16" fill="#3A4868"/>' +
-        '<rect x="42" y="40" width="16" height="16" fill="#4A5A78"/>' +
-        '<rect x="66" y="40" width="16" height="16" fill="#3A4868"/>' +
-        '<rect x="40" y="60" width="20" height="16" fill="#20283A"/>' +
-      '</svg>';
-    }
-    return '<svg viewBox="0 0 100 76" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">' +
-      '<rect width="100" height="76" fill="#182640"/>' +
-      '<rect x="4" y="10" width="60" height="66" fill="#2E3E5C"/>' +
-      '<rect x="12" y="18" width="14" height="14" fill="#5A6E96"/>' +
-      '<rect x="32" y="18" width="14" height="14" fill="#4A5C82"/>' +
-      '<rect x="12" y="40" width="14" height="14" fill="#4A5C82"/>' +
-      '<rect x="32" y="40" width="14" height="14" fill="#5A6E96"/>' +
-      '<rect x="12" y="62" width="34" height="14" fill="#232E44"/>' +
-      '<rect x="50" y="30" width="46" height="46" fill="#233252"/>' +
-      '<rect x="58" y="40" width="10" height="10" fill="#4A5C82"/>' +
-      '<rect x="76" y="40" width="10" height="10" fill="#5A6E96"/>' +
-      '<rect x="58" y="58" width="28" height="4" fill="#111a2c"/>' +
-    '</svg>';
+    var file = housingId === "garden" ? "garden_life.jpg" : housingCardPhoto(housingId);
+    return '<img src="media/housing/'+file+'" alt="">';
   }
 
   var CONFINEMENT_INCIDENTS = [
@@ -2035,6 +2007,7 @@
       var housingCards = HOUSING.map(function(h){
         var sel = h.id === pendingHousing;
         return '<button class="breed-card'+(sel?' selected':'')+'" data-housing="'+h.id+'">' +
+          '<div class="pup-thumb"><img src="media/housing/'+housingCardPhoto(h.id)+'" alt=""></div>' +
           '<div><div class="name">'+esc(h.label)+'</div>' +
           '<div class="catch">'+esc(h.note)+'</div>' +
           '<div class="house-risk"><span class="house-risk-tag">Main risk</span>'+esc(h.risk)+'</div></div>' +
@@ -2069,8 +2042,6 @@
     var selectedStage = START_STAGES.filter(function(s){ return s.id === pendingStartStage; })[0] || START_STAGES[0];
     var fitStage = stageOf(selectedStage.startDogDays);
     var fitMessage = lifeFitMessage(selectedBreed, selectedHousing, fitStage, selectedLife.hoursAway);
-    var upfront = VET_STARTER_COST + GEAR_STARTER_COST;
-    var monthlyFood = estimateMonthlyFoodCost(selectedBreed);
     return onboardProgressHTML() +
       '<div class="card onboard-step">' +
         '<div class="section-title">Dog × Home × Life</div>' +
@@ -2078,14 +2049,6 @@
         '<div class="cost-row"><span>The home</span><b>'+esc(selectedHousing.label)+'</b></div>' +
         '<div class="cost-row"><span>The life</span><b>'+esc(selectedLife.label)+'</b></div>' +
         '<p class="muted" style="margin-top:10px; font-size:13px;">'+esc(fitMessage)+'</p>' +
-      '</div>' +
-      '<div class="card" style="margin-top:14px">' +
-        '<div class="section-title">What this actually costs</div>' +
-        '<div class="cost-row"><span>Vet visit + first 2 vaccines</span><b>€'+VET_STARTER_COST+'</b></div>' +
-        '<div class="cost-row"><span>Starter gear — bed, collar &amp; leash, bowls, toys</span><b>€'+GEAR_STARTER_COST+'</b></div>' +
-        '<div class="cost-row cost-total"><span>Upfront, before the dog even walks in</span><b>€'+upfront+'</b></div>' +
-        '<div class="cost-row" style="margin-top:6px;"><span>Food for '+esc(selectedBreed.name)+' (Royal Canin, sized to this breed)</span><b>€'+monthlyFood+'/mo</b></div>' +
-        '<p class="muted" style="margin-top:8px; font-size:12px;">Food only — real monthly costs run higher once you add insurance, parasite prevention, and routine vet visits.</p>' +
       '</div>' +
       '<div class="card" style="margin-top:14px">' +
         '<button class="btn btn-primary" id="start-btn">Start the trial</button>' +
@@ -3278,6 +3241,15 @@
   // Renders the current Dog Moment as either a small non-blocking bubble or,
   // once tapped, an expanded bottom-sheet card. Appended after the main view
   // markup on every render (except splash/onboarding) rather than replacing it.
+  // Real breed x life-stage photos exist only for the "explore_new_home" (sniffing)
+  // moment; every other moment falls back to the plain icon header.
+  function momentPhotoFor(m){
+    if (!m || m.defId !== "explore_new_home" || !state) return null;
+    var stage = stageOf(state.dogDays);
+    if (stage === "senior") stage = "adult";
+    return "media/moments/sniffing/" + state.breedId + "_" + stage + ".jpg";
+  }
+
   function renderMomentOverlay(){
     var m = activeMomentBubble;
     if (!m) return "";
@@ -3292,9 +3264,11 @@
           '<button class="moment-bubble-close" id="moment-bubble-close" aria-label="Dismiss">'+icon("x",12)+'</button>' +
         '</div>';
     }
+    var photoUrl = momentPhotoFor(m);
     return '' +
       '<div class="moment-overlay-backdrop" id="moment-backdrop"></div>' +
       '<div class="moment-card" id="moment-card">' +
+        (photoUrl ? '<img class="moment-card-photo" src="'+photoUrl+'" alt="">' : '') +
         '<div class="moment-card-top">' +
           '<span class="moment-bubble-icon" style="background:var(--grad-'+m.color+'); box-shadow:var(--glow-'+m.color+');">'+icon(m.iconName,18)+'</span>' +
           '<span class="moment-card-label">'+(m.category==="Trial Update"?"TRIAL UPDATE":"DOG MOMENT")+'</span>' +
