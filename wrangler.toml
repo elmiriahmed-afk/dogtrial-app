@@ -1,0 +1,8 @@
+name = "dogtrial"
+pages_build_output_dir = "."
+compatibility_date = "2026-09-18"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "dogtrial-db"
+database_id = "ed9b4269-786b-4f93-abf6-440896b94737"

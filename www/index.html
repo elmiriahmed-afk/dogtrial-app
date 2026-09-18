@@ -946,7 +946,13 @@
   var notifFilter = "all";
   var onboardStep = 0;
   var pendingName = "";
-  var ONBOARD_STEPS = ["name","breed","age","sex","housing","life","summary"];
+  var ONBOARD_STEPS = ["auth","name","breed","age","sex","housing","life","summary"];
+  var AUTH_TOKEN_KEY = "dogtrial_auth_token";
+  var authToken = null;
+  try { authToken = localStorage.getItem(AUTH_TOKEN_KEY); } catch (e) {}
+  var authMode = "signup";
+  var authError = "";
+  var authBusy = false;
   var pendingBreed = BREEDS[0].id;
   var pendingHousing = HOUSING[0].id;
   var pendingStartStage = START_STAGES[0].id;
@@ -1923,6 +1929,28 @@
   function renderOnboarding(){
     var step = ONBOARD_STEPS[onboardStep] || "name";
 
+    if (step === "auth"){
+      return '' +
+        '<div class="card intro">' +
+          '<h1>Before you get a dog,<br>live with one for 30 days.</h1>' +
+          '<p>Real feeding windows. Real walks. If you leave for work, the dog is actually alone for that long — and you’ll see exactly what that costs.</p>' +
+        '</div>' +
+        '<div class="card onboard-step" style="margin-top:14px">' +
+          '<div class="section-title">'+(authMode==="signup"?"Create your account":"Log in")+'</div>' +
+          '<div class="field">' +
+            '<label for="auth-email">Email</label>' +
+            '<input id="auth-email" type="email" autocomplete="email" placeholder="you@example.com" value="">' +
+          '</div>' +
+          '<div class="field" style="margin-top:12px">' +
+            '<label for="auth-password">Password</label>' +
+            '<input id="auth-password" type="password" autocomplete="'+(authMode==="signup"?"new-password":"current-password")+'" placeholder="At least 8 characters" value="">' +
+          '</div>' +
+          (authError ? '<p class="muted" style="color:var(--bad); margin-top:10px; font-size:13px;">'+esc(authError)+'</p>' : "") +
+          '<button class="btn btn-primary" id="auth-submit" style="margin-top:16px;" '+(authBusy?"disabled":"")+'>'+(authBusy?"Please wait…":(authMode==="signup"?"Create account":"Log in"))+'</button>' +
+          '<button class="btn-ghost" id="auth-toggle" style="margin-top:8px; width:100%;">'+(authMode==="signup"?"Already have an account? Log in":"New here? Create an account")+'</button>' +
+        '</div>';
+    }
+
     if (step === "name"){
       var archive = loadArchive();
       var archiveCard = archive.length === 0 ? "" :
@@ -1934,11 +1962,8 @@
           }).join("") +
         '</div>';
       return '' +
-        '<div class="card intro">' +
-          '<h1>Before you get a dog,<br>live with one for 30 days.</h1>' +
-          '<p>Real feeding windows. Real walks. If you leave for work, the dog is actually alone for that long — and you’ll see exactly what that costs.</p>' +
-        '</div>' +
-        '<div class="card onboard-step" style="margin-top:14px">' +
+        onboardProgressHTML() +
+        '<div class="card onboard-step">' +
           '<div class="field">' +
             '<label for="dogname">Name the dog</label>' +
             '<input id="dogname" type="text" maxlength="20" placeholder="e.g. Biscuit" value="'+esc(pendingName)+'">' +
@@ -3445,7 +3470,7 @@
     if (view === "splash"){
       var splashStartBtn = document.getElementById("splash-start");
       if (splashStartBtn) splashStartBtn.addEventListener("click", function(){
-        onboardStep = 0; pendingName = "";
+        onboardStep = authToken ? 1 : 0; pendingName = "";
         view = "onboarding"; render();
       });
     }
@@ -3457,6 +3482,48 @@
           render();
         }, 180);
       }
+      var authSubmitBtn = document.getElementById("auth-submit");
+      if (authSubmitBtn) authSubmitBtn.addEventListener("click", function(){
+        var email = (document.getElementById("auth-email").value || "").trim();
+        var password = document.getElementById("auth-password").value || "";
+        if (!email || !password){
+          authError = "Enter your email and password.";
+          render();
+          return;
+        }
+        authError = "";
+        authBusy = true;
+        render();
+        var endpoint = authMode === "signup" ? "/api/signup" : "/api/login";
+        fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email, password: password })
+        }).then(function(res){
+          return res.json().then(function(data){ return { ok: res.ok, data: data }; });
+        }).then(function(result){
+          authBusy = false;
+          if (!result.ok){
+            authError = result.data.error || "Something went wrong. Try again.";
+            render();
+            return;
+          }
+          authToken = result.data.token;
+          try { localStorage.setItem(AUTH_TOKEN_KEY, authToken); } catch(e){}
+          onboardStep = Math.min(onboardStep + 1, ONBOARD_STEPS.length - 1);
+          render();
+        }).catch(function(){
+          authBusy = false;
+          authError = "Network error. Check your connection and try again.";
+          render();
+        });
+      });
+      var authToggleBtn = document.getElementById("auth-toggle");
+      if (authToggleBtn) authToggleBtn.addEventListener("click", function(){
+        authMode = authMode === "signup" ? "login" : "signup";
+        authError = "";
+        render();
+      });
       var backBtn = document.getElementById("onboard-back");
       if (backBtn) backBtn.addEventListener("click", function(){
         onboardStep = Math.max(onboardStep - 1, 0);
@@ -3525,6 +3592,19 @@
         state = newDog(name, pendingBreed, pendingHousing, startStage.startDogDays, pendingSex);
         state.typicalHoursAway = lifeById(pendingLife).hoursAway;
         save();
+        if (authToken){
+          fetch("/api/onboarding", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Authorization": "Bearer " + authToken },
+            body: JSON.stringify({
+              breedId: pendingBreed,
+              housingId: pendingHousing,
+              lifeId: pendingLife,
+              sex: pendingSex,
+              startStage: startStage.id
+            })
+          }).catch(function(){});
+        }
         view = "home";
         render();
       });
@@ -3625,7 +3705,7 @@
         archiveCurrentTrial("ended early");
         state = null;
         try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
-        onboardStep = 0; pendingName = "";
+        onboardStep = authToken ? 1 : 0; pendingName = "";
         view = "onboarding";
         render();
       });
