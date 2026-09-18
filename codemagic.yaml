@@ -10,6 +10,7 @@ workflows:
         - code_signing
       vars:
         BUNDLE_ID: "dog.dogtrial.app"
+        APP_ID: "6813073155"
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
       node: latest
@@ -23,6 +24,12 @@ workflows:
           test -d ios || npx cap add ios
       - name: Capacitor sync
         script: npx cap sync ios
+      - name: Set unique build number
+        script: |
+          BUILD_NUMBER=$(app-store-connect get-latest-testflight-build-number "$APP_ID")
+          NEW_BUILD=$((BUILD_NUMBER + 1))
+          sed -i '' "s/CURRENT_PROJECT_VERSION = [0-9]*;/CURRENT_PROJECT_VERSION = $NEW_BUILD;/g" ios/App/App.xcodeproj/project.pbxproj
+          echo "Set iOS build number to $NEW_BUILD"
       - name: Install CocoaPods
         script: |
           cd ios/App && pod install
