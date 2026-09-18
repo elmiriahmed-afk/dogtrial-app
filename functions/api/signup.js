@@ -1,4 +1,6 @@
-import { hashPassword, signToken, json, isValidEmail, newId } from "../_lib/auth.js";
+import { hashPassword, signToken, json, isValidEmail, newId, corsPreflight } from "../_lib/auth.js";
+
+export function onRequestOptions() { return corsPreflight(); }
 
 export async function onRequestPost({ request, env }) {
   var body;

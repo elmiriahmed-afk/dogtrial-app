@@ -1,4 +1,6 @@
-import { requireUser, json, newId } from "../_lib/auth.js";
+import { requireUser, json, newId, corsPreflight } from "../_lib/auth.js";
+
+export function onRequestOptions() { return corsPreflight(); }
 
 export async function onRequestPost({ request, env }) {
   var userId = await requireUser(request, env);

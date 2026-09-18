@@ -72,11 +72,24 @@ export async function verifyToken(token, secret) {
   return payload.uid;
 }
 
+// The native Android/iOS builds call this API from a local Capacitor origin
+// (capacitor://localhost, https://localhost), so every response — including
+// preflight — needs CORS headers, unlike a same-origin web-only setup.
+export var CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization"
+};
+
 export function json(data, status) {
   return new Response(JSON.stringify(data), {
     status: status || 200,
-    headers: { "Content-Type": "application/json" }
+    headers: Object.assign({ "Content-Type": "application/json" }, CORS_HEADERS)
   });
+}
+
+export function corsPreflight() {
+  return new Response(null, { status: 204, headers: CORS_HEADERS });
 }
 
 export async function requireUser(request, env) {

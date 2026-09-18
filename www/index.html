@@ -947,6 +947,10 @@
   var onboardStep = 0;
   var pendingName = "";
   var ONBOARD_STEPS = ["auth","name","breed","age","sex","housing","life","summary"];
+  // Absolute, not relative: the native Android/iOS builds serve this file from a
+  // local Capacitor origin, not from dogtrial.dog, so a relative "/api/..." path
+  // would resolve to a non-existent local endpoint instead of the real backend.
+  var API_BASE = "https://dogtrial.dog";
   var AUTH_TOKEN_KEY = "dogtrial_auth_token";
   var authToken = null;
   try { authToken = localStorage.getItem(AUTH_TOKEN_KEY); } catch (e) {}
@@ -3494,7 +3498,7 @@
         authError = "";
         authBusy = true;
         render();
-        var endpoint = authMode === "signup" ? "/api/signup" : "/api/login";
+        var endpoint = API_BASE + (authMode === "signup" ? "/api/signup" : "/api/login");
         fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -3593,7 +3597,7 @@
         state.typicalHoursAway = lifeById(pendingLife).hoursAway;
         save();
         if (authToken){
-          fetch("/api/onboarding", {
+          fetch(API_BASE + "/api/onboarding", {
             method: "POST",
             headers: { "Content-Type": "application/json", "Authorization": "Bearer " + authToken },
             body: JSON.stringify({

@@ -1,4 +1,6 @@
-import { verifyPassword, signToken, json, isValidEmail } from "../_lib/auth.js";
+import { verifyPassword, signToken, json, isValidEmail, corsPreflight } from "../_lib/auth.js";
+
+export function onRequestOptions() { return corsPreflight(); }
 
 export async function onRequestPost({ request, env }) {
   var body;
