@@ -3525,7 +3525,7 @@
           '<button class="notif-row" data-notif-id="'+m.id+'">' +
             '<span class="notif-row-icon" style="background:var(--grad-'+m.color+'); box-shadow:var(--glow-'+m.color+');">'+icon(m.iconName,16)+'</span>' +
             '<span class="notif-row-body">' +
-              '<span class="notif-row-top"><span class="notif-row-title">'+(m.category==="Trial Update"?"Trial Update":"Dog Moment")+'</span><span class="notif-row-time">'+hhmm+'</span></span>' +
+              '<span class="notif-row-top"><span class="notif-row-title">'+(m.category==="Trial Update"?"Trial Update":(m.category==="Incident"?"Incident":"Dog Moment"))+'</span><span class="notif-row-time">'+hhmm+'</span></span>' +
               '<span class="notif-row-sub">'+esc(m.title)+'</span>' +
             '</span>' +
             (m.read ? "" : '<span class="notif-unread-dot"></span>') +
