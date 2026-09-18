@@ -2977,7 +2977,7 @@
         '<div class="big-num mono" id="walk-dist">0 m / '+target+' m</div>' +
         '<div class="meter-track" style="margin-top:6px;"><div class="meter-fill" id="walk-bar" style="width:0%; background:var(--accent)"></div></div>' +
         '<button class="btn btn-primary" id="end-walk" style="margin-top:20px">End walk</button>' +
-        '<p class="muted" style="margin-top:12px; font-size:12px;">Keep DogTrial open and your screen on during the walk — tracking pauses if your phone locks or you switch apps.</p>' +
+        '<p class="muted" style="margin-top:12px; font-size:12px;">Best with your screen on. If it locks briefly, distance for that gap is estimated at a normal walking pace when you come back.</p>' +
       '</div>';
   }
 
@@ -3009,7 +3009,7 @@
         '</div>' +
         '<div class="muted mono" id="walk-steps-count" style="margin-top:12px; font-size:12.5px;">'+steps+' steps detected</div>' +
         '<button class="btn btn-primary" id="end-walk" style="margin-top:16px">End walk</button>' +
-        '<p class="muted" style="margin-top:12px; font-size:12px;">Keep DogTrial open and your screen on during the walk — tracking pauses if your phone locks or you switch apps.</p>' +
+        '<p class="muted" style="margin-top:12px; font-size:12px;">Best with your screen on. If it locks briefly, steps for that gap are estimated at a normal walking pace when you come back.</p>' +
       '</div>';
   }
 
@@ -3018,10 +3018,14 @@
     var statLine = c.mode === "steps"
       ? Math.round(c.activeSeconds/60) + " of " + c.goalMinutes + " min · " + c.steps + " steps"
       : Math.round(c.distance) + " m of " + c.target + " m";
+    var lockNote = c.mode === "steps"
+      ? (c.estimatedSteps ? c.estimatedSteps + " steps estimated while your screen was locked." : "")
+      : (c.estimatedDistance ? "~" + Math.round(c.estimatedDistance) + "m estimated while your screen was locked." : "");
     return '' +
       '<div class="card center">' +
         '<div class="section-title">Walk complete?</div>' +
         '<div class="big-num mono" style="font-size:26px;">'+statLine+'</div>' +
+        (lockNote ? '<p class="muted" style="margin-top:6px; font-size:12.5px;">'+lockNote+'</p>' : "") +
         '<p class="muted" style="margin-top:10px;">Does that match what actually happened?</p>' +
         '<button class="btn btn-primary" id="confirm-walk-yes" style="margin-top:20px">Confirm walk</button>' +
         '<button class="btn btn-ghost" id="confirm-walk-no" style="width:100%; border:1px solid var(--line); margin-top:8px;">I couldn\'t walk</button>' +
@@ -4207,9 +4211,38 @@
       wakeLock = null;
     }
   }
+  // Fallback for when the screen locks anyway (no Wake Lock support, or the user
+  // pressed the power button) — devicemotion/GPS both go silent while hidden, so
+  // on resume we estimate the gap instead of just losing it. Steps use an average
+  // walking cadence; GPS distance reuses the same 80 m/min pace the walk target
+  // is already computed from, so the estimate matches the app's own assumption
+  // rather than a second, inconsistent one.
+  var AVG_WALK_CADENCE = 100; // steps/min, a typical relaxed walking pace
+  var MAX_ESTIMATED_GAP_MIN = 45; // beyond this, assume the walk was abandoned, don't extrapolate
   document.addEventListener("visibilitychange", function(){
-    if (document.visibilityState === "visible" && walkCtx && (walkCtx.mode === "steps" || walkCtx.mode === "gps") && !wakeLock){
-      requestWakeLock();
+    if (document.visibilityState === "hidden"){
+      if (walkCtx && (walkCtx.mode === "steps" || walkCtx.mode === "gps")) walkCtx.hiddenAt = Date.now();
+      return;
+    }
+    if (document.visibilityState !== "visible" || !walkCtx) return;
+    if (!wakeLock) requestWakeLock();
+    if (walkCtx.hiddenAt && (walkCtx.mode === "steps" || walkCtx.mode === "gps")){
+      var gapMin = Math.min(MAX_ESTIMATED_GAP_MIN, (Date.now() - walkCtx.hiddenAt)/60000);
+      walkCtx.hiddenAt = null;
+      if (gapMin > 0.15){
+        if (walkCtx.mode === "steps"){
+          var estSteps = Math.round(gapMin*AVG_WALK_CADENCE);
+          walkCtx.steps += estSteps;
+          walkCtx.estimatedSteps = (walkCtx.estimatedSteps||0) + estSteps;
+          walkCtx.activeSeconds += Math.round(gapMin*60);
+          walkCtx.lastStepTime = Date.now();
+        } else {
+          var estDist = gapMin*80;
+          walkCtx.distance += estDist;
+          walkCtx.estimatedDistance = (walkCtx.estimatedDistance||0) + estDist;
+        }
+        render();
+      }
     }
   });
 
@@ -4317,11 +4350,12 @@
     var fraction = walkCtx.distance / walkCtx.target;
     if (walkCtx.watchId != null) navigator.geolocation.clearWatch(walkCtx.watchId);
     releaseWakeLock();
+    var lockNote = walkCtx.estimatedDistance ? " (~" + Math.round(walkCtx.estimatedDistance) + "m estimated while your screen was locked)" : "";
     var note;
     if (errored) { note = "Walked " + state.name + " (GPS signal lost — logged manually)."; fraction = 1; }
     else if (couldntWalk) { note = "Couldn't walk " + state.name + " today — plans changed."; fraction = 0.15; }
-    else if (fraction >= 0.9) note = "Walked " + state.name + " — GPS confirmed " + dist + "m.";
-    else note = "Cut the walk short with " + state.name + " — only " + dist + "m confirmed.";
+    else if (fraction >= 0.9) note = "Walked " + state.name + " — GPS confirmed " + dist + "m." + lockNote;
+    else note = "Cut the walk short with " + state.name + " — only " + dist + "m confirmed." + lockNote;
     applyWalkOutcome(fraction, note, !errored && !couldntWalk);
     walkCtx = null;
     view = "home"; render();
@@ -4329,7 +4363,7 @@
 
   function startStepsWalk(){
     var breed = byId(state.breedId);
-    walkCtx = { mode:"steps", steps:0, filtered:9.8, lastStepTime:0, activeSeconds:0, goalMinutes: breed.walkMinutes };
+    walkCtx = { mode:"steps", steps:0, filtered:9.8, lastStepTime:0, activeSeconds:0, goalMinutes: breed.walkMinutes, lastTickAt: Date.now() };
     view = "walkSteps"; render();
     requestWakeLock();
     function attach(){
@@ -4375,11 +4409,12 @@
     var steps = walkCtx.steps;
     var minutesWalked = Math.round(walkCtx.activeSeconds/60);
     var fraction = Math.max(0, Math.min(1, walkCtx.activeSeconds/(walkCtx.goalMinutes*60)));
+    var lockNote = walkCtx.estimatedSteps ? " (" + walkCtx.estimatedSteps + " steps estimated while your screen was locked)" : "";
     var note;
     if (errored) { note = "Walked " + state.name + " (motion access unavailable — logged manually)."; fraction = 1; }
     else if (couldntWalk) { note = "Couldn't walk " + state.name + " today — plans changed."; fraction = 0.15; }
-    else if (fraction >= 0.9) note = "Walked " + state.name + " — " + minutesWalked + " of " + walkCtx.goalMinutes + " min, " + steps + " steps.";
-    else note = "Cut the walk short with " + state.name + " — only " + minutesWalked + " of " + walkCtx.goalMinutes + " min.";
+    else if (fraction >= 0.9) note = "Walked " + state.name + " — " + minutesWalked + " of " + walkCtx.goalMinutes + " min, " + steps + " steps." + lockNote;
+    else note = "Cut the walk short with " + state.name + " — only " + minutesWalked + " of " + walkCtx.goalMinutes + " min." + lockNote;
     applyWalkOutcome(fraction, note, !errored && !couldntWalk, minutesWalked);
     walkCtx = null;
     stopLiveTimer();
@@ -4428,8 +4463,14 @@
     stopLiveTimer();
     atWorkInterval = setInterval(function(){
       if (view !== "walkSteps" || !walkCtx){ stopLiveTimer(); return; }
-      var moving = (Date.now() - walkCtx.lastStepTime) < 20000; // counts a step within the last 20s as "still walking"
-      if (moving) walkCtx.activeSeconds++;
+      // Wall-clock delta rather than a flat ++ so throttled/coalesced ticks (a
+      // background tab, brief lock the wake lock didn't catch) still add the
+      // real elapsed time on the next tick instead of quietly losing it.
+      var now = Date.now();
+      var deltaSec = Math.round((now - (walkCtx.lastTickAt||now))/1000);
+      walkCtx.lastTickAt = now;
+      var moving = (now - walkCtx.lastStepTime) < 20000; // counts a step within the last 20s as "still walking"
+      if (moving) walkCtx.activeSeconds += Math.max(1, deltaSec);
       var goalSec = walkCtx.goalMinutes*60;
       var pct = Math.min(100, Math.round(walkCtx.activeSeconds/goalSec*100));
       var numEl = document.getElementById("ring-num");
