@@ -4,7 +4,8 @@
   "private": true,
   "description": "DogTrial - live with a simulated dog for 30 days before you adopt one",
   "scripts": {
-    "sync": "cap sync"
+    "sync": "cap sync",
+    "test": "node tests/incident-engine.test.js"
   },
   "dependencies": {
     "@capacitor/core": "^7.0.0",

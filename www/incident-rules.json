@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "assetsBasePath": "media/incidents/",
+  "ageMultipliers": {
+    "puppy": 1.35,
+    "adolescent": 1.25,
+    "adult": 1.0
+  },
+  "breedMultipliers": {
+    "labrador_retriever": 1.1,
+    "siberian_husky": 1.35,
+    "french_bulldog": 0.75,
+    "border_collie": 1.35,
+    "chihuahua": 0.8,
+    "american_staffordshire_terrier": 1.15,
+    "belgian_malinois": 1.35,
+    "german_shepherd": 1.2,
+    "cane_corso": 1.1,
+    "bichon_frise": 0.85
+  },
+  "housingMultipliers": {
+    "garden": 0.8,
+    "apartment_terrace": 1.0,
+    "apartment_crate": 0.9
+  },
+  "thresholds": [
+    { "minimumScore": 0.8, "probability": 0.45 },
+    { "minimumScore": 0.6, "probability": 0.32 },
+    { "minimumScore": 0.4, "probability": 0.18 },
+    { "minimumScore": 0.2, "probability": 0.08 },
+    { "minimumScore": 0.0, "probability": 0.0 }
+  ],
+  "incidents": [
+    {
+      "id": "pee_accident",
+      "title": "Toilet accident",
+      "asset": "pee_accident.jpg",
+      "causes": { "toilet": 1.0, "walk": 0.2 },
+      "ages": ["puppy", "adolescent", "adult"],
+      "housing": ["garden", "apartment_terrace", "apartment_crate"],
+      "allowedWhileCrated": true,
+      "requirement": null
+    },
+    {
+      "id": "soil_spill",
+      "title": "Spilled soil",
+      "asset": "soil_spill.jpg",
+      "causes": { "play": 0.5, "walk": 0.35, "training": 0.15 },
+      "ages": ["puppy", "adolescent", "adult"],
+      "housing": ["garden", "apartment_terrace"],
+      "allowedWhileCrated": false,
+      "requirement": "accessiblePlant"
+    },
+    {
+      "id": "chewed_shoe",
+      "title": "Chewed shoe",
+      "asset": "chewed_shoe.jpg",
+      "causes": { "walk": 0.45, "play": 0.4, "training": 0.15 },
+      "ages": ["puppy", "adolescent", "adult"],
+      "housing": ["garden", "apartment_terrace"],
+      "allowedWhileCrated": false,
+      "requirement": null
+    },
+    {
+      "id": "torn_cushion",
+      "title": "Torn cushion",
+      "asset": "torn_cushion.jpg",
+      "causes": { "walk": 0.5, "play": 0.4, "training": 0.1 },
+      "ages": ["adolescent", "adult"],
+      "housing": ["garden", "apartment_terrace"],
+      "allowedWhileCrated": false,
+      "requirement": null
+    },
+    {
+      "id": "tipped_bin",
+      "title": "Tipped bin",
+      "asset": "tipped_bin.jpg",
+      "causes": { "meal": 0.55, "training": 0.3, "play": 0.15 },
+      "ages": ["puppy", "adolescent", "adult"],
+      "housing": ["garden", "apartment_terrace"],
+      "allowedWhileCrated": false,
+      "requirement": "accessibleBin"
+    },
+    {
+      "id": "unrolled_toilet_paper",
+      "title": "Unrolled toilet paper",
+      "asset": "unrolled_toilet_paper.jpg",
+      "causes": { "play": 0.55, "training": 0.3, "walk": 0.15 },
+      "ages": ["puppy", "adolescent"],
+      "housing": ["garden", "apartment_terrace"],
+      "allowedWhileCrated": false,
+      "requirement": "accessibleBathroom"
+    },
+    {
+      "id": "chewed_plant",
+      "title": "Chewed plant",
+      "asset": "chewed_plant.jpg",
+      "causes": { "play": 0.5, "training": 0.3, "walk": 0.2 },
+      "ages": ["puppy", "adolescent", "adult"],
+      "housing": ["garden", "apartment_terrace"],
+      "allowedWhileCrated": false,
+      "requirement": "accessiblePlant"
+    },
+    {
+      "id": "torn_book",
+      "title": "Torn book",
+      "asset": "torn_book.jpg",
+      "causes": { "play": 0.5, "training": 0.3, "walk": 0.2 },
+      "ages": ["puppy", "adolescent"],
+      "housing": ["garden", "apartment_terrace"],
+      "allowedWhileCrated": false,
+      "requirement": "accessibleBooks"
+    },
+    {
+      "id": "damaged_remote",
+      "title": "Damaged remote",
+      "asset": "damaged_remote.jpg",
+      "causes": { "walk": 0.45, "play": 0.4, "training": 0.15 },
+      "ages": ["puppy", "adolescent", "adult"],
+      "housing": ["garden", "apartment_terrace"],
+      "allowedWhileCrated": false,
+      "requirement": "accessibleRemote"
+    },
+    {
+      "id": "stolen_food",
+      "title": "Stolen food",
+      "asset": "stolen_food.jpg",
+      "causes": { "meal": 0.6, "training": 0.3, "play": 0.1 },
+      "ages": ["puppy", "adolescent", "adult"],
+      "housing": ["garden", "apartment_terrace"],
+      "allowedWhileCrated": false,
+      "requirement": "accessibleFood"
+    }
+  ]
+}

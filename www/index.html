@@ -98,6 +98,7 @@
   .moment-card-close{background:none; border:none; color:var(--ink-faint); padding:4px; cursor:pointer;}
   .moment-card-title{font-family:"Poppins",system-ui,sans-serif; font-weight:700; font-size:18px; margin-top:12px; color:var(--ink);}
   .moment-card-explain{font-size:13.5px; line-height:1.5; color:var(--ink-soft); margin-top:8px;}
+  .moment-card-explain-label{font-size:10.5px; font-weight:800; letter-spacing:.06em; color:var(--warn); margin-top:10px; text-transform:uppercase;}
   .moment-card-whatto{margin-top:14px; background:var(--card-2); border-radius:14px; padding:12px 14px;}
   .moment-card-whatto-label{font-size:10.5px; font-weight:800; letter-spacing:.06em; color:var(--accent-bright); display:flex; align-items:center; gap:6px;}
   .moment-card-whatto-text{font-size:13px; color:var(--ink-soft); margin-top:6px; line-height:1.5;}
@@ -391,6 +392,7 @@
 
   @media (prefers-reduced-motion: reduce){
     .meter-fill, .cmd-fill{transition:none;}
+    .moment-bubble, .moment-card, .onboard-step{animation:none;}
   }
 </style>
 <!-- Cloudflare Web Analytics -->
@@ -400,6 +402,7 @@
 <body>
 <div id="app"></div>
 
+<script src="incident-engine.js"></script>
 <script>
 (function(){
   "use strict";
@@ -1031,7 +1034,8 @@
       emergencyInfo: { vetName:"", vetPhone:"", allergies:"", microchipId:"" },
       journal: [{ ts: now, text: name + " came home. The trial starts now." }],
       dogMoments: [],
-      momentState: { fired: {}, lastByCategory: {} }
+      momentState: { fired: {}, lastByCategory: {} },
+      dailyFlagsDay: 0, toiletMissedToday: false, mealMissedToday: false, incidentEvalDay: -1
     };
   }
   function bumpOwnerLoad(amount){
@@ -1221,9 +1225,20 @@
   function applyHomeDecay(hours, stage){
     var fi = FEED_INTERVAL[stage], bi = BLADDER_INTERVAL[stage];
     var wi = WALK_INTERVAL_HOURS; // every breed needs ~2 walks/day; duration (not frequency) is what varies by breed
+    var today = tripDay();
+    if (state.dailyFlagsDay !== today){
+      state.dailyFlagsDay = today;
+      state.toiletMissedToday = false;
+      state.mealMissedToday = false;
+    }
     state.hunger = clamp(state.hunger - hours*(100/fi));
     state.bladder = clamp(state.bladder - hours*(100/bi));
     state.energy = clamp(state.energy - hours*(100/wi));
+    // Feeds the incident engine's toiletOnTime/mealOnTime inputs directly from
+    // the same hunger/bladder decay already driving the rest of the sim — no
+    // separate daily-goal ledger to keep in sync.
+    if (state.bladder <= 0) state.toiletMissedToday = true;
+    if (state.hunger <= 0) state.mealMissedToday = true;
     if (state.hunger<=0 || state.bladder<=0){
       state.health = clamp(state.health - hours*3);
     } else if (state.hunger>50 && state.bladder>50) {
@@ -1421,6 +1436,111 @@
     }
   }
 
+  // Maps this app's internal breed/housing ids to the keys incident-rules.json
+  // was authored against, so the rules file stays a direct, unmodified copy of
+  // what the incident pack shipped rather than something re-keyed to match us.
+  var INCIDENT_BREED_KEY = {
+    lab:"labrador_retriever", husky:"siberian_husky", frenchie:"french_bulldog",
+    collie:"border_collie", chihuahua:"chihuahua", amstaff:"american_staffordshire_terrier",
+    malinois:"belgian_malinois", gsd:"german_shepherd", canecorso:"cane_corso", bichon:"bichon_frise"
+  };
+  var INCIDENT_HOUSING_KEY = { garden:"garden", terrace:"apartment_terrace", cage:"apartment_crate" };
+  var INCIDENT_ADVICE = {
+    walk: "Finish today's walk to close the gap before it happens again.",
+    play: "A short play session now would help close today's gap.",
+    training: "A quick training session would help close today's gap.",
+    toilet: "Get back on schedule with toilet breaks today.",
+    meal: "Get back on schedule with meals today."
+  };
+  var incidentRulesCache = null;
+  function loadIncidentRules(){
+    if (incidentRulesCache) return Promise.resolve(incidentRulesCache);
+    return fetch("incident-rules.json").then(function(r){ return r.json(); }).then(function(rules){
+      incidentRulesCache = rules;
+      return rules;
+    });
+  }
+
+  // Real inputs only: walk reuses the same per-day minutes counter the Walks tab
+  // already tracks against this breed's actual daily target; play reuses energy
+  // (the stat walk/play together restore) as its completion proxy; training
+  // reuses the existing lifetime skill average. toiletOnTime/mealOnTime come
+  // straight off the hunger/bladder decay via applyHomeDecay. No parallel ledger.
+  function incidentDayInput(now){
+    var breed = byId(state.breedId);
+    var housing = housingById(state.housingId);
+    var stage = stageOf(state.dogDays);
+    var walkGoal = Math.max(1, breed.walkMinutes*2);
+    var walkToday = state.walkMinutesDay === tripDay() ? (state.walkMinutesToday||0) : 0;
+    return {
+      dogId: String(state.startedAt),
+      date: String(tripDay()),
+      breed: INCIDENT_BREED_KEY[state.breedId] || "labrador_retriever",
+      ageStage: stage === "senior" ? "adult" : stage,
+      housing: INCIDENT_HOUSING_KEY[state.housingId] || "apartment_terrace",
+      currentlyCrated: !!(state.away && housing.confinement),
+      environment: {
+        accessiblePlant:true, accessibleBin:true, accessibleBathroom:true,
+        accessibleBooks:true, accessibleRemote:true, accessibleFood:true
+      },
+      completion: {
+        walk: clamp01(walkToday/walkGoal),
+        play: clamp01(state.energy/100),
+        training: clamp01(avgTrainingProgress()/100),
+        toiletOnTime: !state.toiletMissedToday,
+        mealOnTime: !state.mealMissedToday
+      }
+    };
+  }
+  function clamp01(v){ return Math.max(0, Math.min(1, v)); }
+
+  // One evaluation per trip-day: evaluateIncident is a pure function of
+  // dogId+date+snapshot, so re-calling it every tick before it fires is safe
+  // (identical result each time) — the actual dedupe is "does today already
+  // have an Incident-category entry in state.dogMoments".
+  function maybeTriggerIncident(now){
+    if (activeMomentBubble || !window.DogTrailIncidents) return;
+    var day = tripDay();
+    var already = (state.dogMoments||[]).some(function(m){ return m.category === "Incident" && m.localDate === day; });
+    if (already) return;
+    loadIncidentRules().then(function(rules){
+      if (activeMomentBubble) return; // a Dog Moment may have taken the slot while rules were loading
+      return DogTrailIncidents.evaluateIncident(incidentDayInput(now), rules).then(function(result){
+        if (!result) return;
+        var stillClear = !activeMomentBubble && !(state.dogMoments||[]).some(function(m){ return m.category === "Incident" && m.localDate === day; });
+        if (stillClear) fireIncident(result, now, day);
+      });
+    }).catch(function(){ /* offline or asset missing: silently skip today's incident */ });
+  }
+
+  function fireIncident(result, now, day){
+    var moment = {
+      id: "incident_" + result.incidentId + "_" + now,
+      defId: result.incidentId,
+      category: "Incident",
+      color: "warn",
+      iconName: "alert",
+      title: result.title,
+      explanation: result.explanation,
+      whatToDo: INCIDENT_ADVICE[result.primaryCause] || "Restoring the missed routine lowers the risk of this happening again.",
+      assetPath: result.asset,
+      primaryCause: result.primaryCause,
+      riskScore: result.riskScore,
+      probability: result.probability,
+      completionSnapshot: incidentDayInput(now).completion,
+      localDate: day,
+      ts: now,
+      dayOfTrial: tripDay(),
+      read: false,
+      acknowledged: false
+    };
+    state.dogMoments.unshift(moment);
+    if (state.dogMoments.length > 80) state.dogMoments.length = 80;
+    activeMomentBubble = moment;
+    momentBubbleExpanded = false;
+    save();
+  }
+
   function tickHome(now){
     var last = state.lastTick;
     var deltaHours = (now-last)/HOUR;
@@ -1445,6 +1565,7 @@
     checkPhaseTransition();
     bumpOwnerLoad(-deltaHours*0.5); // calm, uneventful time settles the load back down
     maybeTriggerDogMoment(now);
+    maybeTriggerIncident(now);
     save();
   }
 
@@ -1652,7 +1773,8 @@
     medical: '<rect x="9" y="3" width="6" height="18" rx="1"/><rect x="3" y="9" width="18" height="6" rx="1"/>',
     bell: '<path d="M6 8a6 6 0 0 1 12 0c0 3 1 5 2 6H4c1-1 2-3 2-6z"/><path d="M9 19a3 3 0 0 0 6 0"/>',
     moon: '<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/>',
-    bone: '<path d="M5.5 8.5a2 2 0 1 1 3-2.7l9.7 9.7a2 2 0 1 1-3 2.7z"/><circle cx="6" cy="6" r="1.6"/><circle cx="8" cy="8" r="1.6"/><circle cx="16" cy="16" r="1.6"/><circle cx="18" cy="18" r="1.6"/>'
+    bone: '<path d="M5.5 8.5a2 2 0 1 1 3-2.7l9.7 9.7a2 2 0 1 1-3 2.7z"/><circle cx="6" cy="6" r="1.6"/><circle cx="8" cy="8" r="1.6"/><circle cx="16" cy="16" r="1.6"/><circle cx="18" cy="18" r="1.6"/>',
+    alert: '<path d="M12 3 22 19H2z"/><path d="M12 9v5"/><path d="M12 17.5h.01"/>'
   };
   function icon(name, size){
     var s = size || 20;
@@ -3273,7 +3395,9 @@
   // Real breed x life-stage photos exist only for the "explore_new_home" (sniffing)
   // moment; every other moment falls back to the plain icon header.
   function momentPhotoFor(m){
-    if (!m || m.defId !== "explore_new_home" || !state) return null;
+    if (!m || !state) return null;
+    if (m.category === "Incident") return m.assetPath || null;
+    if (m.defId !== "explore_new_home") return null;
     var stage = stageOf(state.dogDays);
     if (stage === "senior") stage = "adult";
     return "media/moments/sniffing/" + state.breedId + "_" + stage + ".jpg";
@@ -3287,23 +3411,25 @@
         '<div class="moment-bubble" id="moment-bubble">' +
           '<span class="moment-bubble-icon" style="background:var(--grad-'+m.color+'); box-shadow:var(--glow-'+m.color+');">'+icon(m.iconName,16)+'</span>' +
           '<button class="moment-bubble-body" id="moment-bubble-open">' +
-            '<div class="moment-bubble-label">'+(m.category==="Trial Update"?"TRIAL UPDATE":"DOG MOMENT")+'</div>' +
+            '<div class="moment-bubble-label">'+(m.category==="Trial Update"?"TRIAL UPDATE":(m.category==="Incident"?"INCIDENT":"DOG MOMENT"))+'</div>' +
             '<div class="moment-bubble-title">'+esc(m.title)+'</div>' +
           '</button>' +
           '<button class="moment-bubble-close" id="moment-bubble-close" aria-label="Dismiss">'+icon("x",12)+'</button>' +
         '</div>';
     }
     var photoUrl = momentPhotoFor(m);
+    var isIncident = m.category === "Incident";
     return '' +
       '<div class="moment-overlay-backdrop" id="moment-backdrop"></div>' +
       '<div class="moment-card" id="moment-card">' +
-        (photoUrl ? '<img class="moment-card-photo" src="'+photoUrl+'" alt="">' : '') +
+        (photoUrl ? '<img class="moment-card-photo" src="'+photoUrl+'" alt="'+(isIncident?esc(m.title):"")+'" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">' : '') +
         '<div class="moment-card-top">' +
           '<span class="moment-bubble-icon" style="background:var(--grad-'+m.color+'); box-shadow:var(--glow-'+m.color+');">'+icon(m.iconName,18)+'</span>' +
-          '<span class="moment-card-label">'+(m.category==="Trial Update"?"TRIAL UPDATE":"DOG MOMENT")+'</span>' +
+          '<span class="moment-card-label">'+(m.category==="Trial Update"?"TRIAL UPDATE":(isIncident?"INCIDENT":"DOG MOMENT"))+'</span>' +
           '<button class="moment-card-close" id="moment-card-close" aria-label="Close">'+icon("x",14)+'</button>' +
         '</div>' +
         '<div class="moment-card-title">'+esc(m.title)+'</div>' +
+        (isIncident ? '<div class="moment-card-explain-label">WHY NOW?</div>' : '') +
         '<div class="moment-card-explain">'+esc(m.explanation)+'</div>' +
         '<div class="moment-card-whatto">' +
           '<div class="moment-card-whatto-label">'+icon("bulb",14)+' WHAT TO DO</div>' +
@@ -4375,6 +4501,10 @@
     if (!state.emergencyInfo) state.emergencyInfo = { vetName:"", vetPhone:"", allergies:"", microchipId:"" };
     if (!state.dogMoments) state.dogMoments = [];
     if (!state.momentState) state.momentState = { fired: {}, lastByCategory: {} };
+    if (state.dailyFlagsDay === undefined) state.dailyFlagsDay = 0;
+    if (state.toiletMissedToday === undefined) state.toiletMissedToday = false;
+    if (state.mealMissedToday === undefined) state.mealMissedToday = false;
+    if (state.incidentEvalDay === undefined) state.incidentEvalDay = -1;
     if (state.away && state.away.awayAlerted === undefined) state.away.awayAlerted = false;
     if (state.away){
       var now = Date.now();
