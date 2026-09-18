@@ -91,9 +91,11 @@
   .moment-bubble-close{flex:none; background:none; border:none; color:var(--ink-faint); padding:2px; cursor:pointer;}
   @keyframes momentIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
   .moment-overlay-backdrop{position:fixed; inset:0; background:rgba(6,8,15,.6); z-index:26;}
-  .moment-card{position:fixed; left:16px; right:16px; bottom:0; max-width:408px; margin:0 auto; z-index:27; background:var(--card); border:1px solid var(--border-elevated); border-radius:20px 20px 0 0; padding:20px 18px calc(20px + env(safe-area-inset-bottom,0px)); box-shadow:var(--shadow); animation:momentCardIn .25s ease; overflow:hidden;}
-  .moment-card-photo{width:calc(100% + 36px); margin:-20px -18px 14px; height:150px; object-fit:cover; display:block;}
-  .moment-card-top{display:flex; align-items:center; gap:8px;}
+  .moment-card{position:fixed; left:16px; right:16px; bottom:0; max-width:408px; margin:0 auto; z-index:27; background:var(--card); border:1px solid var(--border-elevated); border-radius:20px 20px 0 0; box-shadow:var(--shadow); animation:momentCardIn .25s ease; overflow:hidden; min-height:48dvh; max-height:82dvh; display:flex; flex-direction:column;}
+  .moment-card:focus-visible{outline:none;}
+  .moment-card-photo{width:calc(100% + 36px); margin:0 -18px 14px; height:150px; object-fit:cover; display:block;}
+  .moment-card-top{display:flex; align-items:center; gap:8px; flex:none; padding:20px 18px 0;}
+  .moment-card-scroll{overflow-y:auto; overscroll-behavior:contain; padding:12px 18px calc(20px + env(safe-area-inset-bottom,0px));}
   .moment-card-label{font-size:10px; font-weight:800; letter-spacing:.08em; color:var(--ink-faint); text-transform:uppercase; flex:1;}
   .moment-card-close{background:none; border:none; color:var(--ink-faint); padding:4px; cursor:pointer;}
   .moment-card-title{font-family:"Poppins",system-ui,sans-serif; font-weight:700; font-size:18px; margin-top:12px; color:var(--ink);}
@@ -402,7 +404,7 @@
 <body>
 <div id="app"></div>
 
-<script src="incident-engine.js"></script>
+<script src="absence-consequence-engine.js"></script>
 <script>
 (function(){
   "use strict";
@@ -1035,7 +1037,9 @@
       journal: [{ ts: now, text: name + " came home. The trial starts now." }],
       dogMoments: [],
       momentState: { fired: {}, lastByCategory: {} },
-      dailyFlagsDay: 0, toiletMissedToday: false, mealMissedToday: false, incidentEvalDay: -1
+      dailyFlagsDay: 0, toiletMissedToday: false, mealMissedToday: false,
+      domesticIncidentDay: -1, lastEvaluatedAbsenceId: null,
+      sniffingCardDay: -1, sniffingCardShownAt: 0
     };
   }
   function bumpOwnerLoad(amount){
@@ -1278,16 +1282,11 @@
   // ones are gated by a per-category cooldown so the same kind of moment can't
   // reappear before the dog's situation has plausibly moved on.
   var DOG_MOMENTS = [
-    { id:"explore_new_home", category:"Exploration", color:"accent", icon:"compass", oneShot:true,
-      title:"Probably sniffing every corner right now.",
-      explanation:"Your home is full of unfamiliar smells. Sniffing is one of the main ways dogs gather information about a new environment.",
-      whatToDo:"Let them explore at their own pace. Keep things calm and predictable for the first few hours.",
-      check: function(s, ctx){ return ctx.minutesSinceStart < 90; } },
     { id:"explore_no_settle", category:"Exploration", color:"accent", icon:"compass", oneShot:true,
       title:"They may be looking for a place to settle.",
       explanation:"A new environment can be overwhelming. Dogs often benefit from having a quiet place where they can rest without constant activity around them.",
       whatToDo:"Keep their resting area quiet and let them choose when to settle.",
-      check: function(s, ctx){ return s.momentState.fired.explore_new_home && ctx.minutesSinceStart >= 90 && ctx.minutesSinceStart < 360 && s.energy >= 40; } },
+      check: function(s, ctx){ return ctx.minutesSinceStart >= 90 && ctx.minutesSinceStart < 360 && s.energy >= 40; } },
     { id:"continued_sniffing", category:"Exploration", color:"accent", icon:"compass", cooldownHours:20,
       title:"Still sniffing? That's normal.",
       explanation:"Dogs use scent to gather information about people, objects and places around them.",
@@ -1436,14 +1435,9 @@
     }
   }
 
-  // Maps this app's internal breed/housing ids to the keys incident-rules.json
-  // was authored against, so the rules file stays a direct, unmodified copy of
+  // Maps this app's internal housing id to the keys incident-rules.json was
+  // authored against, so the rules file stays a direct, unmodified copy of
   // what the incident pack shipped rather than something re-keyed to match us.
-  var INCIDENT_BREED_KEY = {
-    lab:"labrador_retriever", husky:"siberian_husky", frenchie:"french_bulldog",
-    collie:"border_collie", chihuahua:"chihuahua", amstaff:"american_staffordshire_terrier",
-    malinois:"belgian_malinois", gsd:"german_shepherd", canecorso:"cane_corso", bichon:"bichon_frise"
-  };
   var INCIDENT_HOUSING_KEY = { garden:"garden", terrace:"apartment_terrace", cage:"apartment_crate" };
   var INCIDENT_ADVICE = {
     walk: "Finish today's walk to close the gap before it happens again.",
@@ -1461,59 +1455,56 @@
     });
   }
 
-  // Real inputs only: walk reuses the same per-day minutes counter the Walks tab
-  // already tracks against this breed's actual daily target; play reuses energy
-  // (the stat walk/play together restore) as its completion proxy; training
-  // reuses the existing lifetime skill average. toiletOnTime/mealOnTime come
-  // straight off the hunger/bladder decay via applyHomeDecay. No parallel ledger.
-  function incidentDayInput(now){
+  function clamp01(v){ return Math.max(0, Math.min(1, v)); }
+
+  // Captured once, at the moment "Leave for work" is confirmed — an immutable
+  // record of the dog's state at departure. Everything the absence-triggered
+  // incident evaluation reads comes from this snapshot, never from live state
+  // recomputed later, so a consequence's explanation always matches the real
+  // situation the owner actually left behind.
+  function captureAbsenceSnapshot(){
     var breed = byId(state.breedId);
     var housing = housingById(state.housingId);
     var stage = stageOf(state.dogDays);
     var walkGoal = Math.max(1, breed.walkMinutes*2);
     var walkToday = state.walkMinutesDay === tripDay() ? (state.walkMinutesToday||0) : 0;
     return {
-      dogId: String(state.startedAt),
-      date: String(tripDay()),
-      breed: INCIDENT_BREED_KEY[state.breedId] || "labrador_retriever",
       ageStage: stage === "senior" ? "adult" : stage,
-      housing: INCIDENT_HOUSING_KEY[state.housingId] || "apartment_terrace",
-      currentlyCrated: !!(state.away && housing.confinement),
-      environment: {
-        accessiblePlant:true, accessibleBin:true, accessibleBathroom:true,
-        accessibleBooks:true, accessibleRemote:true, accessibleFood:true
-      },
+      housingKey: INCIDENT_HOUSING_KEY[state.housingId] || "apartment_terrace",
+      currentlyCrated: !!housing.confinement,
+      toiletOnTime: !state.toiletMissedToday,
+      mealOnTime: !state.mealMissedToday,
       completion: {
         walk: clamp01(walkToday/walkGoal),
         play: clamp01(state.energy/100),
-        training: clamp01(avgTrainingProgress()/100),
-        toiletOnTime: !state.toiletMissedToday,
-        mealOnTime: !state.mealMissedToday
+        training: clamp01(avgTrainingProgress()/100)
+      },
+      environment: {
+        accessiblePlant:true, accessibleBin:true, accessibleBathroom:true,
+        accessibleBooks:true, accessibleRemote:true, accessibleFood:true
       }
     };
   }
-  function clamp01(v){ return Math.max(0, Math.min(1, v)); }
 
-  // One evaluation per trip-day: evaluateIncident is a pure function of
-  // dogId+date+snapshot, so re-calling it every tick before it fires is safe
-  // (identical result each time) — the actual dedupe is "does today already
-  // have an Incident-category entry in state.dogMoments".
-  function maybeTriggerIncident(now){
-    if (activeMomentBubble || !window.DogTrailIncidents) return;
+  // Evaluated exactly once per absence (idempotencyKey = absenceId), only
+  // after it has actually ended, and capped at one domestic incident per
+  // local date — never while away, never at "Leave for work", never on a
+  // plain app-open tick. This is the only place a photo incident can fire.
+  function maybeEvaluateAbsenceIncident(away, now, durationMinutes){
+    if (!away.absenceId || !away.snapshot) return; // an absence started before this patch: nothing to evaluate
+    if (state.lastEvaluatedAbsenceId === away.absenceId) return;
+    state.lastEvaluatedAbsenceId = away.absenceId;
     var day = tripDay();
-    var already = (state.dogMoments||[]).some(function(m){ return m.category === "Incident" && m.localDate === day; });
-    if (already) return;
+    if (state.domesticIncidentDay === day || activeMomentBubble){ save(); return; }
     loadIncidentRules().then(function(rules){
-      if (activeMomentBubble) return; // a Dog Moment may have taken the slot while rules were loading
-      return DogTrailIncidents.evaluateIncident(incidentDayInput(now), rules).then(function(result){
-        if (!result) return;
-        var stillClear = !activeMomentBubble && !(state.dogMoments||[]).some(function(m){ return m.category === "Incident" && m.localDate === day; });
-        if (stillClear) fireIncident(result, now, day);
-      });
-    }).catch(function(){ /* offline or asset missing: silently skip today's incident */ });
+      var result = window.DogTrailAbsenceConsequences.evaluate(away.snapshot, durationMinutes, rules);
+      if (!result) { save(); return; }
+      state.domesticIncidentDay = day;
+      fireIncident(result, now, day, away.snapshot.completion);
+    }).catch(function(){ save(); });
   }
 
-  function fireIncident(result, now, day){
+  function fireIncident(result, now, day, completionSnapshot){
     var moment = {
       id: "incident_" + result.incidentId + "_" + now,
       defId: result.incidentId,
@@ -1525,9 +1516,8 @@
       whatToDo: INCIDENT_ADVICE[result.primaryCause] || "Restoring the missed routine lowers the risk of this happening again.",
       assetPath: result.asset,
       primaryCause: result.primaryCause,
-      riskScore: result.riskScore,
-      probability: result.probability,
-      completionSnapshot: incidentDayInput(now).completion,
+      durationMinutes: result.durationMinutes,
+      completionSnapshot: completionSnapshot || null,
       localDate: day,
       ts: now,
       dayOfTrial: tripDay(),
@@ -1545,6 +1535,15 @@
     var last = state.lastTick;
     var deltaHours = (now-last)/HOUR;
     if (deltaHours <= 0) return;
+    // Sniffing is a plain welcome card for the day's first session — never a
+    // notification, never an incident, never saved to the notification
+    // center. Tracking when it was last shown here (not inside a render
+    // function) keeps the render side a pure read of this flag.
+    var today = tripDay();
+    if (state.sniffingCardDay !== today){
+      state.sniffingCardDay = today;
+      state.sniffingCardShownAt = now;
+    }
     var stageBefore = stageOf(state.dogDays);
     applyHomeDecay(deltaHours, stageBefore);
     state.dogDays += deltaHours*DOGDAYS_PER_HOUR;
@@ -1565,7 +1564,6 @@
     checkPhaseTransition();
     bumpOwnerLoad(-deltaHours*0.5); // calm, uneventful time settles the load back down
     maybeTriggerDogMoment(now);
-    maybeTriggerIncident(now);
     save();
   }
 
@@ -1674,6 +1672,9 @@
     log(homeText);
     timeline.push({ ts: now, text: homeText });
     fireDogMomentById("new_visitor", now);
+    // The only place a photo incident can be evaluated: the absence has just
+    // actually ended, exactly once, from the snapshot frozen at departure.
+    maybeEvaluateAbsenceIncident(away, now, actualHours*60);
     save();
 
     return { actualHours: actualHours, declaredHours: away.declaredHours, tolerance: tolerance, incidents: incidents,
@@ -2256,6 +2257,23 @@
   function isLateNightHour(h){
     return h >= 22 || h < 6;
   }
+  // Plain, dismiss-free welcome card for the day's first session — not a
+  // notification, not an incident, never saved to the notification center.
+  // Visible for a short window after tickHome first marks the day as begun,
+  // then it naturally stops appearing on its own (no ack needed).
+  function sniffingWelcomeCard(){
+    if (!state.sniffingCardShownAt || (Date.now() - state.sniffingCardShownAt) > 20*60000) return "";
+    var photo = sniffingPhotoFor();
+    return '' +
+      '<div class="card" style="padding:0; overflow:hidden;">' +
+        (photo ? '<img src="'+photo+'" alt="" style="width:100%; height:130px; object-fit:cover; display:block;">' : '') +
+        '<div style="padding:16px;">' +
+          '<div class="section-title">Sniffing around the house</div>' +
+          '<p class="muted" style="margin-top:4px; font-size:13px;">Dogs check in on their environment most days — new smells, sounds, and small changes since last time.</p>' +
+        '</div>' +
+      '</div>';
+  }
+
   function renderTabToday(){
     var stage = stageOf(state.dogDays);
     var next = computeNextAction();
@@ -2311,6 +2329,7 @@
       '</div>';
 
     return '' +
+      sniffingWelcomeCard() +
       wellnessCard +
       nowCard +
 
@@ -3393,18 +3412,50 @@
       (groupsHTML || '<div class="card"><div class="muted">Nothing yet.</div></div>');
   }
 
+  // Bottom-sheet open/close: locks page scroll behind the sheet while it's up
+  // and returns focus to the originating control on close, matching a real
+  // modal dialog rather than just an absolutely-positioned card. render()
+  // fully replaces #app's innerHTML every call, so a *raw element reference*
+  // capturing "where focus was" would be a detached node by the time we need
+  // it — a CSS selector re-queried fresh after the closing render() is the
+  // only thing that survives that, and only works if the element it names
+  // still exists post-close (true for a notif-row; not for the bubble the
+  // sheet itself just cleared, hence the bell fallback there).
+  var momentRestoreSelector = null;
+  function openMomentSheet(restoreSelector){
+    momentRestoreSelector = restoreSelector || null;
+    momentBubbleExpanded = true;
+    render();
+    document.body.style.overflow = "hidden";
+    var sheet = document.getElementById("moment-card");
+    if (sheet) sheet.focus();
+  }
+  function closeMomentSheet(){
+    momentBubbleExpanded = false;
+    activeMomentBubble = null;
+    render();
+    document.body.style.overflow = "";
+    var restoreTo = (momentRestoreSelector && document.querySelector(momentRestoreSelector)) || document.getElementById("brand-bell-btn");
+    if (restoreTo) restoreTo.focus();
+    momentRestoreSelector = null;
+  }
+
   // Renders the current Dog Moment as either a small non-blocking bubble or,
   // once tapped, an expanded bottom-sheet card. Appended after the main view
   // markup on every render (except splash/onboarding) rather than replacing it.
-  // Real breed x life-stage photos exist only for the "explore_new_home" (sniffing)
-  // moment; every other moment falls back to the plain icon header.
-  function momentPhotoFor(m){
-    if (!m || !state) return null;
-    if (m.category === "Incident") return m.assetPath || null;
-    if (m.defId !== "explore_new_home") return null;
+  // Real breed x life-stage photos back the Incident category and the plain
+  // (non-moment) daily sniffing welcome card; every other moment falls back
+  // to the plain icon header.
+  function sniffingPhotoFor(){
+    if (!state) return null;
     var stage = stageOf(state.dogDays);
     if (stage === "senior") stage = "adult";
     return "media/moments/sniffing/" + state.breedId + "_" + stage + ".jpg";
+  }
+  function momentPhotoFor(m){
+    if (!m || !state) return null;
+    if (m.category === "Incident") return m.assetPath || null;
+    return null;
   }
 
   function renderMomentOverlay(){
@@ -3423,23 +3474,29 @@
     }
     var photoUrl = momentPhotoFor(m);
     var isIncident = m.category === "Incident";
+    // Header lives outside the scroll container so the close button stays
+    // visible no matter how far the content underneath scrolls; the sheet
+    // itself is height-clamped (48–82dvh) per the bottom-sheet spec rather
+    // than growing to fit its content.
     return '' +
       '<div class="moment-overlay-backdrop" id="moment-backdrop"></div>' +
-      '<div class="moment-card" id="moment-card">' +
-        (photoUrl ? '<img class="moment-card-photo" src="'+photoUrl+'" alt="'+(isIncident?esc(m.title):"")+'" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">' : '') +
+      '<div class="moment-card" id="moment-card" role="dialog" aria-modal="true" aria-labelledby="moment-card-title" tabindex="-1">' +
         '<div class="moment-card-top">' +
           '<span class="moment-bubble-icon" style="background:var(--grad-'+m.color+'); box-shadow:var(--glow-'+m.color+');">'+icon(m.iconName,18)+'</span>' +
           '<span class="moment-card-label">'+(m.category==="Trial Update"?"TRIAL UPDATE":(isIncident?"INCIDENT":"DOG MOMENT"))+'</span>' +
           '<button class="moment-card-close" id="moment-card-close" aria-label="Close">'+icon("x",14)+'</button>' +
         '</div>' +
-        '<div class="moment-card-title">'+esc(m.title)+'</div>' +
-        (isIncident ? '<div class="moment-card-explain-label">WHY NOW?</div>' : '') +
-        '<div class="moment-card-explain">'+esc(m.explanation)+'</div>' +
-        '<div class="moment-card-whatto">' +
-          '<div class="moment-card-whatto-label">'+icon("bulb",14)+' WHAT TO DO</div>' +
-          '<div class="moment-card-whatto-text">'+esc(m.whatToDo)+'</div>' +
+        '<div class="moment-card-scroll">' +
+          (photoUrl ? '<img class="moment-card-photo" src="'+photoUrl+'" alt="'+(isIncident?esc(m.title):"")+'" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">' : '') +
+          '<div class="moment-card-title" id="moment-card-title">'+esc(m.title)+'</div>' +
+          (isIncident ? '<div class="moment-card-explain-label">WHY NOW?</div>' : '') +
+          '<div class="moment-card-explain">'+esc(m.explanation)+'</div>' +
+          '<div class="moment-card-whatto">' +
+            '<div class="moment-card-whatto-label">'+icon("bulb",14)+' WHAT TO DO</div>' +
+            '<div class="moment-card-whatto-text">'+esc(m.whatToDo)+'</div>' +
+          '</div>' +
+          '<button class="btn btn-primary" id="moment-got-it" style="margin-top:14px; width:100%;">'+icon("check",16)+' Got it</button>' +
         '</div>' +
-        '<button class="btn btn-primary" id="moment-got-it" style="margin-top:14px; width:100%;">'+icon("check",16)+' Got it</button>' +
       '</div>';
   }
 
@@ -3582,13 +3639,13 @@
     var bellBtn = document.getElementById("brand-bell-btn");
     if (bellBtn) bellBtn.addEventListener("click", function(){ view = "notifications"; render(); });
     var bubbleOpen = document.getElementById("moment-bubble-open");
-    if (bubbleOpen) bubbleOpen.addEventListener("click", function(){ momentBubbleExpanded = true; render(); });
+    if (bubbleOpen) bubbleOpen.addEventListener("click", function(){ openMomentSheet("#brand-bell-btn"); });
     var bubbleClose = document.getElementById("moment-bubble-close");
     if (bubbleClose) bubbleClose.addEventListener("click", function(){ activeMomentBubble = null; momentBubbleExpanded = false; render(); });
     var cardClose = document.getElementById("moment-card-close");
-    if (cardClose) cardClose.addEventListener("click", function(){ activeMomentBubble = null; momentBubbleExpanded = false; render(); });
+    if (cardClose) cardClose.addEventListener("click", closeMomentSheet);
     var backdrop = document.getElementById("moment-backdrop");
-    if (backdrop) backdrop.addEventListener("click", function(){ momentBubbleExpanded = false; render(); });
+    if (backdrop) backdrop.addEventListener("click", closeMomentSheet);
     var gotIt = document.getElementById("moment-got-it");
     if (gotIt) gotIt.addEventListener("click", function(){
       if (activeMomentBubble){
@@ -3596,9 +3653,7 @@
         if (m){ m.read = true; m.acknowledged = true; }
         save();
       }
-      activeMomentBubble = null;
-      momentBubbleExpanded = false;
-      render();
+      closeMomentSheet();
     });
 
     if (view === "splash"){
@@ -3948,7 +4003,14 @@
       range.addEventListener("input", function(){ out.textContent = range.value + "h"; });
       document.getElementById("confirm-leave").addEventListener("click", function(){
         var hours = parseInt(range.value, 10);
-        state.away = { leaveStart: Date.now(), declaredHours: hours, awayAlerted: false };
+        // absenceId + snapshot captured right here, at departure — the only
+        // moment this data is real-time; everything the absence-consequence
+        // evaluation reads later comes from this frozen copy, not live state.
+        state.away = {
+          leaveStart: Date.now(), declaredHours: hours, awayAlerted: false,
+          absenceId: "absence_" + Date.now(),
+          snapshot: captureAbsenceSnapshot()
+        };
         log("Left for work — said back in " + hours + "h.");
         save();
         view = "atWork"; render();
@@ -3997,8 +4059,7 @@
             m.read = true;
             save();
             activeMomentBubble = m;
-            momentBubbleExpanded = true;
-            render();
+            openMomentSheet('[data-notif-id="'+id+'"]');
           }
         });
       });
@@ -4244,6 +4305,12 @@
         render();
       }
     }
+  });
+
+  // Registered once (not inside attachHandlers, which reruns every render)
+  // so the bottom sheet can be dismissed from the keyboard like a real dialog.
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && momentBubbleExpanded) closeMomentSheet();
   });
 
   function haversine(lat1, lon1, lat2, lon2){
@@ -4545,7 +4612,10 @@
     if (state.dailyFlagsDay === undefined) state.dailyFlagsDay = 0;
     if (state.toiletMissedToday === undefined) state.toiletMissedToday = false;
     if (state.mealMissedToday === undefined) state.mealMissedToday = false;
-    if (state.incidentEvalDay === undefined) state.incidentEvalDay = -1;
+    if (state.domesticIncidentDay === undefined) state.domesticIncidentDay = -1;
+    if (state.lastEvaluatedAbsenceId === undefined) state.lastEvaluatedAbsenceId = null;
+    if (state.sniffingCardDay === undefined) state.sniffingCardDay = -1;
+    if (state.sniffingCardShownAt === undefined) state.sniffingCardShownAt = 0;
     if (state.away && state.away.awayAlerted === undefined) state.away.awayAlerted = false;
     if (state.away){
       var now = Date.now();
