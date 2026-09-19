@@ -65,15 +65,15 @@
   .splash{position:fixed; inset:0; z-index:30; overflow:hidden; background:#0B0E2A;}
   .splash-bg{position:absolute; inset:0;}
   .splash-bg img{width:100%; height:100%; display:block; object-fit:cover; object-position:center bottom;}
+  /* The "Get Started" pill is already baked into the mockup photo itself —
+     this button is just an invisible hit target over it, not a second
+     visible button, so it doesn't render its own background/text on top. */
   .splash-start-btn{
     position:absolute; left:15%; width:70%; bottom:8.6%; height:8.8%;
-    display:flex; align-items:center; justify-content:center; gap:8px;
-    border:none; border-radius:999px; margin:0; -webkit-tap-highlight-color:transparent;
-    background:var(--grad-accent); box-shadow:var(--glow-accent), 0 0 0 1px rgba(255,255,255,.08) inset;
-    color:#fff; font-family:"Poppins",system-ui,sans-serif; font-weight:700; font-size:16px;
-    transition:filter 150ms ease, transform 150ms ease;
+    border:none; border-radius:999px; margin:0; padding:0; -webkit-tap-highlight-color:transparent;
+    background:transparent; transition:filter 150ms ease, transform 150ms ease;
   }
-  .splash-start-btn:active{filter:brightness(.92); transform:scale(.985);}
+  .splash-start-btn:active{filter:brightness(.85); transform:scale(.985);}
 
   /* ---- brand strip ---- */
   .brand{display:flex; align-items:center; gap:8px; margin-bottom:18px; color:var(--ink-soft);}
@@ -2039,7 +2039,7 @@
     return '' +
       '<div class="splash">' +
         '<div class="splash-bg"><img src="'+SPLASH_PHOTO+'" alt="DogTrial"></div>' +
-        '<button class="splash-start-btn" id="splash-start">Get Started <span aria-hidden="true">&rarr;</span></button>' +
+        '<button class="splash-start-btn" id="splash-start" aria-label="Get Started"></button>' +
       '</div>';
   }
 
