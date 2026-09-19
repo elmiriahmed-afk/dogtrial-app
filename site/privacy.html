@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — DogTrial</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#F6F4EC; --card:#FFFFFF; --card-2:#EFECE0; --ink:#1B2420; --ink-soft:#57645C;
+    --ink-faint:#8B9790; --line:#DEDACB; --pine:#2F5D50; --pine-deep:#1F4438; --pine-soft:#E1EBE6;
+    --shadow:0 1px 2px rgba(27,36,32,.05), 0 12px 32px rgba(27,36,32,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#131C17; --card:#1B2620; --card-2:#20302A; --ink:#ECEEE8; --ink-soft:#9FB0A6;
+      --ink-faint:#657069; --line:#2B3A33; --pine:#7FB88D; --pine-deep:#9ED0AA; --pine-soft:#20332A;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#131C17; --card:#1B2620; --card-2:#20302A; --ink:#ECEEE8; --ink-soft:#9FB0A6;
+    --ink-faint:#657069; --line:#2B3A33; --pine:#7FB88D; --pine-deep:#9ED0AA; --pine-soft:#20332A;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0; background:var(--paper); color:var(--ink);}
+  body{ font-family:"IBM Plex Sans",system-ui,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  h1,h2{ font-family:"Fraunces",Georgia,serif; text-wrap:balance; margin:0; }
+  a{ color:var(--pine); }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 24px; }
+  header.nav{ border-bottom:1px solid var(--line); padding:18px 0; }
+  .nav-inner{ max-width:760px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; }
+  .brand{ font-family:"Fraunces",serif; font-weight:700; font-size:19px; }
+  .brand a{ text-decoration:none; color:var(--ink); }
+  main{ padding:56px 0 80px; }
+  h1{ font-size:clamp(30px,4vw,40px); font-weight:600; margin-bottom:6px; }
+  .updated{ color:var(--ink-faint); font-size:13.5px; margin-bottom:40px; }
+  h2{ font-size:21px; font-weight:600; margin-top:40px; margin-bottom:12px; color:var(--pine-deep); }
+  p, li{ color:var(--ink-soft); font-size:15.5px; }
+  ul{ padding-left:22px; }
+  li{ margin-bottom:8px; }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 24px; box-shadow:var(--shadow); margin:28px 0; }
+  footer{ border-top:1px solid var(--line); padding:28px 0; color:var(--ink-faint); font-size:13px; }
+  footer .wrap{ display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/">DogTrial</a></div>
+    <div><a href="/">&larr; Back to dogtrial.dog</a></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Privacy Policy</h1>
+  <div class="updated">Last updated: September 19, 2026</div>
+
+  <p>DogTrial ("the app") is a 30-day dog-ownership rehearsal simulator. This policy explains what information the app handles, and — just as importantly — what it doesn't.</p>
+
+  <div class="card">
+    <strong>In short:</strong> Creating a trial needs an email and password, and your breed/housing/starting choices are stored against that account. Nothing else is: your day-to-day trial (feeding, walks, training, journal) lives only on your device, we don't sell or share data with advertisers, and we don't use your email for anything except signing you in.
+  </div>
+
+  <h2>Account</h2>
+  <p>To start a trial, you create an account with an email address and a password. The password is never stored in plain text — it's hashed before it's saved. Your email is used only to sign you in and, if you ever need it, to recover access to your account; it is never sold, shared with advertisers, or used for marketing.</p>
+  <p>When you finish onboarding, the choices you made — breed, housing type, life situation, starting age — are stored against your account on our server. This is a one-time snapshot of your starting setup, not a live sync: everything that happens afterward (feeding, walks, training, journal, incidents) stays on your device only, as described below.</p>
+
+  <h2>Data stored on your device</h2>
+  <p>The app saves your day-to-day trial locally, using your browser's or device's local storage. This includes your trial progress (feeding, walks, training, journal entries) and any optional emergency/sitter info you type in yourself (a vet's name and phone number, allergies, a microchip ID). None of this is transmitted anywhere — it never leaves your device, and we never see it. Clearing the app's data, or uninstalling the app, permanently deletes it.</p>
+
+  <h2>Device permissions</h2>
+  <p>DogTrial may ask for the following permissions, each used only to run the feature you triggered, entirely on-device:</p>
+  <ul>
+    <li><strong>Location (GPS):</strong> used only while you're actively tracking a walk in the app, to calculate distance. Location data is processed on your device and is never sent to us or stored beyond your local trial data.</li>
+    <li><strong>Motion &amp; fitness sensors:</strong> used as an alternative way to track a walk by step count, entirely on-device.</li>
+    <li><strong>Notifications:</strong> used to remind you about your virtual dog's needs (feeding, walks) in real time. These are generated and shown locally by your device — no notification content is sent through our servers.</li>
+  </ul>
+  <p>All of these are optional and can be declined; the app still works without them.</p>
+
+  <h2>Analytics</h2>
+  <p>We use Cloudflare Web Analytics to understand overall traffic to dogtrial.dog (for example, how many people visit and which pages are popular). It is cookieless and does not track you individually or across other websites, and it does not collect any personal or trial data — only aggregate, anonymous usage statistics.</p>
+
+  <h2>What we don't do</h2>
+  <ul>
+    <li>No collection of your name or any contact detail beyond the email you sign up with</li>
+    <li>No advertising and no ad-tracking SDKs</li>
+    <li>No selling or sharing of your email or account data with third parties</li>
+    <li>No marketing use of your email address</li>
+    <li>No server-side storage of your day-to-day trial data — that stays on your device</li>
+  </ul>
+
+  <h2>Children's privacy</h2>
+  <p>DogTrial is not directed at children. Creating an account requires an email address, so the app is not intended for use by anyone below the age required to hold one under applicable law.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If this policy changes — for example, if a future version of the app adds a new feature that changes what data is handled — this page will be updated and the "last updated" date above will change.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy or the app can be sent to <a href="/cdn-cgi/l/email-protection#a1c4cdccc8d3c88fc0c9ccc4c5e1c6ccc0c8cd8fc2cecc"><span class="__cf_email__" data-cfemail="50353c3d3922397e31383d353410373d31393c7e333f3d">[email&#160;protected]</span></a>.</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>DogTrial — a rehearsal, not a toy.</span>
+    <span>dogtrial.dog</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
