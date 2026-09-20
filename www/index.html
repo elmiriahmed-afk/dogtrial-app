@@ -53,7 +53,7 @@
     min-height:100vh;
     display:flex;
     justify-content:center;
-    padding:28px 14px 60px;
+    padding:max(28px, env(safe-area-inset-top,0px)) 14px 60px;
   }
   #app{width:100%; max-width:440px;}
   h1,h2,h3{font-family:"Poppins",system-ui,sans-serif; font-weight:700; margin:0; text-wrap:balance;}
