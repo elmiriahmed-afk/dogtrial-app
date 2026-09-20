@@ -22,6 +22,9 @@ workflows:
       - name: Add iOS platform (first run only)
         script: |
           test -d ios || npx cap add ios
+      - name: Restrict app to iPhone only (no iPad support)
+        script: |
+          sed -i '' 's/TARGETED_DEVICE_FAMILY = "1,2";/TARGETED_DEVICE_FAMILY = 1;/g; s/TARGETED_DEVICE_FAMILY = 2;/TARGETED_DEVICE_FAMILY = 1;/g' ios/App/App.xcodeproj/project.pbxproj
       - name: Capacitor sync
         script: npx cap sync ios
       - name: Set unique build number
