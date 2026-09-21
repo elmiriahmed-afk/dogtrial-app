@@ -25,6 +25,30 @@ workflows:
       - name: Restrict app to iPhone only (no iPad support)
         script: |
           sed -i '' 's/TARGETED_DEVICE_FAMILY = "1,2";/TARGETED_DEVICE_FAMILY = 1;/g; s/TARGETED_DEVICE_FAMILY = 2;/TARGETED_DEVICE_FAMILY = 1;/g' ios/App/App.xcodeproj/project.pbxproj
+      - name: Apply custom app icon
+        script: |
+          ICONSET="ios/App/App/Assets.xcassets/AppIcon.appiconset"
+          SRC="store-assets/app-icon-1024.png"
+          if [ -d "$ICONSET" ] && [ -f "$SRC" ]; then
+            python3 - "$ICONSET" "$SRC" <<'PYEOF'
+          import json, os, subprocess, sys
+          iconset, src = sys.argv[1], sys.argv[2]
+          with open(os.path.join(iconset, "Contents.json")) as f:
+              data = json.load(f)
+          for image in data.get("images", []):
+              filename = image.get("filename")
+              if not filename:
+                  continue
+              w, _, h = image.get("size", "1024x1024").partition("x")
+              scale = float(image.get("scale", "1x").rstrip("x"))
+              px = str(int(round(float(w) * scale)))
+              dest = os.path.join(iconset, filename)
+              subprocess.run(["sips", "-z", px, px, src, "--out", dest], check=True)
+              print("wrote " + dest + " " + px + "x" + px)
+          PYEOF
+          else
+            echo "AppIcon.appiconset not found at $ICONSET or $SRC missing — skipping icon replacement"
+          fi
       - name: Capacitor sync
         script: npx cap sync ios
       - name: Set unique build number
