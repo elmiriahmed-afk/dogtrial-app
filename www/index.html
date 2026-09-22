@@ -1424,6 +1424,11 @@
       walk_time_remaining: "Time remaining",
       btn_pause_walk: "Pause", btn_resume_walk: "Resume",
       walk_lock_note: "Best with your screen on. If it locks briefly, steps for that gap are estimated at a normal walking pace when you come back.",
+      walk_goal_intro: "Goal: {min} active minutes for this breed.",
+      btn_start_walk: "Start the walk",
+      btn_back_to_today: "← Back to today",
+      walk_moving_label: "Walking — tracking your steps",
+      walk_still_label: "Standing still — progress paused",
       btn_open_emergency: "Open emergency &amp; sitter info",
       btn_ignore_for_now: "Ignore for now", btn_go_out_15: "Go out (15 min)",
       reset_confirm_prompt: "Start a new trial?",
@@ -1734,6 +1739,11 @@
       walk_time_remaining: "Temps restant",
       btn_pause_walk: "Pause", btn_resume_walk: "Reprendre",
       walk_lock_note: "Idéalement avec l'écran allumé. S'il se verrouille brièvement, les pas de cette période sont estimés à une cadence de marche normale à votre retour.",
+      walk_goal_intro: "Objectif : {min} minutes actives pour cette race.",
+      btn_start_walk: "Démarrer la balade",
+      btn_back_to_today: "← Retour à aujourd'hui",
+      walk_moving_label: "En marche — suivi des pas en cours",
+      walk_still_label: "À l'arrêt · progression suspendue",
       btn_open_emergency: "Ouvrir les infos d'urgence",
       btn_ignore_for_now: "Ignorer pour l'instant", btn_go_out_15: "Sortir (15 min)",
       reset_confirm_prompt: "Commencer un nouvel essai ?",
@@ -4401,12 +4411,30 @@
   function renderWalkSteps(){
     var breed = byId(state.breedId);
     var goalMin = walkCtx ? walkCtx.goalMinutes : breed.walkMinutes;
-    var activeSec = walkCtx ? walkCtx.activeSeconds : 0;
-    var steps = walkCtx ? walkCtx.steps : 0;
-    var paused = !!(walkCtx && walkCtx.paused);
+
+    // Not started yet: a calm intro (goal, static ring) with an explicit
+    // "Start" tap — this is also the natural place to ask for motion-sensor
+    // permission, instead of surprising the walker the instant they land here.
+    if (!walkCtx){
+      return '' +
+        '<div class="card center">' +
+          '<div class="section-title">'+tr('walk_walking_name','Walking {name}').replace('{name}', esc(state.name))+'</div>' +
+          '<p class="muted">'+tr('walk_goal_intro','Goal: {min} active minutes for this breed.').replace('{min}', goalMin)+'</p>' +
+          '<div class="ring-wrap">' + ringSVG(0) +
+            '<div class="ring-center"><div class="ring-num mono">00:00</div><div class="ring-goal mono">'+tr('walk_of_min','of {min} min').replace('{min}', goalMin)+'</div></div>' +
+          '</div>' +
+          '<button class="btn btn-primary" id="start-walk-steps" style="margin-top:20px;">'+tr('btn_start_walk','Start the walk')+' →</button>' +
+          '<button class="btn-ghost" id="walk-steps-cancel" style="margin-top:8px;">'+tr('btn_back_to_today','← Back to today')+'</button>' +
+        '</div>';
+    }
+
+    var activeSec = walkCtx.activeSeconds;
+    var steps = walkCtx.steps;
+    var paused = !!walkCtx.paused;
     var goalSec = goalMin*60;
     var remainSec = Math.max(0, goalSec - activeSec);
     var pct = Math.min(100, Math.round(activeSec/goalSec*100));
+    var moving = !paused && (Date.now() - walkCtx.lastStepTime) < 90000 && walkCtx.lastStepTime > 0;
     return '' +
       '<div class="card center">' +
         '<div class="section-title">'+tr('walk_walking_name','Walking {name}').replace('{name}', esc(state.name))+'</div>' +
@@ -4414,7 +4442,10 @@
         '<div class="ring-wrap">' + ringSVG(pct) +
           '<div class="ring-center"><div class="ring-num mono" id="ring-num">'+pad2(Math.floor(activeSec/60))+':'+pad2(activeSec%60)+'</div><div class="ring-goal mono">'+tr('walk_of_min','of {min} min').replace('{min}', goalMin)+'</div></div>' +
         '</div>' +
-        (paused ? '<div class="expense-badge" style="margin-top:12px; background:var(--warn-soft); color:var(--warn);">'+tr('walk_paused_label','Paused')+'</div>' : '') +
+        '<div class="muted" id="walk-motion-state" style="margin-top:10px; font-size:12.5px; display:flex; align-items:center; justify-content:center; gap:6px;">' +
+          '<span style="width:7px; height:7px; border-radius:50%; background:currentColor; flex:none;"></span>' +
+          '<span id="walk-motion-label">'+(paused?tr('walk_paused_label',"Paused"):(moving?tr('walk_moving_label',"Walking — tracking your steps"):tr('walk_still_label',"Standing still — progress paused")))+'</span>' +
+        '</div>' +
         '<div class="stat-grid" style="margin-top:16px;">' +
           '<div class="stat-tile">' +
             '<div class="stat-icon" style="background:var(--grad-accent); box-shadow:var(--glow-accent);">'+icon('paw',18)+'</div>' +
@@ -5494,8 +5525,9 @@
       });
       var walkBtn = document.getElementById("walk-btn");
       if (walkBtn) walkBtn.addEventListener("click", function(){
-        if (state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined") startStepsWalk();
-        else if (state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
+        if (state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined"){
+          walkCtx = null; view = "walkSteps"; render();
+        } else if (state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
         else doManualWalk();
       });
       var playBtn = document.getElementById("play-btn");
@@ -5621,12 +5653,19 @@
     }
 
     if (view === "walkSteps"){
-      document.getElementById("end-walk").addEventListener("click", function(){
-        requestStepsWalkConfirm();
-      });
-      document.getElementById("pause-walk").addEventListener("click", function(){
-        togglePauseStepsWalk();
-      });
+      if (!walkCtx){
+        var startWalkBtn = document.getElementById("start-walk-steps");
+        if (startWalkBtn) startWalkBtn.addEventListener("click", function(){ startStepsWalk(); });
+        var cancelWalkBtn = document.getElementById("walk-steps-cancel");
+        if (cancelWalkBtn) cancelWalkBtn.addEventListener("click", function(){ view = "home"; render(); });
+      } else {
+        document.getElementById("end-walk").addEventListener("click", function(){
+          requestStepsWalkConfirm();
+        });
+        document.getElementById("pause-walk").addEventListener("click", function(){
+          togglePauseStepsWalk();
+        });
+      }
     }
 
     if (view === "walkConfirm"){
@@ -6352,6 +6391,10 @@
         var r = 66, c = 2*Math.PI*r;
         circle.style.strokeDashoffset = (c - pct/100*c);
       }
+      var motionEl = document.getElementById("walk-motion-label");
+      if (motionEl) motionEl.textContent = walkCtx.paused
+        ? tr('walk_paused_label',"Paused")
+        : (moving ? tr('walk_moving_label',"Walking — tracking your steps") : tr('walk_still_label',"Standing still — progress paused"));
     }, 1000);
   }
 
