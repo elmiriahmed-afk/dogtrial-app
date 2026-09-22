@@ -1416,6 +1416,14 @@
       btn_view_all: "View all", btn_view_milestones: "View milestones",
       btn_walk: "Walk", btn_see_safe_activities: "See safe activities",
       btn_take_care_first: "Take care of it first",
+      walk_walking_name: "Walking {name}",
+      walk_steps_intro: "Keep moving — the ring only fills while you're actually walking, up to a real {min} minutes for this breed.",
+      walk_of_min: "of {min} min",
+      walk_paused_label: "Paused",
+      walk_steps_detected: "Steps detected",
+      walk_time_remaining: "Time remaining",
+      btn_pause_walk: "Pause", btn_resume_walk: "Resume",
+      walk_lock_note: "Best with your screen on. If it locks briefly, steps for that gap are estimated at a normal walking pace when you come back.",
       btn_open_emergency: "Open emergency &amp; sitter info",
       btn_ignore_for_now: "Ignore for now", btn_go_out_15: "Go out (15 min)",
       reset_confirm_prompt: "Start a new trial?",
@@ -1718,6 +1726,14 @@
       btn_view_all: "Tout voir", btn_view_milestones: "Voir les étapes",
       btn_walk: "Sortir", btn_see_safe_activities: "Voir les activités sûres",
       btn_take_care_first: "S'en occuper d'abord",
+      walk_walking_name: "Sortie avec {name}",
+      walk_steps_intro: "Continuez à marcher — l'anneau ne progresse que pendant la marche réelle, jusqu'à {min} minutes pour cette race.",
+      walk_of_min: "sur {min} min",
+      walk_paused_label: "En pause",
+      walk_steps_detected: "Pas détectés",
+      walk_time_remaining: "Temps restant",
+      btn_pause_walk: "Pause", btn_resume_walk: "Reprendre",
+      walk_lock_note: "Idéalement avec l'écran allumé. S'il se verrouille brièvement, les pas de cette période sont estimés à une cadence de marche normale à votre retour.",
       btn_open_emergency: "Ouvrir les infos d'urgence",
       btn_ignore_for_now: "Ignorer pour l'instant", btn_go_out_15: "Sortir (15 min)",
       reset_confirm_prompt: "Commencer un nouvel essai ?",
@@ -4387,17 +4403,35 @@
     var goalMin = walkCtx ? walkCtx.goalMinutes : breed.walkMinutes;
     var activeSec = walkCtx ? walkCtx.activeSeconds : 0;
     var steps = walkCtx ? walkCtx.steps : 0;
-    var pct = Math.min(100, Math.round(activeSec/(goalMin*60)*100));
+    var paused = !!(walkCtx && walkCtx.paused);
+    var goalSec = goalMin*60;
+    var remainSec = Math.max(0, goalSec - activeSec);
+    var pct = Math.min(100, Math.round(activeSec/goalSec*100));
     return '' +
       '<div class="card center">' +
-        '<div class="section-title">Walking '+esc(state.name)+'</div>' +
-        '<p class="muted">Keep moving — the ring only fills while you\'re actually walking, up to a real '+goalMin+' minutes for this breed.</p>' +
+        '<div class="section-title">'+tr('walk_walking_name','Walking {name}').replace('{name}', esc(state.name))+'</div>' +
+        '<p class="muted">'+tr('walk_steps_intro','Keep moving — the ring only fills while you\'re actually walking, up to a real {min} minutes for this breed.').replace('{min}', goalMin)+'</p>' +
         '<div class="ring-wrap">' + ringSVG(pct) +
-          '<div class="ring-center"><div class="ring-num mono" id="ring-num">'+pad2(Math.floor(activeSec/60))+':'+pad2(activeSec%60)+'</div><div class="ring-goal mono">of '+goalMin+' min</div></div>' +
+          '<div class="ring-center"><div class="ring-num mono" id="ring-num">'+pad2(Math.floor(activeSec/60))+':'+pad2(activeSec%60)+'</div><div class="ring-goal mono">'+tr('walk_of_min','of {min} min').replace('{min}', goalMin)+'</div></div>' +
         '</div>' +
-        '<div class="muted mono" id="walk-steps-count" style="margin-top:12px; font-size:12.5px;">'+steps+' steps detected</div>' +
-        '<button class="btn btn-primary" id="end-walk" style="margin-top:16px">End walk</button>' +
-        '<p class="muted" style="margin-top:12px; font-size:12px;">Best with your screen on. If it locks briefly, steps for that gap are estimated at a normal walking pace when you come back.</p>' +
+        (paused ? '<div class="expense-badge" style="margin-top:12px; background:var(--warn-soft); color:var(--warn);">'+tr('walk_paused_label','Paused')+'</div>' : '') +
+        '<div class="stat-grid" style="margin-top:16px;">' +
+          '<div class="stat-tile">' +
+            '<div class="stat-icon" style="background:var(--grad-accent); box-shadow:var(--glow-accent);">'+icon('paw',18)+'</div>' +
+            '<div class="stat-value" id="walk-steps-count">'+steps+'</div>' +
+            '<div class="stat-label">'+tr('walk_steps_detected','Steps detected')+'</div>' +
+          '</div>' +
+          '<div class="stat-tile">' +
+            '<div class="stat-icon" style="background:var(--grad-teal); box-shadow:var(--glow-teal);">'+icon('clock',18)+'</div>' +
+            '<div class="stat-value" id="walk-remain">'+pad2(Math.floor(remainSec/60))+':'+pad2(remainSec%60)+'</div>' +
+            '<div class="stat-label">'+tr('walk_time_remaining','Time remaining')+'</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="row-btns" style="margin-top:16px;">' +
+          '<button class="btn" id="pause-walk">'+(paused?tr('btn_resume_walk','Resume'):tr('btn_pause_walk','Pause'))+'</button>' +
+          '<button class="btn btn-primary" id="end-walk">'+tr('btn_end_walk','End walk')+'</button>' +
+        '</div>' +
+        '<p class="muted" style="margin-top:12px; font-size:12px;">'+tr('walk_lock_note','Best with your screen on. If it locks briefly, steps for that gap are estimated at a normal walking pace when you come back.')+'</p>' +
       '</div>';
   }
 
@@ -5590,6 +5624,9 @@
       document.getElementById("end-walk").addEventListener("click", function(){
         requestStepsWalkConfirm();
       });
+      document.getElementById("pause-walk").addEventListener("click", function(){
+        togglePauseStepsWalk();
+      });
     }
 
     if (view === "walkConfirm"){
@@ -6013,6 +6050,10 @@
   var AVG_WALK_CADENCE = 100; // steps/min, a typical relaxed walking pace
   var MAX_ESTIMATED_GAP_MIN = 45; // beyond this, assume the walk was abandoned, don't extrapolate
   function onWalkBackgrounded(){
+    // A walk paused on purpose shouldn't have the lock-gap estimate credit it
+    // with steps/distance it never took — leave hiddenAt unset so the
+    // foreground handler below has nothing to extrapolate from.
+    if (walkCtx && walkCtx.paused) return;
     if (walkCtx && (walkCtx.mode === "steps" || walkCtx.mode === "gps")) walkCtx.hiddenAt = Date.now();
   }
   function onWalkForegrounded(){
@@ -6181,7 +6222,7 @@
 
   function startStepsWalk(){
     var breed = byId(state.breedId);
-    walkCtx = { mode:"steps", steps:0, filtered:9.8, lastStepTime:0, activeSeconds:0, goalMinutes: breed.walkMinutes, lastTickAt: Date.now() };
+    walkCtx = { mode:"steps", steps:0, filtered:9.8, lastStepTime:0, activeSeconds:0, goalMinutes: breed.walkMinutes, lastTickAt: Date.now(), paused:false };
     view = "walkSteps"; render();
     requestWakeLock();
     function attach(){
@@ -6205,8 +6246,14 @@
     releaseWakeLock();
     view = "walkConfirm"; render();
   }
+  function togglePauseStepsWalk(){
+    if (!walkCtx) return;
+    walkCtx.paused = !walkCtx.paused;
+    walkCtx.lastTickAt = Date.now();
+    render();
+  }
   function onStepMotion(e){
-    if (!walkCtx || walkCtx.mode !== "steps") return;
+    if (!walkCtx || walkCtx.mode !== "steps" || walkCtx.paused) return;
     var a = e.accelerationIncludingGravity || e.acceleration;
     if (!a || a.x == null) return;
     var mag = Math.sqrt((a.x||0)*(a.x||0) + (a.y||0)*(a.y||0) + (a.z||0)*(a.z||0));
@@ -6217,7 +6264,7 @@
       walkCtx.steps++;
       walkCtx.lastStepTime = now;
       var countEl = document.getElementById("walk-steps-count");
-      if (countEl) countEl.textContent = walkCtx.steps + " steps detected";
+      if (countEl) countEl.textContent = walkCtx.steps;
     }
   }
   function finishStepsWalk(errored, couldntWalk){
@@ -6287,12 +6334,19 @@
       var now = Date.now();
       var deltaSec = Math.round((now - (walkCtx.lastTickAt||now))/1000);
       walkCtx.lastTickAt = now;
-      var moving = (now - walkCtx.lastStepTime) < 90000; // real walks include stops (sniffing, curbs, the dog's business) well over 20s; without this the ring stalls during a normal walk
+      // Paused: the walker asked us to stop counting, so neither steps (see
+      // onStepMotion's own guard) nor active time should accrue until resumed.
+      var moving = !walkCtx.paused && (now - walkCtx.lastStepTime) < 90000; // real walks include stops (sniffing, curbs, the dog's business) well over 20s; without this the ring stalls during a normal walk
       if (moving) walkCtx.activeSeconds += Math.max(1, deltaSec);
       var goalSec = walkCtx.goalMinutes*60;
       var pct = Math.min(100, Math.round(walkCtx.activeSeconds/goalSec*100));
       var numEl = document.getElementById("ring-num");
       if (numEl) numEl.textContent = pad2(Math.floor(walkCtx.activeSeconds/60)) + ":" + pad2(walkCtx.activeSeconds%60);
+      var remainEl = document.getElementById("walk-remain");
+      if (remainEl){
+        var remainSec = Math.max(0, goalSec - walkCtx.activeSeconds);
+        remainEl.textContent = pad2(Math.floor(remainSec/60)) + ":" + pad2(remainSec%60);
+      }
       var circle = document.getElementById("ring-progress");
       if (circle){
         var r = 66, c = 2*Math.PI*r;
