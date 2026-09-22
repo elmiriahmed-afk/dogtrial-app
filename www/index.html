@@ -1098,6 +1098,71 @@
   var realRoutineError = "";
   var ROUTINE_TYPES = ["meal","walk","play","other"];
 
+  // Life Together: the after-adoption 8-week / 24-lesson education program,
+  // distinct from the simulated dog's 15-skill training program above. Titles
+  // come from the editorial catalog (video_catalog.json, schemaVersion 1,
+  // publicationAllowed:false — every lesson is still "draft" / "coming
+  // soon": no video file exists for any of them yet). Practice steps and
+  // quizzes are NOT included here, unlike TRAINING_SKILLS — this catalog is
+  // an editorial draft pending professional review, not vetted instructional
+  // copy, so the app only shows the lesson title and week context plus the
+  // real Easy/Almost/Too hard controls, never invented "how to" steps.
+  var LIFE_TOGETHER_WEEKS = [
+    { week:1, title:{ en:"Safety and connection", fr:"Sécurité et connexion" } },
+    { week:2, title:{ en:"Daily life", fr:"Vie quotidienne" } },
+    { week:3, title:{ en:"Recall", fr:"Rappel" } },
+    { week:4, title:{ en:"Walking together", fr:"Promenade" } },
+    { week:5, title:{ en:"Calm at home", fr:"Calme" } },
+    { week:6, title:{ en:"Being alone", fr:"Solitude" } },
+    { week:7, title:{ en:"The outside world", fr:"Extérieur" } },
+    { week:8, title:{ en:"Real life", fr:"Vie réelle" } }
+  ];
+  var LIFE_TOGETHER_PROGRAM = [
+    { id:"LT-W01-V01", week:1, order:1, title:{ en:"Responding to a name", fr:"Connexion par le nom" } },
+    { id:"LT-W01-V02", week:1, order:2, title:{ en:"The Yes marker", fr:"Le marqueur Yes" } },
+    { id:"LT-W01-V03", week:1, order:3, title:{ en:"Hand target", fr:"Toucher la main" } },
+    { id:"LT-W02-V04", week:2, order:4, title:{ en:"A comfortable sit", fr:"Un assis confortable" } },
+    { id:"LT-W02-V05", week:2, order:5, title:{ en:"A short wait", fr:"Une petite attente" } },
+    { id:"LT-W02-V06", week:2, order:6, title:{ en:"Trading an object", fr:"Échanger un objet" } },
+    { id:"LT-W03-V07", week:3, order:7, title:{ en:"Recall nearby", fr:"Le rappel tout près" } },
+    { id:"LT-W03-V08", week:3, order:8, title:{ en:"Two-person recall", fr:"Le rappel à deux" } },
+    { id:"LT-W03-V09", week:3, order:9, title:{ en:"Recall outdoors", fr:"Le rappel dehors" } },
+    { id:"LT-W04-V10", week:4, order:10, title:{ en:"A few steps together", fr:"Quelques pas ensemble" } },
+    { id:"LT-W04-V11", week:4, order:11, title:{ en:"Changing direction", fr:"Changer de direction" } },
+    { id:"LT-W04-V12", week:4, order:12, title:{ en:"A sniffing break", fr:"La pause sniffing" } },
+    { id:"LT-W05-V13", week:5, order:13, title:{ en:"Introducing a mat", fr:"Découvrir le tapis" } },
+    { id:"LT-W05-V14", week:5, order:14, title:{ en:"Calm while you move", fr:"Du calme pendant vos mouvements" } },
+    { id:"LT-W05-V15", week:5, order:15, title:{ en:"Welcoming a visitor", fr:"Accueillir un visiteur" } },
+    { id:"LT-W06-V16", week:6, order:16, title:{ en:"Departure cues", fr:"Les gestes de départ" } },
+    { id:"LT-W06-V17", week:6, order:17, title:{ en:"A tiny separation", fr:"Une séparation minuscule" } },
+    { id:"LT-W06-V18", week:6, order:18, title:{ en:"Observe before progressing", fr:"Observer avant de progresser" } },
+    { id:"LT-W07-V19", week:7, order:19, title:{ en:"Watching the world", fr:"Observer le monde à distance" } },
+    { id:"LT-W07-V20", week:7, order:20, title:{ en:"Pausing before crossing", fr:"Une pause avant de traverser" } },
+    { id:"LT-W07-V21", week:7, order:21, title:{ en:"Gradual handling", fr:"Des manipulations progressives" } },
+    { id:"LT-W08-V22", week:8, order:22, title:{ en:"Putting walk skills together", fr:"Une promenade avec les acquis" } },
+    { id:"LT-W08-V23", week:8, order:23, title:{ en:"Home skills together", fr:"Les acquis à la maison" } },
+    { id:"LT-W08-V24", week:8, order:24, title:{ en:"Review and next steps", fr:"Le bilan et la suite" } }
+  ];
+  function lifeTogetherLessonById(id){
+    for (var i=0;i<LIFE_TOGETHER_PROGRAM.length;i++) if (LIFE_TOGETHER_PROGRAM[i].id===id) return LIFE_TOGETHER_PROGRAM[i];
+    return LIFE_TOGETHER_PROGRAM[0];
+  }
+  function lifeTogetherLessonTitle(lesson){
+    var lang = (state && state.lang) || uiLang || "en";
+    return lesson.title[lang] || lesson.title.en;
+  }
+  function lifeTogetherWeekTitle(week){
+    var w = LIFE_TOGETHER_WEEKS.filter(function(x){ return x.week === week; })[0];
+    if (!w) return "";
+    var lang = (state && state.lang) || uiLang || "en";
+    return w.title[lang] || w.title.en;
+  }
+  var realTrainingSessions = [];
+  var realTrainingSessionsLoaded = false;
+  var realLessonId = null;
+  var realLessonDifficulty = null;
+  var realTrainingBusy = false;
+
   function loadRealDraft(){
     if (realDraft) return realDraft;
     var stored = null;
@@ -1227,6 +1292,50 @@
     realRoutinesLoaded = false;
     Promise.all([fetchRoutines(realDog.id), fetchActivityLogs(realDog.id, todayISODate())]).then(function(){
       realRoutinesLoaded = true;
+      render();
+    });
+  }
+  function fetchTrainingSessions(dogId){
+    return fetch(API_BASE + "/api/training-sessions?dogId=" + encodeURIComponent(dogId), {
+      headers: { "Authorization": "Bearer " + authToken }
+    }).then(function(res){ return res.json(); }).then(function(data){
+      realTrainingSessions = data.sessions || [];
+    }).catch(function(){ realTrainingSessions = []; });
+  }
+  function loadRealTrainingData(){
+    if (!realDog) return;
+    realTrainingSessionsLoaded = false;
+    render();
+    fetchTrainingSessions(realDog.id).then(function(){
+      realTrainingSessionsLoaded = true;
+      render();
+    });
+  }
+  // Most recent session per lesson, most-recent-first — used to show "last
+  // practiced: Easy" without re-deriving it from the full list every render.
+  function latestSessionByLesson(){
+    var map = {};
+    realTrainingSessions.forEach(function(s){
+      if (!map[s.lesson_id] || s.completed_at > map[s.lesson_id].completed_at) map[s.lesson_id] = s;
+    });
+    return map;
+  }
+  function submitTrainingSession(lessonId, difficulty){
+    if (!realDog) return;
+    realTrainingBusy = true;
+    render();
+    fetch(API_BASE + "/api/training-sessions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + authToken },
+      body: JSON.stringify({ dogId: realDog.id, lessonId: lessonId, difficulty: difficulty })
+    }).then(function(res){
+      return res.json().then(function(data){ return { ok: res.ok, data: data }; });
+    }).then(function(result){
+      realTrainingBusy = false;
+      if (result.ok && result.data.session) realTrainingSessions.unshift(result.data.session);
+      render();
+    }).catch(function(){
+      realTrainingBusy = false;
       render();
     });
   }
@@ -1419,6 +1528,22 @@
       routine_mark_done: "Mark as done",
       routine_all_done: "All of today's routines are done",
       real_all_routines: "All routines",
+      real_learn_program_title: "Your 8-week program",
+      real_learn_program_subtitle: "24 lessons planned · learn together",
+      life_program_eyebrow: "LIFE TOGETHER",
+      life_program_title: "8 weeks.<br>A growing bond.",
+      life_program_subtitle: "Two short sessions a day, one new skill at a time — at your dog's pace, not a deadline.",
+      life_week_label: "Week {n}",
+      life_coming_soon: "Video coming soon",
+      life_practiced_pill: "Practiced",
+      life_practiced_count: "Practiced {n}× · last {d}",
+      life_back_to_program: "← The 8-week program",
+      life_video_coming_soon: "Video coming soon",
+      life_video_note: "This lesson's demonstration video is still in production — the written program and your progress are ready to use today.",
+      life_draft_note: "Program content for this lesson is in editorial review, not yet published.",
+      life_how_did_it_go: "How did it go?",
+      life_saved: "Saved to your progress.",
+      difficulty_almost: "Almost", difficulty_too_hard: "Too hard",
       routine_manage: "Manage routines",
       routine_new_title: "New routine",
       routine_title_label: "Title",
@@ -1755,6 +1880,22 @@
       routine_mark_done: "Marquer comme fait",
       routine_all_done: "Toutes les routines du jour sont faites",
       real_all_routines: "Toutes les routines",
+      real_learn_program_title: "Votre programme de 8 semaines",
+      real_learn_program_subtitle: "24 leçons prévues · apprendre ensemble",
+      life_program_eyebrow: "LA VIE ENSEMBLE",
+      life_program_title: "8 semaines.<br>Un lien qui grandit.",
+      life_program_subtitle: "Deux courtes séances par jour, une compétence à la fois — au rythme de votre chien, pas d'une échéance.",
+      life_week_label: "Semaine {n}",
+      life_coming_soon: "Vidéo bientôt disponible",
+      life_practiced_pill: "Pratiquée",
+      life_practiced_count: "Pratiquée {n}× · dernier ressenti {d}",
+      life_back_to_program: "← Le programme de 8 semaines",
+      life_video_coming_soon: "Vidéo bientôt disponible",
+      life_video_note: "La vidéo de démonstration de cette leçon est encore en production — le programme écrit et votre progression sont utilisables dès aujourd'hui.",
+      life_draft_note: "Le contenu de cette leçon est en relecture éditoriale, pas encore publié.",
+      life_how_did_it_go: "Comment ça s'est passé ?",
+      life_saved: "Enregistré dans votre progression.",
+      difficulty_almost: "Presque", difficulty_too_hard: "Trop difficile",
       routine_manage: "Gérer les routines",
       routine_new_title: "Nouvelle routine",
       routine_title_label: "Titre",
@@ -2870,6 +3011,7 @@
     mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
     eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>',
     eyeOff: '<path d="M3 3l18 18"/><path d="M10.6 5.2A10.7 10.7 0 0 1 12 5c6.5 0 10 7 10 7a13.2 13.2 0 0 1-3.1 4"/><path d="M6.5 6.6C4 8.3 2 12 2 12s3.5 7 10 7a9.9 9.9 0 0 0 4.4-1"/><path d="M9.5 9.8a3 3 0 0 0 4.2 4.2"/>',
+    play: '<path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/>',
     sparkle: '<path d="M12 3v5"/><path d="M12 16v5"/><path d="M3 12h5"/><path d="M16 12h5"/>',
     medical: '<rect x="9" y="3" width="6" height="18" rx="1"/><rect x="3" y="9" width="18" height="6" rx="1"/>',
     bell: '<path d="M6 8a6 6 0 0 1 12 0c0 3 1 5 2 6H4c1-1 2-3 2-6z"/><path d="M9 19a3 3 0 0 0 6 0"/>',
@@ -3165,6 +3307,8 @@
     else if (view === "adoptIntro") root.innerHTML = brandStrip() + renderAdoptIntro();
     else if (view === "adoptForm") root.innerHTML = brandStrip() + renderAdoptForm();
     else if (view === "realToday") root.innerHTML = brandStrip() + renderRealToday();
+    else if (view === "realLearn") root.innerHTML = brandStrip() + renderRealLearn();
+    else if (view === "realLesson") root.innerHTML = brandStrip() + renderRealLesson();
     else if (view === "realRoutines") root.innerHTML = brandStrip() + renderRealRoutines();
     if (activeMomentBubble && view !== "splash" && view !== "onboarding"){
       root.insertAdjacentHTML("beforeend", renderMomentOverlay());
@@ -4965,13 +5109,20 @@
         '</div>' +
       '</div>';
 
+    var learnLink = rowCardHTML({
+      icon:"cap", color:"purple",
+      title: tr('real_learn_program_title',"Your 8-week program"),
+      subtitle: tr('real_learn_program_subtitle',"24 lessons planned · learn together"),
+      attrs: 'id="real-learn-link"'
+    });
+
     if (!realRoutinesLoaded){
       return header + '<div class="card"><p class="muted">'+tr('routine_loading',"Loading…")+'</p></div>';
     }
 
     var active = realRoutines.filter(function(r){ return r.active; });
     if (!active.length){
-      return header +
+      return header + learnLink +
         '<div class="card">' +
           '<div class="section-title">'+tr('real_whats_next',"What's next")+'</div>' +
           '<p class="muted">'+tr('routine_empty_state',"No routines yet — add your first one to start tracking real life with "+esc(dog.name)+".")+'</p>' +
@@ -5005,10 +5156,73 @@
       });
     }).join("");
 
-    return header + nextHTML +
+    return header + learnLink + nextHTML +
       '<div class="section-title" style="margin-top:18px;">'+tr('real_all_routines',"All routines")+'</div>' +
       rows +
       '<a href="#" id="real-manage-routines" style="display:block; text-align:center; margin-top:10px; padding:10px; color:var(--accent-bright); font-size:13.5px; font-weight:600;">'+tr('routine_manage',"Manage routines")+'</a>';
+  }
+
+  function renderRealLearn(){
+    if (!realDog) return renderAdoptIntro();
+    if (!realTrainingSessionsLoaded){
+      return '<button class="btn-ghost" id="real-learn-back">'+tr('btn_back_to_today','← Back to today')+'</button>' +
+        '<div class="card" style="margin-top:10px;"><p class="muted">'+tr('routine_loading',"Loading…")+'</p></div>';
+    }
+    var latest = latestSessionByLesson();
+    var weeksHTML = LIFE_TOGETHER_WEEKS.map(function(w){
+      var lessons = LIFE_TOGETHER_PROGRAM.filter(function(l){ return l.week === w.week; });
+      var rows = lessons.map(function(l){
+        var last = latest[l.id];
+        var practiced = realTrainingSessions.filter(function(s){ return s.lesson_id === l.id; }).length;
+        var subtitle = last
+          ? tr('life_practiced_count','Practiced {n}× · last {d}').replace('{n}', practiced).replace('{d}', tr('difficulty_'+last.difficulty, last.difficulty))
+          : tr('life_coming_soon',"Video coming soon");
+        return rowCardHTML({
+          icon:"play", color: last ? "teal" : "purple",
+          title: esc(lifeTogetherLessonTitle(l)), subtitle: subtitle,
+          pillText: last ? tr('life_practiced_pill',"Practiced") : "",
+          pillColor:"teal",
+          attrs: 'data-life-lesson="'+l.id+'"'
+        });
+      }).join("");
+      return '<div class="section-title" style="margin:18px 2px 10px;">'+tr('life_week_label','Week {n}').replace('{n}', w.week)+' · '+esc(lifeTogetherWeekTitle(w.week))+'</div>' + rows;
+    }).join("");
+    return '' +
+      '<button class="btn-ghost" id="real-learn-back">'+tr('btn_back_to_today','← Back to today')+'</button>' +
+      '<div class="card" style="margin-top:10px;">' +
+        '<span class="expense-badge">'+tr('life_program_eyebrow',"LIFE TOGETHER")+'</span>' +
+        '<h1 style="margin-top:8px; font-size:25px;">'+tr('life_program_title','8 weeks.<br>A growing bond.')+'</h1>' +
+        '<p class="muted" style="margin-top:6px;">'+tr('life_program_subtitle',"Two short sessions a day, one new skill at a time — at your dog's pace, not a deadline.")+'</p>' +
+      '</div>' +
+      weeksHTML;
+  }
+
+  function renderRealLesson(){
+    if (!realDog || !realLessonId) return renderRealLearn();
+    var lesson = lifeTogetherLessonById(realLessonId);
+    var sessions = realTrainingSessions.filter(function(s){ return s.lesson_id === lesson.id; });
+    var lastSession = sessions[0];
+    var justSaved = realLessonDifficulty && lastSession && lastSession.difficulty === realLessonDifficulty;
+    return '' +
+      '<button class="btn-ghost" id="real-lesson-back">'+tr('life_back_to_program','← The 8-week program')+'</button>' +
+      '<div class="card" style="margin-top:10px;">' +
+        '<span class="expense-badge">'+tr('life_week_label','Week {n}').replace('{n}', lesson.week)+' · '+esc(lifeTogetherWeekTitle(lesson.week))+'</span>' +
+        '<h1 style="margin-top:8px; font-size:24px;">'+esc(lifeTogetherLessonTitle(lesson))+'</h1>' +
+        '<div class="extras-card" style="margin-top:14px; align-items:flex-start;">' +
+          '<span class="extras-icon" style="background:var(--card-2); box-shadow:none; color:var(--ink-soft);">'+icon('clock',18)+'</span>' +
+          '<span class="extras-body">' +
+            '<div class="expense-label">'+tr('life_video_coming_soon',"Video coming soon")+'</div>' +
+            '<p class="muted" style="font-size:12.5px; margin-top:4px;">'+tr('life_video_note',"This lesson's demonstration video is still in production — the written program and your progress are ready to use today.")+'</p>' +
+          '</span>' +
+        '</div>' +
+        '<p class="muted" style="margin-top:12px; font-size:12px;">'+tr('life_draft_note',"Program content for this lesson is in editorial review, not yet published.")+'</p>' +
+        (sessions.length ? '<p class="muted" style="margin-top:10px; font-size:13px;">'+tr('life_practiced_count','Practiced {n}× · last {d}').replace('{n}', sessions.length).replace('{d}', tr('difficulty_'+lastSession.difficulty, lastSession.difficulty))+'</p>' : "") +
+        '<div class="section-title" style="margin-top:18px;">'+tr('life_how_did_it_go',"How did it go?")+'</div>' +
+        '<button class="btn'+(realLessonDifficulty==="easy"?" btn-primary":"")+'" data-life-difficulty="easy" style="margin-top:10px;" '+(realTrainingBusy?"disabled":"")+'>'+tr('difficulty_easy',"Easy")+'</button>' +
+        '<button class="btn'+(realLessonDifficulty==="almost"?" btn-primary":"")+'" data-life-difficulty="almost" style="margin-top:8px;" '+(realTrainingBusy?"disabled":"")+'>'+tr('difficulty_almost',"Almost")+'</button>' +
+        '<button class="btn'+(realLessonDifficulty==="too_hard"?" btn-primary":"")+'" data-life-difficulty="too_hard" style="margin-top:8px;" '+(realTrainingBusy?"disabled":"")+'>'+tr('difficulty_too_hard',"Too hard")+'</button>' +
+        (justSaved ? '<p class="muted" style="margin-top:10px; font-size:13px; color:var(--teal);">✓ '+tr('life_saved',"Saved to your progress.")+'</p>' : "") +
+      '</div>';
   }
 
   function renderRealRoutines(){
@@ -6081,6 +6295,39 @@
           var id = el.getAttribute("data-routine-id");
           var routine = realRoutines.filter(function(r){ return r.id === id; })[0];
           if (routine) toggleRoutineDone(routine);
+        });
+      });
+      var realLearnLink = document.getElementById("real-learn-link");
+      if (realLearnLink) realLearnLink.addEventListener("click", function(){
+        view = "realLearn"; render();
+        loadRealTrainingData();
+      });
+    }
+
+    if (view === "realLearn"){
+      var realLearnBackBtn = document.getElementById("real-learn-back");
+      if (realLearnBackBtn) realLearnBackBtn.addEventListener("click", function(){
+        view = "realToday"; render();
+      });
+      root.querySelectorAll("[data-life-lesson]").forEach(function(el){
+        el.addEventListener("click", function(){
+          realLessonId = el.getAttribute("data-life-lesson");
+          realLessonDifficulty = null;
+          view = "realLesson"; render();
+        });
+      });
+    }
+
+    if (view === "realLesson"){
+      var realLessonBackBtn = document.getElementById("real-lesson-back");
+      if (realLessonBackBtn) realLessonBackBtn.addEventListener("click", function(){
+        realLessonId = null; view = "realLearn"; render();
+      });
+      root.querySelectorAll("[data-life-difficulty]").forEach(function(el){
+        el.addEventListener("click", function(){
+          var difficulty = el.getAttribute("data-life-difficulty");
+          realLessonDifficulty = difficulty;
+          submitTrainingSession(realLessonId, difficulty);
         });
       });
     }

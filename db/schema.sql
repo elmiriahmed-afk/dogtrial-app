@@ -90,3 +90,21 @@ CREATE TABLE IF NOT EXISTS activity_logs (
 );
 
 CREATE INDEX IF NOT EXISTS idx_activity_logs_dog_date ON activity_logs(dog_id, scheduled_local_date);
+
+-- Life Together education: one row per practiced session of a real-dog
+-- lesson from the 8-week/24-lesson catalog (lesson_id like "LT-W01-V02").
+-- Unlike activity_logs there's no UNIQUE constraint — re-practicing the same
+-- lesson on different days is expected and each attempt is its own row, so
+-- progress can show "practiced 3 times, most recently Easy" rather than
+-- only ever the latest result.
+CREATE TABLE IF NOT EXISTS training_sessions (
+  id TEXT PRIMARY KEY,
+  dog_id TEXT NOT NULL REFERENCES real_dogs(id),
+  user_id TEXT NOT NULL REFERENCES users(id),
+  lesson_id TEXT NOT NULL,
+  difficulty TEXT NOT NULL,
+  completed_at INTEGER NOT NULL,
+  created_at INTEGER NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_training_sessions_dog ON training_sessions(dog_id);
