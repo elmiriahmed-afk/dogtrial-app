@@ -1007,6 +1007,127 @@
   var AUTH_TOKEN_KEY = "dogtrial_auth_token";
   var authToken = null;
   try { authToken = localStorage.getItem(AUTH_TOKEN_KEY); } catch (e) {}
+
+  // ---------- Life Together: real (post-adoption) dog profile ----------
+  // Distinct from the simulated trial dog above: real profiles live server-side
+  // (see functions/api/real-dogs.js), keyed off the same account, never derived
+  // from simulated state/incidents. REAL_DRAFT_KEY holds an in-progress, resumable
+  // onboarding draft until it's confirmed (POSTed) exactly once.
+  var REAL_DRAFT_KEY = "dogtrial_real_draft_v1";
+  var realDogs = [];
+  var realDog = null;
+  var realDogsLoaded = false;
+  var realDraft = null;
+  var realBusy = false;
+  var realError = "";
+  var REAL_ONBOARD_STEPS = ["profile","confirm"];
+  var realOnboardStep = 0;
+
+  function loadRealDraft(){
+    if (realDraft) return realDraft;
+    var stored = null;
+    try { stored = JSON.parse(localStorage.getItem(REAL_DRAFT_KEY) || "null"); } catch (e) {}
+    realDraft = stored || { idempotencyKey: newClientId(), name: "", arrivalDate: todayISODate(), birthDate: "", estimatedAge: "", breed: "", weight: "", weightUnit: "kg" };
+    return realDraft;
+  }
+  function saveRealDraft(){
+    try { localStorage.setItem(REAL_DRAFT_KEY, JSON.stringify(realDraft)); } catch (e) {}
+  }
+  function clearRealDraft(){
+    realDraft = null;
+    try { localStorage.removeItem(REAL_DRAFT_KEY); } catch (e) {}
+  }
+  function newClientId(){
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "id-" + Date.now() + "-" + Math.random().toString(16).slice(2);
+  }
+  function todayISODate(){
+    var d = new Date();
+    return d.getFullYear() + "-" + pad2(d.getMonth()+1) + "-" + pad2(d.getDate());
+  }
+  function deviceTimeZone(){
+    try { return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"; } catch (e) { return "UTC"; }
+  }
+  function fetchRealDogs(){
+    if (!authToken) return Promise.resolve([]);
+    return fetch(API_BASE + "/api/real-dogs", {
+      headers: { "Authorization": "Bearer " + authToken }
+    }).then(function(res){ return res.json().then(function(data){ return { ok: res.ok, data: data }; }); })
+      .then(function(result){
+        realDogsLoaded = true;
+        if (!result.ok) return [];
+        realDogs = result.data.dogs || [];
+        realDog = realDogs.length ? realDogs[realDogs.length - 1] : null;
+        return realDogs;
+      }).catch(function(){ realDogsLoaded = true; return []; });
+  }
+  function daysTogether(dog){
+    if (!dog || !dog.arrival_date) return 0;
+    var arrival = new Date(dog.arrival_date + "T00:00:00");
+    var diff = Math.floor((Date.now() - arrival.getTime()) / (24*HOUR));
+    return Math.max(1, diff + 1);
+  }
+  function submitRealDog(){
+    var draft = loadRealDraft();
+    if (!draft.name.trim()){ realError = tr('adopt_error_name',"Enter your dog's name."); render(); return; }
+    if (!draft.arrivalDate){ realError = tr('adopt_error_arrival',"Enter the arrival date."); render(); return; }
+    realError = "";
+    realBusy = true;
+    render();
+    fetch(API_BASE + "/api/real-dogs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + authToken },
+      body: JSON.stringify({
+        idempotencyKey: draft.idempotencyKey,
+        name: draft.name.trim(),
+        arrivalDate: draft.arrivalDate,
+        birthDate: draft.birthDate || null,
+        estimatedAge: draft.estimatedAge || null,
+        breed: draft.breed || null,
+        timeZone: deviceTimeZone(),
+        sourceSimulationId: null
+      })
+    }).then(function(res){
+      return res.json().then(function(data){ return { ok: res.ok, data: data }; });
+    }).then(function(result){
+      realBusy = false;
+      if (!result.ok){
+        realError = result.data.error || tr('adopt_error_generic',"Something went wrong. Try again.");
+        render();
+        return;
+      }
+      realDog = result.data.dog;
+      if (realDogs.indexOf(realDog) === -1) realDogs.push(realDog);
+      clearRealDraft();
+      view = "realToday";
+      render();
+    }).catch(function(){
+      realBusy = false;
+      realError = tr('adopt_error_network',"Couldn't reach the server. Check your connection and try again.");
+      render();
+    });
+  }
+  // Single entry point for every "adopted this dog?" CTA. Routes to the right
+  // step instead of always restarting onboarding: an existing real dog goes
+  // straight to its Today, an in-progress draft resumes where it left off.
+  function goToRealAdoption(){
+    if (realDog){ view = "realToday"; render(); return; }
+    if (!authToken){ onboardStep = 0; view = "onboarding"; render(); return; }
+    function proceed(){
+      if (realDog){ view = "realToday"; render(); return; }
+      var draft = loadRealDraft();
+      var hasDraftProgress = !!draft.name;
+      realOnboardStep = 0;
+      realError = "";
+      view = hasDraftProgress ? "adoptForm" : "adoptIntro";
+      render();
+    }
+    if (!realDogsLoaded){
+      fetchRealDogs().then(proceed);
+    } else {
+      proceed();
+    }
+  }
   // Display language. Lives outside the trial's own state blob (same
   // small-standalone-key pattern as AUTH_TOKEN_KEY above) because it needs to
   // be readable before a trial exists (splash/onboarding) and to survive a
@@ -1069,6 +1190,33 @@
       btn_leave_now: "Leave now", btn_im_back: "I’m back",
       btn_confirm_walk: "Confirm walk", btn_end_walk: "End walk",
       btn_start_session: "Start session", btn_train: "Train", btn_go_train: "Go train",
+
+      adopt_intro_title: "You completed the trial.<br>Now your real life together begins.",
+      adopt_intro_body: "We'll switch to tracking your actual dog — separate from the simulation. Nothing from the trial (incidents, stats) carries over: you tell us what's real.",
+      adopt_continue: "I adopted a dog — continue",
+      adopt_profile_title: "Your dog",
+      adopt_name_label: "Name",
+      adopt_arrival_label: "Arrival date",
+      adopt_birth_label: "Birth date (optional)",
+      adopt_breed_label: "Breed (optional)",
+      adopt_breed_placeholder: "Known, unknown, or mixed",
+      adopt_confirm_title: "Confirm",
+      adopt_confirm_note: "This creates your real dog's profile once. Routines and training for real life arrive next.",
+      adopt_confirm_btn: "Create profile",
+      adopt_error_name: "Enter your dog's name.",
+      adopt_error_arrival: "Enter the arrival date.",
+      adopt_error_generic: "Something went wrong. Try again.",
+      adopt_error_network: "Couldn't reach the server. Check your connection and try again.",
+      report_adopted_real_title: "Adopted a real dog?",
+      report_adopted_real_body: "Switch to tracking your actual dog, separate from this simulation.",
+      real_day_together: "Day",
+      real_together: "together",
+      real_whats_next: "What's next",
+      real_routines_coming: "Routines, training and health tracking for real life are coming next. Your dog's profile is saved.",
+      life_together_title: "Life Together",
+      life_together_subtitle: "Your real dog's Today",
+      life_adopted_title: "Adopted this dog?",
+      life_adopted_subtitle: "Switch to tracking your real dog",
       btn_view_all: "View all", btn_view_milestones: "View milestones",
       btn_walk: "Walk", btn_see_safe_activities: "See safe activities",
       btn_take_care_first: "Take care of it first",
@@ -1278,6 +1426,33 @@
       btn_leave_now: "Partir maintenant", btn_im_back: "Je suis de retour",
       btn_confirm_walk: "Confirmer la sortie", btn_end_walk: "Terminer la sortie",
       btn_start_session: "Démarrer la séance", btn_train: "Entraîner", btn_go_train: "Aller s'entraîner",
+
+      adopt_intro_title: "Vous avez terminé l'essai.<br>Votre vraie vie ensemble commence maintenant.",
+      adopt_intro_body: "On passe au suivi de votre vrai chien, séparé de la simulation. Rien de l'essai (incidents, statistiques) n'est repris : c'est vous qui confirmez ce qui est réel.",
+      adopt_continue: "J'ai adopté un chien — continuer",
+      adopt_profile_title: "Votre chien",
+      adopt_name_label: "Nom",
+      adopt_arrival_label: "Date d'arrivée",
+      adopt_birth_label: "Date de naissance (facultatif)",
+      adopt_breed_label: "Race (facultatif)",
+      adopt_breed_placeholder: "Connue, inconnue, ou croisée",
+      adopt_confirm_title: "Confirmer",
+      adopt_confirm_note: "Ceci crée le profil de votre chien réel, une seule fois. Les routines et l'entraînement pour la vraie vie arrivent ensuite.",
+      adopt_confirm_btn: "Créer le profil",
+      adopt_error_name: "Indiquez le nom de votre chien.",
+      adopt_error_arrival: "Indiquez la date d'arrivée.",
+      adopt_error_generic: "Un problème est survenu. Réessayez.",
+      adopt_error_network: "Impossible de joindre le serveur. Vérifiez votre connexion et réessayez.",
+      report_adopted_real_title: "Vous avez adopté un vrai chien ?",
+      report_adopted_real_body: "Passez au suivi de votre vrai chien, séparément de cette simulation.",
+      real_day_together: "Jour",
+      real_together: "ensemble",
+      real_whats_next: "Prochaine étape",
+      real_routines_coming: "Les routines, l'entraînement et le suivi santé pour la vraie vie arrivent bientôt. Le profil de votre chien est enregistré.",
+      life_together_title: "Life Together",
+      life_together_subtitle: "Le Today de votre vrai chien",
+      life_adopted_title: "Vous avez adopté ce chien ?",
+      life_adopted_subtitle: "Passer au suivi de votre vrai chien",
       btn_view_all: "Tout voir", btn_view_milestones: "Voir les étapes",
       btn_walk: "Sortir", btn_see_safe_activities: "Voir les activités sûres",
       btn_take_care_first: "S'en occuper d'abord",
@@ -2578,6 +2753,9 @@
     else if (view === "milestones") root.innerHTML = brandStrip() + renderMilestones();
     else if (view === "allSkills") root.innerHTML = brandStrip() + renderAllSkills();
     else if (view === "notifications") root.innerHTML = brandStrip() + renderNotifications();
+    else if (view === "adoptIntro") root.innerHTML = brandStrip() + renderAdoptIntro();
+    else if (view === "adoptForm") root.innerHTML = brandStrip() + renderAdoptForm();
+    else if (view === "realToday") root.innerHTML = brandStrip() + renderRealToday();
     if (activeMomentBubble && view !== "splash" && view !== "onboarding"){
       root.insertAdjacentHTML("beforeend", renderMomentOverlay());
     }
@@ -3444,6 +3622,12 @@
       '</div>';
     return '' +
       profileCard +
+      rowCardHTML({
+        icon: "heart", color: "accent",
+        title: realDog ? tr('life_together_title',"Life Together") : tr('life_adopted_title',"Adopted this dog?"),
+        subtitle: realDog ? tr('life_together_subtitle',"Your real dog's Today") : tr('life_adopted_subtitle',"Switch to tracking your real dog"),
+        attrs: 'id="life-real-entry"'
+      }) +
       '<div class="card">' +
         '<div class="section-title">'+tr('life_home_environment','Home environment')+'</div>' +
         '<div class="home-env-card">' +
@@ -4094,6 +4278,97 @@
         '<button class="btn btn-primary" id="report-yes" style="margin-top:10px;">Yes, I\'m ready</button>' +
         '<button class="btn btn-ghost" id="report-think" style="width:100%; border:1px solid var(--line); margin-top:8px;">I need to think</button>' +
         '<button class="btn btn-ghost" id="report-no" style="width:100%; border:1px solid var(--line); margin-top:8px;">This isn\'t the right dog for me</button>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">'+tr('report_adopted_real_title',"Adopted a real dog?")+'</div>' +
+        '<p class="muted" style="margin-top:2px;">'+tr('report_adopted_real_body',"Switch to tracking your actual dog, separate from this simulation.")+'</p>' +
+        '<button class="btn btn-primary" id="report-adopt-real" style="margin-top:10px;">'+tr('adopt_continue',"I adopted a dog — continue")+'</button>' +
+      '</div>';
+  }
+
+  // ---------- Life Together: adoption transition + real Today ----------
+  function renderAdoptIntro(){
+    return '' +
+      '<div class="card intro">' +
+        '<h1>'+tr('adopt_intro_title',"You completed the trial.<br>Now your real life together begins.")+'</h1>' +
+        '<p>'+tr('adopt_intro_body',"We'll switch to tracking your actual dog — separate from the simulation. Nothing from the trial (incidents, stats) carries over: you tell us what's real.")+'</p>' +
+      '</div>' +
+      '<div class="card onboard-step">' +
+        '<button class="btn btn-primary" id="adopt-continue">'+tr('adopt_continue',"I adopted a dog — continue")+'</button>' +
+        '<button class="btn-ghost" id="adopt-cancel" style="margin-top:8px; width:100%;">'+tr('btn_cancel',"Not yet")+'</button>' +
+      '</div>';
+  }
+
+  function realOnboardProgressHTML(){
+    var total = REAL_ONBOARD_STEPS.length;
+    var dots = "";
+    for (var i=0;i<total;i++){
+      dots += '<span class="onboard-dot'+(i===realOnboardStep?' active':(i<realOnboardStep?' done':''))+'"></span>';
+    }
+    return '<div class="onboard-top"><span></span><div class="onboard-dots">'+dots+'</div><span></span></div>';
+  }
+
+  function renderAdoptForm(){
+    var draft = loadRealDraft();
+    var stepName = REAL_ONBOARD_STEPS[realOnboardStep] || "profile";
+
+    if (stepName === "profile"){
+      return '' +
+        realOnboardProgressHTML() +
+        '<div class="card onboard-step">' +
+          '<div class="section-title">'+tr('adopt_profile_title',"Your dog")+'</div>' +
+          '<div class="field">' +
+            '<label for="real-name">'+tr('adopt_name_label',"Name")+'</label>' +
+            '<input id="real-name" type="text" maxlength="30" placeholder="'+tr('onboard_name_placeholder','e.g. Biscuit')+'" value="'+esc(draft.name)+'">' +
+          '</div>' +
+          '<div class="field" style="margin-top:12px">' +
+            '<label for="real-arrival">'+tr('adopt_arrival_label',"Arrival date")+'</label>' +
+            '<input id="real-arrival" type="date" value="'+esc(draft.arrivalDate)+'">' +
+          '</div>' +
+          '<div class="field" style="margin-top:12px">' +
+            '<label for="real-birth">'+tr('adopt_birth_label',"Birth date (optional)")+'</label>' +
+            '<input id="real-birth" type="date" value="'+esc(draft.birthDate)+'">' +
+          '</div>' +
+          '<div class="field" style="margin-top:12px">' +
+            '<label for="real-breed">'+tr('adopt_breed_label',"Breed (optional)")+'</label>' +
+            '<input id="real-breed" type="text" maxlength="40" placeholder="'+tr('adopt_breed_placeholder',"Known, unknown, or mixed")+'" value="'+esc(draft.breed)+'">' +
+          '</div>' +
+          (realError ? '<p class="muted" style="color:var(--bad); margin-top:10px; font-size:13px;">'+esc(realError)+'</p>' : "") +
+          '<button class="btn btn-primary" id="adopt-form-next" style="margin-top:16px;">'+tr('btn_next','Next')+'</button>' +
+        '</div>';
+    }
+
+    // confirm
+    return '' +
+      realOnboardProgressHTML() +
+      '<div class="card onboard-step">' +
+        '<div class="section-title">'+tr('adopt_confirm_title',"Confirm")+'</div>' +
+        '<div class="cost-row"><span>'+tr('adopt_name_label',"Name")+'</span><b>'+esc(draft.name)+'</b></div>' +
+        '<div class="cost-row"><span>'+tr('adopt_arrival_label',"Arrival date")+'</span><b>'+esc(draft.arrivalDate)+'</b></div>' +
+        (draft.breed ? '<div class="cost-row" style="border-bottom:none;"><span>'+tr('adopt_breed_label',"Breed")+'</span><b>'+esc(draft.breed)+'</b></div>' : '') +
+        '<p class="muted" style="margin-top:12px; font-size:13px;">'+tr('adopt_confirm_note',"This creates your real dog's profile once. Routines and training for real life arrive next.")+'</p>' +
+        (realError ? '<p class="muted" style="color:var(--bad); margin-top:10px; font-size:13px;">'+esc(realError)+'</p>' : "") +
+        '<button class="btn btn-primary" id="adopt-form-confirm" style="margin-top:16px;" '+(realBusy?"disabled":"")+'>'+(realBusy?tr('onboard_please_wait',"Please wait…"):tr('adopt_confirm_btn',"Create profile"))+'</button>' +
+        '<button class="btn-ghost" id="adopt-form-back" style="margin-top:8px; width:100%;">'+tr('btn_back',"Back")+'</button>' +
+      '</div>';
+  }
+
+  function renderRealToday(){
+    var dog = realDog;
+    if (!dog) return renderAdoptIntro();
+    var day = daysTogether(dog);
+    var initial = esc(dog.name).charAt(0).toUpperCase();
+    return '' +
+      '<div class="card" style="display:flex; align-items:center; gap:16px;">' +
+        '<div style="width:64px; height:64px; border-radius:999px; background:var(--card-2); border:2px solid var(--accent); box-shadow:0 0 0 4px rgba(133,142,255,.12), 0 10px 22px -4px rgba(133,142,255,.3); display:flex; align-items:center; justify-content:center; font-family:\'Poppins\',system-ui,sans-serif; font-weight:700; font-size:22px; color:var(--accent-bright); flex-shrink:0;">'+initial+'</div>' +
+        '<div style="min-width:0;">' +
+          '<div style="font-size:16px; font-weight:700;">'+esc(dog.name)+'</div>' +
+          '<div style="font-size:12px; color:var(--ink-faint); margin-top:2px;">'+tr('real_day_together','Day')+' '+day+' '+tr('real_together',"together")+'</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">'+tr('real_whats_next',"What's next")+'</div>' +
+        '<p class="muted">'+tr('real_routines_coming',"Routines, training and health tracking for real life are coming next. Your dog's profile is saved.")+'</p>' +
       '</div>';
   }
 
@@ -4974,6 +5249,57 @@
         archiveCurrentTrial("not the right dog");
         save(); view = "home"; render();
       });
+      var reportAdoptBtn = document.getElementById("report-adopt-real");
+      if (reportAdoptBtn) reportAdoptBtn.addEventListener("click", function(){
+        goToRealAdoption();
+      });
+    }
+
+    var lifeRealEntryBtn = document.getElementById("life-real-entry");
+    if (lifeRealEntryBtn) lifeRealEntryBtn.addEventListener("click", function(){
+      goToRealAdoption();
+    });
+
+    if (view === "adoptIntro"){
+      document.getElementById("adopt-continue").addEventListener("click", function(){
+        loadRealDraft();
+        realOnboardStep = 0;
+        realError = "";
+        view = "adoptForm"; render();
+      });
+      document.getElementById("adopt-cancel").addEventListener("click", function(){
+        view = "home"; render();
+      });
+    }
+
+    if (view === "adoptForm"){
+      var stepName = REAL_ONBOARD_STEPS[realOnboardStep] || "profile";
+      if (stepName === "profile"){
+        var nameEl = document.getElementById("real-name");
+        var arrivalEl = document.getElementById("real-arrival");
+        var birthEl = document.getElementById("real-birth");
+        var breedEl = document.getElementById("real-breed");
+        document.getElementById("adopt-form-next").addEventListener("click", function(){
+          var draft = loadRealDraft();
+          draft.name = nameEl.value || "";
+          draft.arrivalDate = arrivalEl.value || draft.arrivalDate;
+          draft.birthDate = birthEl.value || "";
+          draft.breed = breedEl.value || "";
+          if (!draft.name.trim()){ realError = tr('adopt_error_name',"Enter your dog's name."); render(); return; }
+          if (!draft.arrivalDate){ realError = tr('adopt_error_arrival',"Enter the arrival date."); render(); return; }
+          realError = "";
+          saveRealDraft();
+          realOnboardStep = 1;
+          render();
+        });
+      } else {
+        document.getElementById("adopt-form-confirm").addEventListener("click", function(){
+          submitRealDog();
+        });
+        document.getElementById("adopt-form-back").addEventListener("click", function(){
+          realOnboardStep = 0; render();
+        });
+      }
     }
 
     if (view === "feedQuiz"){
@@ -5496,6 +5822,11 @@
       maybeInterceptView();
     }
     render();
+    if (authToken){
+      fetchRealDogs().then(function(){
+        if (activeTab === "life" && (view === "home" || view === "realToday")) render();
+      });
+    }
   }
 
   document.addEventListener("DOMContentLoaded", init);
