@@ -1463,18 +1463,23 @@
 
       tab_today: "Today", tab_health: "Health", tab_walks: "Walks",
       tab_training: "Training", tab_costs: "Costs", tab_life: "Life", tab_report: "Report",
+      tab_training_learn: "Learn", tab_report_journey: "Journey", tab_profile: "Dog",
 
       header_health_title: "Health",
       header_health_subtitle_suffix: "'s current condition",
       header_walks_title: "Walks",
       header_walks_subtitle: "Activity, exercise and outdoor time",
       header_training_title: "Training",
+      header_training_title_learn: "Learn",
       header_training_subtitle: "Build good habits, step by step.",
       header_costs_title: "Costs",
       header_costs_subtitle: "Real money spent during your trial",
       header_life_title: "Your life",
       header_life_subtitle: "How does this fit into your routine?",
+      header_profile_title: "Dog",
+      header_profile_subtitle_suffix: " — condition, home and routine",
       header_report_title: "Report",
+      header_report_title_journey: "Journey",
       header_report_subtitle: "Your trial's progress so far",
 
       settings_title: "Settings",
@@ -1815,18 +1820,23 @@
 
       tab_today: "Aujourd'hui", tab_health: "Santé", tab_walks: "Sorties",
       tab_training: "Éducation", tab_costs: "Dépenses", tab_life: "Vie", tab_report: "Bilan",
+      tab_training_learn: "Apprendre", tab_report_journey: "Parcours", tab_profile: "Chien",
 
       header_health_title: "Santé",
       header_health_subtitle_suffix: " : état actuel",
       header_walks_title: "Sorties",
       header_walks_subtitle: "Activité, exercice et sorties extérieures",
       header_training_title: "Éducation",
+      header_training_title_learn: "Apprendre",
       header_training_subtitle: "Construisez de bonnes habitudes, étape par étape.",
       header_costs_title: "Dépenses",
       header_costs_subtitle: "L'argent réellement dépensé pendant votre essai",
       header_life_title: "Votre vie",
       header_life_subtitle: "Comment cela s'intègre-t-il à votre quotidien ?",
+      header_profile_title: "Chien",
+      header_profile_subtitle_suffix: " — état, foyer et routine",
       header_report_title: "Bilan",
+      header_report_title_journey: "Parcours",
       header_report_subtitle: "L'avancement de votre essai jusqu'ici",
 
       settings_title: "Réglages",
@@ -3595,20 +3605,25 @@
       '</div>';
   }
 
+  // Reduced from 7 tabs to 4, grouping what belongs together instead of
+  // spreading it across separate taps: Today absorbs Walks + Costs (the
+  // day's actions and their running cost), Training becomes "Learn", Report
+  // becomes "Journey", and Health + Life merge into one dog-profile tab
+  // labeled with the dog's own name. The individual renderTab*() functions
+  // for the merged sections are unchanged and reused as-is inside the new
+  // composite tabs — see renderTabToday()/renderTabProfile() below.
   var TABS = [
     {id:"today", labelKey:"tab_today", label:"Today", icon:"home"},
-    {id:"health", labelKey:"tab_health", label:"Health", icon:"heart"},
-    {id:"walks", labelKey:"tab_walks", label:"Walks", icon:"paw"},
-    {id:"training", labelKey:"tab_training", label:"Training", icon:"cap"},
-    {id:"costs", labelKey:"tab_costs", label:"Costs", icon:"wallet"},
-    {id:"life", labelKey:"tab_life", label:"Life", icon:"compass"},
-    {id:"report", labelKey:"tab_report", label:"Report", icon:"chart"}
+    {id:"training", labelKey:"tab_training_learn", label:"Learn", icon:"cap"},
+    {id:"report", labelKey:"tab_report_journey", label:"Journey", icon:"compass"},
+    {id:"profile", labelKey:"tab_profile", label:"Dog", icon:"paw", dynamicLabel:true}
   ];
 
   function renderTabBar(){
     var btns = TABS.map(function(tabDef){
+      var label = tabDef.dynamicLabel ? esc(state.name) : tr(tabDef.labelKey, tabDef.label);
       return '<button class="tab-btn'+(activeTab===tabDef.id?" active":"")+'" data-tab="'+tabDef.id+'">' +
-        '<span class="tab-icon">'+icon(tabDef.icon)+'</span><span>'+tr(tabDef.labelKey, tabDef.label)+'</span></button>';
+        '<span class="tab-icon">'+icon(tabDef.icon)+'</span><span>'+label+'</span></button>';
     }).join("");
     return '<div class="tab-bar"><div class="tab-bar-inner">'+btns+'</div></div>';
   }
@@ -3723,15 +3738,6 @@
       : tr('train_available_now','Available now');
     taskRows += rowCardHTML({ icon:"cap", color: trainDone ? "teal" : "warn", title:tr('tab_training','Training'), subtitle:trainWhen, pillText: trainDone ? tr('pill_done','Done') : tr('pill_available','Available'), pillColor: trainDone ? "teal" : "warn", attrs:'data-tab="training"' });
 
-    // Quick-action chips — reuse the existing tab bar's [data-tab] delegated
-    // click handler (see the root.querySelectorAll("[data-tab]") listener),
-    // so no new wiring is needed for these shortcuts.
-    var QUICK_CHIP_TABS = ["walks","training","costs"];
-    var quickChips = QUICK_CHIP_TABS.map(function(tabId){
-      var t = TABS.filter(function(x){ return x.id === tabId; })[0];
-      return '<button class="btn-chip" data-tab="'+tabId+'">'+icon(t.icon,14)+tr(t.labelKey, t.label)+'</button>';
-    }).join("");
-
     var bladderComfort = clamp(100 - state.bladder);
     var mood = moodOf();
     var wellbeingLine = mood.key === "good" ? tr('today_wellbeing_good','Energy, appetite and bladder comfort are all in good shape today.') :
@@ -3756,7 +3762,6 @@
       nowCard +
 
       (taskRows ? '<div class="section-title" style="margin:18px 2px 10px;">'+tr('today_tasks_label',"Today's tasks")+'</div>'+taskRows : '') +
-      '<div class="chip-row">'+quickChips+'</div>' +
 
       '<div class="card" style="margin-top:14px;">' +
         '<div class="section-title">'+tr('section_today_label','Today')+'</div>' +
@@ -4293,6 +4298,15 @@
       '</div>';
   }
 
+  // The dog's own tab: health (condition, wellness ring) and life (home,
+  // routine, settings, emergency info) merged under one name-labeled tab —
+  // both renderTabHealth()/renderTabLife() bodies are reused unchanged.
+  function renderTabProfile(breed, housing){
+    return renderTabHealth() +
+      '<div class="section-title" style="margin:22px 2px 10px;">'+tr('header_life_title','Your life')+'</div>' +
+      renderTabLife(breed, housing);
+  }
+
   function renderTabReport(){
     var day = tripDay();
     var score = compatibilityScore();
@@ -4344,18 +4358,15 @@
   }
 
   var TAB_PAGE_HEADER = {
-    health: { titleKey:"header_health_title", title:"Health", subtitle:function(){ return esc(state.name)+tr('header_health_subtitle_suffix',"'s current condition"); } },
-    walks: { titleKey:"header_walks_title", title:"Walks", subtitle:function(){ return tr('header_walks_subtitle',"Activity, exercise and outdoor time"); } },
-    training: { titleKey:"header_training_title", title:"Training", subtitle:function(){ return tr('header_training_subtitle',"Build good habits, step by step."); } },
-    costs: { titleKey:"header_costs_title", title:"Costs", subtitle:function(){ return tr('header_costs_subtitle',"Real money spent during your trial"); } },
-    life: { titleKey:"header_life_title", title:"Your life", subtitle:function(){ return tr('header_life_subtitle',"How does this fit into your routine?"); } },
-    report: { titleKey:"header_report_title", title:"Report", subtitle:function(){ return tr('header_report_subtitle',"Your trial's progress so far"); } }
+    training: { titleKey:"header_training_title_learn", title:"Learn", subtitle:function(){ return tr('header_training_subtitle',"Build good habits, step by step."); } },
+    profile: { titleKey:"header_profile_title", title:"Dog", subtitle:function(){ return esc(state.name)+tr('header_profile_subtitle_suffix'," — condition, home and routine"); }, titleIsName:true },
+    report: { titleKey:"header_report_title_journey", title:"Journey", subtitle:function(){ return tr('header_report_subtitle',"Your trial's progress so far"); } }
   };
   function pageHeaderHTML(tabId){
     var def = TAB_PAGE_HEADER[tabId];
     if (!def) return "";
     return '<div class="page-header">' +
-      '<h1>'+tr(def.titleKey, def.title)+'</h1>' +
+      '<h1>'+(def.titleIsName ? esc(state.name) : tr(def.titleKey, def.title))+'</h1>' +
       '<p class="muted">'+def.subtitle()+'</p>' +
     '</div>';
   }
@@ -4403,6 +4414,9 @@
       "Compare where you started to today to see how far you've come."
     ]
   };
+  // The dog-profile tab (health + life merged) reuses the same tip pools —
+  // no new copy, just a combined rotation.
+  TAB_TIPS.profile = TAB_TIPS.health.concat(TAB_TIPS.life);
   // Translation key per tip, same shape as TAB_TIPS — tr() looks the text up
   // by key with the English string above as fallback, so a missing FR entry
   // degrades to English instead of a blank tip.
@@ -4415,6 +4429,7 @@
     life: ["tip_life_1","tip_life_2","tip_life_3"],
     report: ["tip_report_1","tip_report_2","tip_report_3"]
   };
+  TAB_TIP_KEYS.profile = TAB_TIP_KEYS.health.concat(TAB_TIP_KEYS.life);
   function tipOfDayHTML(tabId){
     var tips = TAB_TIPS[tabId] || TAB_TIPS.today;
     var keys = TAB_TIP_KEYS[tabId] || TAB_TIP_KEYS.today;
@@ -4467,13 +4482,12 @@
       '</div>';
 
     var content;
-    if (activeTab === "health") content = renderTabHealth();
-    else if (activeTab === "walks") content = renderTabWalks();
-    else if (activeTab === "training") content = renderTabTraining();
-    else if (activeTab === "costs") content = renderTabCosts(breed, realDaysElapsed);
-    else if (activeTab === "life") content = renderTabLife(breed, housing);
+    if (activeTab === "training") content = renderTabTraining();
+    else if (activeTab === "profile") content = renderTabProfile(breed, housing);
     else if (activeTab === "report") content = renderTabReport();
-    else content = renderTabToday();
+    else content = renderTabToday() +
+      '<div class="section-title" style="margin:22px 2px 10px;">'+tr('tab_walks','Walks')+'</div>' + renderTabWalks() +
+      '<div class="section-title" style="margin:22px 2px 10px;">'+tr('tab_costs','Costs')+'</div>' + renderTabCosts(breed, realDaysElapsed);
 
     var tipHTML = activeMomentBubble ? "" : tipOfDayHTML(activeTab);
     var spacerH = tipHTML ? 215 : 130;
@@ -6934,7 +6948,7 @@
     render();
     if (authToken){
       fetchRealDogs().then(function(){
-        if (activeTab === "life" && (view === "home" || view === "realToday")) render();
+        if (activeTab === "profile" && (view === "home" || view === "realToday")) render();
       });
     }
   }
