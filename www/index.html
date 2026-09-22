@@ -726,26 +726,48 @@
       ]}
   ];
 
+  // Housing is exposed to the user as exactly 4 physical-space choices
+  // (selectable:true, in this order): apartment with/without a terrace,
+  // house with/without a garden. "cage" is kept only for old saves — it was
+  // a distinct "crated while you're out" mechanic, not a physical-space
+  // type, and no longer has a housing choice that maps to it; see
+  // housingNeedsClarification in init() for how those saves get resolved.
   var HOUSING = [
-    { id:"garden", label:"Garden", short:"Has a garden",
+    { id:"garden", label:"House with a garden", short:"Has a garden", selectable:true,
       note:"Real outdoor access at home — more tolerance, less boredom.",
       risk:"Mostly boredom if left too long — there's room to burn energy, so it rarely turns into anything worse.",
       toleranceMult:1.4, rollAdjust:-1, confinement:false,
       sizeTag:"40 – 120 m²", outdoorTag:"Garden access", localeTag:"Suburban area" },
-    { id:"terrace", label:"Apartment with terrace", short:"Apartment + terrace",
+    { id:"terrace", label:"Apartment with terrace", short:"Apartment + terrace", selectable:true,
       note:"Some fresh air, but the space stays confined — the risk of boredom-chewing is still real.",
       risk:"Boredom-driven chewing, plus indoor accidents — especially for a puppy, who needs a bathroom trip after almost every nap, meal, or play session.",
       toleranceMult:1.1, rollAdjust:0, confinement:false,
       sizeTag:"< 80 m²", outdoorTag:"Outdoor space", localeTag:"Urban area" },
-    { id:"cage", label:"Apartment with a crate", short:"Crated while you're out",
+    { id:"cage", label:"Apartment with a crate", short:"Crated while you're out", selectable:false,
       note:"No property damage — but the real risk is distress and depression if the crate gets used too often or too long.",
       risk:"Little to no chewing or mess — but anxiety and depression from confinement, which is a welfare risk, not just an inconvenience.",
       toleranceMult:0.6, rollAdjust:0, confinement:true,
-      sizeTag:"< 60 m²", outdoorTag:"No outdoor access", localeTag:"Urban area" }
+      sizeTag:"< 60 m²", outdoorTag:"No outdoor access", localeTag:"Urban area" },
+    { id:"apt_no_terrace", label:"Apartment without terrace", short:"Apartment, no terrace", selectable:true,
+      note:"No outdoor space of its own, but full run of the home — the boredom risk is a bit higher than with a terrace.",
+      risk:"Boredom-driven chewing and indoor accidents, somewhat more likely than with a terrace since there's no outdoor space to decompress in.",
+      toleranceMult:0.85, rollAdjust:1, confinement:false,
+      sizeTag:"< 70 m²", outdoorTag:"No outdoor space", localeTag:"Urban area" },
+    { id:"house_no_garden", label:"House without a garden", short:"House, no garden", selectable:true,
+      note:"More indoor room to move than an apartment, but no garden to burn energy in outside of walks.",
+      risk:"Similar boredom-chewing risk to an apartment with a terrace, slightly eased by having more indoor space to settle in.",
+      toleranceMult:1.2, rollAdjust:0, confinement:false,
+      sizeTag:"80 – 150 m²", outdoorTag:"No outdoor space", localeTag:"Suburban area" }
   ];
+  var SELECTABLE_HOUSING_ORDER = ["terrace","apt_no_terrace","garden","house_no_garden"];
+  function selectableHousing(){
+    return SELECTABLE_HOUSING_ORDER.map(function(id){ return housingById(id); });
+  }
   // Onboarding card thumbnail vs. the Life tab's home-environment card use
   // different crops of the same housing type, except "garden" which has two
   // distinct photos (exterior for the card, interior for the Life tab).
+  // "apt_no_terrace" and "house_no_garden" have no dedicated photo yet —
+  // real photography is a follow-up; the terrace shot is a placeholder.
   function housingCardPhoto(housingId){
     if (housingId === "garden") return "garden_card.jpg";
     if (housingId === "cage") return "cage.jpg";
@@ -790,7 +812,7 @@
   ];
   function safeActivityById(id){ for (var i=0;i<SAFE_ACTIVITIES.length;i++) if (SAFE_ACTIVITIES[i].id===id) return SAFE_ACTIVITIES[i]; return SAFE_ACTIVITIES[0]; }
 
-  function housingById(id){ for (var i=0;i<HOUSING.length;i++) if (HOUSING[i].id===id) return HOUSING[i]; return HOUSING[1]; }
+  function housingById(id){ for (var i=0;i<HOUSING.length;i++) if (HOUSING[i].id===id) return HOUSING[i]; for (var j=0;j<HOUSING.length;j++) if (HOUSING[j].id==="terrace") return HOUSING[j]; return HOUSING[0]; }
   function lifeById(id){ for (var i=0;i<LIFE_OPTIONS.length;i++) if (LIFE_OPTIONS[i].id===id) return LIFE_OPTIONS[i]; return LIFE_OPTIONS[1]; }
 
   // Cost model (EUR, French market): ~15g of kibble per kg of body weight per day,
@@ -1439,6 +1461,14 @@
       onboard_sex_title: "Sex", sex_female: "Female", sex_male: "Male",
       onboard_housing_title: "Where the dog will live",
       house_risk_tag: "Main risk",
+
+      housing_clarify_label: "Quick update",
+      housing_clarify_title: "Tell us about your home",
+      housing_clarify_body: "Your home doesn't have its own outdoor space. Is it an apartment or a house?",
+      housing_clarify_apt: "Apartment",
+      housing_clarify_apt_note: "No terrace or balcony of its own.",
+      housing_clarify_house: "House",
+      housing_clarify_house_note: "No garden of its own.",
       onboard_life_title: "What your typical day looks like",
       onboard_summary_title: "Dog × Home × Life",
       summary_the_dog: "The dog", summary_the_home: "The home", summary_the_life: "The life",
@@ -1721,6 +1751,14 @@
       onboard_sex_title: "Sexe", sex_female: "Femelle", sex_male: "Mâle",
       onboard_housing_title: "Où vivra le chien",
       house_risk_tag: "Risque principal",
+
+      housing_clarify_label: "Petite mise à jour",
+      housing_clarify_title: "Parlez-nous de votre logement",
+      housing_clarify_body: "Votre logement n'a pas d'espace extérieur qui lui soit propre. S'agit-il plutôt d'un appartement ou d'une maison ?",
+      housing_clarify_apt: "Appartement",
+      housing_clarify_apt_note: "Sans terrasse ni balcon propre.",
+      housing_clarify_house: "Maison",
+      housing_clarify_house_note: "Sans jardin propre.",
       onboard_life_title: "À quoi ressemble votre journée type",
       onboard_summary_title: "Chien × Logement × Vie",
       summary_the_dog: "Le chien", summary_the_home: "Le logement", summary_the_life: "Le mode de vie",
@@ -2100,6 +2138,7 @@
   }
   function maybeInterceptView(){
     if (!state) return;
+    if (state.housingNeedsClarification){ view = "housingClarify"; return; }
     var day = tripDay();
     if (day >= 30 && state.checkpointShownDay < 30){
       state.checkpointShownDay = 30;
@@ -2962,6 +3001,7 @@
     else if (view === "trainDifficulty") root.innerHTML = brandStrip() + renderTrainDifficulty();
     else if (view === "journal") root.innerHTML = brandStrip() + renderJournal();
     else if (view === "reality7") root.innerHTML = brandStrip() + renderReality7();
+    else if (view === "housingClarify") root.innerHTML = brandStrip() + renderHousingClarify();
     else if (view === "report30") root.innerHTML = brandStrip() + renderReport30();
     else if (view === "walkGps") root.innerHTML = brandStrip() + renderWalkGps();
     else if (view === "walkSteps") root.innerHTML = brandStrip() + renderWalkSteps();
@@ -3157,7 +3197,7 @@
     }
 
     if (step === "housing"){
-      var housingCards = HOUSING.map(function(h){
+      var housingCards = selectableHousing().map(function(h){
         var sel = h.id === pendingHousing;
         return '<button class="breed-card'+(sel?' selected':'')+'" data-housing="'+h.id+'">' +
           '<div class="pup-thumb"><img src="media/housing/'+housingCardPhoto(h.id)+'" alt=""></div>' +
@@ -4437,6 +4477,29 @@
       '</div>';
   }
 
+  // One-time migration screen for a save whose housingId is the old "cage"
+  // value — ambiguous on both the apartment/house axis and the outdoor-space
+  // axis, so we ask instead of guessing which of the 4 current housing
+  // choices it should become.
+  function renderHousingClarify(){
+    return '' +
+      '<div class="card">' +
+        '<div class="section-title">'+tr('housing_clarify_label',"Quick update")+'</div>' +
+        '<h2 style="margin-top:4px;">'+tr('housing_clarify_title',"Tell us about your home")+'</h2>' +
+        '<p class="muted" style="margin-top:8px;">'+tr('housing_clarify_body',"Your home doesn't have its own outdoor space. Is it an apartment or a house?")+'</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<button class="breed-card" data-housing-clarify="apt_no_terrace" style="width:100%; text-align:left;">' +
+          '<div><div class="name">'+tr('housing_clarify_apt',"Apartment")+'</div>' +
+          '<div class="catch">'+tr('housing_clarify_apt_note',"No terrace or balcony of its own.")+'</div></div>' +
+        '</button>' +
+        '<button class="breed-card" data-housing-clarify="house_no_garden" style="width:100%; text-align:left; margin-top:10px;">' +
+          '<div><div class="name">'+tr('housing_clarify_house',"House")+'</div>' +
+          '<div class="catch">'+tr('housing_clarify_house_note',"No garden of its own.")+'</div></div>' +
+        '</button>' +
+      '</div>';
+  }
+
   function renderReality7(){
     var breed = byId(state.breedId);
     var cost = costSoFar(breed, 7);
@@ -5565,6 +5628,19 @@
       });
     }
 
+    if (view === "housingClarify"){
+      root.querySelectorAll("[data-housing-clarify]").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          state.housingId = btn.getAttribute("data-housing-clarify");
+          state.housingNeedsClarification = false;
+          save();
+          view = "home";
+          maybeInterceptView();
+          render();
+        });
+      });
+    }
+
     if (view === "reality7"){
       document.getElementById("reality-keep").addEventListener("click", function(){
         log("Day 7: decided to keep going.");
@@ -6167,6 +6243,11 @@
     uiLang = state.lang;
     if (!state.lastNotified) state.lastNotified = { hunger:0, bladder:0, energy:0 };
     if (!state.housingId) state.housingId = HOUSING[1].id;
+    // Old saves could have housingId "cage" — a distinct "crated while
+    // you're out" mechanic, not one of the 4 physical-space choices offered
+    // today, and ambiguous on both axes (apartment/house, terrace/garden or
+    // not). Ask rather than guess: gate the view until it's resolved.
+    if (state.housingNeedsClarification === undefined) state.housingNeedsClarification = (state.housingId === "cage");
     if (state.lastHomeAccidentAt === undefined) state.lastHomeAccidentAt = 0;
     if (state.lastPositiveMomentAt === undefined) state.lastPositiveMomentAt = 0;
     if (state.typicalHoursAway === undefined) state.typicalHoursAway = 4;
