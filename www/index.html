@@ -5394,7 +5394,7 @@
       var now = Date.now();
       var deltaSec = Math.round((now - (walkCtx.lastTickAt||now))/1000);
       walkCtx.lastTickAt = now;
-      var moving = (now - walkCtx.lastStepTime) < 20000; // counts a step within the last 20s as "still walking"
+      var moving = (now - walkCtx.lastStepTime) < 90000; // real walks include stops (sniffing, curbs, the dog's business) well over 20s; without this the ring stalls during a normal walk
       if (moving) walkCtx.activeSeconds += Math.max(1, deltaSec);
       var goalSec = walkCtx.goalMinutes*60;
       var pct = Math.min(100, Math.round(walkCtx.activeSeconds/goalSec*100));
