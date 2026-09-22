@@ -2910,14 +2910,14 @@
     if (next.actionId !== "feed"){
       var mealAt = new Date(Date.now() + Math.max(0, state.hunger * FEED_INTERVAL[stage] / 100 * 60) * 60000);
       var mealSubtitle = "~"+pad2(mealAt.getHours())+":"+pad2(mealAt.getMinutes());
-      taskRows += rowCardHTML({ icon:"bowl", color:"accent", title:tr('meal_label','Meal'), subtitle:mealSubtitle, pillText:tr('pill_todo','To do'), pillColor:"accent" });
+      taskRows += rowCardHTML({ icon:"bowl", color:"accent", title:tr('meal_label','Meal'), subtitle:mealSubtitle, pillText:tr('pill_todo','To do'), pillColor:"accent", attrs:'id="feed-btn"' });
     }
     var trainCooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
     var trainDone = trainCooldownLeft > 0;
     var trainWhen = trainDone
       ? (function(){ var at = new Date(Date.now()+trainCooldownLeft); return pad2(at.getHours())+":"+pad2(at.getMinutes()); })()
       : tr('train_available_now','Available now');
-    taskRows += rowCardHTML({ icon:"cap", color: trainDone ? "teal" : "warn", title:tr('tab_training','Training'), subtitle:trainWhen, pillText: trainDone ? tr('pill_done','Done') : tr('pill_available','Available'), pillColor: trainDone ? "teal" : "warn" });
+    taskRows += rowCardHTML({ icon:"cap", color: trainDone ? "teal" : "warn", title:tr('tab_training','Training'), subtitle:trainWhen, pillText: trainDone ? tr('pill_done','Done') : tr('pill_available','Available'), pillColor: trainDone ? "teal" : "warn", attrs:'data-tab="training"' });
 
     // Quick-action chips — reuse the existing tab bar's [data-tab] delegated
     // click handler (see the root.querySelectorAll("[data-tab]") listener),
