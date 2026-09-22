@@ -1024,6 +1024,16 @@
   var REAL_ONBOARD_STEPS = ["profile","confirm"];
   var realOnboardStep = 0;
 
+  // ---------- Étape 2: real routines + today's activity log ----------
+  var realRoutines = [];
+  var realRoutinesLoaded = false;
+  var realLogsToday = {}; // routineId -> "completed" | "skipped" | "postponed"
+  var realRoutineFormOpen = false;
+  var realRoutineDraft = null;
+  var realRoutineBusy = false;
+  var realRoutineError = "";
+  var ROUTINE_TYPES = ["meal","walk","play","other"];
+
   function loadRealDraft(){
     if (realDraft) return realDraft;
     var stored = null;
@@ -1102,6 +1112,7 @@
       clearRealDraft();
       view = "realToday";
       render();
+      loadRealTodayData();
     }).catch(function(){
       realBusy = false;
       realError = tr('adopt_error_network',"Couldn't reach the server. Check your connection and try again.");
@@ -1112,10 +1123,10 @@
   // step instead of always restarting onboarding: an existing real dog goes
   // straight to its Today, an in-progress draft resumes where it left off.
   function goToRealAdoption(){
-    if (realDog){ view = "realToday"; render(); return; }
+    if (realDog){ view = "realToday"; render(); loadRealTodayData(); return; }
     if (!authToken){ onboardStep = initialOnboardStep(); view = "onboarding"; render(); return; }
     function proceed(){
-      if (realDog){ view = "realToday"; render(); return; }
+      if (realDog){ view = "realToday"; render(); loadRealTodayData(); return; }
       var draft = loadRealDraft();
       var hasDraftProgress = !!draft.name;
       realOnboardStep = 0;
@@ -1128,6 +1139,115 @@
     } else {
       proceed();
     }
+  }
+
+  // ---------- Real routines + today's activity log: fetch/create/toggle ----------
+  function fetchRoutines(dogId){
+    return fetch(API_BASE + "/api/routines?dogId=" + encodeURIComponent(dogId), {
+      headers: { "Authorization": "Bearer " + authToken }
+    }).then(function(res){ return res.json(); }).then(function(data){
+      realRoutines = data.routines || [];
+    }).catch(function(){ realRoutines = []; });
+  }
+  function fetchActivityLogs(dogId, date){
+    return fetch(API_BASE + "/api/activity-logs?dogId=" + encodeURIComponent(dogId) + "&date=" + encodeURIComponent(date), {
+      headers: { "Authorization": "Bearer " + authToken }
+    }).then(function(res){ return res.json(); }).then(function(data){
+      var map = {};
+      (data.logs || []).forEach(function(l){ map[l.routine_id] = l.status; });
+      realLogsToday = map;
+    }).catch(function(){ realLogsToday = {}; });
+  }
+  function loadRealTodayData(){
+    if (!realDog) return;
+    realRoutinesLoaded = false;
+    Promise.all([fetchRoutines(realDog.id), fetchActivityLogs(realDog.id, todayISODate())]).then(function(){
+      realRoutinesLoaded = true;
+      render();
+    });
+  }
+  function logActivity(routineId, status){
+    var date = todayISODate();
+    var prev = realLogsToday[routineId];
+    realLogsToday[routineId] = status;
+    render();
+    fetch(API_BASE + "/api/activity-logs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + authToken },
+      body: JSON.stringify({ routineId: routineId, scheduledLocalDate: date, status: status })
+    }).then(function(res){ return res.json(); }).then(function(data){
+      if (data.log) realLogsToday[routineId] = data.log.status;
+      render();
+    }).catch(function(){
+      if (prev) realLogsToday[routineId] = prev; else delete realLogsToday[routineId];
+      render();
+    });
+  }
+  function unlogActivity(routineId){
+    var date = todayISODate();
+    var prev = realLogsToday[routineId];
+    delete realLogsToday[routineId];
+    render();
+    fetch(API_BASE + "/api/activity-logs?routineId=" + encodeURIComponent(routineId) + "&date=" + encodeURIComponent(date), {
+      method: "DELETE",
+      headers: { "Authorization": "Bearer " + authToken }
+    }).catch(function(){
+      if (prev) realLogsToday[routineId] = prev;
+      render();
+    });
+  }
+  function toggleRoutineDone(routine){
+    var current = realLogsToday[routine.id];
+    if (current === "completed") unlogActivity(routine.id);
+    else logActivity(routine.id, "completed");
+  }
+  function loadRealRoutineDraft(){
+    if (!realRoutineDraft) realRoutineDraft = { type:"meal", title:"", localTime:"08:00", recurrence:"daily" };
+    return realRoutineDraft;
+  }
+  function submitNewRoutine(){
+    var draft = loadRealRoutineDraft();
+    if (!draft.title.trim()){ realRoutineError = tr('routine_error_title',"Enter a title."); render(); return; }
+    if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(draft.localTime)){ realRoutineError = tr('routine_error_time',"Enter a valid time."); render(); return; }
+    realRoutineError = "";
+    realRoutineBusy = true;
+    render();
+    fetch(API_BASE + "/api/routines", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + authToken },
+      body: JSON.stringify({ dogId: realDog.id, type: draft.type, title: draft.title.trim(), localTime: draft.localTime, recurrence: draft.recurrence })
+    }).then(function(res){
+      return res.json().then(function(data){ return { ok: res.ok, data: data }; });
+    }).then(function(result){
+      realRoutineBusy = false;
+      if (!result.ok){
+        realRoutineError = result.data.error || tr('adopt_error_generic',"Something went wrong. Try again.");
+        render();
+        return;
+      }
+      realRoutines.push(result.data.routine);
+      realRoutines.sort(function(a,b){ return a.local_time < b.local_time ? -1 : 1; });
+      realRoutineDraft = null;
+      realRoutineFormOpen = false;
+      render();
+    }).catch(function(){
+      realRoutineBusy = false;
+      realRoutineError = tr('adopt_error_network',"Couldn't reach the server. Check your connection and try again.");
+      render();
+    });
+  }
+  function toggleRoutineActive(routine){
+    var newActive = !routine.active;
+    routine.active = newActive ? 1 : 0;
+    render();
+    fetch(API_BASE + "/api/routines/" + encodeURIComponent(routine.id), {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + authToken },
+      body: JSON.stringify({ active: newActive })
+    }).catch(function(){
+      routine.active = newActive ? 0 : 1;
+      render();
+    });
   }
   // Display language. Lives outside the trial's own state blob (same
   // small-standalone-key pattern as AUTH_TOKEN_KEY above) because it needs to
@@ -1227,6 +1347,24 @@
       life_together_subtitle: "Your real dog's Today",
       life_adopted_title: "Adopted this dog?",
       life_adopted_subtitle: "Switch to tracking your real dog",
+
+      routine_loading: "Loading…",
+      routine_empty_state: "No routines yet — add your first one to start tracking real life.",
+      routine_add_first: "Add a routine",
+      real_next_routine: "Next routine",
+      routine_mark_done: "Mark as done",
+      routine_all_done: "All of today's routines are done",
+      real_all_routines: "All routines",
+      routine_manage: "Manage routines",
+      routine_new_title: "New routine",
+      routine_title_label: "Title",
+      routine_title_placeholder: "e.g. Morning meal",
+      routine_time_label: "Time",
+      routine_create_btn: "Create",
+      routine_add_new: "+ New routine",
+      routine_error_title: "Enter a title.",
+      routine_error_time: "Enter a valid time.",
+
       btn_view_all: "View all", btn_view_milestones: "View milestones",
       btn_walk: "Walk", btn_see_safe_activities: "See safe activities",
       btn_take_care_first: "Take care of it first",
@@ -1491,6 +1629,24 @@
       life_together_subtitle: "Le Today de votre vrai chien",
       life_adopted_title: "Vous avez adopté ce chien ?",
       life_adopted_subtitle: "Passer au suivi de votre vrai chien",
+
+      routine_loading: "Chargement…",
+      routine_empty_state: "Aucune routine pour l'instant — ajoutez-en une pour commencer le suivi réel.",
+      routine_add_first: "Ajouter une routine",
+      real_next_routine: "Prochaine routine",
+      routine_mark_done: "Marquer comme fait",
+      routine_all_done: "Toutes les routines du jour sont faites",
+      real_all_routines: "Toutes les routines",
+      routine_manage: "Gérer les routines",
+      routine_new_title: "Nouvelle routine",
+      routine_title_label: "Titre",
+      routine_title_placeholder: "ex. Repas du matin",
+      routine_time_label: "Heure",
+      routine_create_btn: "Créer",
+      routine_add_new: "+ Nouvelle routine",
+      routine_error_title: "Indiquez un titre.",
+      routine_error_time: "Indiquez une heure valide.",
+
       btn_view_all: "Tout voir", btn_view_milestones: "Voir les étapes",
       btn_walk: "Sortir", btn_see_safe_activities: "Voir les activités sûres",
       btn_take_care_first: "S'en occuper d'abord",
@@ -2822,6 +2978,7 @@
     else if (view === "adoptIntro") root.innerHTML = brandStrip() + renderAdoptIntro();
     else if (view === "adoptForm") root.innerHTML = brandStrip() + renderAdoptForm();
     else if (view === "realToday") root.innerHTML = brandStrip() + renderRealToday();
+    else if (view === "realRoutines") root.innerHTML = brandStrip() + renderRealRoutines();
     if (activeMomentBubble && view !== "splash" && view !== "onboarding"){
       root.insertAdjacentHTML("beforeend", renderMomentOverlay());
     }
@@ -4449,23 +4606,105 @@
       '</div>';
   }
 
+  var ROUTINE_TYPE_ICON = { meal:"bowl", walk:"paw", play:"ball", other:"cap" };
+  function routineTimeLabel(localTime){
+    var parts = (localTime||"00:00").split(":");
+    return parts[0]+"h"+parts[1];
+  }
   function renderRealToday(){
     var dog = realDog;
     if (!dog) return renderAdoptIntro();
     var day = daysTogether(dog);
     var initial = esc(dog.name).charAt(0).toUpperCase();
-    return '' +
+    var header = '' +
       '<div class="card" style="display:flex; align-items:center; gap:16px;">' +
         '<div style="width:64px; height:64px; border-radius:999px; background:var(--card-2); border:2px solid var(--accent); box-shadow:0 0 0 4px rgba(133,142,255,.12), 0 10px 22px -4px rgba(133,142,255,.3); display:flex; align-items:center; justify-content:center; font-family:\'Poppins\',system-ui,sans-serif; font-weight:700; font-size:22px; color:var(--accent-bright); flex-shrink:0;">'+initial+'</div>' +
         '<div style="min-width:0;">' +
           '<div style="font-size:16px; font-weight:700;">'+esc(dog.name)+'</div>' +
           '<div style="font-size:12px; color:var(--ink-faint); margin-top:2px;">'+tr('real_day_together','Day')+' '+day+' '+tr('real_together',"together")+'</div>' +
         '</div>' +
-      '</div>' +
-      '<div class="card">' +
-        '<div class="section-title">'+tr('real_whats_next',"What's next")+'</div>' +
-        '<p class="muted">'+tr('real_routines_coming',"Routines, training and health tracking for real life are coming next. Your dog's profile is saved.")+'</p>' +
       '</div>';
+
+    if (!realRoutinesLoaded){
+      return header + '<div class="card"><p class="muted">'+tr('routine_loading',"Loading…")+'</p></div>';
+    }
+
+    var active = realRoutines.filter(function(r){ return r.active; });
+    if (!active.length){
+      return header +
+        '<div class="card">' +
+          '<div class="section-title">'+tr('real_whats_next',"What's next")+'</div>' +
+          '<p class="muted">'+tr('routine_empty_state',"No routines yet — add your first one to start tracking real life with "+esc(dog.name)+".")+'</p>' +
+          '<button class="btn btn-primary" id="real-add-first-routine" style="margin-top:12px;">'+tr('routine_add_first',"Add a routine")+'</button>' +
+        '</div>';
+    }
+
+    var notDone = active.filter(function(r){ return realLogsToday[r.id] !== "completed"; });
+    var next = notDone[0];
+    var nextHTML = next ? '' +
+      '<div class="card">' +
+        '<div class="section-title">'+tr('real_next_routine',"Next routine")+'</div>' +
+        '<div style="font-family:\'Poppins\',system-ui,sans-serif; font-weight:700; font-size:19px; margin-top:4px;">'+esc(next.title)+'</div>' +
+        '<div class="muted" style="margin-top:2px;">'+routineTimeLabel(next.local_time)+'</div>' +
+        '<button class="btn btn-primary" id="real-next-done-btn" data-routine-id="'+esc(next.id)+'" style="margin-top:12px;">'+tr('routine_mark_done',"Mark as done")+'</button>' +
+      '</div>' : '' +
+      '<div class="card" style="text-align:center;">' +
+        '<div style="font-size:15px; font-weight:700;">'+tr('routine_all_done',"All of today's routines are done")+' ✓</div>' +
+      '</div>';
+
+    var rows = active.map(function(r){
+      var done = realLogsToday[r.id] === "completed";
+      return rowCardHTML({
+        icon: ROUTINE_TYPE_ICON[r.type] || "cap",
+        color: done ? "teal" : "accent",
+        title: r.title,
+        subtitle: routineTimeLabel(r.local_time),
+        pillText: done ? tr('pill_done','Done') : tr('pill_todo','To do'),
+        pillColor: done ? "teal" : "accent",
+        attrs: 'data-routine-id="'+esc(r.id)+'" data-action="toggle-routine-done"'
+      });
+    }).join("");
+
+    return header + nextHTML +
+      '<div class="section-title" style="margin-top:18px;">'+tr('real_all_routines',"All routines")+'</div>' +
+      rows +
+      '<a href="#" id="real-manage-routines" style="display:block; text-align:center; margin-top:10px; padding:10px; color:var(--accent-bright); font-size:13.5px; font-weight:600;">'+tr('routine_manage',"Manage routines")+'</a>';
+  }
+
+  function renderRealRoutines(){
+    var draft = loadRealRoutineDraft();
+    var rows = realRoutines.map(function(r){
+      return '' +
+        '<div class="card" style="display:flex; align-items:center; gap:12px;">' +
+          '<div style="flex-grow:1; min-width:0;">' +
+            '<div style="font-weight:600; font-size:14px;">'+esc(r.title)+'</div>' +
+            '<div class="muted" style="font-size:12px; margin-top:1px;">'+routineTimeLabel(r.local_time)+' · '+esc(r.recurrence)+'</div>' +
+          '</div>' +
+          '<input class="switch" type="checkbox" data-routine-toggle="'+esc(r.id)+'" '+(r.active ? "checked" : "")+' aria-label="'+esc(r.title)+'">' +
+        '</div>';
+    }).join("");
+
+    var formHTML = realRoutineFormOpen ? '' +
+      '<div class="card">' +
+        '<div class="section-title">'+tr('routine_new_title',"New routine")+'</div>' +
+        '<div class="field" style="margin-top:10px;">' +
+          '<label for="routine-title">'+tr('routine_title_label',"Title")+'</label>' +
+          '<input id="routine-title" type="text" maxlength="40" placeholder="'+tr('routine_title_placeholder',"e.g. Morning meal")+'" value="'+esc(draft.title)+'">' +
+        '</div>' +
+        '<div class="field" style="margin-top:10px;">' +
+          '<label for="routine-time">'+tr('routine_time_label',"Time")+'</label>' +
+          '<input id="routine-time" type="time" value="'+esc(draft.localTime)+'">' +
+        '</div>' +
+        (realRoutineError ? '<p class="muted" style="color:var(--bad); margin-top:10px; font-size:13px;">'+esc(realRoutineError)+'</p>' : "") +
+        '<button class="btn btn-primary" id="routine-submit" style="margin-top:14px;" '+(realRoutineBusy?"disabled":"")+'>'+(realRoutineBusy?tr('onboard_please_wait',"Please wait…"):tr('routine_create_btn',"Create"))+'</button>' +
+        '<button class="btn-ghost" id="routine-cancel" style="margin-top:8px; width:100%;">'+tr('btn_cancel',"Cancel")+'</button>' +
+      '</div>' : '' +
+      '<button class="btn btn-primary" id="routine-open-form" style="width:100%;">'+tr('routine_add_new',"+ New routine")+'</button>';
+
+    return '' +
+      '<div class="top-actions"><h2 style="font-size:19px">'+tr('routine_manage',"Manage routines")+'</h2><button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button></div>' +
+      rows +
+      formHTML;
   }
 
   var TOXIC_FOODS = [
@@ -5404,6 +5643,56 @@
           realOnboardStep = 0; render();
         });
       }
+    }
+
+    if (view === "realToday"){
+      var realAddFirstBtn = document.getElementById("real-add-first-routine");
+      if (realAddFirstBtn) realAddFirstBtn.addEventListener("click", function(){
+        realRoutineFormOpen = true; view = "realRoutines"; render();
+      });
+      var realNextDoneBtn = document.getElementById("real-next-done-btn");
+      if (realNextDoneBtn) realNextDoneBtn.addEventListener("click", function(){
+        logActivity(realNextDoneBtn.getAttribute("data-routine-id"), "completed");
+      });
+      var realManageLink = document.getElementById("real-manage-routines");
+      if (realManageLink) realManageLink.addEventListener("click", function(e){
+        e.preventDefault(); view = "realRoutines"; render();
+      });
+      root.querySelectorAll('[data-action="toggle-routine-done"]').forEach(function(el){
+        el.addEventListener("click", function(){
+          var id = el.getAttribute("data-routine-id");
+          var routine = realRoutines.filter(function(r){ return r.id === id; })[0];
+          if (routine) toggleRoutineDone(routine);
+        });
+      });
+    }
+
+    if (view === "realRoutines"){
+      document.getElementById("back-home").addEventListener("click", function(){
+        view = "realToday"; render();
+      });
+      root.querySelectorAll('[data-routine-toggle]').forEach(function(el){
+        el.addEventListener("change", function(){
+          var id = el.getAttribute("data-routine-toggle");
+          var routine = realRoutines.filter(function(r){ return r.id === id; })[0];
+          if (routine) toggleRoutineActive(routine);
+        });
+      });
+      var routineOpenBtn = document.getElementById("routine-open-form");
+      if (routineOpenBtn) routineOpenBtn.addEventListener("click", function(){
+        loadRealRoutineDraft(); realRoutineError = ""; realRoutineFormOpen = true; render();
+      });
+      var routineCancelBtn = document.getElementById("routine-cancel");
+      if (routineCancelBtn) routineCancelBtn.addEventListener("click", function(){
+        realRoutineFormOpen = false; realRoutineDraft = null; realRoutineError = ""; render();
+      });
+      var routineSubmitBtn = document.getElementById("routine-submit");
+      if (routineSubmitBtn) routineSubmitBtn.addEventListener("click", function(){
+        var draft = loadRealRoutineDraft();
+        draft.title = document.getElementById("routine-title").value || "";
+        draft.localTime = document.getElementById("routine-time").value || draft.localTime;
+        submitNewRoutine();
+      });
     }
 
     if (view === "feedQuiz"){
