@@ -114,9 +114,10 @@ workflows:
         script: npx cap sync android
       - name: Set unique version code
         script: |
-          LATEST=$(google-play get-latest-build-number "$PACKAGE_NAME" --credentials "$GCLOUD_SERVICE_ACCOUNT_CREDENTIALS" --tracks internal,alpha,beta)
+          set -e
+          LATEST=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --credentials "$GCLOUD_SERVICE_ACCOUNT_CREDENTIALS" --tracks internal alpha beta)
           NEW_CODE=$((LATEST + 1))
-          sed -i "s/versionCode [0-9]*/versionCode $NEW_CODE/" android/app/build.gradle
+          sed -i '' "s/versionCode [0-9]*/versionCode $NEW_CODE/" android/app/build.gradle
           echo "Set Android versionCode to $NEW_CODE"
       - name: Build Android release
         script: |
@@ -147,9 +148,10 @@ workflows:
         script: npx cap sync android
       - name: Set unique version code
         script: |
-          LATEST=$(google-play get-latest-build-number "$PACKAGE_NAME" --credentials "$GCLOUD_SERVICE_ACCOUNT_CREDENTIALS" --tracks internal,alpha,beta)
+          set -e
+          LATEST=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --credentials "$GCLOUD_SERVICE_ACCOUNT_CREDENTIALS" --tracks internal alpha beta)
           NEW_CODE=$((LATEST + 1))
-          sed -i "s/versionCode [0-9]*/versionCode $NEW_CODE/" android/app/build.gradle
+          sed -i '' "s/versionCode [0-9]*/versionCode $NEW_CODE/" android/app/build.gradle
           echo "Set Android versionCode to $NEW_CODE"
       - name: Build Android release
         script: |
@@ -180,9 +182,10 @@ workflows:
         script: npx cap sync android
       - name: Set unique version code
         script: |
-          LATEST=$(google-play get-latest-build-number "$PACKAGE_NAME" --credentials "$GCLOUD_SERVICE_ACCOUNT_CREDENTIALS" --tracks internal,alpha,beta)
+          set -e
+          LATEST=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --credentials "$GCLOUD_SERVICE_ACCOUNT_CREDENTIALS" --tracks internal alpha beta)
           NEW_CODE=$((LATEST + 1))
-          sed -i "s/versionCode [0-9]*/versionCode $NEW_CODE/" android/app/build.gradle
+          sed -i '' "s/versionCode [0-9]*/versionCode $NEW_CODE/" android/app/build.gradle
           echo "Set Android versionCode to $NEW_CODE"
       - name: Build Android release
         script: |
