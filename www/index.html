@@ -1429,6 +1429,15 @@
       btn_back_to_today: "← Back to today",
       walk_moving_label: "Walking — tracking your steps",
       walk_still_label: "Standing still — progress paused",
+      train_stage_1: "1 · WATCH & PRACTICE",
+      train_stage_2: "2 · QUICK CHECK",
+      train_stage_3: "3 · HOW IT WENT",
+      train_summary_title: "A small step.<br>A good session.",
+      train_summary_recorded: "Session recorded.",
+      train_summary_note: "A finished session doesn't mean the behavior is mastered — you'll come back to this one.",
+      train_summary_more: "Back to lessons",
+      difficulty_easy: "Easy", difficulty_medium: "Somewhat difficult", difficulty_hard: "I couldn't get it",
+      btn_skip_to_quiz: "Already done — skip to quiz",
       btn_open_emergency: "Open emergency &amp; sitter info",
       btn_ignore_for_now: "Ignore for now", btn_go_out_15: "Go out (15 min)",
       reset_confirm_prompt: "Start a new trial?",
@@ -1744,6 +1753,15 @@
       btn_back_to_today: "← Retour à aujourd'hui",
       walk_moving_label: "En marche — suivi des pas en cours",
       walk_still_label: "À l'arrêt · progression suspendue",
+      train_stage_1: "1 · REGARDER ET PRATIQUER",
+      train_stage_2: "2 · VÉRIFICATION",
+      train_stage_3: "3 · RESSENTI",
+      train_summary_title: "Un petit pas.<br>Une belle séance.",
+      train_summary_recorded: "Séance enregistrée.",
+      train_summary_note: "Une séance terminée ne signifie pas que le comportement est acquis — vous y reviendrez.",
+      train_summary_more: "Retrouver les vidéos",
+      difficulty_easy: "Facile", difficulty_medium: "Plutôt difficile", difficulty_hard: "Je n'y suis pas arrivé",
+      btn_skip_to_quiz: "Déjà fait — passer au quiz",
       btn_open_emergency: "Ouvrir les infos d'urgence",
       btn_ignore_for_now: "Ignorer pour l'instant", btn_go_out_15: "Sortir (15 min)",
       reset_confirm_prompt: "Commencer un nouvel essai ?",
@@ -1988,6 +2006,7 @@
   var practiceCtx = null; // {skillId, totalMs, startedAt}
   var quizCtx = null; // {skillId, answer:idx|null}
   var difficultyCtx = null; // {skillId, correct}
+  var trainSummaryCtx = null; // {skillId, correct, difficulty}
   var feedQuizCtx = null; // {question, answer:idx|null}
   var feedFeedbackCtx = null; // {question, correct}
   var quizFeedbackCtx = null; // {skillId, correct}
@@ -3083,6 +3102,7 @@
     else if (view === "trainQuiz") root.innerHTML = brandStrip() + renderTrainQuiz();
     else if (view === "trainFeedback") root.innerHTML = brandStrip() + renderTrainFeedback();
     else if (view === "trainDifficulty") root.innerHTML = brandStrip() + renderTrainDifficulty();
+    else if (view === "trainSummary") root.innerHTML = brandStrip() + renderTrainSummary();
     else if (view === "journal") root.innerHTML = brandStrip() + renderJournal();
     else if (view === "reality7") root.innerHTML = brandStrip() + renderReality7();
     else if (view === "housingClarify") root.innerHTML = brandStrip() + renderHousingClarify();
@@ -4504,17 +4524,27 @@
       rows +
     '</div>';
   }
+  function trainStagePill(n){
+    var STAGE_LABELS = [
+      tr('train_stage_1','1 · WATCH & PRACTICE'),
+      tr('train_stage_2','2 · QUICK CHECK'),
+      tr('train_stage_3','3 · HOW IT WENT')
+    ];
+    return '<div class="section-title" style="margin-bottom:10px;">'+(STAGE_LABELS[n-1]||'')+'</div>';
+  }
   function renderTrainPractice(){
     var c = practiceCtx;
     var skill = trainingSkillById(c.skillId);
     var remaining = Math.max(0, c.totalMs - (Date.now() - c.startedAt));
     return '' +
+      trainStagePill(1) +
       trainingStepsHTML(skill) +
       '<div class="card center">' +
         '<div class="section-title">Practice — '+esc(skill.label)+'</div>' +
         trainingMediaHTML(skill) +
         '<p class="muted" style="margin-top:12px;">Go practice this with your dog now. The timer keeps you honest — no rushing to the quiz.</p>' +
         '<div class="big-num mono" id="practice-countdown" style="margin-top:10px;">'+mmss(remaining)+'</div>' +
+        '<button class="btn-ghost" id="practice-skip" style="margin-top:10px;">'+tr('btn_skip_to_quiz','Already done — skip to quiz')+'</button>' +
       '</div>';
   }
   function renderFeedQuiz(){
@@ -4571,6 +4601,7 @@
       return '<button class="btn btn-ghost" data-opt="'+oi+'" style="'+quizOptionStyle(selected)+'">'+esc(opt)+'</button>';
     }).join("");
     return '' +
+      trainStagePill(2) +
       '<div class="card">' +
         '<div class="section-title">Quick check — '+esc(skill.label)+'</div>' +
         '<p class="muted">One question about what you'+"'"+'d actually do — not a memory test of the clip.</p>' +
@@ -4603,6 +4634,7 @@
     var c = difficultyCtx;
     var skill = trainingSkillById(c.skillId);
     return '' +
+      trainStagePill(3) +
       '<div class="card center">' +
         '<div class="section-title">'+(c.correct ? "✓ Nice work" : "Good try")+' — '+esc(skill.label)+'</div>' +
         '<h2 style="margin-top:4px;">How did it go?</h2>' +
@@ -4610,6 +4642,27 @@
         '<button class="btn btn-primary" data-difficulty="easy" style="margin-top:16px;">Easy</button>' +
         '<button class="btn btn-ghost" data-difficulty="medium" style="width:100%; border:1px solid var(--line); margin-top:8px;">Somewhat difficult</button>' +
         '<button class="btn btn-ghost" data-difficulty="hard" style="width:100%; border:1px solid var(--line); margin-top:8px;">I couldn'+"'"+'t get it</button>' +
+      '</div>';
+  }
+  // The wrap-up after a training session — the prototype calls this the
+  // "bilan de séance". Deliberately not a score: a finished session and a
+  // mastered behavior are two different things, so the copy says so.
+  function renderTrainSummary(){
+    var c = trainSummaryCtx;
+    if (!c) return '<div class="card center"><button class="btn btn-primary" id="train-summary-home">'+tr('btn_back_to_today','← Back to today')+'</button></div>';
+    var skill = trainingSkillById(c.skillId);
+    var diffLabel = tr('difficulty_'+c.difficulty, DIFFICULTY_LABELS[c.difficulty] || c.difficulty);
+    return '' +
+      '<div class="card center">' +
+        '<h2>'+tr('train_summary_title','A small step.<br>A good session.')+'</h2>' +
+        '<div style="margin-top:16px; background:var(--accent-soft); border-radius:20px; padding:24px 16px;">' +
+          '<div style="font-family:\'DM Serif Display\',Georgia,serif; font-size:22px;">'+esc(skill.label)+'</div>' +
+          '<div class="muted" style="margin-top:6px; font-size:13px;">'+tr('train_summary_recorded','Session recorded.')+'</div>' +
+          '<span class="expense-badge" style="margin-top:10px;">'+esc(diffLabel)+'</span>' +
+        '</div>' +
+        '<p class="muted" style="margin-top:14px; font-size:13px;">'+tr('train_summary_note',"A finished session doesn't mean the behavior is mastered — you\'ll come back to this one.")+'</p>' +
+        '<button class="btn btn-primary" id="train-summary-lessons" style="margin-top:16px;">'+tr('train_summary_more','Back to lessons')+' →</button>' +
+        '<button class="btn-ghost" id="train-summary-home" style="margin-top:8px; width:100%;">'+tr('btn_back_to_today','← Back to today')+'</button>' +
       '</div>';
   }
 
@@ -5961,6 +6014,11 @@
       if (feedFeedbackBtn) feedFeedbackBtn.addEventListener("click", onFeedFeedbackContinue);
     }
 
+    if (view === "trainPractice"){
+      var practiceSkipBtn = document.getElementById("practice-skip");
+      if (practiceSkipBtn) practiceSkipBtn.addEventListener("click", finishPracticeEarly);
+    }
+
     if (view === "trainQuiz"){
       root.querySelectorAll("[data-opt]").forEach(function(el){
         el.addEventListener("click", function(){
@@ -5982,6 +6040,17 @@
         el.addEventListener("click", function(){
           onDifficultySelect(el.getAttribute("data-difficulty"));
         });
+      });
+    }
+
+    if (view === "trainSummary"){
+      var summaryLessonsBtn = document.getElementById("train-summary-lessons");
+      if (summaryLessonsBtn) summaryLessonsBtn.addEventListener("click", function(){
+        trainSummaryCtx = null; activeTab = "training"; view = "home"; render();
+      });
+      var summaryHomeBtn = document.getElementById("train-summary-home");
+      if (summaryHomeBtn) summaryHomeBtn.addEventListener("click", function(){
+        trainSummaryCtx = null; activeTab = "today"; view = "home"; render();
       });
     }
   }
@@ -6052,8 +6121,9 @@
     log(checkmark + skill.label + " practiced — quiz " + (c.correct ? "correct" : "missed") + ", felt \"" + (DIFFICULTY_LABELS[difficulty]||difficulty) + "\"." + (isPuppy ? " Playtime like this means another bathroom trip soon." : ""));
     bumpOwnerLoad(2);
     save();
+    trainSummaryCtx = { skillId: c.skillId, correct: c.correct, difficulty: difficulty };
     difficultyCtx = null;
-    view = "home";
+    view = "trainSummary";
     render();
   }
 
@@ -6398,6 +6468,15 @@
     }, 1000);
   }
 
+  // Lets the walker move on before the countdown hits zero — the timer still
+  // discourages rushing by default, but doesn't trap anyone who's genuinely done.
+  function finishPracticeEarly(){
+    if (!practiceCtx) return;
+    stopLiveTimer();
+    quizCtx = { skillId: practiceCtx.skillId, answer: null };
+    practiceCtx = null;
+    view = "trainQuiz"; render();
+  }
   function startPracticeTimer(){
     stopLiveTimer();
     atWorkInterval = setInterval(function(){
