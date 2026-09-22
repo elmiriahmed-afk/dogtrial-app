@@ -183,6 +183,32 @@
   .house-risk{margin-top:9px; padding-top:9px; border-top:1px dashed var(--line); font-size:12.5px; color:var(--ink-soft);}
   .house-risk-tag{display:block; font-weight:700; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:var(--warn); margin-bottom:3px;}
 
+  /* ---- auth (sign up / log in) ---- */
+  .auth-hero{
+    display:grid; grid-template-columns:1.05fr .95fr; align-items:stretch;
+    border-radius:20px; overflow:hidden; min-height:140px; margin-bottom:14px;
+    background:linear-gradient(135deg, var(--card-2), var(--surface-3));
+  }
+  .auth-hero-copy{padding:18px 8px 16px 18px; display:flex; flex-direction:column; justify-content:center;}
+  .auth-hero-copy h2{font-size:19px; line-height:1.18; margin:0;}
+  .auth-hero-photo{position:relative; overflow:hidden; background:var(--surface-3);}
+  .auth-hero-photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .auth-eyebrow{font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); font-weight:700; display:block; margin-bottom:2px;}
+  .auth-subtitle{color:var(--ink-soft); font-size:14px; margin-top:4px;}
+  .auth-label{display:block; font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-faint); margin:16px 0 7px; font-weight:700;}
+  .auth-input-row{display:flex; align-items:center; gap:10px; min-height:52px; border:1px solid var(--line); border-radius:14px; background:var(--card-2); padding:0 14px;}
+  .auth-input-row.has-error{border-color:var(--bad);}
+  .auth-input-row .icon-svg{flex:none; color:var(--ink-faint);}
+  .auth-input-row input{flex:1; min-width:0; border:0; background:none; font-size:16px; padding:13px 0; color:var(--ink); font-family:inherit;}
+  .auth-input-row input:focus{outline:none;}
+  .auth-eye-btn{flex:none; border:0; background:none; color:var(--ink-faint); padding:8px; margin-right:-8px; min-width:36px; min-height:36px; display:flex; align-items:center; justify-content:center;}
+  .auth-field-error{color:var(--bad); font-size:12px; margin:6px 2px 0;}
+  .auth-field-help{color:var(--ink-faint); font-size:11.5px; margin:6px 2px 0;}
+  .auth-banner-error{background:var(--bad-soft); color:var(--bad); font-size:13px; border-radius:12px; padding:10px 12px; margin-top:14px;}
+  .auth-legal{font-size:11.5px; color:var(--ink-soft); line-height:1.6; margin-top:16px;}
+  .auth-legal a{color:var(--accent);}
+  .auth-free-badge{margin-top:14px; text-align:center; font-size:11.5px; font-weight:600; color:var(--teal); background:var(--teal-soft); border-radius:14px; padding:10px 8px;}
+
   /* ---- onboarding wizard ---- */
   .onboard-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
   .onboard-dots{display:flex; gap:6px;}
@@ -1452,6 +1478,18 @@
       onboard_create_account_btn: "Create account",
       onboard_already_have_account: "Already have an account? Log in",
       onboard_new_here: "New here? Create an account",
+      auth_eyebrow_signup: "THE FIRST STEP",
+      auth_eyebrow_login: "GOOD TO HAVE YOU BACK",
+      auth_hero_title: "The first step,<br>together.",
+      auth_subtitle_signup: "So you can pick up where you left off.",
+      auth_subtitle_login: "Welcome back — pick up where you left off.",
+      auth_show_password: "Show password",
+      auth_hide_password: "Hide password",
+      auth_error_email_invalid: "Enter a valid email address.",
+      auth_error_password_short: "Password must be at least 8 characters.",
+      auth_legal_prefix: "By creating your account, you agree to our ",
+      auth_legal_privacy_link: "Privacy Policy",
+      auth_free_badge: "Free while we're in early access · No card required",
       onboard_name_label: "Name the dog", onboard_name_placeholder: "e.g. Biscuit",
       onboard_past_trials: "Past trials",
       onboard_choose_breed: "Choose a breed",
@@ -1742,6 +1780,18 @@
       onboard_create_account_btn: "Créer un compte",
       onboard_already_have_account: "Vous avez déjà un compte ? Connexion",
       onboard_new_here: "Nouveau ici ? Créer un compte",
+      auth_eyebrow_signup: "LE PREMIER PAS",
+      auth_eyebrow_login: "HEUREUX DE TE RETROUVER",
+      auth_hero_title: "Le premier pas,<br>ensemble.",
+      auth_subtitle_signup: "Pour retrouver ta progression.",
+      auth_subtitle_login: "Content de te revoir — retrouve ta progression.",
+      auth_show_password: "Afficher le mot de passe",
+      auth_hide_password: "Masquer le mot de passe",
+      auth_error_email_invalid: "Entre une adresse e-mail valide.",
+      auth_error_password_short: "Le mot de passe doit contenir au moins 8 caractères.",
+      auth_legal_prefix: "En créant ton compte, tu acceptes notre ",
+      auth_legal_privacy_link: "politique de confidentialité",
+      auth_free_badge: "Gratuit pendant la phase de lancement · Sans carte bancaire",
       onboard_name_label: "Nommez le chien", onboard_name_placeholder: "ex. Biscuit",
       onboard_past_trials: "Essais précédents",
       onboard_choose_breed: "Choisissez une race",
@@ -1898,6 +1948,11 @@
   var authMode = "signup";
   var authError = "";
   var authBusy = false;
+  var authShowPassword = false;
+  var authEmailError = "";
+  var authPasswordError = "";
+  var authEmailValue = "";
+  var authPasswordValue = "";
   var pendingBreed = BREEDS[0].id;
   var pendingHousing = HOUSING[0].id;
   var pendingStartStage = START_STAGES[0].id;
@@ -2724,6 +2779,9 @@
     calendar: '<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16"/><path d="M8 3v4"/><path d="M16 3v4"/>',
     bulb: '<path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3 11.2c.6.4 1 1.1 1 1.8h4c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/>',
     lock: '<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>',
+    eyeOff: '<path d="M3 3l18 18"/><path d="M10.6 5.2A10.7 10.7 0 0 1 12 5c6.5 0 10 7 10 7a13.2 13.2 0 0 1-3.1 4"/><path d="M6.5 6.6C4 8.3 2 12 2 12s3.5 7 10 7a9.9 9.9 0 0 0 4.4-1"/><path d="M9.5 9.8a3 3 0 0 0 4.2 4.2"/>',
     sparkle: '<path d="M12 3v5"/><path d="M12 16v5"/><path d="M3 12h5"/><path d="M16 12h5"/>',
     medical: '<rect x="9" y="3" width="6" height="18" rx="1"/><rect x="3" y="9" width="18" height="6" rx="1"/>',
     bell: '<path d="M6 8a6 6 0 0 1 12 0c0 3 1 5 2 6H4c1-1 2-3 2-6z"/><path d="M9 19a3 3 0 0 0 6 0"/>',
@@ -3098,24 +3156,37 @@
     }
 
     if (step === "auth"){
+      var isSignup = authMode === "signup";
+      var pwType = authShowPassword ? "text" : "password";
       return '' +
-        '<div class="card intro">' +
-          '<h1>'+tr('onboard_intro_title','Before you get a dog,<br>live with one for 30 days.')+'</h1>' +
-          '<p>'+tr('onboard_intro_body','Real feeding windows. Real walks. If you leave for work, the dog is actually alone for that long — and you’ll see exactly what that costs.')+'</p>' +
+        '<div class="auth-hero">' +
+          '<div class="auth-hero-copy">' +
+            '<h2>'+tr('auth_hero_title','The first step,<br>together.')+'</h2>' +
+          '</div>' +
+          '<div class="auth-hero-photo"><img src="'+SPLASH_PHOTO+'" alt=""></div>' +
         '</div>' +
-        '<div class="card onboard-step" style="margin-top:14px">' +
-          '<div class="section-title">'+(authMode==="signup"?tr('onboard_create_account',"Create your account"):tr('onboard_log_in',"Log in"))+'</div>' +
-          '<div class="field">' +
-            '<label for="auth-email">'+tr('onboard_email_label','Email')+'</label>' +
-            '<input id="auth-email" type="email" autocomplete="email" placeholder="you@example.com" value="">' +
+        '<div class="card onboard-step">' +
+          '<span class="auth-eyebrow">'+(isSignup?tr('auth_eyebrow_signup',"THE FIRST STEP"):tr('auth_eyebrow_login',"GOOD TO HAVE YOU BACK"))+'</span>' +
+          '<div class="section-title" style="font-size:20px; text-transform:none; letter-spacing:0; color:var(--ink); font-family:\'DM Serif Display\',Georgia,serif; font-weight:400;">'+(isSignup?tr('onboard_create_account',"Create your account"):tr('onboard_log_in',"Log in"))+'</div>' +
+          '<p class="auth-subtitle">'+(isSignup?tr('auth_subtitle_signup',"So you can pick up where you left off."):tr('auth_subtitle_login',"Welcome back — pick up where you left off."))+'</p>' +
+          '<label class="auth-label" for="auth-email">'+tr('onboard_email_label','Email')+'</label>' +
+          '<div class="auth-input-row'+(authEmailError?" has-error":"")+'">' +
+            icon('mail', 18) +
+            '<input id="auth-email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="you@example.com" value="'+esc(authEmailValue)+'">' +
           '</div>' +
-          '<div class="field" style="margin-top:12px">' +
-            '<label for="auth-password">'+tr('onboard_password_label','Password')+'</label>' +
-            '<input id="auth-password" type="password" autocomplete="'+(authMode==="signup"?"new-password":"current-password")+'" placeholder="'+tr('onboard_password_placeholder','At least 8 characters')+'" value="">' +
+          (authEmailError ? '<p class="auth-field-error">'+esc(authEmailError)+'</p>' : "") +
+          '<label class="auth-label" for="auth-password">'+tr('onboard_password_label','Password')+'</label>' +
+          '<div class="auth-input-row'+(authPasswordError?" has-error":"")+'">' +
+            icon('lock', 18) +
+            '<input id="auth-password" type="'+pwType+'" autocomplete="'+(isSignup?"new-password":"current-password")+'" placeholder="'+tr('onboard_password_placeholder','At least 8 characters')+'" value="'+esc(authPasswordValue)+'">' +
+            '<button type="button" class="auth-eye-btn" id="auth-eye" aria-label="'+(authShowPassword?tr('auth_hide_password','Hide password'):tr('auth_show_password','Show password'))+'" aria-pressed="'+(authShowPassword?"true":"false")+'">'+icon(authShowPassword?'eyeOff':'eye', 18)+'</button>' +
           '</div>' +
-          (authError ? '<p class="muted" style="color:var(--bad); margin-top:10px; font-size:13px;">'+esc(authError)+'</p>' : "") +
-          '<button class="btn btn-primary" id="auth-submit" style="margin-top:16px;" '+(authBusy?"disabled":"")+'>'+(authBusy?tr('onboard_please_wait',"Please wait…"):(authMode==="signup"?tr('onboard_create_account_btn',"Create account"):tr('onboard_log_in',"Log in")))+'</button>' +
-          '<button class="btn-ghost" id="auth-toggle" style="margin-top:8px; width:100%;">'+(authMode==="signup"?tr('onboard_already_have_account',"Already have an account? Log in"):tr('onboard_new_here',"New here? Create an account"))+'</button>' +
+          (authPasswordError ? '<p class="auth-field-error">'+esc(authPasswordError)+'</p>' : '<p class="auth-field-help">'+tr('onboard_password_placeholder','At least 8 characters')+'</p>') +
+          (authError ? '<p class="auth-banner-error">'+esc(authError)+'</p>' : "") +
+          '<button class="btn btn-primary" id="auth-submit" style="margin-top:16px; width:100%;" '+(authBusy?"disabled":"")+'>'+(authBusy?tr('onboard_please_wait',"Please wait…"):(isSignup?tr('onboard_create_account_btn',"Create account"):tr('onboard_log_in',"Log in")))+'</button>' +
+          '<button class="btn-ghost" id="auth-toggle" style="margin-top:8px; width:100%;">'+(isSignup?tr('onboard_already_have_account',"Already have an account? Log in"):tr('onboard_new_here',"New here? Create an account"))+'</button>' +
+          (isSignup ? '<p class="auth-legal">'+esc(tr('auth_legal_prefix','By creating your account, you agree to our '))+'<a href="https://dogtrial.dog/privacy" target="_blank" rel="noopener">'+esc(tr('auth_legal_privacy_link','Privacy Policy'))+'</a>.</p>' : "") +
+          '<div class="auth-free-badge">✦ &nbsp;'+tr('auth_free_badge',"Free while we're in early access · No card required")+'</div>' +
         '</div>';
     }
 
@@ -5182,12 +5253,38 @@
       if (onboardLangFrBtn) onboardLangFrBtn.addEventListener("click", function(){
         setLang("fr"); onboardAdvance();
       });
+      var authEmailInput = document.getElementById("auth-email");
+      var authPasswordInput = document.getElementById("auth-password");
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (authEmailInput){
+        authEmailInput.addEventListener("input", function(){
+          authEmailValue = authEmailInput.value;
+          if (authEmailError){ authEmailError = ""; render(); }
+        });
+      }
+      if (authPasswordInput){
+        authPasswordInput.addEventListener("input", function(){
+          authPasswordValue = authPasswordInput.value;
+          if (authPasswordError){ authPasswordError = ""; render(); }
+        });
+      }
+      var authEyeBtn = document.getElementById("auth-eye");
+      if (authEyeBtn) authEyeBtn.addEventListener("click", function(){
+        authShowPassword = !authShowPassword;
+        render();
+        var reFocus = document.getElementById("auth-password");
+        if (reFocus){ reFocus.focus(); try { reFocus.setSelectionRange(reFocus.value.length, reFocus.value.length); } catch(e){} }
+      });
       var authSubmitBtn = document.getElementById("auth-submit");
       if (authSubmitBtn) authSubmitBtn.addEventListener("click", function(){
-        var email = (document.getElementById("auth-email").value || "").trim();
-        var password = document.getElementById("auth-password").value || "";
-        if (!email || !password){
-          authError = "Enter your email and password.";
+        var email = (authEmailValue || "").trim();
+        var password = authPasswordValue || "";
+        var validEmail = email.length > 0 && EMAIL_RE.test(email);
+        var validPassword = password.length >= 8;
+        authEmailError = validEmail ? "" : tr('auth_error_email_invalid', "Enter a valid email address.");
+        authPasswordError = validPassword ? "" : tr('auth_error_password_short', "Password must be at least 8 characters.");
+        if (!validEmail || !validPassword){
+          authError = "";
           render();
           return;
         }
@@ -5210,6 +5307,7 @@
           }
           authToken = result.data.token;
           try { localStorage.setItem(AUTH_TOKEN_KEY, authToken); } catch(e){}
+          authEmailValue = ""; authPasswordValue = "";
           onboardStep = Math.min(onboardStep + 1, ONBOARD_STEPS.length - 1);
           render();
         }).catch(function(){
@@ -5221,7 +5319,7 @@
       var authToggleBtn = document.getElementById("auth-toggle");
       if (authToggleBtn) authToggleBtn.addEventListener("click", function(){
         authMode = authMode === "signup" ? "login" : "signup";
-        authError = "";
+        authError = ""; authEmailError = ""; authPasswordError = ""; authPasswordValue = "";
         render();
       });
       var backBtn = document.getElementById("onboard-back");
