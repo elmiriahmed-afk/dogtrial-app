@@ -182,6 +182,15 @@
   .trait{font-family:"DM Sans",system-ui,sans-serif; font-weight:600; font-size:10.5px; color:var(--purple); background:var(--purple-soft); border:none; padding:4px 9px; border-radius:999px;}
   .house-risk{margin-top:9px; padding-top:9px; border-top:1px dashed var(--line); font-size:12.5px; color:var(--ink-soft);}
   .house-risk-tag{display:block; font-weight:700; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:var(--warn); margin-bottom:3px;}
+  .breed-search-row{display:flex; gap:8px; align-items:center; background:var(--card-2); border:1px solid var(--line); border-radius:999px; padding:0 14px; margin-bottom:10px; color:var(--ink-faint);}
+  .breed-search-row input{flex:1; min-width:0; border:0; background:none; font-size:15px; padding:11px 0; color:var(--ink); font-family:inherit;}
+  .breed-search-row input:focus{outline:none;}
+  .breed-filter-row{display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap;}
+  .breed-filter-pill{border:1px solid var(--line); background:var(--card-2); color:var(--ink-soft); border-radius:999px; padding:7px 13px; font-size:12.5px; font-weight:600;}
+  .breed-filter-pill.active{background:var(--accent); border-color:transparent; color:#fff;}
+  .breed-card-wrap{position:relative;}
+  .breed-info-btn{position:absolute; top:10px; right:10px; width:30px; height:30px; border-radius:50%; background:var(--card); border:1px solid var(--line); color:var(--ink-soft); display:flex; align-items:center; justify-content:center; z-index:2;}
+  .breed-empty{padding:24px 8px; text-align:center; color:var(--ink-soft); font-size:13.5px;}
 
   /* ---- auth (sign up / log in) ---- */
   .auth-hero{
@@ -751,6 +760,13 @@
         {text:"chewed the fringe off a rug out of boredom", bond:-2, health:0, house:0, type:"chew"}
       ]}
   ];
+
+  // Size bucket per breed, for the breed picker's filter pills — matches the
+  // reference prototype's own Petites/Moyennes/Grandes grouping.
+  var BREED_SIZE = {
+    lab:"large", husky:"large", frenchie:"small", collie:"medium", chihuahua:"small",
+    amstaff:"medium", canecorso:"large", malinois:"large", gsd:"large", bichon:"small"
+  };
 
   // Housing is exposed to the user as exactly 4 physical-space choices
   // (selectable:true, in this order): apartment with/without a terrace,
@@ -1515,6 +1531,14 @@
       onboard_name_label: "Name the dog", onboard_name_placeholder: "e.g. Biscuit",
       onboard_past_trials: "Past trials",
       onboard_choose_breed: "Choose a breed",
+      breed_search_placeholder: "Search a breed",
+      breed_filter_all: "All", breed_filter_small: "Small", breed_filter_medium: "Medium", breed_filter_large: "Large",
+      breed_empty: "No breed matches.",
+      breed_info_aria: "Information about {name}",
+      breed_info_weight: "Adult weight",
+      breed_info_disclaimer: "These are the same simulation parameters used in the trial — a starting point for research, not a prescription for a real dog.",
+      breed_info_selected: "Selected", breed_info_choose: "Choose this breed",
+      btn_back_to_list: "← Back to the list",
       trait_energy: "Energy", trait_trainability: "Trainability",
       trait_alone_adult: "Alone (adult)", trait_walk: "Walk",
       onboard_age_question: "How old is the dog?",
@@ -1839,6 +1863,14 @@
       onboard_name_label: "Nommez le chien", onboard_name_placeholder: "ex. Biscuit",
       onboard_past_trials: "Essais précédents",
       onboard_choose_breed: "Choisissez une race",
+      breed_search_placeholder: "Rechercher une race",
+      breed_filter_all: "Toutes", breed_filter_small: "Petites", breed_filter_medium: "Moyennes", breed_filter_large: "Grandes",
+      breed_empty: "Aucune race trouvée.",
+      breed_info_aria: "Informations sur {name}",
+      breed_info_weight: "Poids adulte",
+      breed_info_disclaimer: "Ce sont les mêmes paramètres de simulation que ceux utilisés dans l'essai — un point de départ pour vous informer, pas une prescription pour un chien réel.",
+      breed_info_selected: "Sélectionnée", breed_info_choose: "Choisir cette race",
+      btn_back_to_list: "← Retour à la liste",
       trait_energy: "Énergie", trait_trainability: "Éducabilité",
       trait_alone_adult: "Seul (adulte)", trait_walk: "Sortie",
       onboard_age_question: "Quel âge a le chien ?",
@@ -1998,6 +2030,9 @@
   var authEmailValue = "";
   var authPasswordValue = "";
   var pendingBreed = BREEDS[0].id;
+  var breedQuery = "";
+  var breedSizeFilter = "all";
+  var breedInfoId = null;
   var pendingHousing = HOUSING[0].id;
   var pendingStartStage = START_STAGES[0].id;
   var pendingLife = LIFE_OPTIONS[1].id;
@@ -3259,24 +3294,67 @@
     }
 
     if (step === "breed"){
-      var cards = BREEDS.map(function(b){
+      if (breedInfoId){
+        var ib = byId(breedInfoId);
+        var infoSel = ib.id === pendingBreed;
+        return onboardProgressHTML() +
+          '<div class="card onboard-step">' +
+            '<button class="btn-ghost" id="breed-info-back" style="margin-bottom:4px;">'+tr('btn_back_to_list','← Back to the list')+'</button>' +
+            '<div style="display:flex; gap:14px; align-items:center; margin-top:8px;">' +
+              '<div class="pup-thumb" style="width:72px; height:72px;">'+dogVisual(ib,"puppy")+'</div>' +
+              '<div><div class="name" style="font-size:19px;">'+esc(ib.name)+'</div>' +
+              '<div class="catch">'+esc(ib.catch)+'</div></div>' +
+            '</div>' +
+            '<div class="cost-row" style="margin-top:16px;"><span>'+tr('trait_energy','Energy')+'</span><b>'+ib.energy+'/10</b></div>' +
+            '<div class="cost-row"><span>'+tr('trait_trainability','Trainability')+'</span><b>'+ib.trainability+'/10</b></div>' +
+            '<div class="cost-row"><span>'+tr('trait_alone_adult','Alone (adult)')+'</span><b>'+ib.tolerance+'h</b></div>' +
+            '<div class="cost-row"><span>'+tr('trait_walk','Walk')+'</span><b>'+ib.walkMinutes+'min ×2/day</b></div>' +
+            '<div class="cost-row"><span>'+tr('breed_info_weight','Adult weight')+'</span><b>~'+ib.weightKg+' kg</b></div>' +
+            '<p class="muted" style="margin-top:12px; font-size:12.5px;">'+tr('breed_info_disclaimer',"These are the same simulation parameters used in the trial — a starting point for research, not a prescription for a real dog.")+'</p>' +
+            '<button class="btn btn-primary" data-breed="'+ib.id+'" style="margin-top:16px;">'+(infoSel?tr('breed_info_selected','Selected'):tr('breed_info_choose','Choose this breed'))+'</button>' +
+          '</div>';
+      }
+      var q = breedQuery.trim().toLowerCase();
+      var filtered = BREEDS.filter(function(b){
+        var matchesQuery = !q || b.name.toLowerCase().indexOf(q) !== -1;
+        var matchesSize = breedSizeFilter === "all" || BREED_SIZE[b.id] === breedSizeFilter;
+        return matchesQuery && matchesSize;
+      });
+      var SIZE_FILTERS = [
+        { id:"all", label:tr('breed_filter_all','All') },
+        { id:"small", label:tr('breed_filter_small','Small') },
+        { id:"medium", label:tr('breed_filter_medium','Medium') },
+        { id:"large", label:tr('breed_filter_large','Large') }
+      ];
+      var filterPills = SIZE_FILTERS.map(function(f){
+        return '<button class="breed-filter-pill'+(breedSizeFilter===f.id?' active':'')+'" data-breed-filter="'+f.id+'">'+esc(f.label)+'</button>';
+      }).join("");
+      var cards = filtered.map(function(b){
         var sel = b.id === pendingBreed;
-        return '<button class="breed-card'+(sel?' selected':'')+'" data-breed="'+b.id+'">' +
-          '<div class="pup-thumb">'+dogVisual(b,"puppy")+'</div>' +
-          '<div><div class="name">'+esc(b.name)+'</div>' +
-          '<div class="catch">'+esc(b.catch)+'</div>' +
-          '<div class="traits">' +
-            '<span class="trait">'+tr('trait_energy','Energy')+' '+b.energy+'/10</span>' +
-            '<span class="trait">'+tr('trait_trainability','Trainability')+' '+b.trainability+'/10</span>' +
-            '<span class="trait">'+tr('trait_alone_adult','Alone (adult)')+' '+b.tolerance+'h</span>' +
-            '<span class="trait">'+tr('trait_walk','Walk')+' '+b.walkMinutes+'min ×2/day</span>' +
-          '</div></div>' +
-          '</button>';
+        return '<div class="breed-card-wrap">' +
+          '<button class="breed-card'+(sel?' selected':'')+'" data-breed="'+b.id+'">' +
+            '<div class="pup-thumb">'+dogVisual(b,"puppy")+'</div>' +
+            '<div><div class="name">'+esc(b.name)+'</div>' +
+            '<div class="catch">'+esc(b.catch)+'</div>' +
+            '<div class="traits">' +
+              '<span class="trait">'+tr('trait_energy','Energy')+' '+b.energy+'/10</span>' +
+              '<span class="trait">'+tr('trait_trainability','Trainability')+' '+b.trainability+'/10</span>' +
+              '<span class="trait">'+tr('trait_alone_adult','Alone (adult)')+' '+b.tolerance+'h</span>' +
+              '<span class="trait">'+tr('trait_walk','Walk')+' '+b.walkMinutes+'min ×2/day</span>' +
+            '</div></div>' +
+          '</button>' +
+          '<button class="breed-info-btn" data-breed-info="'+b.id+'" aria-label="'+esc(tr('breed_info_aria','Information about {name}').replace('{name}', b.name))+'">'+icon('info',15)+'</button>' +
+        '</div>';
       }).join("");
       return onboardProgressHTML() +
         '<div class="card onboard-step">' +
           '<div class="section-title">'+tr('onboard_choose_breed','Choose a breed')+'</div>' +
-          '<div class="breed-grid">'+cards+'</div>' +
+          '<div class="breed-search-row">' +
+            icon('search',16) +
+            '<input id="breed-search" type="text" placeholder="'+tr('breed_search_placeholder','Search a breed')+'" value="'+esc(breedQuery)+'" autocomplete="off">' +
+          '</div>' +
+          '<div class="breed-filter-row">'+filterPills+'</div>' +
+          '<div class="breed-grid">'+(cards || '<div class="breed-empty">'+tr('breed_empty','No breed matches.')+'</div>')+'</div>' +
         '</div>';
     }
 
@@ -5469,10 +5547,37 @@
       root.querySelectorAll("[data-breed]").forEach(function(el){
         el.addEventListener("click", function(){
           pendingBreed = el.getAttribute("data-breed");
+          breedInfoId = null;
           render();
           onboardAdvance();
         });
       });
+      root.querySelectorAll("[data-breed-info]").forEach(function(el){
+        el.addEventListener("click", function(){
+          breedInfoId = el.getAttribute("data-breed-info");
+          render();
+        });
+      });
+      var breedInfoBackBtn = document.getElementById("breed-info-back");
+      if (breedInfoBackBtn) breedInfoBackBtn.addEventListener("click", function(){
+        breedInfoId = null;
+        render();
+      });
+      root.querySelectorAll("[data-breed-filter]").forEach(function(el){
+        el.addEventListener("click", function(){
+          breedSizeFilter = el.getAttribute("data-breed-filter");
+          render();
+        });
+      });
+      var breedSearchInput = document.getElementById("breed-search");
+      if (breedSearchInput){
+        breedSearchInput.addEventListener("input", function(){
+          breedQuery = breedSearchInput.value;
+          render();
+          var reFocus = document.getElementById("breed-search");
+          if (reFocus){ reFocus.focus(); try { reFocus.setSelectionRange(reFocus.value.length, reFocus.value.length); } catch(e){} }
+        });
+      }
       root.querySelectorAll("[data-housing]").forEach(function(el){
         el.addEventListener("click", function(){
           pendingHousing = el.getAttribute("data-housing");
