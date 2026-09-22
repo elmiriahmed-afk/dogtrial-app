@@ -1627,6 +1627,10 @@
 
       training_new_skill: "New skill", training_practice: "Practice",
       training_todays_skill: "Today's skill",
+      training_video_practice_quiz: "Video + practice + quiz",
+      training_practice_quiz: "Practice + quiz",
+      training_today: "Today",
+      training_all_lessons: "All lessons",
       training_skills_progress: "Skills progress",
 
       costs_spent_so_far: "Spent so far", costs_food_so_far: "Food so far",
@@ -1959,6 +1963,10 @@
 
       training_new_skill: "Nouvelle compétence", training_practice: "Pratique",
       training_todays_skill: "Compétence du jour",
+      training_video_practice_quiz: "Vidéo + pratique + quiz",
+      training_practice_quiz: "Pratique + quiz",
+      training_today: "Aujourd'hui",
+      training_all_lessons: "Toutes les leçons",
       training_skills_progress: "Progression des compétences",
 
       costs_spent_so_far: "Dépensé jusqu'ici", costs_food_so_far: "Nourriture jusqu'ici",
@@ -3950,24 +3958,6 @@
         '<div class="top-actions" style="margin-bottom:0;"><div class="section-title" style="margin-bottom:0;">'+tr('training_progress_title','Progress')+'</div><span style="font-size:13px; font-weight:700; color:var(--accent-bright);">'+tr('training_progress_count','{done} / {total} lessons').replace('{done}',doneCount).replace('{total}',totalLessons)+'</span></div>' +
         '<div class="meter-track" style="margin-top:10px;"><div class="meter-fill" style="width:'+progressPct+'%; background:var(--grad-accent);"></div></div>' +
       '</div>';
-    // Icon-tile+pill row per already-unlocked skill (excluding today's featured
-    // one, still shown separately below) — the same real unlocked/% data the
-    // old cmd-row list used. The row itself is tappable (data-train) to start
-    // practice, replacing the old inline "Train" button.
-    var otherRows = unlocked.filter(function(id){ return id !== skillId; }).map(function(id){
-      var s = trainingSkillById(id);
-      var pct = Math.round(state.training[id]||0);
-      var lessonNum = TRAINING_SCHEDULE.findIndex(function(sc){ return sc.skill === id; }) + 1;
-      var done = pct >= LESSON_DONE_THRESHOLD;
-      var subtitle = tr('training_lesson_meta','Lesson {n} · {min} min').replace('{n}', lessonNum || '?').replace('{min}', s.sessionMinutes || 3);
-      return rowCardHTML({
-        icon: s.icon, color: done ? "teal" : "warn",
-        title: esc(s.label), subtitle: subtitle,
-        pillText: done ? tr('pill_done','Done') : tr('pill_in_progress','In progress'),
-        attrs: blockReason ? '' : 'data-train="'+id+'"'
-      });
-    }).join("");
-
     var startArea = blockReason ?
       '<p class="muted" style="margin-top:12px; font-size:13px; display:flex; gap:6px;"><span style="color:var(--bad); flex:none;">'+icon('x',13)+'</span><span>'+esc(state.name)+' '+blockReason+' — training won\'t stick until that\'s handled.</span></p>' +
       '<button class="btn btn-primary" id="train-blocked-gohome" style="margin-top:10px;">'+tr('btn_take_care_first','Take care of it first')+'</button>' :
@@ -3975,6 +3965,25 @@
       trainNote;
 
     var sessionMins = skill.sessionMinutes || 3;
+    // The full 15-skill roadmap, in schedule order — locked (not-yet-reached)
+    // skills stay visible but dimmed and non-tappable, unlike the reference
+    // prototype's fully-open demo library.
+    var allSkillRows = TRAINING_SCHEDULE.map(function(sc){ return sc.skill; }).map(function(id, idx){
+      var s = trainingSkillById(id);
+      var pct = Math.round(state.training[id]||0);
+      var isUnlocked = unlocked.indexOf(id) !== -1;
+      var isToday = id === skillId;
+      var done = pct >= LESSON_DONE_THRESHOLD;
+      var subtitle = (s.media ? tr('training_video_practice_quiz','Video + practice + quiz') : tr('training_practice_quiz','Practice + quiz')) + ' · ' + (idx+1) + '/' + TRAINING_SCHEDULE.length;
+      return rowCardHTML({
+        icon: isUnlocked ? s.icon : "lock", color: done ? "teal" : (isToday ? "accent" : "warn"),
+        title: esc(s.label), subtitle: subtitle,
+        pillText: done ? tr('pill_done','Done') : (isToday ? tr('training_today','Today') : (isUnlocked ? tr('pill_in_progress','In progress') : '')),
+        pillColor: done ? "teal" : "accent",
+        dim: !isUnlocked,
+        attrs: (isUnlocked && !blockReason) ? 'data-train="'+id+'"' : ''
+      });
+    }).join("");
     return '' +
       progressCard +
       '<div class="card">' +
@@ -3995,7 +4004,8 @@
         (AGE_TRAINING_NOTE[stage] ? '<p class="muted" style="margin-top:6px; font-size:13px;">'+AGE_TRAINING_NOTE[stage]+'</p>' : "") +
         startArea +
       '</div>' +
-      (otherRows ? '<div class="top-actions" style="margin:18px 2px 10px;"><div class="section-title" style="margin-bottom:0">'+tr('training_skills_progress','Skills progress')+'</div><button class="btn-ghost" id="skills-view-all">'+tr('btn_view_all','View all')+'</button></div>' + otherRows : '');
+      '<div class="section-title" style="margin:18px 2px 10px;">'+tr('training_all_lessons','All lessons')+'</div>' +
+      allSkillRows;
   }
 
   function monthlyExtrasTotal(){
