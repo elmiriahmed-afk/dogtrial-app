@@ -1000,7 +1000,7 @@
   var notifFilter = "all";
   var onboardStep = 0;
   var pendingName = "";
-  var ONBOARD_STEPS = ["auth","name","breed","age","sex","housing","life","summary"];
+  var ONBOARD_STEPS = ["lang","auth","name","breed","age","sex","housing","life","summary"];
   // Absolute, not relative: the native Android/iOS builds serve this file from a
   // local Capacitor origin, not from dogtrial.dog, so a relative "/api/..." path
   // would resolve to a non-existent local endpoint instead of the real backend.
@@ -1113,7 +1113,7 @@
   // straight to its Today, an in-progress draft resumes where it left off.
   function goToRealAdoption(){
     if (realDog){ view = "realToday"; render(); return; }
-    if (!authToken){ onboardStep = 0; view = "onboarding"; render(); return; }
+    if (!authToken){ onboardStep = initialOnboardStep(); view = "onboarding"; render(); return; }
     function proceed(){
       if (realDog){ view = "realToday"; render(); return; }
       var draft = loadRealDraft();
@@ -1136,11 +1136,20 @@
   // exists so save()/load() carry it along with everything else.
   var LANG_KEY = "dogtrial_lang";
   var uiLang = "en";
-  try { uiLang = localStorage.getItem(LANG_KEY) || "en"; } catch (e) {}
+  var langChosen = false;
+  try { var storedLang = localStorage.getItem(LANG_KEY); uiLang = storedLang || "en"; langChosen = !!storedLang; } catch (e) {}
   function setLang(lang){
     uiLang = lang;
+    langChosen = true;
     try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
     if (state) { state.lang = lang; save(); }
+  }
+  // First screen of onboarding: "lang" only for someone who has never picked a
+  // language (fresh install/browser) — an existing chosen language, or an
+  // already-authenticated account, skips straight past it.
+  function initialOnboardStep(){
+    if (!langChosen) return 0;
+    return authToken ? 2 : 1;
   }
   // Locale for Date#toLocaleDateString/toLocaleTimeString calls, so weekday/month
   // names (and time formatting) follow the display language, not just the UI strings.
@@ -1243,8 +1252,36 @@
 
       tip_of_day_label: "Tip of the day", last_7_days: "Last 7 days", aria_close: "Close",
 
+      tip_today_1: "Keep a stable routine: meals and walks at fixed times reassure your puppy.",
+      tip_today_2: "A well-rested dog learns better — don't skimp on naps.",
+      tip_today_3: "Repeated yawning and lip-licking are often signs of mild stress.",
+      tip_health_1: "Weigh your dog regularly to catch any unusual weight gain or loss.",
+      tip_health_2: "A dull coat or frequent scratching is worth keeping an eye on.",
+      tip_health_3: "Brush their teeth from a young age to limit tartar buildup later.",
+      tip_health_4: "Overall condition (energy, appetite) is often more telling than a wet nose.",
+      tip_walks_1: "Vary the terrain to build their confidence outdoors.",
+      tip_walks_2: "Let them sniff — it's as much mental exercise as physical.",
+      tip_walks_3: "Avoid the hottest hours to protect their paw pads.",
+      tip_walks_4: "Changing your route now and then keeps things interesting for them.",
+      tip_training_1: "Short, frequent sessions beat one long, tiring one.",
+      tip_training_2: "Reward the exact moment of good behavior, not a few seconds later.",
+      tip_training_3: "Always end on a win, even a small one, to keep motivation up.",
+      tip_training_4: "Consistency across everyone in the household speeds up learning.",
+      tip_costs_1: "Set aside a small reserve for unexpected vet visits.",
+      tip_costs_2: "Comparing food price per kilo helps you budget better over time.",
+      tip_costs_3: "A second-hand accessory (crate, bed) often works just as well as new.",
+      tip_life_1: "A dog left alone too long can develop separation anxiety.",
+      tip_life_2: "Build up alone time gradually, in small steps.",
+      tip_life_3: "An enriched environment (toys, familiar scents) makes waiting easier for them.",
+      tip_report_1: "Reread your journal now and then — progress is often more visible in hindsight.",
+      tip_report_2: "Every step counts, even the hard days are part of learning.",
+      tip_report_3: "Compare where you started to today to see how far you've come.",
+
       splash_get_started: "Get Started", splash_label: "A 30-DAY TRIAL RUN",
       splash_tagline: "Live with a simulated dog for 30 days before you adopt one.",
+
+      onboard_lang_title: "Choose your language",
+      onboard_lang_body: "You can change this later in Settings.",
 
       onboard_intro_title: "Before you get a dog,<br>live with one for 30 days.",
       onboard_intro_body: "Real feeding windows. Real walks. If you leave for work, the dog is actually alone for that long — and you’ll see exactly what that costs.",
@@ -1479,8 +1516,36 @@
 
       tip_of_day_label: "Astuce du jour", last_7_days: "7 derniers jours", aria_close: "Fermer",
 
+      tip_today_1: "Gardez une routine stable : repas et sorties à heures fixes rassurent votre chiot.",
+      tip_today_2: "Un chien bien reposé apprend mieux — ne lésinez pas sur les siestes.",
+      tip_today_3: "Bâiller ou se lécher les babines de façon répétée est souvent un signe de stress léger.",
+      tip_health_1: "Pesez votre chien régulièrement pour repérer toute prise ou perte de poids inhabituelle.",
+      tip_health_2: "Un pelage terne ou des grattages fréquents méritent d'être surveillés.",
+      tip_health_3: "Brossez ses dents dès le plus jeune âge pour limiter le tartre plus tard.",
+      tip_health_4: "L'état général (énergie, appétit) en dit souvent plus long qu'une truffe humide.",
+      tip_walks_1: "Variez les terrains pour renforcer sa confiance en extérieur.",
+      tip_walks_2: "Laissez-le renifler — c'est un exercice mental autant que physique.",
+      tip_walks_3: "Évitez les heures les plus chaudes pour protéger ses coussinets.",
+      tip_walks_4: "Changer d'itinéraire de temps en temps maintient son intérêt.",
+      tip_training_1: "Des séances courtes et fréquentes valent mieux qu'une longue séance fatigante.",
+      tip_training_2: "Récompensez le bon comportement à l'instant précis, pas quelques secondes plus tard.",
+      tip_training_3: "Terminez toujours sur une réussite, même petite, pour garder la motivation.",
+      tip_training_4: "La cohérence entre tous les membres du foyer accélère l'apprentissage.",
+      tip_costs_1: "Mettez de côté une petite réserve pour les visites vétérinaires imprévues.",
+      tip_costs_2: "Comparer le prix de la nourriture au kilo aide à mieux budgétiser sur la durée.",
+      tip_costs_3: "Un accessoire d'occasion (caisse, panier) fait souvent aussi bien qu'un neuf.",
+      tip_life_1: "Un chien laissé seul trop longtemps peut développer une anxiété de séparation.",
+      tip_life_2: "Augmentez le temps seul progressivement, par petites étapes.",
+      tip_life_3: "Un environnement enrichi (jouets, odeurs familières) rend l'attente plus facile pour lui.",
+      tip_report_1: "Relisez votre journal de temps en temps — les progrès se voient souvent mieux avec du recul.",
+      tip_report_2: "Chaque étape compte, même les jours difficiles font partie de l'apprentissage.",
+      tip_report_3: "Comparez votre point de départ à aujourd'hui pour voir le chemin parcouru.",
+
       splash_get_started: "Commencer", splash_label: "UN ESSAI DE 30 JOURS",
       splash_tagline: "Vivez avec un chien simulé pendant 30 jours avant d'en adopter un.",
+
+      onboard_lang_title: "Choisissez votre langue",
+      onboard_lang_body: "Vous pourrez la changer plus tard dans les réglages.",
 
       onboard_intro_title: "Avant d'adopter un chien,<br>vivez avec un pendant 30 jours.",
       onboard_intro_body: "De vrais horaires de repas. De vraies sorties. Si vous partez travailler, le chien est vraiment seul tout ce temps — et vous verrez exactement ce que ça coûte.",
@@ -2819,6 +2884,22 @@
   function renderOnboarding(){
     var step = ONBOARD_STEPS[onboardStep] || "name";
 
+    if (step === "lang"){
+      return '' +
+        '<div class="card intro">' +
+          '<h1>'+tr('onboard_lang_title',"Choose your language")+'</h1>' +
+          '<p>'+tr('onboard_lang_body',"You can change this later in Settings.")+'</p>' +
+        '</div>' +
+        '<div class="card onboard-step" style="margin-top:14px">' +
+          '<button type="button" class="breed-card" id="onboard-lang-en" style="text-align:left;">' +
+            '<div><div class="name">English</div></div>' +
+          '</button>' +
+          '<button type="button" class="breed-card" id="onboard-lang-fr" style="text-align:left; margin-top:10px;">' +
+            '<div><div class="name">Français</div></div>' +
+          '</button>' +
+        '</div>';
+    }
+
     if (step === "auth"){
       return '' +
         '<div class="card intro">' +
@@ -3776,18 +3857,32 @@
       "Compare where you started to today to see how far you've come."
     ]
   };
+  // Translation key per tip, same shape as TAB_TIPS — tr() looks the text up
+  // by key with the English string above as fallback, so a missing FR entry
+  // degrades to English instead of a blank tip.
+  var TAB_TIP_KEYS = {
+    today: ["tip_today_1","tip_today_2","tip_today_3"],
+    health: ["tip_health_1","tip_health_2","tip_health_3","tip_health_4"],
+    walks: ["tip_walks_1","tip_walks_2","tip_walks_3","tip_walks_4"],
+    training: ["tip_training_1","tip_training_2","tip_training_3","tip_training_4"],
+    costs: ["tip_costs_1","tip_costs_2","tip_costs_3"],
+    life: ["tip_life_1","tip_life_2","tip_life_3"],
+    report: ["tip_report_1","tip_report_2","tip_report_3"]
+  };
   function tipOfDayHTML(tabId){
     var tips = TAB_TIPS[tabId] || TAB_TIPS.today;
+    var keys = TAB_TIP_KEYS[tabId] || TAB_TIP_KEYS.today;
     if (!tips.length || !state.tipDismissed) return "";
     var today = tripDay();
     if (state.tipDismissed[tabId] === today) return "";
     var idx = ((today % tips.length) + tips.length) % tips.length;
+    var text = keys[idx] ? tr(keys[idx], tips[idx]) : tips[idx];
     return '' +
       '<div class="tip-card" id="tip-card">' +
         '<span class="tip-card-icon">'+icon("bulb",16)+'</span>' +
         '<span class="tip-card-body">' +
           '<div class="tip-card-label">'+tr('tip_of_day_label','Tip of the day')+'</div>' +
-          '<div class="tip-card-text">'+tips[idx]+'</div>' +
+          '<div class="tip-card-text">'+text+'</div>' +
         '</span>' +
         '<button class="tip-card-close" id="tip-card-close" data-tip-tab="'+tabId+'" aria-label="'+tr('aria_close','Close')+'">'+icon("x",13)+'</button>' +
       '</div>';
@@ -4765,7 +4860,7 @@
     if (view === "splash"){
       var splashStartBtn = document.getElementById("splash-start");
       if (splashStartBtn) splashStartBtn.addEventListener("click", function(){
-        onboardStep = authToken ? 1 : 0; pendingName = "";
+        onboardStep = initialOnboardStep(); pendingName = "";
         view = "onboarding"; render();
       });
     }
@@ -4777,6 +4872,14 @@
           render();
         }, 180);
       }
+      var onboardLangEnBtn = document.getElementById("onboard-lang-en");
+      if (onboardLangEnBtn) onboardLangEnBtn.addEventListener("click", function(){
+        setLang("en"); onboardAdvance();
+      });
+      var onboardLangFrBtn = document.getElementById("onboard-lang-fr");
+      if (onboardLangFrBtn) onboardLangFrBtn.addEventListener("click", function(){
+        setLang("fr"); onboardAdvance();
+      });
       var authSubmitBtn = document.getElementById("auth-submit");
       if (authSubmitBtn) authSubmitBtn.addEventListener("click", function(){
         var email = (document.getElementById("auth-email").value || "").trim();
@@ -5000,7 +5103,7 @@
         archiveCurrentTrial("ended early");
         state = null;
         try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
-        onboardStep = authToken ? 1 : 0; pendingName = "";
+        onboardStep = initialOnboardStep(); pendingName = "";
         view = "onboarding";
         render();
       });
