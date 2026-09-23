@@ -1944,6 +1944,19 @@
       journey_no_entries: "Nothing logged that day.",
       journey_go_today: "Go to today →",
       journey_not_reached: "You haven't gotten there yet — this is the general shape of that stretch, not a script.",
+      journey_explore_days: "Explore the days",
+      journey_section_title: "Your journey, in brief",
+      journey_nav_trend: "Wellbeing over time",
+      journey_nav_trend_sub_1: "1 point recorded",
+      journey_nav_trend_sub_n: "{n} points recorded",
+      journey_nav_milestones: "Milestones & memories",
+      journey_nav_milestones_sub_1: "1 milestone so far",
+      journey_nav_milestones_sub_n: "{n} milestones so far",
+      journey_nav_preview: "Today's snapshot",
+      journey_nav_preview_sub: "A provisional look, not the final verdict",
+      journey_nav_report: "Your 30-day report",
+      journey_preview_disclaimer: "The trial is shown at day {day} of 30 — this is a provisional look, not the final 30-day verdict.",
+      journey_report_locked_note: "Progress so far: day {day} of 30.",
       report_wellness_over_time: "Wellness over time",
       report_wellness_history_empty: "History will build up over the next few days.",
       report_milestones_reached: "Milestones reached"
@@ -2351,6 +2364,19 @@
       journey_no_entries: "Rien enregistré ce jour-là.",
       journey_go_today: "Aller à aujourd'hui →",
       journey_not_reached: "Vous n'y êtes pas encore — c'est la forme générale de cette période, pas un scénario écrit.",
+      journey_explore_days: "Explorer les jours",
+      journey_section_title: "Votre parcours, en bref",
+      journey_nav_trend: "Bien-être dans le temps",
+      journey_nav_trend_sub_1: "1 point enregistré",
+      journey_nav_trend_sub_n: "{n} points enregistrés",
+      journey_nav_milestones: "Étapes & souvenirs",
+      journey_nav_milestones_sub_1: "1 étape jusqu'ici",
+      journey_nav_milestones_sub_n: "{n} étapes jusqu'ici",
+      journey_nav_preview: "Le point aujourd'hui",
+      journey_nav_preview_sub: "Un aperçu provisoire, pas le bilan final",
+      journey_nav_report: "Votre bilan des 30 jours",
+      journey_preview_disclaimer: "L'essai est affiché au jour {day} sur 30 — cet aperçu ne constitue pas le bilan final des 30 jours.",
+      journey_report_locked_note: "Progression actuelle : jour {day} sur 30.",
       report_wellness_over_time: "Bien-être dans le temps",
       report_wellness_history_empty: "L'historique se construira au fil des prochains jours.",
       report_milestones_reached: "Étapes franchies"
@@ -2508,11 +2534,20 @@
     candidates.sort(function(a,b){ return b.score - a.score; });
     return candidates.slice(0, n);
   }
-  function challengeDescription(label){
+  // day is omitted for the final day-30 report (renderReport30) where "through
+  // the month" is accurate; the in-progress preview (renderJourneyPreview)
+  // passes the real trip day so it doesn't claim a month has passed on day 0.
+  function challengeDescription(label, day){
+    var isFinal = day === undefined || day >= 30;
+    var dayNum = Math.max(1, day || 1);
     if (label === "Cleanup & house-training") return "Accidents and cleanup kept coming up — worth asking whether you have the patience for a longer house-training runway.";
     if (label === "Time spent alone") return "This dog was alone more than is comfortable for the breed and housing you chose — a real schedule conflict, not a one-off.";
-    if (label === "Keeping up day to day") return "The day-to-day load stayed heavy through the month — feeding, walks, cleanup, and incidents kept stacking up.";
-    return esc(state.name) + " and you were still settling in by day 30 — that kind of bond usually needs more than a month.";
+    if (label === "Keeping up day to day") return isFinal
+      ? "The day-to-day load stayed heavy through the month — feeding, walks, cleanup, and incidents kept stacking up."
+      : "The day-to-day load has stayed heavy through day "+dayNum+" — feeding, walks, cleanup, and incidents keep stacking up.";
+    return isFinal
+      ? esc(state.name) + " and you were still settling in by day 30 — that kind of bond usually needs more than a month."
+      : esc(state.name) + " and you are still settling in, "+dayNum+" day"+(dayNum===1?"":"s")+" in — bonds like this usually take more than a few weeks.";
   }
   function challengeIcon(label){
     if (label === "Cleanup & house-training") return "droplet";
@@ -3513,6 +3548,11 @@
     else if (view === "profileHealth") root.innerHTML = brandStrip() + renderProfileHealth();
     else if (view === "profileLife") root.innerHTML = brandStrip() + renderProfileLife();
     else if (view === "profileSettings") root.innerHTML = brandStrip() + renderProfileSettings();
+    else if (view === "journeyDays") root.innerHTML = brandStrip() + renderJourneyDays();
+    else if (view === "journeyTrend") root.innerHTML = brandStrip() + renderJourneyTrend();
+    else if (view === "journeyMilestones") root.innerHTML = brandStrip() + renderJourneyMilestones();
+    else if (view === "journeyPreview") root.innerHTML = brandStrip() + renderJourneyPreview();
+    else if (view === "journeyReport") root.innerHTML = brandStrip() + renderJourneyReport();
     else if (view === "milestones") root.innerHTML = brandStrip() + renderMilestones();
     else if (view === "walksDetail") root.innerHTML = brandStrip() + renderWalksDetail();
     else if (view === "costsDetail") root.innerHTML = brandStrip() + renderCostsDetail();
@@ -4671,63 +4711,110 @@
     '</div>';
   }
 
+  // Journey landing: a compact progress card + clickable card list (Trend /
+  // Milestones / Today's snapshot / 30-day report), matching the reference
+  // mockup's "Parcours" structure instead of one long scroll. Every sub-screen
+  // reuses the exact same real data/functions as before — nothing fabricated,
+  // nothing removed, just reorganized like Today and Profile already were.
   function renderTabReport(){
     var day = tripDay();
-    var score = compatibilityScore();
-    var label = compatibilityLabel(score);
-    // Same thresholds compatibilityLabel() already uses for its wording — reused
-    // here just to pick a pill color, so the pill always matches the real verdict.
-    var scoreColor = score >= 75 ? "teal" : score >= 50 ? "warn" : "bad";
-    var challengeItems = topChallenges(2).map(function(c){
-      return '<li>'+challengeDescription(c.label)+'</li>';
-    }).join("");
     var progress = Math.max(0, Math.min(100, Math.round(day/30*100)));
-
-    // Real milestones — journal entries logged with a leading "✓" are exactly
-    // the ones renderMilestones() already highlights as completed actions;
-    // most recent few, restyled as icon-tile rows instead of a plain list.
+    var currentDay = Math.max(1, Math.min(30, day));
+    var phase = tripPhaseFor(currentDay);
+    var historyLen = (state.wellnessHistory || []).length;
+    var milestoneCount = state.journal.filter(function(j){ return j.text.indexOf("✓") === 0; }).length;
+    return '' +
+      '<div class="card" style="text-align:center; padding:28px 20px;">' +
+        '<div class="section-title">'+tr('report_program_progress','Program progress')+'</div>' +
+        '<div style="font-family:\'Poppins\',system-ui,sans-serif; font-weight:800; font-size:34px; margin-top:8px;">'+tr('report_day_of_30','Day {day} of 30').replace('{day}', Math.max(0, Math.min(day,30)))+'</div>' +
+        '<div class="meter-track" style="margin-top:14px;"><div class="meter-fill" style="width:'+progress+'%; background:linear-gradient(90deg,#9DA4FF,#6C74E8);"></div></div>' +
+        '<p class="muted" style="margin-top:14px; font-size:13px;">'+phase.transition(esc(state.name))+'</p>' +
+        '<button class="btn btn-primary" id="journey-explore-days" style="margin-top:12px;">'+tr('journey_explore_days','Explore the days')+' →</button>' +
+      '</div>' +
+      '<div class="section-title" style="margin:18px 2px 10px;">'+tr('journey_section_title','Your journey, in brief')+'</div>' +
+      rowCardHTML({ icon:"chart", color:"purple", title: tr('journey_nav_trend',"Wellbeing over time"),
+        subtitle: historyLen ? tr(historyLen===1?'journey_nav_trend_sub_1':'journey_nav_trend_sub_n','{n} points recorded').replace('{n}', historyLen) : tr('report_wellness_history_empty','History will build up over the next few days.'),
+        attrs:'data-journey-nav="trend"' }) +
+      rowCardHTML({ icon:"sparkle", color:"warn", title: tr('journey_nav_milestones',"Milestones & memories"),
+        subtitle: milestoneCount ? tr(milestoneCount===1?'journey_nav_milestones_sub_1':'journey_nav_milestones_sub_n','{n} milestones so far').replace('{n}', milestoneCount) : tr('milestones_nothing_logged','Nothing logged yet.'),
+        attrs:'data-journey-nav="milestones"' }) +
+      rowCardHTML({ icon:"eye", color:"accent", title: tr('journey_nav_preview',"Today's snapshot"),
+        subtitle: tr('journey_nav_preview_sub',"A provisional look, not the final verdict"),
+        attrs:'data-journey-nav="preview"' }) +
+      rowCardHTML({ icon:"medical", color: day >= 30 ? "teal" : "bad", title: tr('journey_nav_report',"Your 30-day report"),
+        subtitle: day >= 30 ? tr('report_see_full','See your full 30-day report') : tr('report_unlocks_day_30','Full report unlocks on day 30.'),
+        attrs:'data-journey-nav="report"' }) +
+      '<div class="card">' +
+        '<details><summary style="cursor:pointer; font-weight:700; font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint);">'+tr('tip_of_day_label','Tip of the day')+'</summary>' +
+          '<p class="muted" style="margin-top:8px; font-size:13px;">'+journeyTipText()+'</p>' +
+        '</details>' +
+      '</div>';
+  }
+  function journeyTipText(){
+    var tips = TAB_TIPS.report, keys = TAB_TIP_KEYS.report;
+    var idx = ((tripDay() % tips.length) + tips.length) % tips.length;
+    return keys[idx] ? tr(keys[idx], tips[idx]) : tips[idx];
+  }
+  function renderJourneyDays(){
+    var day = tripDay();
+    var currentDay = Math.max(1, Math.min(30, day));
+    var selectedDay = Math.max(1, Math.min(30, reportSelectedDay || currentDay));
+    return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('journey_explore_days','Explore the days')+'</h1></div>' +
+      dayPickerHTML(selectedDay) +
+      '<div style="margin-top:10px;">'+journeyDayDetailHTML(selectedDay, currentDay)+'</div>';
+  }
+  function renderJourneyTrend(){
+    return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('journey_nav_trend',"Wellbeing over time")+'</h1></div>' +
+      '<div class="card">' +
+        wellnessTrendSVGHTML() +
+      '</div>';
+  }
+  function renderJourneyMilestones(){
     var milestoneEntries = state.journal.filter(function(j){ return j.text.indexOf("✓") === 0; }).slice(0, 5);
     var milestonesHTML = milestoneEntries.map(function(j){
       var dayNum = Math.max(1, Math.min(30, tripDayOf(j.ts)+1));
       var title = esc(j.text.replace(/^✓\s*/, ""));
       return rowCardHTML({ icon:"check", color:"teal", title:title, subtitle: tr('day_n_label','Day {day}').replace('{day}', dayNum) });
     }).join("");
-
-    // Matches the "Day {day} of 30" progress card just above, not the
-    // tripDay()+1 convention used elsewhere (e.g. Training) — the picker
-    // sits directly under that card, so the two numbers must agree.
-    var currentDay = Math.max(1, Math.min(30, day));
-    var selectedDay = Math.max(1, Math.min(30, reportSelectedDay || currentDay));
-
     return '' +
-      '<div class="card" style="text-align:center; padding:28px 20px;">' +
-        '<div class="section-title">'+tr('report_program_progress','Program progress')+'</div>' +
-        '<div style="font-family:\'Poppins\',system-ui,sans-serif; font-weight:800; font-size:34px; margin-top:8px;">'+tr('report_day_of_30','Day {day} of 30').replace('{day}', Math.max(0, Math.min(day,30)))+'</div>' +
-        '<div class="meter-track" style="margin-top:14px;"><div class="meter-fill" style="width:'+progress+'%; background:linear-gradient(90deg,#9DA4FF,#6C74E8);"></div></div>' +
-        '<div style="margin-top:14px;">'+pillHTML(label, scoreColor)+'</div>' +
-      '</div>' +
-      '<div class="section-title" style="margin:18px 2px 10px;">'+tr('journey_browse_days',"Browse your journey")+'</div>' +
-      dayPickerHTML(selectedDay) +
-      '<div style="margin-top:10px;">'+journeyDayDetailHTML(selectedDay, currentDay)+'</div>' +
-      '<div class="card">' +
-        '<div class="section-title">'+tr('report_wellness_over_time','Wellness over time')+'</div>' +
-        wellnessTrendSVGHTML() +
-      '</div>' +
-      '<div class="card">' +
-        '<div class="section-title">'+tr('report_if_ended_today','If the trial ended today')+'</div>' +
-        '<h2 style="margin-top:4px;">'+label+'</h2>' +
-        '<ul class="challenge-list">'+challengeItems+'</ul>' +
-      '</div>' +
-      '<div class="section-title" style="margin:18px 2px 10px;">'+tr('report_milestones_reached','Milestones reached')+'</div>' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('journey_nav_milestones',"Milestones & memories")+'</h1></div>' +
       (milestonesHTML || '<div class="card"><div class="muted">'+tr('milestones_nothing_logged','Nothing logged yet.')+'</div></div>') +
       '<div class="card">' +
         '<div class="section-title">'+tr('report_look_back','Look back')+'</div>' +
         '<p class="muted" style="font-size:13px;">'+tr('report_scrapbook_note','A day-by-day scrapbook of the trial so far.')+'</p>' +
         '<button class="btn btn-primary" id="milestones-btn" style="margin-top:12px;">'+tr('btn_view_milestones','View milestones')+'</button>' +
-      '</div>' +
+      '</div>';
+  }
+  function renderJourneyPreview(){
+    var day = tripDay();
+    var score = compatibilityScore();
+    var label = compatibilityLabel(score);
+    var challengeItems = topChallenges(2).map(function(c){
+      return '<li>'+challengeDescription(c.label, day)+'</li>';
+    }).join("");
+    return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('journey_nav_preview',"Today's snapshot")+'</h1></div>' +
+      (day < 30 ? '<div class="card" style="background:var(--warn-soft); border-color:transparent;"><p class="muted" style="font-size:13px; color:var(--ink);">'+tr('journey_preview_disclaimer','The trial is shown at day {day} of 30 — this is a provisional look, not the final 30-day verdict.').replace('{day}', Math.max(0,day))+'</p></div>' : '') +
+      '<div class="card">' +
+        '<div class="section-title">'+tr('report_if_ended_today','If the trial ended today')+'</div>' +
+        '<h2 style="margin-top:4px;">'+label+'</h2>' +
+        '<ul class="challenge-list">'+challengeItems+'</ul>' +
+      '</div>';
+  }
+  function renderJourneyReport(){
+    var day = tripDay();
+    return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('journey_nav_report',"Your 30-day report")+'</h1></div>' +
       (day >= 30 ?
         '<div class="card"><button class="btn btn-primary" id="report-tab-view30">'+tr('report_see_full','See your full 30-day report')+'</button></div>' :
-        '<div class="card"><p class="muted">'+tr('report_unlocks_day_30','Full report unlocks on day 30.')+'</p></div>');
+        '<div class="card"><p class="muted">'+tr('report_unlocks_day_30','Full report unlocks on day 30.')+'</p><p class="muted" style="margin-top:8px; font-size:12.5px;">'+tr('journey_report_locked_note',"Progress current: day {day} of 30.").replace('{day}', Math.max(0,day))+'</p></div>');
   }
 
   var TAB_PAGE_HEADER = {
@@ -6276,7 +6363,7 @@
       });
     }
 
-    if (view === "home" || view === "walksDetail" || view === "costsDetail" || view === "profileWellbeing" || view === "profileHealth" || view === "profileSettings"){
+    if (view === "home" || view === "walksDetail" || view === "costsDetail" || view === "profileWellbeing" || view === "profileHealth" || view === "profileSettings" || view === "journeyDays" || view === "journeyMilestones" || view === "journeyReport"){
       root.querySelectorAll("[data-tab]").forEach(function(el){
         el.addEventListener("click", function(){
           activeTab = el.getAttribute("data-tab");
@@ -6351,6 +6438,17 @@
           render();
         });
       });
+      var JOURNEY_NAV_VIEWS = { trend:"journeyTrend", milestones:"journeyMilestones", preview:"journeyPreview", report:"journeyReport" };
+      root.querySelectorAll("[data-journey-nav]").forEach(function(el){
+        el.addEventListener("click", function(){
+          view = JOURNEY_NAV_VIEWS[el.getAttribute("data-journey-nav")] || "home";
+          render();
+        });
+      });
+      var journeyExploreDaysBtn = document.getElementById("journey-explore-days");
+      if (journeyExploreDaysBtn) journeyExploreDaysBtn.addEventListener("click", function(){
+        view = "journeyDays"; render();
+      });
       var skillsViewAllBtn = document.getElementById("skills-view-all");
       if (skillsViewAllBtn) skillsViewAllBtn.addEventListener("click", function(){
         view = "allSkills"; render();
@@ -6367,7 +6465,7 @@
       });
       var journeyGoTodayBtn = document.getElementById("journey-go-today");
       if (journeyGoTodayBtn) journeyGoTodayBtn.addEventListener("click", function(){
-        activeTab = "today"; render();
+        activeTab = "today"; view = "home"; render();
       });
       var emergencyBtn = document.getElementById("emergency-btn");
       if (emergencyBtn) emergencyBtn.addEventListener("click", function(){
@@ -6631,6 +6729,12 @@
     }
 
     if (view === "profileWellbeing" || view === "profileProgress" || view === "profileHealth" || view === "profileLife" || view === "profileSettings"){
+      document.getElementById("back-home").addEventListener("click", function(){
+        view = "home"; render();
+      });
+    }
+
+    if (view === "journeyDays" || view === "journeyTrend" || view === "journeyMilestones" || view === "journeyPreview" || view === "journeyReport"){
       document.getElementById("back-home").addEventListener("click", function(){
         view = "home"; render();
       });
