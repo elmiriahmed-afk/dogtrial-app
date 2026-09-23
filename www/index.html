@@ -238,7 +238,18 @@
   .breed-filter-pill.active{background:var(--accent); border-color:transparent; color:#fff;}
   .breed-card-wrap{position:relative;}
   .breed-info-btn{position:absolute; top:10px; right:10px; width:30px; height:30px; border-radius:50%; background:var(--card); border:1px solid var(--line); color:var(--ink-soft); display:flex; align-items:center; justify-content:center; z-index:2;}
-  .breed-empty{padding:24px 8px; text-align:center; color:var(--ink-soft); font-size:13.5px;}
+  .breed-empty{grid-column:1/-1; padding:24px 8px; text-align:center; color:var(--ink-soft); font-size:13.5px;}
+  /* ---- breed-picker step only: photo-first 2-column grid (mockup style) ---- */
+  .breed-photo-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .breed-photo-card{
+    border:1.5px solid var(--line); border-radius:16px; background:var(--card-2);
+    text-align:left; display:block; width:100%; overflow:hidden;
+  }
+  .breed-photo-card.selected{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent);}
+  .breed-photo-card .breed-photo{width:100%; aspect-ratio:1.31; object-fit:cover; display:block; background:var(--card-2);}
+  .breed-photo-card .name{font-family:'DM Serif Display',Georgia,serif; font-weight:700; font-size:15px; line-height:1.15; padding:9px 34px 0 10px;}
+  .breed-photo-card .size-tag{display:block; font-size:11px; color:var(--ink-faint); padding:3px 10px 11px;}
+  .breed-photo-tick{position:absolute; top:8px; left:8px; width:24px; height:24px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; z-index:2; border:2px solid #fff; font-size:13px;}
 
   /* ---- auth (sign up / log in) ---- */
   .auth-hero{
@@ -3181,7 +3192,8 @@
     moon: '<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/>',
     bone: '<path d="M5.5 8.5a2 2 0 1 1 3-2.7l9.7 9.7a2 2 0 1 1-3 2.7z"/><circle cx="6" cy="6" r="1.6"/><circle cx="8" cy="8" r="1.6"/><circle cx="16" cy="16" r="1.6"/><circle cx="18" cy="18" r="1.6"/>',
     alert: '<path d="M12 3 22 19H2z"/><path d="M12 9v5"/><path d="M12 17.5h.01"/>',
-    gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>'
+    gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
+    info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5h.01"/>'
   };
   function icon(name, size){
     var s = size || 20;
@@ -3658,10 +3670,10 @@
         return onboardProgressHTML() +
           '<div class="card onboard-step">' +
             '<button class="btn-ghost" id="breed-info-back" style="margin-bottom:4px;">'+tr('btn_back_to_list','← Back to the list')+'</button>' +
-            '<div style="display:flex; gap:14px; align-items:center; margin-top:8px;">' +
-              '<div class="pup-thumb" style="width:72px; height:72px;">'+dogVisual(ib,"puppy")+'</div>' +
-              '<div><div class="name" style="font-size:19px;">'+esc(ib.name)+'</div>' +
-              '<div class="catch">'+esc(ib.catch)+'</div></div>' +
+            '<img src="media/moments/sniffing/'+ib.id+'_puppy.jpg" alt="" style="width:100%; aspect-ratio:1.4; object-fit:cover; border-radius:16px; margin-top:8px;">' +
+            '<div style="margin-top:12px;">' +
+              '<div class="name" style="font-size:19px;">'+esc(ib.name)+'</div>' +
+              '<div class="catch">'+esc(ib.catch)+'</div>' +
             '</div>' +
             '<div class="cost-row" style="margin-top:16px;"><span>'+tr('trait_energy','Energy')+'</span><b>'+ib.energy+'/10</b></div>' +
             '<div class="cost-row"><span>'+tr('trait_trainability','Trainability')+'</span><b>'+ib.trainability+'/10</b></div>' +
@@ -3687,20 +3699,17 @@
       var filterPills = SIZE_FILTERS.map(function(f){
         return '<button class="breed-filter-pill'+(breedSizeFilter===f.id?' active':'')+'" data-breed-filter="'+f.id+'">'+esc(f.label)+'</button>';
       }).join("");
+      var SIZE_LABEL_BY_ID = {};
+      SIZE_FILTERS.forEach(function(f){ SIZE_LABEL_BY_ID[f.id] = f.label; });
       var cards = filtered.map(function(b){
         var sel = b.id === pendingBreed;
         return '<div class="breed-card-wrap">' +
-          '<button class="breed-card'+(sel?' selected':'')+'" data-breed="'+b.id+'">' +
-            '<div class="pup-thumb">'+dogVisual(b,"puppy")+'</div>' +
-            '<div><div class="name">'+esc(b.name)+'</div>' +
-            '<div class="catch">'+esc(b.catch)+'</div>' +
-            '<div class="traits">' +
-              '<span class="trait">'+tr('trait_energy','Energy')+' '+b.energy+'/10</span>' +
-              '<span class="trait">'+tr('trait_trainability','Trainability')+' '+b.trainability+'/10</span>' +
-              '<span class="trait">'+tr('trait_alone_adult','Alone (adult)')+' '+b.tolerance+'h</span>' +
-              '<span class="trait">'+tr('trait_walk','Walk')+' '+b.walkMinutes+'min ×2/day</span>' +
-            '</div></div>' +
+          '<button class="breed-photo-card'+(sel?' selected':'')+'" data-breed="'+b.id+'">' +
+            '<img class="breed-photo" src="media/moments/sniffing/'+b.id+'_puppy.jpg" alt="">' +
+            '<div class="name">'+esc(b.name)+'</div>' +
+            '<span class="size-tag">'+esc(SIZE_LABEL_BY_ID[BREED_SIZE[b.id]] || "")+'</span>' +
           '</button>' +
+          (sel ? '<span class="breed-photo-tick" aria-hidden="true">'+icon('check',13)+'</span>' : '') +
           '<button class="breed-info-btn" data-breed-info="'+b.id+'" aria-label="'+esc(tr('breed_info_aria','Information about {name}').replace('{name}', b.name))+'">'+icon('info',15)+'</button>' +
         '</div>';
       }).join("");
@@ -3712,7 +3721,7 @@
             '<input id="breed-search" type="text" placeholder="'+tr('breed_search_placeholder','Search a breed')+'" value="'+esc(breedQuery)+'" autocomplete="off">' +
           '</div>' +
           '<div class="breed-filter-row">'+filterPills+'</div>' +
-          '<div class="breed-grid">'+(cards || '<div class="breed-empty">'+tr('breed_empty','No breed matches.')+'</div>')+'</div>' +
+          '<div class="breed-photo-grid">'+(cards || '<div class="breed-empty">'+tr('breed_empty','No breed matches.')+'</div>')+'</div>' +
         '</div>';
     }
 
