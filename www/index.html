@@ -1854,6 +1854,15 @@
       life_real_spend: "Real spend: ", life_incidents: "Incidents: ",
       life_emergency_title: "In case of emergency",
       life_emergency_body: "Toxic foods, your vet's number, and medical notes — handy for you or a sitter.",
+      profile_section_title: "His little world",
+      profile_nav_progress: "Progress & bond",
+      profile_nav_progress_sub: "{bond}% bond · {pt}% house training",
+      profile_nav_health: "Health & tracking",
+      profile_nav_health_sub: "{h}% overall health",
+      profile_nav_life: "Your daily life",
+      profile_nav_settings_sub: "Language, reminders and walk tracking",
+      profile_wellbeing_title: "Wellbeing",
+      profile_house_training_note_label: "Why this takes time",
 
       report_day_of_30: "Day {day} of 30",
       report_if_ended_today: "If the trial ended today",
@@ -2242,6 +2251,15 @@
       life_real_spend: "Dépense réelle : ", life_incidents: "Incidents : ",
       life_emergency_title: "En cas d'urgence",
       life_emergency_body: "Aliments toxiques, numéro de votre vétérinaire et notes médicales — pratique pour vous ou un dog-sitter.",
+      profile_section_title: "Son petit monde",
+      profile_nav_progress: "Progrès & complicité",
+      profile_nav_progress_sub: "Complicité {bond} % · propreté {pt} %",
+      profile_nav_health: "Santé & suivi",
+      profile_nav_health_sub: "Santé générale {h} %",
+      profile_nav_life: "Votre quotidien",
+      profile_nav_settings_sub: "Langue, rappels et suivi des balades",
+      profile_wellbeing_title: "Bien-être",
+      profile_house_training_note_label: "Pourquoi ça prend du temps",
 
       report_day_of_30: "Jour {day} sur 30",
       report_if_ended_today: "Si l'essai se terminait aujourd'hui",
@@ -3159,7 +3177,8 @@
     bell: '<path d="M6 8a6 6 0 0 1 12 0c0 3 1 5 2 6H4c1-1 2-3 2-6z"/><path d="M9 19a3 3 0 0 0 6 0"/>',
     moon: '<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/>',
     bone: '<path d="M5.5 8.5a2 2 0 1 1 3-2.7l9.7 9.7a2 2 0 1 1-3 2.7z"/><circle cx="6" cy="6" r="1.6"/><circle cx="8" cy="8" r="1.6"/><circle cx="16" cy="16" r="1.6"/><circle cx="18" cy="18" r="1.6"/>',
-    alert: '<path d="M12 3 22 19H2z"/><path d="M12 9v5"/><path d="M12 17.5h.01"/>'
+    alert: '<path d="M12 3 22 19H2z"/><path d="M12 9v5"/><path d="M12 17.5h.01"/>',
+    gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>'
   };
   function icon(name, size){
     var s = size || 20;
@@ -3453,6 +3472,11 @@
     else if (view === "healthEnergyInfo") root.innerHTML = brandStrip() + renderHealthEnergyInfo();
     else if (view === "healthBladderInfo") root.innerHTML = brandStrip() + renderHealthBladderInfo();
     else if (view === "healthReproInfo") root.innerHTML = brandStrip() + renderHealthReproInfo();
+    else if (view === "profileWellbeing") root.innerHTML = brandStrip() + renderProfileWellbeing();
+    else if (view === "profileProgress") root.innerHTML = brandStrip() + renderProfileProgress();
+    else if (view === "profileHealth") root.innerHTML = brandStrip() + renderProfileHealth();
+    else if (view === "profileLife") root.innerHTML = brandStrip() + renderProfileLife();
+    else if (view === "profileSettings") root.innerHTML = brandStrip() + renderProfileSettings();
     else if (view === "milestones") root.innerHTML = brandStrip() + renderMilestones();
     else if (view === "walksDetail") root.innerHTML = brandStrip() + renderWalksDetail();
     else if (view === "costsDetail") root.innerHTML = brandStrip() + renderCostsDetail();
@@ -3942,27 +3966,9 @@
         'data-today-tile="discover"') +
     '</div>';
 
-    var bladderComfort = clamp(100 - state.bladder);
-    var mood = moodOf();
-    var wellbeingLine = mood.key === "good" ? tr('today_wellbeing_good','Energy, appetite and bladder comfort are all in good shape today.') :
-      mood.key === "warn" ? tr('today_wellbeing_warn','A few things could use your attention today.') :
-      tr('today_wellbeing_bad',"Struggling today — worth checking in on what's needed.");
-    // Compact "at a glance" wellbeing summary for Today — the full ring +
-    // 4-stat breakdown (with click-through to the feed/energy/bladder info
-    // pages) already lives on the Health tab; this is just a quick read.
-    var wellnessMiniCard = '' +
-      '<div class="card" style="display:flex; align-items:center; gap:16px;">' +
-        circularStatus(wellnessScore(), {size:64, stroke:7, colorKey:wellnessRingColor(), valueSize:14, valueWeight:700}) +
-        '<div style="flex:1; min-width:0;">' +
-          '<div class="section-title" style="margin-bottom:4px;">'+esc(state.name)+tr('today_wellbeing_suffix',"'s wellbeing")+'</div>' +
-          '<div style="font-size:15px; font-weight:600;">'+mood.label+'</div>' +
-          '<div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">'+wellbeingLine+'</div>' +
-        '</div>' +
-      '</div>';
-
     return '' +
       todayHeroHTML() +
-      wellnessMiniCard +
+      wellbeingSummaryCardHTML() +
       nowCard +
       '<div class="section-title" style="margin:18px 2px 10px;">'+tr('today_all_for_today',"Everything for today")+'</div>' +
       todayGrid;
@@ -4081,10 +4087,30 @@
         '<span>'+startLabel+'</span><span>'+(lastIsToday ? endLabel : new Date(history[history.length-1].ts || Date.now()).toLocaleDateString(appLocale(), { month:"short", day:"numeric" }))+'</span>' +
       '</div>';
   }
-  function renderTabHealth(){
+  // Compact ring+mood summary shared by Today (plain) and the Profile
+  // landing (clickable, opens the full Wellbeing breakdown).
+  function wellbeingSummaryCardHTML(clickAttrs){
+    var mood = moodOf();
+    var wellbeingLine = mood.key === "good" ? tr('today_wellbeing_good','Energy, appetite and bladder comfort are all in good shape today.') :
+      mood.key === "warn" ? tr('today_wellbeing_warn','A few things could use your attention today.') :
+      tr('today_wellbeing_bad',"Struggling today — worth checking in on what's needed.");
+    return '' +
+      '<div class="card'+(clickAttrs?' row-card tappable':'')+'" '+(clickAttrs||'')+' style="display:flex; align-items:center; gap:16px;">' +
+        circularStatus(wellnessScore(), {size:64, stroke:7, colorKey:wellnessRingColor(), valueSize:14, valueWeight:700}) +
+        '<div style="flex:1; min-width:0;">' +
+          '<div class="section-title" style="margin-bottom:4px;">'+esc(state.name)+tr('today_wellbeing_suffix',"'s wellbeing")+'</div>' +
+          '<div style="font-size:15px; font-weight:600;">'+mood.label+'</div>' +
+          '<div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">'+wellbeingLine+'</div>' +
+        '</div>' +
+        (clickAttrs ? '<span style="color:var(--ink-faint); font-size:20px; flex:none;">&rsaquo;</span>' : '') +
+      '</div>';
+  }
+  function renderProfileWellbeing(){
     var bladderComfort = clamp(100 - state.bladder);
     var mood = moodOf();
     return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('profile_wellbeing_title','Wellbeing')+'</h1></div>' +
       '<div class="card">' +
         '<div class="section-title" style="text-align:center;">'+tr('stat_wellness','Wellness')+'</div>' +
         circularStatus(wellnessScore(), {size:168, stroke:12, colorKey:wellnessRingColor(), label:tr('stat_wellness_score','Wellness score'), valueSize:38, valueWeight:800, sublabel:mood.label, pill:true}) +
@@ -4098,28 +4124,47 @@
       '<div class="card">' +
         '<div class="section-title">'+tr('last_7_days','Last 7 days')+'</div>' +
         wellnessHistoryBarsHTML() +
-      '</div>' +
-      '<div class="card" data-stat="repro" style="cursor:pointer;">' +
-        '<div class="cost-row" style="border-bottom:none;"><span>'+tr('health_reproductive','Reproductive health')+' · '+(dogSex()==="female"?tr('sex_female','Female'):tr('sex_male','Male'))+'</span><b>›</b></div>' +
-      '</div>' +
+      '</div>';
+  }
+  function renderProfileProgress(){
+    return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('profile_nav_progress','Progress & bond')+'</h1></div>' +
       '<div class="card">' +
-        '<div class="section-title">'+tr('stat_bond','Bond')+'</div>' +
+        '<div class="section-title">'+tr('stat_bond','Bond')+' — '+Math.round(state.bond)+'%</div>' +
         '<p class="muted" style="margin-top:2px;">'+bondStatusLine()+'</p>' +
       '</div>' +
       '<div class="card">' +
         '<div class="section-title">'+tr('health_house_training','House training')+' — '+Math.round(state.houseTraining)+'%</div>' +
         '<div class="meter-track"><div class="meter-fill" style="width:'+state.houseTraining+'%; background:var(--accent)"></div></div>' +
         '<div class="cost-row" style="margin-top:12px; border-bottom:none;"><span>'+tr('health_accidents_cleaned','Accidents cleaned up')+'</span><b>'+state.accidentsCount+'</b></div>' +
-        '<p class="muted" style="font-size:12.5px;">It\'s normal for house training to take weeks — most puppies still have occasional accidents even with a consistent routine, especially before 4–5 months old.</p>' +
-        '<div class="section-title" style="margin-top:6px; margin-bottom:4px;">'+tr('tip_of_day_label','Tip of the day')+'</div>' +
+        '<details style="margin-top:10px;"><summary class="small" style="cursor:pointer; font-weight:600; color:var(--ink-soft);">'+tr('profile_house_training_note_label','Why this takes time')+'</summary>' +
+          '<p class="muted" style="font-size:12.5px; margin-top:6px;">It\'s normal for house training to take weeks — most puppies still have occasional accidents even with a consistent routine, especially before 4–5 months old.</p>' +
+        '</details>' +
+        '<div class="section-title" style="margin-top:14px; margin-bottom:4px;">'+tr('tip_of_day_label','Tip of the day')+'</div>' +
         '<p class="muted" style="font-size:13px;">'+pottyTipForDay(tripDay())+'</p>' +
       '</div>' +
       '<div class="card">' +
-        '<div class="section-title">'+tr('health_cleaning_up','Cleaning up properly')+'</div>' +
-        '<ul class="challenge-list">'+CLEANUP_TIPS.map(function(t){ return '<li>'+t+'</li>'; }).join("")+'</ul>' +
-      '</div>' +
+        '<details><summary style="cursor:pointer; font-weight:700; font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint);">'+tr('health_cleaning_up','Cleaning up properly')+'</summary>' +
+          '<ul class="challenge-list" style="margin-top:10px;">'+CLEANUP_TIPS.map(function(t){ return '<li>'+t+'</li>'; }).join("")+'</ul>' +
+        '</details>' +
+      '</div>';
+  }
+  function renderProfileHealth(){
+    return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('profile_nav_health','Health & tracking')+'</h1></div>' +
       '<div class="card">' +
         '<div class="cost-row" style="border-bottom:none;"><span>'+tr('health_overall','Overall health')+'</span><b>'+Math.round(state.health)+'%</b></div>' +
+      '</div>' +
+      '<div class="card" data-stat="repro" style="cursor:pointer;">' +
+        '<div class="cost-row" style="border-bottom:none;"><span>'+tr('health_reproductive','Reproductive health')+' · '+(dogSex()==="female"?tr('sex_female','Female'):tr('sex_male','Male'))+'</span><b>›</b></div>' +
+      '</div>' +
+      rowCardHTML({ icon:"medical", color:"bad", title: tr('life_emergency_title','In case of emergency'), subtitle: tr('life_emergency_body',"Toxic foods, your vet's number, and medical notes — handy for you or a sitter."), attrs:'id="emergency-btn"' }) +
+      '<div class="card">' +
+        '<details><summary style="cursor:pointer; font-weight:700; font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint);">'+tr('tip_of_day_label','Tip of the day')+'</summary>' +
+          '<p class="muted" style="margin-top:8px; font-size:13px;">'+pottyTipForDay(tripDay())+'</p>' +
+        '</details>' +
       '</div>';
   }
 
@@ -4457,33 +4502,18 @@
       '</div>';
   }
 
-  function renderTabLife(breed, housing){
-    var stage = stageOf(state.dogDays);
-    var fit = lifeFitMessage(breed, housing, stage, state.typicalHoursAway);
+  function renderProfileLife(){
+    var breed = byId(state.breedId);
+    var housing = housingById(state.housingId);
     var realDaysElapsed = (Date.now() - state.startedAt) / (24*HOUR);
     var longest = longestAwaySession();
     var incidentLine = incidentSummaryLine();
     var aloneToday = todayAloneHours();
     var alonePct = Math.min(100, Math.round(aloneToday/Math.max(1,state.typicalHoursAway)*100));
     var totalIncidents = totalIncidentsCount();
-    var weeksL = Math.floor(state.dogDays/7), daysL = Math.floor(state.dogDays%7);
-    var initial = esc(state.name).charAt(0).toUpperCase();
-    var profileCard = '' +
-      '<div class="card" style="display:flex; align-items:center; gap:16px;">' +
-        '<div style="width:64px; height:64px; border-radius:999px; background:var(--card-2); border:2px solid var(--accent); box-shadow:0 0 0 4px rgba(133,142,255,.12), 0 10px 22px -4px rgba(133,142,255,.3); display:flex; align-items:center; justify-content:center; font-family:\'Poppins\',system-ui,sans-serif; font-weight:700; font-size:22px; color:var(--accent-bright); flex-shrink:0;">'+initial+'</div>' +
-        '<div style="min-width:0;">' +
-          '<div style="font-size:16px; font-weight:700;">'+esc(state.name)+'</div>' +
-          '<div style="font-size:12px; color:var(--ink-faint); margin-top:2px;">'+esc(breed.name)+' · '+weeksL+'w '+daysL+'d · '+breed.weightKg+' kg</div>' +
-        '</div>' +
-      '</div>';
     return '' +
-      profileCard +
-      rowCardHTML({
-        icon: "heart", color: "accent",
-        title: realDog ? tr('life_together_title',"Life Together") : tr('life_adopted_title',"Adopted this dog?"),
-        subtitle: realDog ? tr('life_together_subtitle',"Your real dog's Today") : tr('life_adopted_subtitle',"Switch to tracking your real dog"),
-        attrs: 'id="life-real-entry"'
-      }) +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('profile_nav_life','Your daily life')+'</h1></div>' +
       '<div class="card">' +
         '<div class="section-title">'+tr('life_home_environment','Home environment')+'</div>' +
         '<div class="home-env-card">' +
@@ -4512,22 +4542,52 @@
         (incidentLine ? '<p class="muted" style="margin-top:8px;">'+incidentLine+'</p>' : '') +
         '<div class="fact-row" style="margin-top:10px; font-size:13px; color:var(--ink);">'+icon('wallet',14)+'<span>'+tr('life_real_spend','Real spend: ')+'€'+costSoFar(breed, realDaysElapsed)+'</span></div>' +
         '<div class="fact-row" style="font-size:13px; color:var(--ink);">'+icon('x',14)+'<span>'+tr('life_incidents','Incidents: ')+totalIncidents+'</span></div>' +
-      '</div>' +
-      renderSettingsCard() +
-      '<div class="card">' +
-        '<div class="section-title">'+tr('life_emergency_title','In case of emergency')+'</div>' +
-        '<p class="muted" style="font-size:13px;">'+tr('life_emergency_body',"Toxic foods, your vet's number, and medical notes — handy for you or a sitter.")+'</p>' +
-        '<button class="btn btn-primary" id="emergency-btn" style="margin-top:12px;">'+tr('btn_open_emergency','Open emergency &amp; sitter info')+'</button>' +
       '</div>';
   }
+  function renderProfileSettings(){
+    return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('settings_title','Settings')+'</h1></div>' +
+      renderSettingsCard();
+  }
 
-  // The dog's own tab: health (condition, wellness ring) and life (home,
-  // routine, settings, emergency info) merged under one name-labeled tab —
-  // both renderTabHealth()/renderTabLife() bodies are reused unchanged.
+  // Profile landing: a compact, clickable card list (Wellbeing / Progress /
+  // Health / Daily life / Settings) instead of the old long inline scroll —
+  // same real data and functions as before, just organized like Today's
+  // tile grid. Adoption and emergency stay one tap away, not buried in a
+  // sub-screen, since both need to be reachable in a hurry.
   function renderTabProfile(breed, housing){
-    return renderTabHealth() +
-      '<div class="section-title" style="margin:22px 2px 10px;">'+tr('header_life_title','Your life')+'</div>' +
-      renderTabLife(breed, housing);
+    var weeksL = Math.floor(state.dogDays/7), daysL = Math.floor(state.dogDays%7);
+    var initial = esc(state.name).charAt(0).toUpperCase();
+    var profileCard = '' +
+      '<div class="card" style="display:flex; align-items:center; gap:16px;">' +
+        '<div style="width:64px; height:64px; border-radius:999px; background:var(--card-2); border:2px solid var(--accent); box-shadow:0 0 0 4px rgba(133,142,255,.12), 0 10px 22px -4px rgba(133,142,255,.3); display:flex; align-items:center; justify-content:center; font-family:\'Poppins\',system-ui,sans-serif; font-weight:700; font-size:22px; color:var(--accent-bright); flex-shrink:0;">'+initial+'</div>' +
+        '<div style="min-width:0;">' +
+          '<div style="font-size:16px; font-weight:700;">'+esc(state.name)+'</div>' +
+          '<div style="font-size:12px; color:var(--ink-faint); margin-top:2px;">'+esc(breed.name)+' · '+weeksL+'w '+daysL+'d · '+breed.weightKg+' kg</div>' +
+        '</div>' +
+      '</div>';
+    return '' +
+      profileCard +
+      wellbeingSummaryCardHTML('data-profile-nav="wellbeing"') +
+      '<div class="section-title" style="margin:18px 2px 10px;">'+tr('profile_section_title',"His little world")+'</div>' +
+      rowCardHTML({ icon:"heart", color:"purple", title: tr('profile_nav_progress',"Progress & bond"),
+        subtitle: tr('profile_nav_progress_sub','{bond}% bond · {pt}% house training').replace('{bond}',Math.round(state.bond)).replace('{pt}',Math.round(state.houseTraining)),
+        attrs:'data-profile-nav="progress"' }) +
+      rowCardHTML({ icon:"medical", color:"bad", title: tr('profile_nav_health',"Health & tracking"),
+        subtitle: tr('profile_nav_health_sub','{h}% overall health').replace('{h}',Math.round(state.health)),
+        attrs:'data-profile-nav="health"' }) +
+      rowCardHTML({ icon:"home", color:"teal", title: tr('profile_nav_life',"Your daily life"),
+        subtitle: esc(housing.short), attrs:'data-profile-nav="life"' }) +
+      rowCardHTML({ icon:"gear", color:"accent", title: tr('settings_title',"Settings"),
+        subtitle: tr('profile_nav_settings_sub',"Language, reminders and walk tracking"), attrs:'data-profile-nav="settings"' }) +
+      rowCardHTML({
+        icon: "heart", color: "accent",
+        title: realDog ? tr('life_together_title',"Life Together") : tr('life_adopted_title',"Adopted this dog?"),
+        subtitle: realDog ? tr('life_together_subtitle',"Your real dog's Today") : tr('life_adopted_subtitle',"Switch to tracking your real dog"),
+        attrs: 'id="life-real-entry"'
+      }) +
+      '<button class="btn-ghost" id="emergency-btn" style="margin-top:6px; width:100%; border:1px solid var(--line);">'+tr('btn_open_emergency','Open emergency &amp; sitter info')+'</button>';
   }
 
   // Real journal entries logged on a given 1-indexed trial day — used by the
@@ -6163,7 +6223,7 @@
       });
     }
 
-    if (view === "home" || view === "walksDetail" || view === "costsDetail"){
+    if (view === "home" || view === "walksDetail" || view === "costsDetail" || view === "profileWellbeing" || view === "profileHealth" || view === "profileSettings"){
       root.querySelectorAll("[data-tab]").forEach(function(el){
         el.addEventListener("click", function(){
           activeTab = el.getAttribute("data-tab");
@@ -6228,6 +6288,13 @@
       root.querySelectorAll("[data-today-tile]").forEach(function(el){
         el.addEventListener("click", function(){
           view = TODAY_TILE_VIEWS[el.getAttribute("data-today-tile")] || "home";
+          render();
+        });
+      });
+      var PROFILE_NAV_VIEWS = { wellbeing:"profileWellbeing", progress:"profileProgress", health:"profileHealth", life:"profileLife", settings:"profileSettings" };
+      root.querySelectorAll("[data-profile-nav]").forEach(function(el){
+        el.addEventListener("click", function(){
+          view = PROFILE_NAV_VIEWS[el.getAttribute("data-profile-nav")] || "home";
           render();
         });
       });
@@ -6484,7 +6551,19 @@
       });
     }
 
-    if (view === "healthFeedInfo" || view === "healthBladderInfo" || view === "healthReproInfo"){
+    if (view === "healthFeedInfo" || view === "healthBladderInfo"){
+      document.getElementById("back-home").addEventListener("click", function(){
+        view = "profileWellbeing"; render();
+      });
+    }
+
+    if (view === "healthReproInfo"){
+      document.getElementById("back-home").addEventListener("click", function(){
+        view = "profileHealth"; render();
+      });
+    }
+
+    if (view === "profileWellbeing" || view === "profileProgress" || view === "profileHealth" || view === "profileLife" || view === "profileSettings"){
       document.getElementById("back-home").addEventListener("click", function(){
         view = "home"; render();
       });
@@ -6498,7 +6577,7 @@
 
     if (view === "healthEnergyInfo"){
       document.getElementById("back-home").addEventListener("click", function(){
-        view = "home"; render();
+        view = "profileWellbeing"; render();
       });
       var goTrainBtn = document.getElementById("energy-go-train");
       if (goTrainBtn) goTrainBtn.addEventListener("click", function(){
