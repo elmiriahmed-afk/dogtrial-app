@@ -157,11 +157,28 @@
   .btn-ghost{background:transparent; border-color:transparent; color:var(--ink-soft); width:auto; min-height:auto; padding:6px 8px; font-size:13px;}
   .btn-chip{
     display:inline-flex; align-items:center; gap:6px; width:auto; min-height:auto;
-    background:rgba(244,245,250,.12); border:1px solid rgba(244,245,250,.22); color:var(--ink);
-    padding:8px 14px; font-size:12.5px; font-weight:600; border-radius:999px;
+    background:var(--card-2); border:1px solid var(--line); color:var(--ink-soft);
+    padding:9px 15px; font-size:12.5px; font-weight:600; border-radius:999px;
   }
-  .btn-chip:active{background:rgba(244,245,250,.2);}
+  .btn-chip:active{background:var(--surface-3);}
+  .btn-chip.active{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-dark);}
   .row-btns{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+
+  /* ---- onboarding: name step hero + suggestion chips ---- */
+  .name-hero{border-radius:20px; overflow:hidden; aspect-ratio:3/2; position:relative; margin-bottom:14px; background:var(--card-2);}
+  .name-hero img{width:100%; height:100%; object-fit:cover; display:block;}
+  .name-hero-tag{
+    position:absolute; right:14px; bottom:14px; max-width:65%;
+    background:var(--grad-accent); color:#fff; padding:9px 16px; border-radius:12px;
+    border:3px solid rgba(255,255,255,.55); font-family:'DM Serif Display',Georgia,serif; font-size:18px;
+    transform:rotate(-4deg); box-shadow:0 6px 16px rgba(75,96,255,.35);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .name-input-wrap{position:relative;}
+  .name-input-wrap .heart-icon{position:absolute; right:14px; top:50%; transform:translateY(-50%); color:var(--ink-faint); pointer-events:none;}
+  .name-hint-row{display:flex; justify-content:space-between; font-size:11px; color:var(--ink-faint); margin:8px 2px 16px;}
+  .name-suggest-label{font-size:11.5px; color:var(--ink-soft); margin-bottom:8px;}
+  .name-chip-row{display:flex; gap:8px; flex-wrap:wrap;}
 
   /* ---- onboarding ---- */
   .intro p{color:var(--ink-soft); font-size:15px; max-width:52ch;}
@@ -1660,6 +1677,11 @@
       auth_legal_privacy_link: "Privacy Policy",
       auth_free_badge: "Free while we're in early access · No card required",
       onboard_name_label: "Name the dog", onboard_name_placeholder: "e.g. Biscuit",
+      onboard_name_eyebrow: "YOUR STORY STARTS HERE",
+      onboard_name_title: "A small name.<br>A big beginning.",
+      onboard_name_subtitle: "What will your companion be called for these 30 days?",
+      onboard_name_hint: "You can change this later.",
+      onboard_name_suggest_label: "A little inspiration",
       onboard_past_trials: "Past trials",
       onboard_choose_breed: "Choose a breed",
       breed_search_placeholder: "Search a breed",
@@ -2021,6 +2043,11 @@
       auth_legal_privacy_link: "politique de confidentialité",
       auth_free_badge: "Gratuit pendant la phase de lancement · Sans carte bancaire",
       onboard_name_label: "Nommez le chien", onboard_name_placeholder: "ex. Biscuit",
+      onboard_name_eyebrow: "VOTRE HISTOIRE COMMENCE",
+      onboard_name_title: "Un petit nom.<br>Un grand début.",
+      onboard_name_subtitle: "Comment s'appellera ton compagnon pendant ces 30 jours ?",
+      onboard_name_hint: "Tu pourras le changer plus tard.",
+      onboard_name_suggest_label: "Un peu d'inspiration",
       onboard_past_trials: "Essais précédents",
       onboard_choose_breed: "Choisissez une race",
       breed_search_placeholder: "Rechercher une race",
@@ -3452,14 +3479,31 @@
               '<div class="j-text">'+esc(a.name)+' — '+esc(a.breedName)+', '+esc(a.housingLabel)+' <span class="muted">('+esc(a.outcome)+')</span></div></div>';
           }).join("") +
         '</div>';
+      var NAME_SUGGESTIONS = ["Milo","Luna","Biscuit","Nala"];
+      var nameChips = NAME_SUGGESTIONS.map(function(n){
+        return '<button type="button" class="btn-chip'+(pendingName===n?' active':'')+'" data-name-suggest="'+esc(n)+'">'+esc(n)+'</button>';
+      }).join("");
       return '' +
         onboardProgressHTML() +
+        '<div class="name-hero">' +
+          '<img src="media/onboarding/name-walk.jpg" alt="">' +
+          '<div class="name-hero-tag" id="name-tag">'+(esc(pendingName) || "?")+'</div>' +
+        '</div>' +
         '<div class="card onboard-step">' +
-          '<div class="field">' +
+          '<div class="section-title">'+tr('onboard_name_eyebrow',"YOUR STORY STARTS HERE")+'</div>' +
+          '<h1 style="margin-top:6px; font-size:27px;">'+tr('onboard_name_title','A small name.<br>A big beginning.')+'</h1>' +
+          '<p class="muted" style="margin-top:6px; font-size:14px;">'+tr('onboard_name_subtitle',"What will your companion be called for these 30 days?")+'</p>' +
+          '<div class="field" style="margin-top:18px;">' +
             '<label for="dogname">'+tr('onboard_name_label','Name the dog')+'</label>' +
-            '<input id="dogname" type="text" maxlength="20" placeholder="'+tr('onboard_name_placeholder','e.g. Biscuit')+'" value="'+esc(pendingName)+'">' +
+            '<div class="name-input-wrap">' +
+              '<input id="dogname" type="text" maxlength="20" placeholder="'+tr('onboard_name_placeholder','e.g. Biscuit')+'" value="'+esc(pendingName)+'" style="padding-right:44px;">' +
+              '<span class="heart-icon">'+icon('heart',18)+'</span>' +
+            '</div>' +
           '</div>' +
-          '<button class="btn btn-primary" id="onboard-next-name" style="margin-top:16px;" disabled>'+tr('btn_next','Next')+'</button>' +
+          '<div class="name-hint-row"><span>'+tr('onboard_name_hint',"You can change this later.")+'</span><span id="name-count">'+pendingName.length+' / 20</span></div>' +
+          '<div class="name-suggest-label">'+tr('onboard_name_suggest_label',"A little inspiration")+'</div>' +
+          '<div class="name-chip-row">'+nameChips+'</div>' +
+          '<button class="btn btn-primary" id="onboard-next-name" style="margin-top:20px;" '+(pendingName.trim()?"":"disabled")+'>'+tr('btn_continue','Continue')+' →</button>' +
         '</div>' +
         archiveCard;
     }
@@ -5830,10 +5874,18 @@
         onboardStep = Math.min(onboardStep + 1, ONBOARD_STEPS.length - 1);
         render();
       }
+      var nameTag = document.getElementById("name-tag");
+      var nameCount = document.getElementById("name-count");
       if (nameInput){
         nameInput.focus();
         var syncNextBtn = function(){
-          if (nextNameBtn) nextNameBtn.disabled = !(nameInput.value || "").trim();
+          var v = (nameInput.value || "").trim();
+          if (nextNameBtn) nextNameBtn.disabled = !v;
+          if (nameTag) nameTag.textContent = v || "?";
+          if (nameCount) nameCount.textContent = nameInput.value.length + " / 20";
+          root.querySelectorAll("[data-name-suggest]").forEach(function(chip){
+            chip.classList.toggle("active", chip.getAttribute("data-name-suggest") === v);
+          });
         };
         syncNextBtn();
         nameInput.addEventListener("input", syncNextBtn);
@@ -5842,6 +5894,14 @@
         });
       }
       if (nextNameBtn) nextNameBtn.addEventListener("click", commitName);
+      root.querySelectorAll("[data-name-suggest]").forEach(function(chip){
+        chip.addEventListener("click", function(){
+          if (!nameInput) return;
+          nameInput.value = chip.getAttribute("data-name-suggest");
+          nameInput.dispatchEvent(new Event("input", { bubbles:true }));
+          nameInput.focus();
+        });
+      });
       root.querySelectorAll("[data-breed]").forEach(function(el){
         el.addEventListener("click", function(){
           pendingBreed = el.getAttribute("data-breed");
