@@ -1059,6 +1059,7 @@
   var state = null;
   var view = "splash";
   var activeTab = "today";
+  var reportSelectedDay = null; // 1-30, null = defaults to the current trial day
   var activeMomentBubble = null;
   var momentBubbleExpanded = false;
   var notifFilter = "all";
@@ -1811,6 +1812,10 @@
       costs_breakdown_title: "Breakdown",
 
       report_program_progress: "Program progress",
+      journey_browse_days: "Browse your journey",
+      journey_no_entries: "Nothing logged that day.",
+      journey_go_today: "Go to today →",
+      journey_not_reached: "You haven't gotten there yet — this is the general shape of that stretch, not a script.",
       report_wellness_over_time: "Wellness over time",
       report_wellness_history_empty: "History will build up over the next few days.",
       report_milestones_reached: "Milestones reached"
@@ -2168,6 +2173,10 @@
       costs_breakdown_title: "Répartition",
 
       report_program_progress: "Progression du programme",
+      journey_browse_days: "Parcourir votre parcours",
+      journey_no_entries: "Rien enregistré ce jour-là.",
+      journey_go_today: "Aller à aujourd'hui →",
+      journey_not_reached: "Vous n'y êtes pas encore — c'est la forme générale de cette période, pas un scénario écrit.",
       report_wellness_over_time: "Bien-être dans le temps",
       report_wellness_history_empty: "L'historique se construira au fil des prochains jours.",
       report_milestones_reached: "Étapes franchies"
@@ -4307,6 +4316,48 @@
       renderTabLife(breed, housing);
   }
 
+  // Real journal entries logged on a given 1-indexed trial day — used by the
+  // Journey day-picker below instead of any fabricated per-day storyline.
+  function journalEntriesForDay(dayNum){
+    return state.journal.filter(function(j){ return tripDayOf(j.ts)+1 === dayNum; });
+  }
+  function dayPickerHTML(selectedDay){
+    var lo = Math.max(1, Math.min(26, selectedDay-2));
+    var days = [];
+    for (var i=0;i<5;i++){ var dd = lo+i; if (dd<=30) days.push(dd); }
+    return '<div class="row-btns" style="grid-template-columns:repeat('+days.length+',1fr); gap:6px;">' +
+      days.map(function(dd){
+        return '<button class="btn'+(dd===selectedDay?' btn-primary':'')+'" style="padding:10px 4px; font-size:13px; min-height:40px;" data-report-day="'+dd+'">'+dd+'</button>';
+      }).join('') +
+      '</div>';
+  }
+  function journeyDayDetailHTML(selectedDay, currentDay){
+    var phase = tripPhaseFor(selectedDay);
+    var phaseLabel = phaseDisplayLabel(phase.label);
+    if (selectedDay < currentDay){
+      var entries = journalEntriesForDay(selectedDay);
+      var entriesHTML = entries.map(function(j){
+        return '<div class="j-entry"><div class="j-time">'+timeAgo(j.ts)+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
+      }).join('');
+      return '<div class="card">' +
+        '<div class="section-title">'+tr('day_n_label','Day {day}').replace('{day}', selectedDay)+' · '+phaseLabel+'</div>' +
+        (entriesHTML || '<p class="muted">'+tr('journey_no_entries',"Nothing logged that day.")+'</p>') +
+      '</div>';
+    }
+    if (selectedDay === currentDay){
+      return '<div class="card">' +
+        '<div class="section-title">'+tr('day_n_label','Day {day}').replace('{day}', selectedDay)+' · '+phaseLabel+'</div>' +
+        '<p class="muted" style="margin-top:4px;">'+phase.transition(esc(state.name))+'</p>' +
+        '<button class="btn btn-primary" id="journey-go-today" style="margin-top:12px;">'+tr('journey_go_today',"Go to today →")+'</button>' +
+      '</div>';
+    }
+    return '<div class="card">' +
+      '<div class="section-title">'+tr('day_n_label','Day {day}').replace('{day}', selectedDay)+' · '+phaseLabel+'</div>' +
+      '<p class="muted" style="margin-top:4px;">'+phase.transition(esc(state.name))+'</p>' +
+      '<p class="muted" style="margin-top:8px; font-size:12.5px;">'+tr('journey_not_reached',"You haven't gotten there yet — this is the general shape of that stretch, not a script.")+'</p>' +
+    '</div>';
+  }
+
   function renderTabReport(){
     var day = tripDay();
     var score = compatibilityScore();
@@ -4329,6 +4380,12 @@
       return rowCardHTML({ icon:"check", color:"teal", title:title, subtitle: tr('day_n_label','Day {day}').replace('{day}', dayNum) });
     }).join("");
 
+    // Matches the "Day {day} of 30" progress card just above, not the
+    // tripDay()+1 convention used elsewhere (e.g. Training) — the picker
+    // sits directly under that card, so the two numbers must agree.
+    var currentDay = Math.max(1, Math.min(30, day));
+    var selectedDay = Math.max(1, Math.min(30, reportSelectedDay || currentDay));
+
     return '' +
       '<div class="card" style="text-align:center; padding:28px 20px;">' +
         '<div class="section-title">'+tr('report_program_progress','Program progress')+'</div>' +
@@ -4336,6 +4393,9 @@
         '<div class="meter-track" style="margin-top:14px;"><div class="meter-fill" style="width:'+progress+'%; background:linear-gradient(90deg,#9DA4FF,#6C74E8);"></div></div>' +
         '<div style="margin-top:14px;">'+pillHTML(label, scoreColor)+'</div>' +
       '</div>' +
+      '<div class="section-title" style="margin:18px 2px 10px;">'+tr('journey_browse_days',"Browse your journey")+'</div>' +
+      dayPickerHTML(selectedDay) +
+      '<div style="margin-top:10px;">'+journeyDayDetailHTML(selectedDay, currentDay)+'</div>' +
       '<div class="card">' +
         '<div class="section-title">'+tr('report_wellness_over_time','Wellness over time')+'</div>' +
         wellnessTrendSVGHTML() +
@@ -5945,6 +6005,16 @@
       var reportTabBtn = document.getElementById("report-tab-view30");
       if (reportTabBtn) reportTabBtn.addEventListener("click", function(){
         view = "report30"; render();
+      });
+      root.querySelectorAll("[data-report-day]").forEach(function(el){
+        el.addEventListener("click", function(){
+          reportSelectedDay = parseInt(el.getAttribute("data-report-day"), 10);
+          render();
+        });
+      });
+      var journeyGoTodayBtn = document.getElementById("journey-go-today");
+      if (journeyGoTodayBtn) journeyGoTodayBtn.addEventListener("click", function(){
+        activeTab = "today"; render();
       });
       var emergencyBtn = document.getElementById("emergency-btn");
       if (emergencyBtn) emergencyBtn.addEventListener("click", function(){
