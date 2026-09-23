@@ -331,6 +331,14 @@
 
   /* ---- stat tiles (wellness-style) ---- */
   .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+
+  /* ---- Today: clickable tile grid (tasks/walks/journal/budget/away/discover) ---- */
+  .today-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .today-tile{text-align:left; padding:16px; display:block; width:100%;}
+  .today-tile .tile-top{display:flex; justify-content:space-between; align-items:flex-start;}
+  .today-tile .tile-chevron{color:var(--ink-faint); font-size:20px; line-height:1;}
+  .today-tile .tile-title{font-weight:700; font-size:14px; margin-top:14px;}
+  .today-tile .tile-sub{font-size:12px; color:var(--ink-soft); margin-top:4px; line-height:1.35;}
   .stat-tile{background:var(--card-2); border-radius:18px; padding:14px;}
   .stat-tile[data-stat]{cursor:pointer;}
   .stat-tile[data-stat]:active{opacity:0.75;}
@@ -1822,6 +1830,20 @@
       pill_in_progress: "In progress", pill_available: "Available",
 
       today_tasks_label: "Today's tasks",
+      today_all_for_today: "Everything for today",
+      today_tile_train_done: "Session done",
+      today_tile_train_available: "1 session available",
+      today_tile_walks: "Walks & play",
+      today_tile_min_today: "min today",
+      today_tile_walk_check: "Check today's activity",
+      today_tile_entries_count: "{n} entries today",
+      today_tile_entry_count_1: "1 entry today",
+      today_tile_cost_so_far: "€{n} so far",
+      today_tile_away: "Time away",
+      today_tile_hours_total: "{h} total",
+      today_tile_discover: "Discover their world",
+      today_tile_discover_sub: "Today's tip & breed notes",
+      discover_tip_label: "Today's tip",
       today_wellbeing_suffix: "'s wellbeing",
       today_wellbeing_good: "Energy, appetite and bladder comfort are all in good shape today.",
       today_wellbeing_warn: "A few things could use your attention today.",
@@ -2188,6 +2210,20 @@
       pill_in_progress: "En cours", pill_available: "Disponible",
 
       today_tasks_label: "Tâches du jour",
+      today_all_for_today: "Tout pour aujourd'hui",
+      today_tile_train_done: "Séance terminée",
+      today_tile_train_available: "1 séance disponible",
+      today_tile_walks: "Balades & jeu",
+      today_tile_min_today: "min aujourd'hui",
+      today_tile_walk_check: "Voir l'activité du jour",
+      today_tile_entries_count: "{n} événements aujourd'hui",
+      today_tile_entry_count_1: "1 événement aujourd'hui",
+      today_tile_cost_so_far: "{n} € cumulés",
+      today_tile_away: "Temps d'absence",
+      today_tile_hours_total: "{h} au total",
+      today_tile_discover: "Découvrir son monde",
+      today_tile_discover_sub: "Conseil du jour & infos sur la race",
+      discover_tip_label: "Le conseil du jour",
       today_wellbeing_suffix: " : bien-être",
       today_wellbeing_good: "L'énergie, l'appétit et le confort urinaire sont tous au beau fixe aujourd'hui.",
       today_wellbeing_warn: "Quelques points méritent votre attention aujourd'hui.",
@@ -3058,6 +3094,7 @@
     eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>',
     eyeOff: '<path d="M3 3l18 18"/><path d="M10.6 5.2A10.7 10.7 0 0 1 12 5c6.5 0 10 7 10 7a13.2 13.2 0 0 1-3.1 4"/><path d="M6.5 6.6C4 8.3 2 12 2 12s3.5 7 10 7a9.9 9.9 0 0 0 4.4-1"/><path d="M9.5 9.8a3 3 0 0 0 4.2 4.2"/>',
     play: '<path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/>',
+    notebook: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/>',
     sparkle: '<path d="M12 3v5"/><path d="M12 16v5"/><path d="M3 12h5"/><path d="M16 12h5"/>',
     medical: '<rect x="9" y="3" width="6" height="18" rx="1"/><rect x="3" y="9" width="18" height="6" rx="1"/>',
     bell: '<path d="M6 8a6 6 0 0 1 12 0c0 3 1 5 2 6H4c1-1 2-3 2-6z"/><path d="M9 19a3 3 0 0 0 6 0"/>',
@@ -3145,6 +3182,16 @@
       return '<span class="row-icon-tile" style="width:'+size+'px; height:'+size+'px; background:var(--card-2); color:var(--ink-faint);">'+icon(iconName, Math.round(size*0.45))+'</span>';
     }
     return '<span class="row-icon-tile" style="width:'+size+'px; height:'+size+'px; background:var(--'+colorKey+'-soft); color:var(--'+colorKey+');">'+icon(iconName, Math.round(size*0.45))+'</span>';
+  }
+  // A clickable Today grid tile (icon+chevron on top, title+live subtitle
+  // below) that opens its own detail screen — real data drives the
+  // subtitle, never the mockup's fake toggles.
+  function todayTileHTML(iconName, colorKey, title, subtitle, attrs){
+    return '<button class="card today-tile" '+(attrs||'')+'>' +
+      '<div class="tile-top">'+iconTileHTML(iconName, colorKey, 36)+'<span class="tile-chevron">&rsaquo;</span></div>' +
+      '<div class="tile-title">'+title+'</div>' +
+      '<div class="tile-sub">'+subtitle+'</div>' +
+    '</button>';
   }
   function pillHTML(text, colorKey){
     if (colorKey === "neutral"){
@@ -3348,6 +3395,9 @@
     else if (view === "healthBladderInfo") root.innerHTML = brandStrip() + renderHealthBladderInfo();
     else if (view === "healthReproInfo") root.innerHTML = brandStrip() + renderHealthReproInfo();
     else if (view === "milestones") root.innerHTML = brandStrip() + renderMilestones();
+    else if (view === "walksDetail") root.innerHTML = brandStrip() + renderWalksDetail();
+    else if (view === "costsDetail") root.innerHTML = brandStrip() + renderCostsDetail();
+    else if (view === "discoverToday") root.innerHTML = brandStrip() + renderDiscoverToday();
     else if (view === "allSkills") root.innerHTML = brandStrip() + renderAllSkills();
     else if (view === "notifications") root.innerHTML = brandStrip() + renderNotifications();
     else if (view === "adoptIntro") root.innerHTML = brandStrip() + renderAdoptIntro();
@@ -3734,9 +3784,6 @@
     var stage = stageOf(state.dogDays);
     var next = computeNextAction();
     var todayEntries = todaysJournalEntries();
-    var recentJournal = state.journal.slice(0,3).map(function(j){
-      return '<div class="j-entry"><div class="j-time">'+timeAgo(j.ts)+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
-    }).join("");
 
     var now = new Date();
     var showLateBathroomChoice = next.actionId === "walk" && next.label === "Bathroom break" &&
@@ -3774,22 +3821,36 @@
         '</div>' :
       plainNowCard;
 
-    // Real "things to do today" task rows — meal timing and training
-    // availability, the same data the old "Later" cost-row list showed, now
-    // as icon-tile+pill rows. The meal row is skipped when feeding is already
-    // the featured "Now" card above, exactly as the old laterRows did.
-    var taskRows = "";
-    if (next.actionId !== "feed"){
-      var mealAt = new Date(Date.now() + Math.max(0, state.hunger * FEED_INTERVAL[stage] / 100 * 60) * 60000);
-      var mealSubtitle = "~"+pad2(mealAt.getHours())+":"+pad2(mealAt.getMinutes());
-      taskRows += rowCardHTML({ icon:"bowl", color:"accent", title:tr('meal_label','Meal'), subtitle:mealSubtitle, pillText:tr('pill_todo','To do'), pillColor:"accent", attrs:'id="feed-btn"' });
-    }
+    // Real per-tile data for the grid below — no fabricated stats, every
+    // number is the same one the old inline Walks/Costs/Journal sections
+    // and the "Today's tasks" rows already computed.
     var trainCooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
     var trainDone = trainCooldownLeft > 0;
-    var trainWhen = trainDone
-      ? (function(){ var at = new Date(Date.now()+trainCooldownLeft); return pad2(at.getHours())+":"+pad2(at.getMinutes()); })()
-      : tr('train_available_now','Available now');
-    taskRows += rowCardHTML({ icon:"cap", color: trainDone ? "teal" : "warn", title:tr('tab_training','Training'), subtitle:trainWhen, pillText: trainDone ? tr('pill_done','Done') : tr('pill_available','Available'), pillColor: trainDone ? "teal" : "warn", attrs:'data-tab="training"' });
+    var breedForTiles = byId(state.breedId);
+    var realDaysElapsedForTiles = (Date.now() - state.startedAt) / (24*HOUR);
+    var minutesToday = todayWalkMinutes();
+    var costRunning = costSoFar(breedForTiles, realDaysElapsedForTiles);
+
+    var todayGrid = '<div class="today-grid">' +
+      todayTileHTML('cap', trainDone ? 'teal' : 'warn', tr('tab_training','Training'),
+        trainDone ? tr('today_tile_train_done','Session done') : tr('today_tile_train_available','1 session available'),
+        'data-tab="training"') +
+      todayTileHTML('paw', 'teal', tr('today_tile_walks','Walks & play'),
+        minutesToday > 0 ? (minutesToday+' '+tr('today_tile_min_today','min today')) : tr('today_tile_walk_check',"Check today's activity"),
+        'data-today-tile="walks"') +
+      todayTileHTML('notebook', 'accent', tr('section_journal','Journal'),
+        tr(todayEntries.length===1?'today_tile_entry_count_1':'today_tile_entries_count','{n} entries today').replace('{n}', todayEntries.length),
+        'data-today-tile="journal"') +
+      todayTileHTML('wallet', 'accent', tr('tab_costs','Costs'),
+        tr('today_tile_cost_so_far','€{n} so far').replace('{n}', costRunning),
+        'data-today-tile="budget"') +
+      todayTileHTML('clock', 'warn', tr('today_tile_away','Time away'),
+        tr('today_tile_hours_total','{h} total').replace('{h}', fmtHours(state.totalHoursAway)),
+        'data-today-tile="away"') +
+      todayTileHTML('compass', 'purple', tr('today_tile_discover',"Discover their world"),
+        tr('today_tile_discover_sub',"Today's tip & breed notes"),
+        'data-today-tile="discover"') +
+    '</div>';
 
     var bladderComfort = clamp(100 - state.bladder);
     var mood = moodOf();
@@ -3813,27 +3874,46 @@
       sniffingWelcomeCard() +
       wellnessMiniCard +
       nowCard +
+      '<div class="section-title" style="margin:18px 2px 10px;">'+tr('today_all_for_today',"Everything for today")+'</div>' +
+      todayGrid;
+  }
 
-      (taskRows ? '<div class="section-title" style="margin:18px 2px 10px;">'+tr('today_tasks_label',"Today's tasks")+'</div>'+taskRows : '') +
-
-      '<div class="card" style="margin-top:14px;">' +
-        '<div class="section-title">'+tr('section_today_label','Today')+'</div>' +
-        (todayEntries.length ? todayEntries.map(function(j){
-          var t = new Date(j.ts);
-          var hh = (t.getHours()<10?"0":"")+t.getHours();
-          var mm = (t.getMinutes()<10?"0":"")+t.getMinutes();
-          return '<div class="j-entry"><div class="j-time mono">'+hh+':'+mm+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
-        }).join("") : '<div class="muted">'+tr('today_nothing_logged','Nothing logged yet today.')+'</div>') +
-      '</div>' +
-
+  // Detail screens behind the Today tile grid — each just wraps an existing,
+  // already-real render function with a back button; no new data or logic.
+  function renderWalksDetail(){
+    return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('today_tile_walks','Walks & play')+'</h1></div>' +
+      renderTabWalks();
+  }
+  function renderCostsDetail(){
+    var breed = byId(state.breedId);
+    var realDaysElapsed = (Date.now() - state.startedAt) / (24*HOUR);
+    return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('tab_costs','Costs')+'</h1></div>' +
+      renderTabCosts(breed, realDaysElapsed);
+  }
+  // Real tip-of-the-day (same deterministic pick tipOfDayHTML uses) plus the
+  // real breed/age training notes already shown on the Training tab — no
+  // invented "sniffing the house" copy like the reference mockup's version.
+  function renderDiscoverToday(){
+    var breed = byId(state.breedId);
+    var stage = stageOf(state.dogDays);
+    var today = tripDay();
+    var tips = TAB_TIPS.today, keys = TAB_TIP_KEYS.today;
+    var idx = ((today % tips.length) + tips.length) % tips.length;
+    var tipText = keys[idx] ? tr(keys[idx], tips[idx]) : tips[idx];
+    return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('today_tile_discover',"Discover their world")+'</h1></div>' +
+      sniffingWelcomeCard() +
       '<div class="card">' +
-        '<button class="btn btn-warn" id="leave-btn">'+tr('btn_leave_for_work','Leave for work')+'</button>' +
+        '<div class="section-title">'+tr('discover_tip_label',"Today's tip")+'</div>' +
+        '<p class="muted" style="margin-top:6px; display:flex; gap:6px;"><span style="color:var(--warn); flex:none;">'+icon('bulb',13)+'</span><span>'+tipText+'</span></p>' +
       '</div>' +
-
-      '<div class="card">' +
-        '<div class="top-actions" style="margin-bottom:6px;"><div class="section-title" style="margin-bottom:0">'+tr('section_journal','Journal')+'</div><button class="btn-ghost" id="journal-btn">'+tr('btn_view_all','View all')+'</button></div>' +
-        (recentJournal || '<div class="muted">'+tr('today_nothing_yet','Nothing yet.')+'</div>') +
-      '</div>';
+      (BREED_TRAINING_NOTE[breed.id] ? '<div class="card"><p class="muted" style="font-size:13px; display:flex; gap:6px;"><span style="color:var(--accent); flex:none;">'+icon('paw',13)+'</span><span>'+BREED_TRAINING_NOTE[breed.id]+'</span></p></div>' : '') +
+      (AGE_TRAINING_NOTE[stage] ? '<div class="card"><p class="muted" style="font-size:13px;">'+AGE_TRAINING_NOTE[stage]+'</p></div>' : '');
   }
 
   function dogSex(){
@@ -4559,7 +4639,6 @@
     var weeks = Math.floor(state.dogDays/7);
     var days = Math.floor(state.dogDays%7);
     var housing = housingById(state.housingId);
-    var realDaysElapsed = (Date.now() - state.startedAt) / (24*HOUR);
 
     var header = activeTab !== "today" ? pageHeaderHTML(activeTab) : '' +
       '<div class="card">' +
@@ -4589,9 +4668,7 @@
     if (activeTab === "training") content = renderTabTraining();
     else if (activeTab === "profile") content = renderTabProfile(breed, housing);
     else if (activeTab === "report") content = renderTabReport();
-    else content = renderTabToday() +
-      '<div class="section-title" style="margin:22px 2px 10px;">'+tr('tab_walks','Walks')+'</div>' + renderTabWalks() +
-      '<div class="section-title" style="margin:22px 2px 10px;">'+tr('tab_costs','Costs')+'</div>' + renderTabCosts(breed, realDaysElapsed);
+    else content = renderTabToday();
 
     var tipHTML = activeMomentBubble ? "" : tipOfDayHTML(activeTab);
     var spacerH = tipHTML ? 215 : 130;
@@ -5989,7 +6066,7 @@
       });
     }
 
-    if (view === "home"){
+    if (view === "home" || view === "walksDetail" || view === "costsDetail"){
       root.querySelectorAll("[data-tab]").forEach(function(el){
         el.addEventListener("click", function(){
           activeTab = el.getAttribute("data-tab");
@@ -6050,13 +6127,12 @@
       if (playBtn) playBtn.addEventListener("click", function(){
         view = "safeActivities"; render();
       });
-      var leaveBtn = document.getElementById("leave-btn");
-      if (leaveBtn) leaveBtn.addEventListener("click", function(){
-        view = "leaveSetup"; render();
-      });
-      var journalBtn = document.getElementById("journal-btn");
-      if (journalBtn) journalBtn.addEventListener("click", function(){
-        view = "journal"; render();
+      var TODAY_TILE_VIEWS = { walks:"walksDetail", journal:"journal", budget:"costsDetail", away:"leaveSetup", discover:"discoverToday" };
+      root.querySelectorAll("[data-today-tile]").forEach(function(el){
+        el.addEventListener("click", function(){
+          view = TODAY_TILE_VIEWS[el.getAttribute("data-today-tile")] || "home";
+          render();
+        });
       });
       var skillsViewAllBtn = document.getElementById("skills-view-all");
       if (skillsViewAllBtn) skillsViewAllBtn.addEventListener("click", function(){
@@ -6312,6 +6388,12 @@
     }
 
     if (view === "healthFeedInfo" || view === "healthBladderInfo" || view === "healthReproInfo"){
+      document.getElementById("back-home").addEventListener("click", function(){
+        view = "home"; render();
+      });
+    }
+
+    if (view === "walksDetail" || view === "costsDetail" || view === "discoverToday"){
       document.getElementById("back-home").addEventListener("click", function(){
         view = "home"; render();
       });
