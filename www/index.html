@@ -3483,7 +3483,7 @@
     var root = document.getElementById("app");
     if (view === "splash") root.innerHTML = renderSplash();
     else if (view === "onboarding") root.innerHTML = brandStrip() + renderOnboarding();
-    else if (view === "home") root.innerHTML = brandStrip(null, dayLabel()) + renderHome();
+    else if (view === "home") root.innerHTML = brandStrip(sniffingPhotoFor(), dayLabel()) + renderHome();
     else if (view === "leaveSetup") root.innerHTML = brandStrip() + renderLeaveSetup();
     else if (view === "atWork") root.innerHTML = brandStrip() + renderAtWork();
     else if (view === "awayReport") root.innerHTML = brandStrip() + renderAwayReport(window.__lastReport);
