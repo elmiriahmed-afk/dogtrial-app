@@ -4824,9 +4824,6 @@
   function renderHome(){
     var breed = byId(state.breedId);
     var stage = stageOf(state.dogDays);
-    var mood = moodOf();
-    var weeks = Math.floor(state.dogDays/7);
-    var days = Math.floor(state.dogDays%7);
     var housing = housingById(state.housingId);
 
     var header = activeTab !== "today" ? pageHeaderHTML(activeTab) : '' +
@@ -4841,13 +4838,9 @@
             '<button class="btn-chip" id="reset-btn">'+tr('btn_start_new_trial','Start a new trial')+'</button>') +
         '</div>' +
         '<div class="dog-head">' +
-          '<div class="dog-portrait">'+dogVisual(breed, stage)+'</div>' +
           '<div class="dog-id">' +
             '<span class="badge '+stage+'">'+tr('stage_'+stage, STAGE_LABEL[stage])+'</span>' +
             '<div class="name">'+esc(state.name)+'</div>' +
-            '<div class="age mono">'+weeks+'w '+days+'d old · '+esc(breed.name)+'</div>' +
-            '<div class="age" style="margin-top:2px;">'+esc(housing.short)+'</div>' +
-            '<div class="mood-chip"><span class="mood-dot" style="background:'+(mood.key==="good"?"var(--accent)":mood.key==="warn"?"var(--warn)":"var(--bad)")+'"></span>'+mood.label+'</div>' +
           '</div>' +
         '</div>' +
       '</div>';
