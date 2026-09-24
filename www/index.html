@@ -547,6 +547,66 @@
     .meter-fill, .cmd-fill{transition:none;}
     .moment-bubble, .moment-card, .onboard-step, .tip-card{animation:none;}
   }
+
+  /* ============================================================
+   * "La vie ensemble" (after-adoption) — dormant module.
+   * Not linked from any nav/tile/tab; the `afterAdopt*` view states
+   * below are unreachable through normal use of the app. Prepared
+   * ahead of time from dogtrial-after-adoption/ (see that folder's
+   * README.md / INTEGRATION.md). All classes are prefixed "aa-" so
+   * nothing here can collide with or affect the live 30-day
+   * simulation's styling.
+   * ============================================================ */
+  .aa-root{max-width:440px; margin:0 auto;}
+  .aa-header{padding:20px 20px 6px; display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  .aa-logo{font:700 26px Georgia,serif; letter-spacing:-.5px; color:#172044;}
+  .aa-header-btn{display:inline-flex; align-items:center; gap:6px; border:1px solid #E8E1D7; border-radius:14px; padding:9px 12px; font-size:13px; font-weight:600; background:none; color:inherit;}
+  .aa-header-btn.aa-accent{background:#EEEDFF; color:#6263FF; border-color:transparent;}
+  .aa-header-icon-btn{width:40px; height:40px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center; background:#F6ECD8; color:#AA7937; border:0;}
+  .aa-hero{margin:14px 16px 0; border-radius:22px; overflow:hidden; min-height:230px; display:flex; align-items:flex-end; padding:20px; color:#fff; position:relative;
+    background:linear-gradient(0deg, rgba(23,32,68,.72), rgba(23,32,68,.05)), center/cover no-repeat;}
+  .aa-hero h1{margin:6px 0; color:#fff; font-family:Georgia,serif; font-weight:400; font-size:30px; line-height:1.15;}
+  .aa-hero p{color:rgba(255,255,255,.85); margin:0; font-size:12px;}
+  .aa-eyebrow{font-size:10px; letter-spacing:.14em; font-weight:700; text-transform:uppercase; color:#9aa2b6;}
+  .aa-hero .aa-eyebrow{color:rgba(255,255,255,.85);}
+  .aa-hero-upload{position:absolute; top:14px; right:14px; z-index:2; display:inline-flex; align-items:center; gap:6px;
+    background:rgba(23,32,68,.55); backdrop-filter:blur(6px); color:#fff; font-size:11.5px; font-weight:600;
+    padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.3);}
+  .aa-hero-upload svg{width:15px; height:15px;}
+  .aa-hero-upload input[type=file]{position:absolute; inset:0; opacity:0; width:100%; height:100%; cursor:pointer; margin:0; padding:0;}
+  .aa-content{padding:16px 20px 4px;}
+  .aa-card{border:1px solid #E8E1D7; border-radius:20px; padding:16px; background:#FFFEFA; margin:0 0 14px; width:100%; text-align:left; display:block; color:#172044;}
+  .aa-card.aa-soft{background:#EEEDFF; border-color:#DCDAFF;}
+  .aa-card.aa-warm{background:#FBF5EB;}
+  .aa-row{display:flex; align-items:center; gap:12px;}
+  .aa-row .aa-grow{flex:1; min-width:0;}
+  .aa-icon-chip{display:inline-grid; place-items:center; width:40px; height:40px; background:#F6ECD8; color:#AA7937; border-radius:13px; flex-shrink:0;}
+  .aa-icon-chip svg{width:20px; height:20px;}
+  .aa-arrow{color:#6263FF; font-size:22px; flex-shrink:0;}
+  .aa-small{display:block; font-size:12px; color:#827F8D; line-height:1.5; margin-top:4px;}
+  .aa-notice{font-size:11px; color:#827F8D;}
+  .aa-btn-primary{background:#6263FF; color:#fff; font-weight:650; min-height:50px; padding:13px 16px; border-radius:14px; width:100%; margin-top:10px; text-align:center; border:0;}
+  .aa-btn-secondary{background:transparent; border:1px solid #E8E1D7; padding:12px; border-radius:14px; min-height:44px; width:100%; text-align:center;}
+  .aa-btn-back{background:none; min-height:40px; color:#6263FF; padding:0; font-weight:600; display:inline-flex; align-items:center; gap:4px; margin-bottom:4px; border:0;}
+  .aa-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .aa-tile{margin:0; min-height:132px; display:flex; flex-direction:column;}
+  .aa-tile .aa-row{justify-content:space-between;}
+  .aa-tile b{display:block; margin-top:12px; font-size:14.5px;}
+  .aa-nav{position:sticky; bottom:0; display:flex; background:rgba(255,252,246,.94); backdrop-filter:blur(16px); border-top:1px solid #E8E1D7; padding:8px;}
+  .aa-nav button{flex:1; min-height:50px; color:#9aa2b6; font-size:11.5px; display:flex; flex-direction:column; align-items:center; gap:3px; background:none; border:0;}
+  .aa-nav button[aria-current="page"]{color:#6263FF; font-weight:700;}
+  .aa-nav svg{width:21px; height:21px;}
+  .aa-root input, .aa-root textarea{width:100%; padding:13px; border:1px solid #E8E1D7; border-radius:12px; background:#fff; color:#172044; margin:6px 0 14px; font:inherit;}
+  .aa-root input[type=checkbox]{width:22px; height:22px; margin:0; accent-color:#6263FF;}
+  .aa-root label{display:block; font-size:13px; font-weight:600; color:#172044;}
+  .aa-root textarea{min-height:110px; resize:vertical;}
+  .aa-task-row{padding:14px 0; border-bottom:1px solid #E8E1D7; display:flex; align-items:center; gap:12px;}
+  .aa-task-row:last-child{border-bottom:0;}
+  .aa-task-row label{flex:1; font-size:15px; font-weight:400;}
+  .aa-toast{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:min(320px,86vw); padding:18px;
+    border-radius:18px; background:rgba(238,237,255,.92); backdrop-filter:blur(16px); border:1px solid #DCDAFF;
+    box-shadow:0 10px 35px rgba(23,32,68,.18); z-index:50; text-align:center; font-weight:600; color:#172044;}
+  .aa-footer{font-size:10px; color:#9aa2b6; text-align:center; padding:18px;}
 </style>
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "db80820a7fa146ccb7364f2b097c6d31"}'></script>
@@ -3248,7 +3308,10 @@
     bone: '<path d="M5.5 8.5a2 2 0 1 1 3-2.7l9.7 9.7a2 2 0 1 1-3 2.7z"/><circle cx="6" cy="6" r="1.6"/><circle cx="8" cy="8" r="1.6"/><circle cx="16" cy="16" r="1.6"/><circle cx="18" cy="18" r="1.6"/>',
     alert: '<path d="M12 3 22 19H2z"/><path d="M12 9v5"/><path d="M12 17.5h.01"/>',
     gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
-    info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5h.01"/>'
+    info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5h.01"/>',
+    user: '<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/>',
+    camera: '<path d="M4 8h3l2-3h6l2 3h3v12H4Z"/><circle cx="12" cy="14" r="3.5"/>',
+    arrowLeft: '<path d="M19 12H5"/><path d="M11 18l-6-6 6-6"/>'
   };
   function icon(name, size){
     var s = size || 20;
@@ -3565,10 +3628,22 @@
     else if (view === "realLearn") root.innerHTML = brandStrip() + renderRealLearn();
     else if (view === "realLesson") root.innerHTML = brandStrip() + renderRealLesson();
     else if (view === "realRoutines") root.innerHTML = brandStrip() + renderRealRoutines();
-    if (activeMomentBubble && view !== "splash" && view !== "onboarding"){
+    // "La vie ensemble" (after-adoption) — dormant, unreachable views.
+    // See dogtrial-after-adoption/INTEGRATION.md. Not linked from any nav.
+    else if (view === "afterAdoptHome") root.innerHTML = renderAfterAdoptHome();
+    else if (view === "afterAdoptArrival") root.innerHTML = renderAfterAdoptArrival();
+    else if (view === "afterAdoptRoutine") root.innerHTML = renderAfterAdoptRoutine();
+    else if (view === "afterAdoptWalk") root.innerHTML = renderAfterAdoptWalk();
+    else if (view === "afterAdoptTraining") root.innerHTML = renderAfterAdoptTraining();
+    else if (view.indexOf("afterAdoptLesson-") === 0) root.innerHTML = renderAfterAdoptLesson(view.slice(17));
+    else if (view === "afterAdoptJournal") root.innerHTML = renderAfterAdoptJournal();
+    else if (view === "afterAdoptBudget") root.innerHTML = renderAfterAdoptBudget();
+    else if (view === "afterAdoptCare") root.innerHTML = renderAfterAdoptCare();
+    else if (view === "afterAdoptProfile") root.innerHTML = renderAfterAdoptProfile();
+    if (activeMomentBubble && view !== "splash" && view !== "onboarding" && view.indexOf("afterAdopt") !== 0){
       root.insertAdjacentHTML("beforeend", renderMomentOverlay());
     }
-    attachHandlers();
+    if (view.indexOf("afterAdopt") !== 0) attachHandlers();
     if (view === "atWork") startAtWorkClock();
     else if (view === "walkSteps") startStepsClock();
     else if (view === "trainPractice") startPracticeTimer();
@@ -7518,6 +7593,575 @@
       });
     }
   }
+
+  /* ============================================================
+   * "La vie ensemble" (after-adoption) — dormant module.
+   *
+   * Merged in from dogtrial-after-adoption/www/index.html (see that
+   * folder's README.md / INTEGRATION.md for full context). Every
+   * view name here is prefixed "afterAdopt" and is NOT linked from
+   * any button, tile, or tab anywhere in the app — there is no way
+   * to reach `view === "afterAdoptHome"` etc. through normal use.
+   *
+   * This block never reads or writes the real app's `state`
+   * (thirtyDayDog_v1) or its backend APIs. It keeps its own isolated
+   * demo data under localStorage key "dogtrial_after_adoption_demo_v1",
+   * seeded with a fictional dog ("Biscuit"), exactly like the
+   * standalone preview in dogtrial-after-adoption/.
+   * ============================================================ */
+
+  var AA_STORAGE_KEY = "dogtrial_after_adoption_demo_v1";
+
+  var AA_STRINGS_FR = {
+    home_eyebrow: "LA VIE ENSEMBLE",
+    home_title_suffix: " & toi.",
+    home_title_line2: "Une nouvelle histoire.",
+    home_subtitle: "Votre quotidien, à votre rythme.",
+    hero_upload_label: "Votre photo",
+    toast_photo_saved: "Photo mise à jour",
+    toast_photo_too_large: "Cette photo est trop lourde (max 5 Mo).",
+    arrival_card_title: "Ses premiers jours à la maison",
+    arrival_card_sub: "Des repères simples pour bien commencer.",
+    routine_eyebrow: "AUJOURD’HUI · VOTRE ROUTINE",
+    routine_card_title: "De petits gestes,",
+    routine_card_title2: "un lien qui grandit.",
+    routine_card_sub: "Repas, sortie, repos : créez vos repères ensemble.",
+    routine_cta: "Organiser sa journée →",
+    section_daily: "Votre quotidien à deux",
+    tile_walk_title: "Balades & jeu",
+    tile_walk_sub: "Vos moments dehors",
+    tile_training_title: "Éducation / Training",
+    tile_training_sub: "Apprendre ensemble",
+    tile_care_title: "Santé & soins",
+    tile_care_sub: "Rendez-vous et rappels",
+    tile_journal_title: "Son carnet",
+    tile_journal_sub: "Souvenirs et observations",
+    tile_budget_title: "Budget",
+    tile_budget_sub: "Vos dépenses réelles",
+    back_today: "Aujourd’hui",
+    training_title: "Apprendre ensemble.",
+    training_eyebrow: "ÉDUCATION · TRAINING",
+    training_card_title: "Un petit pas à la fois.",
+    training_card_sub: "Découvrez les séances et gardez une trace de celles que vous avez explorées.",
+    training_notice: "Aperçu du parcours : les vidéos seront reliées aux contenus de l’application.",
+    lesson_visited_suffix: " · Consultée",
+    lesson_back: "Les séances",
+    lesson_video_title: "Votre séance vidéo",
+    lesson_video_placeholder: "Contenu à connecter dans l’application.",
+    lesson_practice_title: "Votre espace de pratique",
+    lesson_practice_body: "La démonstration et les étapes détaillées apparaîtront ici avec la vidéo correspondante.",
+    lesson_mark_done: "Marquer comme consultée",
+    lesson_done: "Séance consultée ✓",
+    arrival_title: "Bienvenue à la maison.",
+    arrival_subtitle: "Chaque chien découvre son foyer à son rythme.",
+    arrival_cta: "Créer nos repères →",
+    routine_title: "Notre journée.",
+    routine_subtitle: "Une liste de démonstration à adapter à votre chien.",
+    routine_progress_suffix: " / 3 repères cochés",
+    routine_reset: "Recommencer une journée",
+    walk_title: "Un moment dehors.",
+    walk_eyebrow: "BALADE EN COURS",
+    walk_ready: "Prêts à partir ?",
+    walk_notice: "Chronomètre de démonstration, sans suivi GPS.",
+    walk_start: "Commencer la balade",
+    walk_stop: "Terminer la balade",
+    walk_history_title: "Vos dernières sorties",
+    walk_history_empty: "Aucune balade enregistrée pour le moment.",
+    walk_minutes_suffix: " min enregistrée(s)",
+    journal_title: "Son carnet.",
+    journal_subtitle: "Les petits moments qui comptent.",
+    journal_label: "Votre observation",
+    journal_placeholder: "Aujourd’hui, nous avons…",
+    journal_submit: "Ajouter au carnet",
+    journal_history_title: "Vos souvenirs",
+    journal_empty: "Votre carnet attend sa première note.",
+    budget_title: "Son budget.",
+    budget_eyebrow: "DÉPENSES SAISIES",
+    budget_label_item: "Dépense",
+    budget_placeholder_item: "Ex. : accessoires",
+    budget_label_amount: "Montant en euros",
+    budget_submit: "Ajouter la dépense",
+    budget_history_title: "Historique",
+    budget_empty: "Aucune dépense saisie.",
+    care_title: "Santé & soins.",
+    care_subtitle_prefix: "Gardez les rendez-vous de ",
+    care_subtitle_suffix: " au même endroit.",
+    care_label_item: "Rendez-vous ou soin",
+    care_placeholder_item: "Ex. : rendez-vous vétérinaire",
+    care_label_date: "Date",
+    care_submit: "Enregistrer",
+    care_notice: "La démonstration conserve vos entrées ici ; elle n’envoie pas de notification.",
+    care_upcoming_title: "À venir",
+    care_empty: "Aucun rendez-vous enregistré.",
+    profile_title: "Votre compagnon.",
+    profile_label_name: "Son prénom",
+    profile_submit: "Enregistrer le profil",
+    profile_demo_title: "Votre espace de démonstration",
+    profile_demo_body: "Les informations restent dans ce navigateur. Aucun compte réel n’est connecté.",
+    nav_home: "Aujourd’hui",
+    nav_journal: "Carnet",
+    nav_profile: "Profil",
+    toast_lesson_done: "Séance marquée comme consultée",
+    toast_walk_saved: "Balade enregistrée",
+    toast_saved: "Enregistré dans la démonstration",
+    toast_storage_unavailable: "La sauvegarde locale est indisponible."
+  };
+  function aaTr(key){ return AA_STRINGS_FR[key] !== undefined ? AA_STRINGS_FR[key] : key; }
+
+  // Every point where this dormant module would eventually talk to a real
+  // service goes through AA_CONNECTORS instead of being hardcoded — see
+  // dogtrial-after-adoption/INTEGRATION.md for what replaces each stub.
+  var AA_CONNECTORS = {
+    getLessonVideoUrl: function(lessonId){
+      console.info("[after-adoption] CONNECTOR not wired: getLessonVideoUrl(", lessonId, ") — no video source yet.");
+      return null;
+    },
+    startGpsWalk: function(){
+      console.info("[after-adoption] CONNECTOR not wired: startGpsWalk() — using local stopwatch only, no GPS requested.");
+      return null;
+    },
+    scheduleReminder: function(label, whenISO){
+      console.info("[after-adoption] CONNECTOR not wired: scheduleReminder(", label, whenISO, ") — no notification scheduled.");
+      return null;
+    },
+    loadRealDogState: function(){
+      console.info("[after-adoption] CONNECTOR not wired: loadRealDogState() — using isolated demo data only. Real integration should reuse realDog / fetchRoutines() / fetchActivityLogs() / fetchTrainingSessions() instead of this whole module's local state.");
+      return null;
+    }
+  };
+
+  function aaSeedState(){
+    return {
+      name: "Biscuit",
+      heroPhoto: null,
+      tasks: [false, false, false],
+      notes: [],
+      expenses: [],
+      walks: [],
+      care: [],
+      lessons: []
+    };
+  }
+  var afterAdoptState = aaSeedState();
+  (function(){
+    try {
+      var saved = JSON.parse(localStorage.getItem(AA_STORAGE_KEY) || "{}");
+      Object.assign(afterAdoptState, saved);
+    } catch (e) { /* isolated demo storage only — ignore corrupt/missing data */ }
+  })();
+  function aaSave(){
+    try { localStorage.setItem(AA_STORAGE_KEY, JSON.stringify(afterAdoptState)); }
+    catch (e) { aaNotify(aaTr("toast_storage_unavailable")); }
+  }
+
+  var afterAdoptWalkStartedAt = null;
+
+  function aaNotify(text){
+    var existing = document.querySelector(".aa-toast");
+    if (existing) existing.remove();
+    var d = document.createElement("div");
+    d.className = "aa-toast";
+    d.setAttribute("role", "status");
+    d.textContent = text;
+    document.body.appendChild(d);
+    setTimeout(function(){ d.remove(); }, 2400);
+  }
+
+  function aaElapsedLabel(){
+    var t = Math.floor((Date.now() - afterAdoptWalkStartedAt) / 1000);
+    var m = String(Math.floor(t / 60)).padStart(2, "0");
+    var s = String(t % 60).padStart(2, "0");
+    return m + ":" + s;
+  }
+
+  function aaTileCard(targetView, iconName, title, sub){
+    return '' +
+      '<button class="aa-card aa-tile" data-go="'+targetView+'">' +
+        '<div class="aa-row"><span class="aa-icon-chip">'+icon(iconName)+'</span><span class="aa-grow"></span><span class="aa-arrow">›</span></div>' +
+        '<b>'+esc(title)+'</b><span class="aa-small">'+esc(sub)+'</span>' +
+      '</button>';
+  }
+  function aaBackButton(targetView, label){
+    return '<button class="aa-btn-back" data-go="'+targetView+'">'+icon("arrowLeft", 16)+' '+esc(label)+'</button>';
+  }
+  function aaHeader(){
+    return '' +
+      '<header class="aa-header">' +
+        '<span class="aa-logo">dogtrial</span>' +
+        '<div class="aa-row" style="gap:8px;">' +
+          '<button class="aa-header-btn aa-accent" data-go="afterAdoptTraining">'+aaTr("tile_training_title").split(" /")[0]+' →</button>' +
+          '<button class="aa-header-icon-btn" data-go="afterAdoptProfile" aria-label="'+aaTr("nav_profile")+'">'+icon("paw")+'</button>' +
+        '</div>' +
+      '</header>';
+  }
+  function aaNav(currentView){
+    var items = [
+      ["afterAdoptHome", "home", aaTr("nav_home")],
+      ["afterAdoptJournal", "notebook", aaTr("nav_journal")],
+      ["afterAdoptProfile", "user", aaTr("nav_profile")]
+    ];
+    var html = items.map(function(item){
+      var v = item[0], iconName = item[1], label = item[2];
+      var current = (currentView === v) ? ' aria-current="page"' : '';
+      return '<button data-go="'+v+'"'+current+'><span>'+icon(iconName)+'</span>'+esc(label)+'</button>';
+    }).join("");
+    return '<nav class="aa-nav" aria-label="Navigation principale">'+html+'</nav>';
+  }
+  function aaFrame(bodyHtml, currentView){
+    return '<div class="aa-root">' + aaHeader() + bodyHtml +
+      '<footer class="aa-footer">Module « La vie ensemble » — non relié à la navigation</footer>' +
+      aaNav(currentView) + '</div>';
+  }
+
+  function renderAfterAdoptHome(){
+    var n = esc(afterAdoptState.name);
+    var heroUrl = afterAdoptState.heroPhoto || "media/after-adoption/hero-placeholder.jpg";
+    var body = '' +
+      '<section class="aa-hero" style="background-image:linear-gradient(0deg, rgba(23,32,68,.72), rgba(23,32,68,.05)), url(\''+heroUrl.replace(/'/g, "%27")+'\')">' +
+        '<label class="aa-hero-upload">' +
+          icon("camera", 15) + '<span>'+aaTr("hero_upload_label")+'</span>' +
+          '<input type="file" accept="image/*" id="aa-hero-photo-input" aria-label="'+aaTr("hero_upload_label")+'">' +
+        '</label>' +
+        '<div>' +
+          '<span class="aa-eyebrow">'+aaTr("home_eyebrow")+'</span>' +
+          '<h1>'+n+aaTr("home_title_suffix")+'<br>'+aaTr("home_title_line2")+'</h1>' +
+          '<p>'+aaTr("home_subtitle")+'</p>' +
+        '</div>' +
+      '</section>' +
+      '<div class="aa-content">' +
+        '<button class="aa-card aa-warm aa-row" data-go="afterAdoptArrival">' +
+          '<span class="aa-icon-chip">'+icon("heart")+'</span>' +
+          '<span class="aa-grow"><b>'+aaTr("arrival_card_title")+'</b><span class="aa-small">'+aaTr("arrival_card_sub")+'</span></span>' +
+          '<span class="aa-arrow">›</span>' +
+        '</button>' +
+        '<section class="aa-card aa-soft">' +
+          '<div class="aa-row"><span class="aa-eyebrow aa-grow">'+aaTr("routine_eyebrow")+'</span><span class="aa-icon-chip">'+icon("bowl")+'</span></div>' +
+          '<h2>'+aaTr("routine_card_title")+'<br>'+aaTr("routine_card_title2")+'</h2>' +
+          '<p>'+aaTr("routine_card_sub")+'</p>' +
+          '<button class="aa-btn-primary" data-go="afterAdoptRoutine">'+aaTr("routine_cta")+'</button>' +
+        '</section>' +
+        '<h2>'+aaTr("section_daily")+'</h2>' +
+        '<div class="aa-grid">' +
+          aaTileCard("afterAdoptWalk", "paw", aaTr("tile_walk_title"), aaTr("tile_walk_sub")) +
+          aaTileCard("afterAdoptTraining", "cap", aaTr("tile_training_title"), aaTr("tile_training_sub")) +
+          aaTileCard("afterAdoptCare", "medical", aaTr("tile_care_title"), aaTr("tile_care_sub")) +
+          aaTileCard("afterAdoptJournal", "notebook", aaTr("tile_journal_title"), aaTr("tile_journal_sub")) +
+          aaTileCard("afterAdoptBudget", "wallet", aaTr("tile_budget_title"), aaTr("tile_budget_sub")) +
+        '</div>' +
+      '</div>';
+    return aaFrame(body, "afterAdoptHome");
+  }
+
+  var AA_LESSONS = [
+    {id: "attention", title: "Créer le contact", sub: "Attention et complicité"},
+    {id: "assis", title: "Découvrir « assis »", sub: "Les premiers repères"},
+    {id: "rappel", title: "Revenir vers vous", sub: "Le rappel au quotidien"}
+  ];
+
+  function renderAfterAdoptTraining(){
+    var n = esc(afterAdoptState.name);
+    var lessonsHtml = AA_LESSONS.map(function(l){
+      var visited = (afterAdoptState.lessons || []).indexOf(l.id) !== -1;
+      return '' +
+        '<button class="aa-card aa-row" data-go="afterAdoptLesson-'+l.id+'">' +
+          '<span class="aa-icon-chip">'+icon("cap")+'</span>' +
+          '<span class="aa-grow"><b>'+esc(l.title)+'</b><span class="aa-small">'+esc(l.sub)+(visited ? aaTr("lesson_visited_suffix") : "")+'</span></span>' +
+          '<span class="aa-arrow">›</span>' +
+        '</button>';
+    }).join("");
+    var body = '' +
+      '<div class="aa-content">' +
+        aaBackButton("afterAdoptHome", aaTr("back_today")) +
+        '<h1>'+aaTr("training_title")+'</h1>' +
+        '<p>Des séances courtes pour accompagner votre quotidien avec '+n+'.</p>' +
+        '<section class="aa-card aa-soft">' +
+          '<span class="aa-eyebrow">'+aaTr("training_eyebrow")+'</span>' +
+          '<h2>'+aaTr("training_card_title")+'</h2>' +
+          '<p>'+aaTr("training_card_sub")+'</p>' +
+        '</section>' +
+        lessonsHtml +
+        '<p class="aa-notice">'+aaTr("training_notice")+'</p>' +
+      '</div>';
+    return aaFrame(body, "afterAdoptTraining");
+  }
+
+  function renderAfterAdoptLesson(lessonId){
+    var lesson = AA_LESSONS.filter(function(l){ return l.id === lessonId; })[0];
+    if (!lesson) { view = "afterAdoptTraining"; return renderAfterAdoptTraining(); }
+    var visited = (afterAdoptState.lessons || []).indexOf(lessonId) !== -1;
+    var videoUrl = AA_CONNECTORS.getLessonVideoUrl(lessonId); // always null today
+    var body = '' +
+      '<div class="aa-content">' +
+        aaBackButton("afterAdoptTraining", aaTr("lesson_back")) +
+        '<h1>'+esc(lesson.title)+'</h1>' +
+        '<section class="aa-card aa-soft" style="text-align:center; padding:32px 18px;">' +
+          '<span class="aa-icon-chip" style="margin:0 auto 10px;">'+icon("cap")+'</span>' +
+          '<h2>'+aaTr("lesson_video_title")+'</h2>' +
+          '<p>'+(videoUrl ? esc(videoUrl) : aaTr("lesson_video_placeholder"))+'</p>' +
+        '</section>' +
+        '<section class="aa-card"><b>'+aaTr("lesson_practice_title")+'</b><p>'+aaTr("lesson_practice_body")+'</p></section>' +
+        '<button class="aa-btn-primary" data-lesson="'+esc(lessonId)+'">'+(visited ? aaTr("lesson_done") : aaTr("lesson_mark_done"))+'</button>' +
+      '</div>';
+    return aaFrame(body, "afterAdoptTraining");
+  }
+
+  var AA_ARRIVAL_TIPS = [
+    {title: "Un coin tranquille", body: "Préparez un espace où il peut se reposer sans être dérangé."},
+    {title: "Des repères réguliers", body: "Organisez les sorties et les moments de repos selon votre quotidien."},
+    {title: "Des rencontres progressives", body: "Laissez-lui le temps de découvrir les personnes et les lieux."}
+  ];
+
+  function renderAfterAdoptArrival(){
+    var tipsHtml = AA_ARRIVAL_TIPS.map(function(t){
+      return '<div class="aa-card"><b>'+esc(t.title)+'</b><p>'+esc(t.body)+'</p></div>';
+    }).join("");
+    var body = '' +
+      '<div class="aa-content">' +
+        aaBackButton("afterAdoptHome", aaTr("back_today")) +
+        '<h1>'+aaTr("arrival_title")+'</h1>' +
+        '<p>'+aaTr("arrival_subtitle")+'</p>' +
+        tipsHtml +
+        '<button class="aa-btn-primary" data-go="afterAdoptRoutine">'+aaTr("arrival_cta")+'</button>' +
+      '</div>';
+    return aaFrame(body, "afterAdoptHome");
+  }
+
+  var AA_ROUTINE_TASKS = ["Préparer son repas", "Partager une sortie", "Prévoir un moment calme"];
+
+  function renderAfterAdoptRoutine(){
+    var tasksHtml = AA_ROUTINE_TASKS.map(function(t, i){
+      return '' +
+        '<div class="aa-task-row">' +
+          '<label for="aa-task-'+i+'" class="aa-grow">'+esc(t)+'</label>' +
+          '<input id="aa-task-'+i+'" type="checkbox" data-task="'+i+'" '+(afterAdoptState.tasks[i] ? "checked" : "")+'>' +
+        '</div>';
+    }).join("");
+    var doneCount = afterAdoptState.tasks.filter(Boolean).length;
+    var body = '' +
+      '<div class="aa-content">' +
+        aaBackButton("afterAdoptHome", aaTr("back_today")) +
+        '<h1>'+aaTr("routine_title")+'</h1>' +
+        '<p>'+aaTr("routine_subtitle")+'</p>' +
+        '<section class="aa-card">'+tasksHtml+'</section>' +
+        '<p>'+doneCount+aaTr("routine_progress_suffix")+'</p>' +
+        '<button class="aa-btn-secondary" data-action="aa-reset-routine">'+aaTr("routine_reset")+'</button>' +
+      '</div>';
+    return aaFrame(body, "afterAdoptHome");
+  }
+
+  function renderAfterAdoptWalk(){
+    var walking = !!afterAdoptWalkStartedAt;
+    var historyHtml = afterAdoptState.walks.length
+      ? afterAdoptState.walks.map(function(w){
+          return '<div class="aa-card">'+esc(w.date)+'<b class="aa-small">'+w.minutes+aaTr("walk_minutes_suffix")+'</b></div>';
+        }).join("")
+      : '<p>'+aaTr("walk_history_empty")+'</p>';
+    var body = '' +
+      '<div class="aa-content">' +
+        aaBackButton("afterAdoptHome", aaTr("back_today")) +
+        '<h1>'+aaTr("walk_title")+'</h1>' +
+        '<section class="aa-card aa-soft">' +
+          '<span class="aa-eyebrow">'+aaTr("walk_eyebrow")+'</span>' +
+          '<h2 id="aa-walk-clock">'+(walking ? aaElapsedLabel() : aaTr("walk_ready"))+'</h2>' +
+          '<p>'+aaTr("walk_notice")+'</p>' +
+          '<button class="aa-btn-primary" data-action="'+(walking ? "aa-stop-walk" : "aa-start-walk")+'">'+(walking ? aaTr("walk_stop") : aaTr("walk_start"))+'</button>' +
+        '</section>' +
+        '<h2>'+aaTr("walk_history_title")+'</h2>' +
+        historyHtml +
+      '</div>';
+    return aaFrame(body, "afterAdoptHome");
+  }
+
+  function renderAfterAdoptJournal(){
+    var entriesHtml = afterAdoptState.notes.length
+      ? afterAdoptState.notes.map(function(x){
+          return '<article class="aa-card"><span class="aa-small">'+esc(x.date)+'</span><p style="white-space:pre-wrap">'+esc(x.text)+'</p></article>';
+        }).join("")
+      : '<p>'+aaTr("journal_empty")+'</p>';
+    var body = '' +
+      '<div class="aa-content">' +
+        aaBackButton("afterAdoptHome", aaTr("back_today")) +
+        '<h1>'+aaTr("journal_title")+'</h1>' +
+        '<p>'+aaTr("journal_subtitle")+'</p>' +
+        '<form id="aa-form-note">' +
+          '<label for="aa-observation">'+aaTr("journal_label")+'</label>' +
+          '<textarea id="aa-observation" name="text" required maxlength="1200" placeholder="'+aaTr("journal_placeholder")+'"></textarea>' +
+          '<button class="aa-btn-primary" type="submit">'+aaTr("journal_submit")+'</button>' +
+        '</form>' +
+        '<h2>'+aaTr("journal_history_title")+'</h2>' +
+        entriesHtml +
+      '</div>';
+    return aaFrame(body, "afterAdoptJournal");
+  }
+
+  function renderAfterAdoptBudget(){
+    var total = afterAdoptState.expenses.reduce(function(s, x){ return s + x.amount; }, 0);
+    var historyHtml = afterAdoptState.expenses.length
+      ? afterAdoptState.expenses.map(function(x){
+          return '<div class="aa-card aa-row"><span class="aa-grow">'+esc(x.label)+'</span><b>'+esc(Number(x.amount).toLocaleString("fr-FR", {style:"currency", currency:"EUR"}))+'</b></div>';
+        }).join("")
+      : '<p>'+aaTr("budget_empty")+'</p>';
+    var body = '' +
+      '<div class="aa-content">' +
+        aaBackButton("afterAdoptHome", aaTr("back_today")) +
+        '<h1>'+aaTr("budget_title")+'</h1>' +
+        '<section class="aa-card aa-soft"><span class="aa-eyebrow">'+aaTr("budget_eyebrow")+'</span><h2>'+esc(total.toLocaleString("fr-FR", {style:"currency", currency:"EUR"}))+'</h2></section>' +
+        '<form id="aa-form-expense">' +
+          '<label for="aa-expense-label">'+aaTr("budget_label_item")+'</label>' +
+          '<input id="aa-expense-label" name="label" required maxlength="100" placeholder="'+aaTr("budget_placeholder_item")+'">' +
+          '<label for="aa-expense-amount">'+aaTr("budget_label_amount")+'</label>' +
+          '<input id="aa-expense-amount" name="amount" type="number" min="0.01" max="100000" step="0.01" required>' +
+          '<button class="aa-btn-primary" type="submit">'+aaTr("budget_submit")+'</button>' +
+        '</form>' +
+        '<h2>'+aaTr("budget_history_title")+'</h2>' +
+        historyHtml +
+      '</div>';
+    return aaFrame(body, "afterAdoptHome");
+  }
+
+  function renderAfterAdoptCare(){
+    var n = esc(afterAdoptState.name);
+    var upcomingHtml = afterAdoptState.care.length
+      ? afterAdoptState.care.map(function(x){
+          return '<div class="aa-card"><b>'+esc(x.label)+'</b><span class="aa-small">'+esc(x.date.split("-").reverse().join("/"))+'</span></div>';
+        }).join("")
+      : '<p>'+aaTr("care_empty")+'</p>';
+    var body = '' +
+      '<div class="aa-content">' +
+        aaBackButton("afterAdoptHome", aaTr("back_today")) +
+        '<h1>'+aaTr("care_title")+'</h1>' +
+        '<p>'+aaTr("care_subtitle_prefix")+n+aaTr("care_subtitle_suffix")+'</p>' +
+        '<form id="aa-form-care">' +
+          '<label for="aa-care-label">'+aaTr("care_label_item")+'</label>' +
+          '<input id="aa-care-label" name="label" required maxlength="100" placeholder="'+aaTr("care_placeholder_item")+'">' +
+          '<label for="aa-care-date">'+aaTr("care_label_date")+'</label>' +
+          '<input id="aa-care-date" name="date" type="date" required>' +
+          '<button class="aa-btn-primary" type="submit">'+aaTr("care_submit")+'</button>' +
+        '</form>' +
+        '<p class="aa-notice">'+aaTr("care_notice")+'</p>' +
+        '<h2>'+aaTr("care_upcoming_title")+'</h2>' +
+        upcomingHtml +
+      '</div>';
+    return aaFrame(body, "afterAdoptHome");
+  }
+
+  function renderAfterAdoptProfile(){
+    var n = esc(afterAdoptState.name);
+    var body = '' +
+      '<div class="aa-content">' +
+        aaBackButton("afterAdoptHome", aaTr("back_today")) +
+        '<h1>'+aaTr("profile_title")+'</h1>' +
+        '<form id="aa-form-profile">' +
+          '<label for="aa-dog-name">'+aaTr("profile_label_name")+'</label>' +
+          '<input id="aa-dog-name" name="name" required maxlength="35" value="'+n+'">' +
+          '<button class="aa-btn-primary" type="submit">'+aaTr("profile_submit")+'</button>' +
+        '</form>' +
+        '<section class="aa-card aa-warm" style="margin-top:22px;"><b>'+aaTr("profile_demo_title")+'</b><p>'+aaTr("profile_demo_body")+'</p></section>' +
+      '</div>';
+    return aaFrame(body, "afterAdoptProfile");
+  }
+
+  setInterval(function(){
+    if (view.indexOf("afterAdopt") !== 0) return;
+    var clockEl = document.getElementById("aa-walk-clock");
+    if (afterAdoptWalkStartedAt && clockEl) clockEl.textContent = aaElapsedLabel();
+  }, 1000);
+
+  document.addEventListener("click", function(e){
+    var btn = e.target.closest("button");
+    if (!btn) return;
+    // Only ever react to elements this dormant module itself rendered
+    // (its own "afterAdopt*" / "aa-*" data attributes) — never to the
+    // real app's buttons, regardless of the current `view`.
+    var isOwnButton = (btn.dataset.go && btn.dataset.go.indexOf("afterAdopt") === 0) ||
+      btn.dataset.lesson || (btn.dataset.action && btn.dataset.action.indexOf("aa-") === 0);
+    if (!isOwnButton) return;
+
+    if (btn.dataset.lesson){
+      afterAdoptState.lessons = afterAdoptState.lessons || [];
+      if (afterAdoptState.lessons.indexOf(btn.dataset.lesson) === -1) afterAdoptState.lessons.push(btn.dataset.lesson);
+      aaSave(); render(); aaNotify(aaTr("toast_lesson_done"));
+      return;
+    }
+    if (btn.dataset.go){
+      view = btn.dataset.go; render(); window.scrollTo(0, 0);
+      return;
+    }
+    if (btn.dataset.action === "aa-start-walk"){
+      AA_CONNECTORS.startGpsWalk();
+      afterAdoptWalkStartedAt = Date.now(); render();
+      return;
+    }
+    if (btn.dataset.action === "aa-stop-walk" && afterAdoptWalkStartedAt){
+      var minutes = Math.round((Date.now() - afterAdoptWalkStartedAt) / 6000) / 10;
+      afterAdoptState.walks.unshift({date: new Date().toLocaleDateString("fr-FR"), minutes: minutes});
+      afterAdoptWalkStartedAt = null;
+      aaSave(); render(); aaNotify(aaTr("toast_walk_saved"));
+      return;
+    }
+    if (btn.dataset.action === "aa-reset-routine"){
+      afterAdoptState.tasks = [false, false, false];
+      aaSave(); render();
+      return;
+    }
+  });
+
+  document.addEventListener("change", function(e){
+    if (view.indexOf("afterAdopt") !== 0) return;
+    if (e.target.dataset.task !== undefined){
+      afterAdoptState.tasks[Number(e.target.dataset.task)] = e.target.checked;
+      aaSave(); render();
+      return;
+    }
+    if (e.target.id === "aa-hero-photo-input"){
+      var file = e.target.files && e.target.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024){
+        aaNotify(aaTr("toast_photo_too_large"));
+        e.target.value = "";
+        return;
+      }
+      var reader = new FileReader();
+      reader.onload = function(){
+        afterAdoptState.heroPhoto = reader.result;
+        aaSave(); render(); aaNotify(aaTr("toast_photo_saved"));
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  document.addEventListener("submit", function(e){
+    if (view.indexOf("afterAdopt") !== 0) return;
+    e.preventDefault();
+    var form = e.target;
+    var data = new FormData(form);
+
+    if (form.id === "aa-form-profile"){
+      var name = String(data.get("name") || "").trim();
+      if (!name) return;
+      afterAdoptState.name = name;
+    }
+    if (form.id === "aa-form-note"){
+      var text = String(data.get("text") || "").trim();
+      if (!text) return;
+      afterAdoptState.notes.unshift({text: text, date: new Date().toLocaleDateString("fr-FR")});
+    }
+    if (form.id === "aa-form-expense"){
+      var label = String(data.get("label") || "").trim();
+      var amount = Number(data.get("amount"));
+      if (!label || !isFinite(amount) || amount <= 0) return;
+      afterAdoptState.expenses.unshift({label: label, amount: amount});
+    }
+    if (form.id === "aa-form-care"){
+      var careLabel = String(data.get("label") || "").trim();
+      if (!careLabel) return;
+      afterAdoptState.care.push({label: careLabel, date: data.get("date")});
+      afterAdoptState.care.sort(function(a, b){ return a.date.localeCompare(b.date); });
+      // Future: AA_CONNECTORS.scheduleReminder(careLabel, data.get("date"));
+    }
+
+    aaSave(); render(); aaNotify(aaTr("toast_saved"));
+  });
 
   document.addEventListener("DOMContentLoaded", init);
 })();
