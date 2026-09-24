@@ -4185,7 +4185,6 @@
       '</div>';
   }
   function renderProfileWellbeing(){
-    var bladderComfort = clamp(100 - state.bladder);
     var mood = moodOf();
     return '' +
       '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
@@ -4196,7 +4195,7 @@
         '<div class="stat-grid" style="margin-top:16px;">' +
           statTile({stat:"feed", icon:"bowl", color:"accent", value:Math.round(state.hunger)+"%", label:tr('stat_fed','Fed'), sublabel:fedSublabel(), tone:statTone(state.hunger)}) +
           statTile({stat:"energy", icon:"bolt", color:"teal", value:Math.round(state.energy)+"%", label:tr('stat_energy','Energy'), sublabel:energySublabel(), tone:statTone(state.energy)}) +
-          statTile({stat:"bladder", icon:"droplet", color:"warn", value:Math.round(bladderComfort)+"%", label:tr('stat_bladder_comfort','Bladder comfort'), sublabel:bladderSublabel(bladderComfort), tone:statTone(bladderComfort)}) +
+          statTile({stat:"bladder", icon:"droplet", color:"warn", value:Math.round(state.bladder)+"%", label:tr('stat_bladder_comfort','Bladder comfort'), sublabel:bladderSublabel(state.bladder), tone:statTone(state.bladder)}) +
           statTile({icon:"heart", color:"purple", value:Math.round(state.bond)+"%", label:tr('stat_bond','Bond'), sublabel:bondSublabel(), tone:statTone(state.bond)}) +
         '</div>' +
       '</div>' +
