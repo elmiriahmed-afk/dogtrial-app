@@ -596,7 +596,7 @@
   .aa-nav button{flex:1; min-height:50px; color:#9aa2b6; font-size:11.5px; display:flex; flex-direction:column; align-items:center; gap:3px; background:none; border:0;}
   .aa-nav button[aria-current="page"]{color:#6263FF; font-weight:700;}
   .aa-nav svg{width:21px; height:21px;}
-  .aa-root input, .aa-root textarea{width:100%; padding:13px; border:1px solid #E8E1D7; border-radius:12px; background:#fff; color:#172044; margin:6px 0 14px; font:inherit;}
+  .aa-root input, .aa-root textarea, .aa-root select{width:100%; padding:13px; border:1px solid #E8E1D7; border-radius:12px; background:#fff; color:#172044; margin:6px 0 14px; font:inherit;}
   .aa-root input[type=checkbox]{width:22px; height:22px; margin:0; accent-color:#6263FF;}
   .aa-root label{display:block; font-size:13px; font-weight:600; color:#172044;}
   .aa-root textarea{min-height:110px; resize:vertical;}
@@ -7695,6 +7695,8 @@
     care_empty: "Aucun rendez-vous enregistré.",
     profile_title: "Votre compagnon.",
     profile_label_name: "Son prénom",
+    profile_label_breed: "Sa race",
+    profile_breed_note: "La photo d'accueil change selon la race choisie.",
     profile_submit: "Enregistrer le profil",
     profile_demo_title: "Votre espace de démonstration",
     profile_demo_body: "Les informations restent dans ce navigateur. Aucun compte réel n’est connecté.",
@@ -7730,9 +7732,18 @@
     }
   };
 
+  // Same breed ids/names as BREEDS above. Reuses the existing
+  // media/moments/sniffing/{breed}_{stage}.jpg set — already breed AND
+  // life-stage specific — instead of a single fixed photo.
+  var AA_BREEDS = BREEDS.map(function(b){ return {id: b.id, name: b.name}; });
+  function aaHeroPhotoFor(breedId){
+    return "media/moments/sniffing/" + breedId + "_adult.jpg";
+  }
+
   function aaSeedState(){
     return {
       name: "Biscuit",
+      breedId: "collie",
       heroPhoto: null,
       tasks: [false, false, false],
       notes: [],
@@ -7815,7 +7826,7 @@
 
   function renderAfterAdoptHome(){
     var n = esc(afterAdoptState.name);
-    var heroUrl = afterAdoptState.heroPhoto || "media/after-adoption/hero-placeholder.jpg";
+    var heroUrl = afterAdoptState.heroPhoto || aaHeroPhotoFor(afterAdoptState.breedId);
     var body = '' +
       '<section class="aa-hero" style="background-image:linear-gradient(0deg, rgba(23,32,68,.72), rgba(23,32,68,.05)), url(\''+heroUrl.replace(/'/g, "%27")+'\')">' +
         '<label class="aa-hero-upload">' +
@@ -8047,6 +8058,9 @@
 
   function renderAfterAdoptProfile(){
     var n = esc(afterAdoptState.name);
+    var breedOptions = AA_BREEDS.map(function(b){
+      return '<option value="'+b.id+'"'+(b.id === afterAdoptState.breedId ? " selected" : "")+'>'+esc(b.name)+'</option>';
+    }).join("");
     var body = '' +
       '<div class="aa-content">' +
         aaBackButton("afterAdoptHome", aaTr("back_today")) +
@@ -8054,6 +8068,9 @@
         '<form id="aa-form-profile">' +
           '<label for="aa-dog-name">'+aaTr("profile_label_name")+'</label>' +
           '<input id="aa-dog-name" name="name" required maxlength="35" value="'+n+'">' +
+          '<label for="aa-dog-breed">'+aaTr("profile_label_breed")+'</label>' +
+          '<select id="aa-dog-breed" name="breedId">'+breedOptions+'</select>' +
+          '<span class="aa-notice" style="display:block; margin:-8px 0 14px;">'+aaTr("profile_breed_note")+'</span>' +
           '<button class="aa-btn-primary" type="submit">'+aaTr("profile_submit")+'</button>' +
         '</form>' +
         '<section class="aa-card aa-warm" style="margin-top:22px;"><b>'+aaTr("profile_demo_title")+'</b><p>'+aaTr("profile_demo_body")+'</p></section>' +
@@ -8140,6 +8157,8 @@
       var name = String(data.get("name") || "").trim();
       if (!name) return;
       afterAdoptState.name = name;
+      var breedId = String(data.get("breedId") || "").trim();
+      if (breedId) afterAdoptState.breedId = breedId;
     }
     if (form.id === "aa-form-note"){
       var text = String(data.get("text") || "").trim();
