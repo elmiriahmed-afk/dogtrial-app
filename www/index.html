@@ -7244,7 +7244,13 @@
     state.walkMinutesToday = (state.walkMinutesToday||0) + (minutesOverride !== undefined ? minutesOverride : Math.round(fraction*breed.walkMinutes));
     state.lastWalkVerified = !!verified;
     state.bladder = 100;
-    state.energy = clamp(state.energy + fraction*(100-state.energy));
+    // A verified walk session (GPS/steps completed, or logged after a
+    // tracking error) counts as one of the day's ~2 walks regardless of how
+    // it compares to the breed's target duration — duration affects bond/
+    // houseTraining gains and the "cut short" note, not how soon the next
+    // walk is needed. Only an explicit skip ("couldn't walk today", not
+    // verified) leaves energy on the fraction-scaled partial restore.
+    state.energy = clamp(state.energy + (verified ? 1 : fraction)*(100-state.energy));
     state.bond = clamp(state.bond + fraction*3);
     state.houseTraining = clamp(state.houseTraining + fraction*2);
     state.walksCompleted = (state.walksCompleted||0) + 1;
