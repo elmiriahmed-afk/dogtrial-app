@@ -616,6 +616,7 @@
 <div id="app"></div>
 
 <script src="absence-consequence-engine.js"></script>
+<script src="notifications-catalog.js"></script>
 <script>
 (function(){
   "use strict";
@@ -1625,6 +1626,37 @@
       header_report_title_journey: "Journey",
       header_report_subtitle: "Your trial's progress so far",
 
+      today_tile_reminders: "Reminders",
+      today_tile_reminders_due: "{n} due now",
+      today_tile_reminders_ontrack: "All caught up",
+      reminders_title: "Reminders",
+      reminders_subtitle: "What {dogName} could use right now.",
+      reminders_open_prefs: "Notification preferences",
+      reminders_due_now: "Due now",
+      reminders_on_track: "On track",
+      reminders_empty: "Nothing due right now — check back later.",
+      reminders_today_so_far: "Today so far",
+      reminders_category_daily: "Daily care",
+      reminders_category_activity: "Activities & training",
+      reminders_category_care: "Health & appointments",
+      reminders_freq_gentle: "Gentle",
+      reminders_freq_balanced: "Balanced",
+      reminders_freq_more: "More frequent",
+      reminders_permission_granted: "Notifications are allowed on this device.",
+      reminders_permission_denied: "Notifications are blocked in your device settings.",
+      reminders_permission_unset: "Not yet requested.",
+      reminder_prefs_title: "Notification preferences",
+      reminder_prefs_categories: "Categories",
+      reminder_prefs_frequency: "Frequency",
+      reminder_prefs_quiet_hours: "Quiet hours",
+      reminder_prefs_quiet_start: "Start",
+      reminder_prefs_quiet_end: "End",
+      reminder_prefs_quiet_note: "No reminders are scheduled during this window.",
+      reminder_prefs_bark: "Let the dog \"bark\" (sound)",
+      reminder_prefs_bark_note: "Off by default.",
+      reminder_prefs_permission: "Device permission",
+      reminder_prefs_enable: "Enable notifications",
+
       settings_title: "Settings",
       settings_notif_title: "Reminders (best-effort)",
       settings_notif_caveat: "Uses your browser's notifications. Only fires while this tab is open or backgrounded — it can't wake a fully closed browser. Real background alerts need the native app in Phase 3.",
@@ -2044,6 +2076,37 @@
       header_report_title: "Bilan",
       header_report_title_journey: "Parcours",
       header_report_subtitle: "L'avancement de votre essai jusqu'ici",
+
+      today_tile_reminders: "Rappels",
+      today_tile_reminders_due: "{n} à faire",
+      today_tile_reminders_ontrack: "Tout est à jour",
+      reminders_title: "Rappels",
+      reminders_subtitle: "Ce dont {dogName} pourrait avoir besoin maintenant.",
+      reminders_open_prefs: "Préférences de notifications",
+      reminders_due_now: "À faire",
+      reminders_on_track: "En bonne voie",
+      reminders_empty: "Rien à faire pour l'instant — revenez plus tard.",
+      reminders_today_so_far: "Aujourd'hui jusqu'ici",
+      reminders_category_daily: "Soins quotidiens",
+      reminders_category_activity: "Activités et dressage",
+      reminders_category_care: "Santé et rendez-vous",
+      reminders_freq_gentle: "Douce",
+      reminders_freq_balanced: "Équilibrée",
+      reminders_freq_more: "Plus fréquente",
+      reminders_permission_granted: "Les notifications sont autorisées sur cet appareil.",
+      reminders_permission_denied: "Les notifications sont bloquées dans les réglages de votre appareil.",
+      reminders_permission_unset: "Pas encore demandées.",
+      reminder_prefs_title: "Préférences de notifications",
+      reminder_prefs_categories: "Catégories",
+      reminder_prefs_frequency: "Fréquence",
+      reminder_prefs_quiet_hours: "Heures calmes",
+      reminder_prefs_quiet_start: "Début",
+      reminder_prefs_quiet_end: "Fin",
+      reminder_prefs_quiet_note: "Aucun rappel n'est programmé pendant cette période.",
+      reminder_prefs_bark: "Laisser le chien \"aboyer\" (son)",
+      reminder_prefs_bark_note: "Désactivé par défaut.",
+      reminder_prefs_permission: "Autorisation de l'appareil",
+      reminder_prefs_enable: "Activer les notifications",
 
       settings_title: "Réglages",
       settings_notif_title: "Rappels (au mieux)",
@@ -3221,6 +3284,151 @@
     });
   }
 
+  // Ported near-verbatim from the notifications conception pack's
+  // reference/decision.mjs (pure functions, framework-free). quietAt treats
+  // equal start/end as "disabled", per the pack's own policy.json.
+  function quietAt(now, zone, start, end){
+    if (start === end) return false;
+    var parts = {};
+    new Intl.DateTimeFormat('en-GB', {timeZone:zone, hour:'2-digit', minute:'2-digit', hourCycle:'h23'}).formatToParts(new Date(now)).forEach(function(p){ parts[p.type] = p.value; });
+    var m = Number(parts.hour)*60 + Number(parts.minute);
+    var mins = function(s){ return Number(s.slice(0,2))*60 + Number(s.slice(3)); };
+    var a = mins(start), b = mins(end);
+    return a < b ? (m >= a && m < b) : (m >= a || m < b);
+  }
+
+  // REMINDER_CATEGORY_LABEL / REMINDER_ACTION_ICON map the imported catalog's
+  // category/action strings to this app's i18n keys and icon set.
+  var REMINDER_CATEGORY_LABEL = { daily: "reminders_category_daily", activity: "reminders_category_activity", care: "reminders_category_care" };
+  var REMINDER_ACTION_ICON = { open_walk:"paw", open_meal:"bowl", open_training:"cap", open_rest:"moon", open_appointment:"calendar", open_cleanup:"droplet" };
+  // Only these three actions map to something the app can actually do right
+  // now (walk flow, feed quiz, training practice) — the rest of the catalog's
+  // actions are informational-only in this phase, per the plan.
+  var REMINDER_ACTIONABLE = { open_walk:true, open_meal:true, open_training:true };
+
+  // Picks the catalog templates that apply to one breed+stage+mode, preferring
+  // a breed-specific template over a shared "all" one when both would fire for
+  // the same (stage, action, trigger) — the pack requires never activating a
+  // generic and a specific message for the same occurrence.
+  function selectReminderTemplates(breedId, stage, mode){
+    var lookupStage = stage === "senior" ? "adult" : stage;
+    var matches = (typeof NOTIFICATION_CATALOG !== "undefined" ? NOTIFICATION_CATALOG : []).filter(function(t){
+      return (t.stage === lookupStage || t.stage === "all") && (t.breed_id === breedId || t.breed_id === "all") &&
+        t.supported_modes.indexOf(mode) !== -1 && t.body_by_mode && t.body_by_mode[mode];
+    });
+    var byKey = {};
+    matches.forEach(function(t){
+      // Dedup by (action, trigger) rather than (stage, action, trigger) so a
+      // stage:"all" generic template still collides correctly with a
+      // stage-specific breed template covering the same occurrence.
+      var key = t.action + "|" + t.trigger;
+      var existing = byKey[key];
+      var tIsGeneric = t.stage === "all" || t.breed_id === "all";
+      var existingIsGeneric = existing && (existing.stage === "all" || existing.breed_id === "all");
+      if (!existing || (existingIsGeneric && !tIsGeneric)) byKey[key] = t;
+    });
+    return Object.keys(byKey).map(function(k){ return byKey[k]; }).sort(function(a,b){ return b.priority - a.priority; });
+  }
+
+  // Maps a template's action to whether the underlying care need is actually
+  // due right now, using the same thresholds the rest of the app already uses
+  // (TRAIN_READY_THRESHOLD via trainingBlockReason, the existing energy/
+  // hunger/bladder stat scale). Informational-only actions are never "due".
+  function reminderDueInfo(tmpl){
+    if (tmpl.action === "open_walk") return state.energy < 30 || state.bladder < 30;
+    if (tmpl.action === "open_meal") return state.hunger < 30;
+    if (tmpl.action === "open_training"){
+      var cooldownLeft = trainCooldownHours(state.dogDays)*HOUR - (Date.now() - state.lastTrainedAt);
+      return cooldownLeft <= 0 && !trainingBlockReason();
+    }
+    return false;
+  }
+
+  // Drives the Reminders today-tile subtitle without building the full list.
+  function remindersDueCount(){
+    if (!state) return 0;
+    var templates = selectReminderTemplates(state.breedId, stageOf(state.dogDays), "simulation");
+    return templates.filter(function(t){ return REMINDER_ACTIONABLE[t.action] && reminderDueInfo(t); }).length;
+  }
+
+  // Ported near-verbatim from reference/decision.mjs's decide(). Pure
+  // eligibility chain — the caller (scheduleReminderNotifications) supplies
+  // every field from real app state; this file never invents a field.
+  function reminderDecide(x){
+    function no(reason){ return { send:false, reason:reason }; }
+    if (!x.active || !x.enabled || !x.permission || !x.categoryEnabled) return no('disabled');
+    if (!x.matches || !x.supportedMode) return no('mismatch');
+    if (x.resolved) return no('resolved');
+    if (x.alreadyDispatchedAttempt) return no('duplicate');
+    if (x.now >= x.expiresAt) return no('expired');
+    if (x.now < x.dueAt || x.now < (x.snoozedUntil||0)) return no('not_due');
+    if (quietAt(x.now, x.timezone, x.quietStart, x.quietEnd)) return no('quiet');
+    if (x.userCount >= x.userCap || x.dogCount >= x.dogCap) return no('quota');
+    if (x.lastSentAt != null && x.now - x.lastSentAt < x.spacingMinutes*60000) return no('spacing');
+    return { send:true, reason:'eligible' };
+  }
+
+  var REMINDER_FREQ_CAP_KEY = { gentle:"gentle", balanced:"balanced", more_frequent:"more_frequent" };
+  // Local-notification scheduling, phase 1: no APNs/FCM credentials exist
+  // (confirmed with the user), so this schedules genuine on-device
+  // LocalNotifications on native builds, and falls back to the existing
+  // in-app Notification-API poll (checkNotify's pattern) on web/PWA where
+  // that plugin no-ops. Never claims remote push or cross-device delivery.
+  function scheduleReminderNotifications(){
+    if (!state || !state.settings.notifications) return;
+    var perm = ("Notification" in window) ? Notification.permission : "unsupported";
+    var LN = (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.LocalNotifications) || null;
+    if (!LN && perm !== "granted") return;
+
+    var cats = state.settings.reminderCategories || { daily:true, activity:true, care:true };
+    var quietStart = state.settings.reminderQuietStart || "22:00";
+    var quietEnd = state.settings.reminderQuietEnd || "08:00";
+    var freqTier = state.settings.reminderFrequency || "gentle";
+    var policy = (typeof NOTIFICATION_POLICY !== "undefined") ? NOTIFICATION_POLICY : null;
+    var lifeStageKey = stageOf(state.dogDays) === "senior" ? "adult" : stageOf(state.dogDays);
+    var userCap = (policy && policy.max_pushes_per_user_local_day) || 8;
+    var dogCap = (policy && policy.push_limits && policy.push_limits[freqTier] && policy.push_limits[freqTier][lifeStageKey]) || userCap;
+    var spacingMinutes = (policy && policy.minimum_minutes_between_pushes) || 60;
+    var zone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+    var now = Date.now();
+    var todayKey = new Date(now).toDateString();
+
+    state.reminderDispatch = state.reminderDispatch || { day: todayKey, count: 0, lastSentAt: null, sentIds: {} };
+    if (state.reminderDispatch.day !== todayKey) state.reminderDispatch = { day: todayKey, count: 0, lastSentAt: null, sentIds: {} };
+
+    var templates = selectReminderTemplates(state.breedId, stageOf(state.dogDays), "simulation");
+    var toSend = [];
+    templates.forEach(function(t){
+      if (!REMINDER_ACTIONABLE[t.action]) return;
+      var due = reminderDueInfo(t);
+      var decision = reminderDecide({
+        active: true, enabled: true, permission: (perm === "granted" || !!LN), categoryEnabled: !!cats[t.category],
+        matches: true, supportedMode: t.supported_modes.indexOf("simulation") !== -1,
+        resolved: false, alreadyDispatchedAttempt: !!state.reminderDispatch.sentIds[t.id],
+        now: now, expiresAt: now + (t.ttl_minutes||180)*60000,
+        dueAt: due ? now : now + 999999999999, snoozedUntil: 0,
+        timezone: zone, quietStart: quietStart, quietEnd: quietEnd,
+        userCount: state.reminderDispatch.count, userCap: userCap,
+        dogCount: state.reminderDispatch.count, dogCap: dogCap,
+        lastSentAt: state.reminderDispatch.lastSentAt, spacingMinutes: spacingMinutes
+      });
+      if (decision.send) toSend.push(t);
+    });
+    if (!toSend.length) return;
+    var t = toSend[0];
+    var title = (t.title||"").replace("{dogName}", state.name);
+    var body = (t.body_by_mode && t.body_by_mode.simulation) || "";
+    if (LN){
+      LN.schedule({ notifications: [{ id: Math.floor(Math.random()*1000000), title: title, body: body, sound: (state.settings.reminderBark ? undefined : null) }] }).catch(function(){});
+    } else {
+      try { new Notification(title, { body: body, tag: "reminder-" + t.id }); } catch(e){}
+    }
+    state.reminderDispatch.count++;
+    state.reminderDispatch.lastSentAt = now;
+    state.reminderDispatch.sentIds[t.id] = now;
+    save();
+  }
+
   function wellnessScore(){
     return state.hunger*0.15 + state.bladder*0.15 + state.energy*0.15 + state.bond*0.3 + state.health*0.25;
   }
@@ -3611,6 +3819,8 @@
     else if (view === "profileHealth") root.innerHTML = brandStrip() + renderProfileHealth();
     else if (view === "profileLife") root.innerHTML = brandStrip() + renderProfileLife();
     else if (view === "profileSettings") root.innerHTML = brandStrip() + renderProfileSettings();
+    else if (view === "reminders") root.innerHTML = brandStrip() + renderReminders();
+    else if (view === "reminderPrefs") root.innerHTML = brandStrip() + renderReminderPreferences();
     else if (view === "journeyDays") root.innerHTML = brandStrip() + renderJourneyDays();
     else if (view === "journeyTrend") root.innerHTML = brandStrip() + renderJourneyTrend();
     else if (view === "journeyMilestones") root.innerHTML = brandStrip() + renderJourneyMilestones();
@@ -4118,6 +4328,9 @@
       todayTileHTML('compass', 'tan', tr('today_tile_discover',"Discover their world"),
         tr('today_tile_discover_sub',"Today's tip & breed notes"),
         'data-today-tile="discover"') +
+      todayTileHTML('bell', 'tan', tr('today_tile_reminders','Reminders'),
+        remindersDueCount() > 0 ? tr('today_tile_reminders_due','{n} due now').replace('{n}', remindersDueCount()) : tr('today_tile_reminders_ontrack','All caught up'),
+        'data-today-tile="reminders"') +
     '</div>';
 
     return '' +
@@ -4695,6 +4908,123 @@
         (incidentLine ? '<p class="muted" style="margin-top:8px;">'+incidentLine+'</p>' : '') +
         '<div class="fact-row" style="margin-top:10px; font-size:13px; color:var(--ink);">'+icon('wallet',14)+'<span>'+tr('life_real_spend','Real spend: ')+'€'+costSoFar(breed, realDaysElapsed)+'</span></div>' +
         '<div class="fact-row" style="font-size:13px; color:var(--ink);">'+icon('x',14)+'<span>'+tr('life_incidents','Incidents: ')+totalIncidents+'</span></div>' +
+      '</div>';
+  }
+  // Reminders screen: categorized care-need cards for the current breed/
+  // stage, sourced from the imported catalog (www/notifications-catalog.js).
+  // Opening this screen never completes care — only tapping an actionable,
+  // due card does (it navigates to the existing walk/feed/training flow,
+  // same as the Today tiles), per the conception pack's own requirement.
+  function renderReminders(){
+    var mode = "simulation";
+    var stage = stageOf(state.dogDays);
+    var templates = selectReminderTemplates(state.breedId, stage, mode);
+    var programDay = Math.max(1, Math.min(30, tripDay()+1));
+    var unlocked = unlockedSkillIds(programDay);
+    var CATS = ["daily","activity","care"];
+    var anyRows = false;
+    var sectionsHTML = CATS.map(function(cat){
+      var rows = templates.filter(function(t){ return t.category === cat; }).map(function(t){
+        var due = reminderDueInfo(t);
+        var body = (t.body_by_mode && t.body_by_mode[mode]) || "";
+        var title = (t.title||"").replace("{dogName}", esc(state.name));
+        var actionable = REMINDER_ACTIONABLE[t.action];
+        var attrs = "";
+        if (actionable && due){
+          if (t.action === "open_training" && unlocked.length && !trainingBlockReason()){
+            attrs = 'data-train="'+unlocked[unlocked.length-1]+'"';
+          } else if (t.action !== "open_training"){
+            attrs = 'data-remind-action="'+t.action+'"';
+          }
+        }
+        return rowCardHTML({
+          icon: REMINDER_ACTION_ICON[t.action] || "bell",
+          color: due ? "warn" : "teal",
+          title: esc(title),
+          subtitle: esc(body),
+          pillText: due ? tr('reminders_due_now','Due now') : tr('reminders_on_track','On track'),
+          attrs: attrs
+        });
+      }).join("");
+      if (!rows) return "";
+      anyRows = true;
+      return '<div class="section-title" style="margin:18px 2px 10px;">'+tr(REMINDER_CATEGORY_LABEL[cat])+'</div>' + rows;
+    }).join("");
+
+    var recentHTML = (state.journal||[]).filter(function(j){
+      return tripDayOf(j.ts) === tripDay();
+    }).slice(0,4).map(function(j){
+      return '<div class="j-entry"><div class="j-time">'+timeAgo(j.ts)+'</div><div class="j-text">'+esc(j.text)+'</div></div>';
+    }).join("");
+
+    return '' +
+      '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('reminders_title','Reminders')+'</h1></div>' +
+      '<p class="muted" style="font-size:13px; margin-top:-8px; padding:0 4px;">'+tr('reminders_subtitle','What {dogName} could use right now.').replace('{dogName}', esc(state.name))+'</p>' +
+      '<button class="btn-chip" id="reminder-prefs-btn" style="margin:10px 4px 0;">'+icon('gear',13)+' '+tr('reminders_open_prefs','Notification preferences')+'</button>' +
+      (anyRows ? sectionsHTML : '<div class="card" style="margin-top:14px;"><div class="muted">'+tr('reminders_empty','Nothing due right now — check back later.')+'</div></div>') +
+      (recentHTML ? '<div class="card" style="margin-top:14px;"><div class="section-title">'+tr('reminders_today_so_far','Today so far')+'</div>'+recentHTML+'</div>' : '');
+  }
+
+  var REMINDER_FREQ_OPTIONS = ["gentle","balanced","more_frequent"];
+  // Preferences sub-screen off Settings: categories, quiet hours, frequency,
+  // bark opt-in (off by default), and device permission status. Persists to
+  // state.settings for simulation mode — matches how every other setting
+  // already persists (renderSettingsCard, same pattern).
+  function renderReminderPreferences(){
+    var s = state.settings;
+    var cats = s.reminderCategories || { daily:true, activity:true, care:true };
+    var quietStart = s.reminderQuietStart || "22:00";
+    var quietEnd = s.reminderQuietEnd || "08:00";
+    var freq = s.reminderFrequency || "gentle";
+    var bark = !!s.reminderBark;
+    var permission = ("Notification" in window) ? Notification.permission : "unsupported";
+
+    var catRows = ["daily","activity","care"].map(function(cat){
+      return '<div class="setting-row">' +
+        '<div class="setting-copy"><div class="title">'+tr(REMINDER_CATEGORY_LABEL[cat])+'</div></div>' +
+        '<input class="switch" type="checkbox" data-remind-cat="'+cat+'" '+(cats[cat] ? "checked" : "")+'>' +
+      '</div>';
+    }).join("");
+
+    var freqLabels = { gentle: tr('reminders_freq_gentle','Gentle'), balanced: tr('reminders_freq_balanced','Balanced'), more_frequent: tr('reminders_freq_more','More frequent') };
+    var freqRows = REMINDER_FREQ_OPTIONS.map(function(f){
+      return '<button type="button" class="btn-chip'+(freq===f?' active':'')+'" data-remind-freq="'+f+'" style="margin-right:6px; margin-bottom:6px;">'+freqLabels[f]+'</button>';
+    }).join("");
+
+    var permissionLine = permission === "granted" ? tr('reminders_permission_granted','Notifications are allowed on this device.')
+      : permission === "denied" ? tr('reminders_permission_denied','Notifications are blocked in your device settings.')
+      : tr('reminders_permission_unset','Not yet requested.');
+
+    return '' +
+      '<button class="btn-ghost" id="back-reminders">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('reminder_prefs_title','Notification preferences')+'</h1></div>' +
+      '<div class="card">' +
+        '<div class="section-title">'+tr('reminder_prefs_categories','Categories')+'</div>' +
+        catRows +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">'+tr('reminder_prefs_frequency','Frequency')+'</div>' +
+        '<div>'+freqRows+'</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">'+tr('reminder_prefs_quiet_hours','Quiet hours')+'</div>' +
+        '<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px;">' +
+          '<div><label class="caveat" style="display:block; margin-bottom:4px;">'+tr('reminder_prefs_quiet_start','Start')+'</label><input type="time" id="reminder-quiet-start" value="'+quietStart+'"></div>' +
+          '<div><label class="caveat" style="display:block; margin-bottom:4px;">'+tr('reminder_prefs_quiet_end','End')+'</label><input type="time" id="reminder-quiet-end" value="'+quietEnd+'"></div>' +
+        '</div>' +
+        '<p class="muted" style="font-size:12px; margin-top:8px;">'+tr('reminder_prefs_quiet_note','No reminders are scheduled during this window.')+'</p>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="setting-row">' +
+          '<div class="setting-copy"><div class="title">'+tr('reminder_prefs_bark','Let the dog "bark" (sound)')+'</div><div class="caveat">'+tr('reminder_prefs_bark_note','Off by default.')+'</div></div>' +
+          '<input class="switch" type="checkbox" id="reminder-bark-toggle" '+(bark?"checked":"")+'>' +
+        '</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="section-title">'+tr('reminder_prefs_permission','Device permission')+'</div>' +
+        '<p class="muted" style="font-size:13px;">'+permissionLine+'</p>' +
+        (permission !== "granted" ? '<button class="btn btn-chip" id="reminder-request-permission" style="margin-top:6px;">'+tr('reminder_prefs_enable','Enable notifications')+'</button>' : '') +
       '</div>';
   }
   function renderProfileSettings(){
@@ -6437,7 +6767,7 @@
       });
     }
 
-    if (view === "home" || view === "walksDetail" || view === "costsDetail" || view === "profileWellbeing" || view === "profileHealth" || view === "profileSettings" || view === "journeyDays" || view === "journeyMilestones" || view === "journeyReport"){
+    if (view === "home" || view === "walksDetail" || view === "costsDetail" || view === "profileWellbeing" || view === "profileHealth" || view === "profileSettings" || view === "journeyDays" || view === "journeyMilestones" || view === "journeyReport" || view === "reminders"){
       root.querySelectorAll("[data-tab]").forEach(function(el){
         el.addEventListener("click", function(){
           activeTab = el.getAttribute("data-tab");
@@ -6498,7 +6828,7 @@
       if (playBtn) playBtn.addEventListener("click", function(){
         view = "safeActivities"; render();
       });
-      var TODAY_TILE_VIEWS = { walks:"walksDetail", journal:"journal", budget:"costsDetail", away:"leaveSetup", discover:"discoverToday" };
+      var TODAY_TILE_VIEWS = { walks:"walksDetail", journal:"journal", budget:"costsDetail", away:"leaveSetup", discover:"discoverToday", reminders:"reminders" };
       root.querySelectorAll("[data-today-tile]").forEach(function(el){
         el.addEventListener("click", function(){
           view = TODAY_TILE_VIEWS[el.getAttribute("data-today-tile")] || "home";
@@ -6582,6 +6912,20 @@
             startedAt: Date.now()
           };
           view = "trainPractice"; render();
+        });
+      });
+      root.querySelectorAll("[data-remind-action]").forEach(function(el){
+        el.addEventListener("click", function(){
+          var action = el.getAttribute("data-remind-action");
+          if (action === "open_walk"){
+            if (state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined"){
+              walkCtx = null; view = "walkSteps"; render();
+            } else if (state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
+            else doManualWalk();
+          } else if (action === "open_meal"){
+            feedQuizCtx = { question: pickFeedingQuestion(), answer: null };
+            view = "feedQuiz"; render();
+          }
         });
       });
       var trainBlockedBtn = document.getElementById("train-blocked-gohome");
@@ -6805,6 +7149,49 @@
     if (view === "profileWellbeing" || view === "profileProgress" || view === "profileHealth" || view === "profileLife" || view === "profileSettings"){
       document.getElementById("back-home").addEventListener("click", function(){
         view = "home"; render();
+      });
+    }
+
+    if (view === "reminders"){
+      document.getElementById("back-home").addEventListener("click", function(){
+        view = "home"; render();
+      });
+      var remPrefsBtn = document.getElementById("reminder-prefs-btn");
+      if (remPrefsBtn) remPrefsBtn.addEventListener("click", function(){
+        view = "reminderPrefs"; render();
+      });
+    }
+
+    if (view === "reminderPrefs"){
+      document.getElementById("back-reminders").addEventListener("click", function(){
+        view = "reminders"; render();
+      });
+      root.querySelectorAll("[data-remind-cat]").forEach(function(el){
+        el.addEventListener("change", function(){
+          var cat = el.getAttribute("data-remind-cat");
+          state.settings.reminderCategories = state.settings.reminderCategories || { daily:true, activity:true, care:true };
+          state.settings.reminderCategories[cat] = el.checked;
+          save();
+        });
+      });
+      root.querySelectorAll("[data-remind-freq]").forEach(function(el){
+        el.addEventListener("click", function(){
+          state.settings.reminderFrequency = el.getAttribute("data-remind-freq");
+          save(); render();
+        });
+      });
+      var qStart = document.getElementById("reminder-quiet-start");
+      if (qStart) qStart.addEventListener("change", function(){ state.settings.reminderQuietStart = qStart.value; save(); });
+      var qEnd = document.getElementById("reminder-quiet-end");
+      if (qEnd) qEnd.addEventListener("change", function(){ state.settings.reminderQuietEnd = qEnd.value; save(); });
+      var barkToggle = document.getElementById("reminder-bark-toggle");
+      if (barkToggle) barkToggle.addEventListener("change", function(){ state.settings.reminderBark = barkToggle.checked; save(); });
+      var permBtn = document.getElementById("reminder-request-permission");
+      if (permBtn) permBtn.addEventListener("click", function(){
+        var LN = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.LocalNotifications;
+        if (LN){ LN.requestPermissions().then(function(){ render(); }); return; }
+        if (!("Notification" in window)){ window.alert("This browser doesn't support notifications."); return; }
+        Notification.requestPermission().then(function(){ render(); });
       });
     }
 
@@ -7521,6 +7908,7 @@
     if (state && view === "home"){
       tickHome(Date.now());
       checkNotify();
+      scheduleReminderNotifications();
       maybeInterceptView();
       render();
     }
@@ -7536,6 +7924,12 @@
     }
     if (!state.settings) state.settings = { notifications:false, gpsWalks:false, stepWalks:false };
     if (state.settings.stepWalks === undefined) state.settings.stepWalks = false;
+    if (!state.settings.reminderCategories) state.settings.reminderCategories = { daily:true, activity:true, care:true };
+    if (state.settings.reminderQuietStart === undefined) state.settings.reminderQuietStart = "22:00";
+    if (state.settings.reminderQuietEnd === undefined) state.settings.reminderQuietEnd = "08:00";
+    if (state.settings.reminderFrequency === undefined) state.settings.reminderFrequency = "gentle";
+    if (state.settings.reminderBark === undefined) state.settings.reminderBark = false;
+    if (!state.reminderDispatch) state.reminderDispatch = { day: new Date().toDateString(), count: 0, lastSentAt: null, sentIds: {} };
     if (!state.lang) state.lang = uiLang || "en";
     uiLang = state.lang;
     if (!state.lastNotified) state.lastNotified = { hunger:0, bladder:0, energy:0 };

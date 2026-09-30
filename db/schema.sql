@@ -108,3 +108,57 @@ CREATE TABLE IF NOT EXISTS training_sessions (
 );
 
 CREATE INDEX IF NOT EXISTS idx_training_sessions_dog ON training_sessions(dog_id);
+
+-- Smart reminders, phase 1 (local notifications only — see www/notifications-catalog.js
+-- and the reminder_decide()/quietAt() port in www/index.html). One row per user:
+-- multiple dogs/devices share the same quota and quiet-hours settings, matching
+-- the imported policy ("multiple dogs/devices share the user cap").
+CREATE TABLE IF NOT EXISTS notification_preferences (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL UNIQUE REFERENCES users(id),
+  enabled INTEGER NOT NULL DEFAULT 0,
+  categories_json TEXT NOT NULL DEFAULT '{"daily":true,"activity":true,"care":true}',
+  quiet_start TEXT NOT NULL DEFAULT '22:00',
+  quiet_end TEXT NOT NULL DEFAULT '08:00',
+  frequency TEXT NOT NULL DEFAULT 'gentle',
+  bark INTEGER NOT NULL DEFAULT 0,
+  time_zone TEXT,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+
+-- Forward shape only for now, matching reference/INTEGRATION.md's
+-- ReminderSchedule/ReminderOccurrence contract — no app code reads or writes
+-- these two tables yet (after-adoption push still needs real APNs/FCM
+-- credentials this project doesn't have). They exist so a later remote-push
+-- phase can slot in without a schema rewrite.
+CREATE TABLE IF NOT EXISTS reminder_schedules (
+  id TEXT PRIMARY KEY,
+  dog_id TEXT NOT NULL REFERENCES real_dogs(id),
+  user_id TEXT NOT NULL REFERENCES users(id),
+  template_id TEXT NOT NULL,
+  category TEXT NOT NULL,
+  trigger TEXT NOT NULL,
+  enabled INTEGER NOT NULL DEFAULT 1,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_reminder_schedules_dog ON reminder_schedules(dog_id);
+
+CREATE TABLE IF NOT EXISTS reminder_occurrences (
+  id TEXT PRIMARY KEY,
+  schedule_id TEXT REFERENCES reminder_schedules(id),
+  dog_id TEXT NOT NULL REFERENCES real_dogs(id),
+  user_id TEXT NOT NULL REFERENCES users(id),
+  template_id TEXT NOT NULL,
+  due_at INTEGER NOT NULL,
+  expires_at INTEGER NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending',
+  snoozed_until INTEGER,
+  completed_at INTEGER,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_reminder_occurrences_dog ON reminder_occurrences(dog_id);
