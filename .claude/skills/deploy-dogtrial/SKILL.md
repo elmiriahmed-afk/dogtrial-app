@@ -61,7 +61,25 @@ If `www/media/**` has new or changed files referenced by relative path (e.g. tra
 
 ## 3. Rebuild the standalone PWA bundle
 
-The deploy directory is `/tmp/dogtrial-site-deploy` (may not survive a host reboot — if missing, recreate it by curling the currently-live files from dogtrial.dog rather than guessing, so an incomplete directory doesn't regress the live site: root `index.html`, `app/manifest.json`, `app/icon-192.png`, `app/icon-512.png`, `app/apple-touch-icon.png`).
+The deploy directory is `/tmp/dogtrial-site-deploy` and may not survive a host reboot. If missing, rebuild it from the repo, not by curling — curling only reproduces whatever's *currently* live, which silently drops anything that was never actually deployed (this bit us twice: `functions/` and `site/privacy.html` were both in the repo for a long time but missing from every deploy, because they'd never been curl-reconstructed correctly and nothing in the deploy output said so).
+
+```bash
+rm -rf /tmp/dogtrial-site-deploy
+mkdir -p /tmp/dogtrial-site-deploy/app
+cp site/index.html site/privacy.html site/support.html /tmp/dogtrial-site-deploy/
+cp -R functions /tmp/dogtrial-site-deploy/functions
+for f in manifest.json icon-192.png icon-512.png apple-touch-icon.png; do
+  curl -s -o "/tmp/dogtrial-site-deploy/app/$f" "https://dogtrial.dog/app/$f"
+done
+```
+
+The marketing pages at the deploy root (`index.html`, `privacy.html`, `support.html`, any future `site/*.html`) always come from `site/`, never from curl — curl is only safe for the binary PWA icons above, which genuinely are static and already correct on the live site. **On every deploy** (not just when recreating the directory), re-sync `site/*.html` and `functions/` straight from the repo, the same way:
+
+```bash
+cp site/*.html /tmp/dogtrial-site-deploy/
+rm -rf /tmp/dogtrial-site-deploy/functions
+cp -R functions /tmp/dogtrial-site-deploy/functions
+```
 
 Copy the source and inject the PWA head tags right after the `mobile-web-app-capable` meta tag:
 
@@ -109,6 +127,24 @@ For new media files, check each one directly:
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" "https://dogtrial.dog/app/media/training/<file>.mp4"
+```
+
+**Always also confirm the API is still live** — this is the check that would have caught the functions/ omission (see above), and it's cheap:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" -X POST https://dogtrial.dog/api/login -H "Content-Type: application/json" -d '{"email":"a@a.com","password":"wrongpassword12"}'
+```
+
+Expect `400` or `401` with a JSON error body. A `405` means the Functions bundle didn't deploy (check the wrangler output above for a line reading "Uploading Functions bundle" — its absence means no functions were detected in the deploy directory).
+
+**Also confirm the marketing pages resolve to their own content, not the homepage** — this is the check that would have caught `site/privacy.html` and `site/support.html` silently missing from every deploy:
+
+```bash
+home_size=$(curl -s https://dogtrial.dog/ | wc -c)
+for p in privacy support; do
+  sz=$(curl -s "https://dogtrial.dog/$p" | wc -c)
+  if [ "$sz" = "$home_size" ]; then echo "$p: MISSING — falling back to homepage"; else echo "$p: OK ($sz bytes)"; fi
+done
 ```
 
 Report back with what changed and confirmation it's live — don't just say "done", show the proof (test result, curl output, or screenshot).

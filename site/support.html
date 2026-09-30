@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support — DogTrial</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#F6F4EC; --card:#FFFFFF; --card-2:#EFECE0; --ink:#1B2420; --ink-soft:#57645C;
+    --ink-faint:#8B9790; --line:#DEDACB; --pine:#2F5D50; --pine-deep:#1F4438; --pine-soft:#E1EBE6;
+    --shadow:0 1px 2px rgba(27,36,32,.05), 0 12px 32px rgba(27,36,32,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#131C17; --card:#1B2620; --card-2:#20302A; --ink:#ECEEE8; --ink-soft:#9FB0A6;
+      --ink-faint:#657069; --line:#2B3A33; --pine:#7FB88D; --pine-deep:#9ED0AA; --pine-soft:#20332A;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#131C17; --card:#1B2620; --card-2:#20302A; --ink:#ECEEE8; --ink-soft:#9FB0A6;
+    --ink-faint:#657069; --line:#2B3A33; --pine:#7FB88D; --pine-deep:#9ED0AA; --pine-soft:#20332A;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0; background:var(--paper); color:var(--ink);}
+  body{ font-family:"IBM Plex Sans",system-ui,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  h1,h2{ font-family:"Fraunces",Georgia,serif; text-wrap:balance; margin:0; }
+  a{ color:var(--pine); }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 24px; }
+  header.nav{ border-bottom:1px solid var(--line); padding:18px 0; }
+  .nav-inner{ max-width:760px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; }
+  .brand{ font-family:"Fraunces",serif; font-weight:700; font-size:19px; }
+  .brand a{ text-decoration:none; color:var(--ink); }
+  main{ padding:56px 0 80px; }
+  h1{ font-size:clamp(30px,4vw,40px); font-weight:600; margin-bottom:6px; }
+  .updated{ color:var(--ink-faint); font-size:13.5px; margin-bottom:40px; }
+  h2{ font-size:21px; font-weight:600; margin-top:40px; margin-bottom:12px; color:var(--pine-deep); }
+  p, li{ color:var(--ink-soft); font-size:15.5px; }
+  ul{ padding-left:22px; }
+  li{ margin-bottom:8px; }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 24px; box-shadow:var(--shadow); margin:28px 0; }
+  .card strong{ color:var(--ink); }
+  .btn{ display:inline-flex; align-items:center; gap:8px; border-radius:9px; padding:12px 20px; font-size:15px; font-weight:600; text-decoration:none; background:var(--pine); color:#fff; margin-top:8px; }
+  .btn:hover{ background:var(--pine-deep); }
+  footer{ border-top:1px solid var(--line); padding:28px 0; color:var(--ink-faint); font-size:13px; }
+  footer .wrap{ display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/">DogTrial</a></div>
+    <div><a href="/">&larr; Back to dogtrial.dog</a></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Support</h1>
+  <div class="updated">Questions, problems, or feedback about DogTrial</div>
+
+  <div class="card">
+    <strong>Fastest way to reach us:</strong> email <a href="/cdn-cgi/l/email-protection#a1c4cdccc8d3c88fc0c9ccc4c5e1c6ccc0c8cd8fc2cecc"><span class="__cf_email__" data-cfemail="50353c3d3922397e31383d353410373d31393c7e333f3d">[email&#160;protected]</span></a> with a short description of what's happening — screenshots help a lot if it's a visual or crash issue. We read and answer every message.
+    <br><a class="btn" href="mailto:elmiri.ahmed@gmail.com?subject=DogTrial%20support">Email support &rarr;</a>
+  </div>
+
+  <h2>Account &amp; sign-in</h2>
+  <p>If you can't create an account or log in, double check your email is entered correctly and your password is at least 8 characters. If you're still stuck, email us the address you signed up with (never your password) and we'll help sort it out.</p>
+
+  <h2>Something looks wrong in the app</h2>
+  <p>DogTrial is under active development, and we fix reported issues quickly. When you email us about a bug, it helps to include: what screen you were on, what you tapped, and what you expected to happen instead.</p>
+
+  <h2>Data &amp; privacy questions</h2>
+  <p>Most of your trial data (feeding, walks, training, journal) lives only on your device and never reaches our servers. For the full breakdown of what's stored and where, see our <a href="/privacy">Privacy Policy</a>.</p>
+
+  <h2>Feature requests</h2>
+  <p>Ideas for what DogTrial should simulate next are always welcome — send them to the same address above.</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>DogTrial — a rehearsal, not a toy.</span>
+    <span>dogtrial.dog</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
