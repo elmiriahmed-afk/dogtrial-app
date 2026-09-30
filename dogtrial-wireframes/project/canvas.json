@@ -1,0 +1,25 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-09-22T15:00:00Z"},
+  "title": "DogTrial — Wireframes complets",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Splash.dc.html": {"x": 0, "y": 0, "w": 390, "h": 844, "title": "Démarrage", "is_interactive": true},
+    "Onboarding.dc.html": {"x": 470, "y": 0, "w": 390, "h": 844, "title": "Onboarding (race)", "is_interactive": true},
+    "Today-Simu.dc.html": {"x": 940, "y": 0, "w": 390, "h": 844, "title": "Simulation — Aujourd'hui", "is_interactive": true},
+    "Report30.dc.html": {"x": 1410, "y": 0, "w": 390, "h": 844, "title": "Bilan des 30 jours", "is_interactive": true},
+    "Main.dc.html": {"x": 1880, "y": 0, "w": 390, "h": 844, "title": "Life Together — Aujourd'hui", "is_interactive": true},
+    "Routines.dc.html": {"x": 2350, "y": 0, "w": 390, "h": 844, "title": "Routines", "is_interactive": true},
+    "Entrainement.dc.html": {"x": 2820, "y": 0, "w": 390, "h": 844, "title": "Éducation", "is_interactive": true},
+    "Sante.dc.html": {"x": 3290, "y": 0, "w": 390, "h": 844, "title": "Santé", "is_interactive": true},
+    "Premium.dc.html": {"x": 3760, "y": 0, "w": 390, "h": 844, "title": "Offre Premium", "is_interactive": true}
+  },
+  "order": ["Splash.dc.html", "Onboarding.dc.html", "Today-Simu.dc.html", "Report30.dc.html", "Main.dc.html", "Routines.dc.html", "Entrainement.dc.html", "Sante.dc.html", "Premium.dc.html"],
+  "notes": {
+    "note1": {"x": 0, "y": -90, "text": "Parcours simulation (30 jours)", "kind": "title1"},
+    "note2": {"x": 1880, "y": -90, "text": "Après adoption — Life Together", "kind": "title1"},
+    "note3": {"x": 0, "y": 870, "w": 4150, "text": "Hypothèses à valider : frontière Free/Premium = 1 chien actif + routines/rappels essentiels gratuits ; programme d'entraînement complet, historique santé étendu et multi-chien en Premium. Prix 3,99€/mois ou 24,99€/an — brouillon, non validé commercialement. Écrans simulation (splash à bilan) redessinés pour la maquette — l'app réelle a déjà son propre design équivalent.", "color": "orange"}
+  },
+  "designSystems": []
+}
