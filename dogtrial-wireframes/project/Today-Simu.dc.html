@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Simulation — Aujourd'hui</title>
+<script src="./support.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  body{margin:0;background:#0B0E15;}
+  *{box-sizing:border-box;}
+  .pf{font-family:'Poppins',system-ui,sans-serif;}
+  .inf{font-family:'Inter',system-ui,sans-serif;}
+  .tabb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
+</style>
+</helmet>
+
+<div class="inf" style="width:390px;height:844px;background:#0B0E15;color:#F4F5FA;position:relative;overflow:hidden;">
+
+  <div style="position:absolute;top:0;left:0;right:0;bottom:60px;overflow-y:auto;padding:18px 16px 20px;">
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:.05em;color:#697287;text-transform:uppercase;margin-bottom:14px;">Simulation · jour 7 / 30</div>
+
+    <div style="display:flex;align-items:center;gap:12px;background:#121722;border:1px solid #242B3A;border-radius:14px;padding:14px;margin-bottom:14px;">
+      <div style="width:52px;height:52px;border-radius:50%;background:#191F2D;border:2px solid #858EFF;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9DA4FF" stroke-width="1.6"><circle cx="7" cy="7.5" r="1.8"/><circle cx="12" cy="5.3" r="1.8"/><circle cx="17" cy="7.5" r="1.8"/><circle cx="19.2" cy="12.5" r="1.8"/><ellipse cx="12" cy="15.5" rx="5" ry="4"/></svg>
+      </div>
+      <div style="flex-grow:1;">
+        <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;background:rgba(133,142,255,.14);color:#9DA4FF;display:inline-block;margin-bottom:4px;">CHIOT</div>
+        <div class="pf" style="font-weight:700;font-size:16px;">Buddy</div>
+        <div style="font-size:11.5px;color:#A5ADBF;">Labrador · Appartement</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:16px;background:#121722;border:1px solid #242B3A;border-radius:14px;padding:16px;margin-bottom:14px;">
+      <div style="width:64px;height:64px;border-radius:50%;background:conic-gradient(#FFBD63 0% 73%, #242B3A 73% 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <div style="width:48px;height:48px;border-radius:50%;background:#121722;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">73%</div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:14.5px;margin-bottom:2px;">Un peu agité</div>
+        <div style="font-size:12px;color:#A5ADBF;">Quelques points méritent votre attention</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;background:#121722;border:1px solid #242B3A;border-radius:12px;padding:13px 14px;margin-bottom:20px;">
+      <div style="width:34px;height:34px;border-radius:9px;background:rgba(82,214,163,.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#52D6A3" stroke-width="2"><path d="M5.5 8.5a2 2 0 1 1 3-2.7l9.7 9.7a2 2 0 1 1-3 2.7z"/><circle cx="6" cy="6" r="1.6" fill="#52D6A3" stroke="none"/></svg>
+      </div>
+      <div style="flex-grow:1;"><div style="font-weight:600;font-size:14px;">Sortie</div><div style="font-size:12px;color:#A5ADBF;margin-top:1px;">Dans environ 42 min</div></div>
+      <div style="font-size:11px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(255,189,99,.14);color:#FFBD63;">À faire</div>
+    </div>
+
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#697287;margin-bottom:10px;">Tâches du jour</div>
+    <div style="display:flex;align-items:center;gap:12px;background:#121722;border:1px solid #242B3A;border-radius:12px;padding:13px 14px;margin-bottom:10px;">
+      <div style="width:34px;height:34px;border-radius:9px;background:rgba(133,142,255,.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA4FF" stroke-width="2"><ellipse cx="12" cy="8" rx="8" ry="3"/><path d="M4 8c0 5 3.5 9 8 9s8-4 8-9"/></svg>
+      </div>
+      <div style="flex-grow:1;"><div style="font-weight:600;font-size:14px;">Repas</div><div style="font-size:12px;color:#A5ADBF;margin-top:1px;">~14h55</div></div>
+      <div style="font-size:11px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(133,142,255,.14);color:#9DA4FF;">À faire</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;background:#121722;border:1px solid #242B3A;border-radius:12px;padding:13px 14px;">
+      <div style="width:34px;height:34px;border-radius:9px;background:rgba(255,189,99,.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFBD63" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10.5V16c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5"/></svg>
+      </div>
+      <div style="flex-grow:1;"><div style="font-weight:600;font-size:14px;">Entraînement</div><div style="font-size:12px;color:#A5ADBF;margin-top:1px;">Disponible maintenant</div></div>
+      <div style="font-size:11px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(255,189,99,.14);color:#FFBD63;">Disponible</div>
+    </div>
+
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;height:60px;background:#121722;border-top:1px solid #242B3A;display:flex;align-items:stretch;">
+    <a href="Today-Simu.dc.html" class="tabb" style="color:#9DA4FF;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/></svg>
+      <span style="font-size:9px;font-weight:600;">Auj.</span>
+    </a>
+    <div class="tabb" style="color:#697287;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <span style="font-size:9px;font-weight:500;">Santé</span>
+    </div>
+    <div class="tabb" style="color:#697287;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="7.5" r="1.6"/><circle cx="12" cy="5.3" r="1.6"/><circle cx="17" cy="7.5" r="1.6"/><circle cx="19.2" cy="12.5" r="1.6"/><ellipse cx="12" cy="15.5" rx="5" ry="4"/></svg>
+      <span style="font-size:9px;font-weight:500;">Sorties</span>
+    </div>
+    <div class="tabb" style="color:#697287;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10.5V16c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5"/></svg>
+      <span style="font-size:9px;font-weight:500;">Éduc.</span>
+    </div>
+    <div class="tabb" style="color:#697287;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>
+      <span style="font-size:9px;font-weight:500;">Dépenses</span>
+    </div>
+    <div class="tabb" style="color:#697287;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M15.3 8.7 13 13l-4.3 2.3L11 11z"/></svg>
+      <span style="font-size:9px;font-weight:500;">Vie</span>
+    </div>
+    <a href="Report30.dc.html" class="tabb" style="color:#697287;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V12"/><path d="M10 20V7"/><path d="M16 20v-9"/><path d="M4 20h16"/></svg>
+      <span style="font-size:9px;font-weight:500;">Bilan</span>
+    </a>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals(){ return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Entraînement</title>
+<script src="./support.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  body{margin:0;background:#0B0E15;}
+  *{box-sizing:border-box;}
+  .pf{font-family:'Poppins',system-ui,sans-serif;}
+  .inf{font-family:'Inter',system-ui,sans-serif;}
+</style>
+</helmet>
+
+<div class="inf" style="width:390px;height:844px;background:#0B0E15;color:#F4F5FA;position:relative;overflow:hidden;">
+
+  <div style="position:absolute;top:0;left:0;right:0;bottom:66px;overflow-y:auto;padding:22px 18px 20px;">
+
+    <div class="pf" style="font-weight:700;font-size:19px;margin-bottom:4px;">Éducation</div>
+    <div style="font-size:12.5px;color:#A5ADBF;margin-bottom:20px;">Programme en 8 semaines, une leçon à la fois</div>
+
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#52D6A3;margin-bottom:10px;">Semaine 1 · Accessible gratuitement</div>
+
+    <div style="display:flex;align-items:center;gap:12px;background:#121722;border:1px solid #242B3A;border-radius:12px;padding:13px 14px;margin-bottom:10px;">
+      <div style="width:23px;height:23px;border-radius:7px;background:#52D6A3;display:flex;align-items:center;justify-content:center;color:#0B0E15;font-size:13px;font-weight:700;flex-shrink:0;">✓</div>
+      <div style="flex-grow:1;"><div style="font-weight:600;font-size:14px;">Assis</div><div style="font-size:12px;color:#A5ADBF;margin-top:1px;">Leçon 1 · 3 min</div></div>
+      <div style="font-size:11px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(82,214,163,.14);color:#52D6A3;">Fait</div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;background:#121722;border:1px solid #858EFF;border-radius:12px;padding:13px 14px;margin-bottom:20px;">
+      <div style="width:23px;height:23px;border-radius:7px;border:2px solid #858EFF;flex-shrink:0;"></div>
+      <div style="flex-grow:1;"><div style="font-weight:600;font-size:14px;">Marche en laisse</div><div style="font-size:12px;color:#A5ADBF;margin-top:1px;">Leçon 2 · 4 min</div></div>
+      <div style="font-size:11px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(133,142,255,.14);color:#9DA4FF;">À faire</div>
+    </div>
+
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#697287;margin-bottom:10px;">Semaines 2 à 8 · Premium</div>
+
+    <sc-for list="{{locked}}" as="l" hint-placeholder-count="3">
+      <div style="display:flex;align-items:center;gap:12px;background:#121722;border:1px solid #242B3A;border-radius:12px;padding:13px 14px;margin-bottom:10px;opacity:.55;">
+        <div style="width:23px;height:23px;border-radius:7px;background:#191F2D;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#697287" stroke-width="2.2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        </div>
+        <div style="flex-grow:1;"><div style="font-weight:600;font-size:14px;">{{l.title}}</div><div style="font-size:12px;color:#A5ADBF;margin-top:1px;">{{l.meta}}</div></div>
+      </div>
+    </sc-for>
+
+    <a href="Premium.dc.html" style="display:block;background:linear-gradient(135deg,#9DA4FF,#6C74E8);border-radius:14px;padding:16px 18px;margin-top:14px;">
+      <div class="pf" style="color:#0B0E15;font-weight:700;font-size:14.5px;margin-bottom:4px;">Débloquer les 8 semaines</div>
+      <div style="color:#0B0E15;opacity:.75;font-size:12.5px;">Passer à DogTrial Premium →</div>
+    </a>
+
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;height:66px;background:#121722;border-top:1px solid #242B3A;display:flex;align-items:stretch;">
+    <a href="Main.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#697287;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/></svg>
+      <span style="font-size:10px;font-weight:500;">Aujourd'hui</span>
+    </a>
+    <a href="Routines.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#697287;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg>
+      <span style="font-size:10px;font-weight:500;">Routines</span>
+    </a>
+    <a href="Entrainement.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#9DA4FF;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10.5V16c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5"/></svg>
+      <span style="font-size:10px;font-weight:600;">Éducation</span>
+    </a>
+    <a href="Sante.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#697287;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <span style="font-size:10px;font-weight:500;">Santé</span>
+    </a>
+    <a href="Premium.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#697287;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>
+      <span style="font-size:10px;font-weight:500;">Plus</span>
+    </a>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals(){
+    return {
+      locked: [
+        { title:'Rappel (« viens »)', meta:'Semaine 2 · Leçon 5' },
+        { title:'Reste (« stay »)', meta:'Semaine 3 · Leçon 8' },
+        { title:'Marche sans tirer', meta:'Semaine 4 · Leçon 11' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

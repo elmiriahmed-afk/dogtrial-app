@@ -253,7 +253,7 @@
       <a href="#how" class="hide-sm">How It Works</a>
       <a href="#breeds" class="hide-sm">Breeds</a>
       <a href="#cost" class="hide-sm">Real Cost</a>
-      <a href="https://dogtrial.dog/app/" class="btn btn-primary btn-sm">Start Your Trial &rarr;</a>
+      <a href="https://dogtrial.dog/app/" data-store-cta class="btn btn-primary btn-sm">Start Your Trial &rarr;</a>
     </nav>
   </div>
 </header>
@@ -266,7 +266,7 @@
         <h1>Live it<br>before you adopt.</h1>
         <p class="lede">A realistic simulation of what living with a dog actually demands.</p>
         <div class="hero-ctas">
-          <a href="https://dogtrial.dog/app/" class="btn btn-primary">Start Your Trial &rarr;</a>
+          <a href="https://dogtrial.dog/app/" data-store-cta class="btn btn-primary">Start Your Trial &rarr;</a>
           <a href="#how" class="btn btn-ghost">See How It Works</a>
         </div>
         <div class="stats-row">
@@ -425,7 +425,7 @@
         <h2>Not just a decision.<br>A preparation.</h2>
         <p>Because a dog isn't a pet. It's a commitment. Thirty real days is how you find out if you're ready.</p>
         <div class="hero-ctas">
-          <a href="https://dogtrial.dog/app/" class="btn btn-primary">Start Your Trial &rarr;</a>
+          <a href="https://dogtrial.dog/app/" data-store-cta class="btn btn-primary">Start Your Trial &rarr;</a>
         </div>
       </div>
     </div>
@@ -3955,4 +3955,18 @@ var APP_ICON = "data:image/png;base64," +
   });
 
 </script>
-
+<script>
+// "Start Your Trial" -> native store on mobile (iOS: App Store, Android: Google Play),
+// web app elsewhere. Set APPSTORE_URL once the App Store listing is live.
+(function () {
+  var APPSTORE_URL = ""; // e.g. "https://apps.apple.com/app/dogtrial/id0000000000"
+  var PLAYSTORE_URL = "https://play.google.com/store/apps/details?id=dog.dogtrial.app";
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/i.test(ua);
+  var url = isIOS ? APPSTORE_URL : isAndroid ? PLAYSTORE_URL : "";
+  if (!url) return;
+  var links = document.querySelectorAll("[data-store-cta]");
+  for (var i = 0; i < links.length; i++) links[i].href = url;
+})();
+</script>
