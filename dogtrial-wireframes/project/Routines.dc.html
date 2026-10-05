@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Routines</title>
+<script src="./support.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  body{margin:0;background:#0B0E15;}
+  *{box-sizing:border-box;}
+  .pf{font-family:'Poppins',system-ui,sans-serif;}
+  .inf{font-family:'Inter',system-ui,sans-serif;}
+</style>
+</helmet>
+
+<div class="inf" style="width:390px;height:844px;background:#0B0E15;color:#F4F5FA;position:relative;overflow:hidden;">
+
+  <div style="position:absolute;top:0;left:0;right:0;bottom:66px;overflow-y:auto;padding:22px 18px 20px;">
+
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+      <a href="Main.dc.html" aria-label="Retour" style="width:32px;height:32px;border-radius:10px;background:#121722;border:1px solid #242B3A;display:flex;align-items:center;justify-content:center;color:#F4F5FA;flex-shrink:0;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 8 12l7 7"/></svg>
+      </a>
+      <div class="pf" style="font-weight:700;font-size:19px;">Routines</div>
+    </div>
+
+    <sc-for list="{{routines}}" as="r" hint-placeholder-count="4">
+      <div style="background:#121722;border:1px solid #242B3A;border-radius:12px;padding:13px 14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;opacity:{{r.rowOpacity}};">
+        <div style="flex-grow:1;min-width:0;">
+          <div style="font-weight:600;font-size:14px;">{{r.title}}</div>
+          <div style="font-size:12px;color:#A5ADBF;margin-top:2px;">{{r.time}} · {{r.freq}}</div>
+        </div>
+        <button onClick="{{r.toggle}}" aria-label="Activer ou désactiver" style="width:42px;height:24px;border-radius:100px;background:{{r.switchBg}};position:relative;flex-shrink:0;">
+          <span style="position:absolute;top:3px;left:{{r.knobPos}};width:18px;height:18px;border-radius:50%;background:#F4F5FA;transition:left .15s;"></span>
+        </button>
+      </div>
+    </sc-for>
+
+    <sc-if value="{{showForm}}" hint-placeholder-val="{{false}}">
+      <div style="background:#121722;border:1px solid #858EFF;border-radius:12px;padding:16px;margin-top:6px;">
+        <div class="pf" style="font-weight:700;font-size:14.5px;margin-bottom:12px;">Nouvelle routine</div>
+        <label style="display:block;font-size:11.5px;color:#A5ADBF;margin-bottom:5px;">Type</label>
+        <div style="display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap;">
+          <div style="font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:100px;background:rgba(133,142,255,.14);color:#9DA4FF;border:1px solid #858EFF;">Repas</div>
+          <div style="font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:100px;background:#191F2D;color:#A5ADBF;border:1px solid #242B3A;">Sortie</div>
+          <div style="font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:100px;background:#191F2D;color:#A5ADBF;border:1px solid #242B3A;">Jeu</div>
+          <div style="font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:100px;background:#191F2D;color:#A5ADBF;border:1px solid #242B3A;">Autre</div>
+        </div>
+        <label style="display:block;font-size:11.5px;color:#A5ADBF;margin-bottom:5px;">Heure</label>
+        <div style="background:#191F2D;border:1px solid #242B3A;border-radius:9px;padding:10px 12px;font-size:14px;margin-bottom:12px;">08:00</div>
+        <label style="display:block;font-size:11.5px;color:#A5ADBF;margin-bottom:5px;">Répétition</label>
+        <div style="background:#191F2D;border:1px solid #242B3A;border-radius:9px;padding:10px 12px;font-size:14px;margin-bottom:16px;">Tous les jours</div>
+        <div style="display:flex;gap:10px;">
+          <button onClick="{{toggleForm}}" style="flex:1;padding:11px;border-radius:100px;background:#191F2D;color:#A5ADBF;font-size:13.5px;font-weight:600;">Annuler</button>
+          <button onClick="{{toggleForm}}" style="flex:1;padding:11px;border-radius:100px;background:linear-gradient(135deg,#9DA4FF,#6C74E8);color:#0B0E15;font-size:13.5px;font-weight:700;">Créer</button>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{showAddBtn}}" hint-placeholder-val="{{true}}">
+      <button onClick="{{toggleForm}}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px dashed #2D3850;border-radius:12px;padding:14px;color:#A5ADBF;font-size:13.5px;font-weight:600;margin-top:6px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        Nouvelle routine
+      </button>
+    </sc-if>
+
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;height:66px;background:#121722;border-top:1px solid #242B3A;display:flex;align-items:stretch;">
+    <a href="Main.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#697287;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/></svg>
+      <span style="font-size:10px;font-weight:500;">Aujourd'hui</span>
+    </a>
+    <a href="Routines.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#9DA4FF;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg>
+      <span style="font-size:10px;font-weight:600;">Routines</span>
+    </a>
+    <a href="Entrainement.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#697287;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10.5V16c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5"/></svg>
+      <span style="font-size:10px;font-weight:500;">Éducation</span>
+    </a>
+    <a href="Sante.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#697287;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <span style="font-size:10px;font-weight:500;">Santé</span>
+    </a>
+    <a href="Premium.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#697287;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>
+      <span style="font-size:10px;font-weight:500;">Plus</span>
+    </a>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = {
+      active: { t1:true, t2:true, t3:true, t4:false },
+      showForm: false
+    };
+  }
+  toggle(id){
+    var a = Object.assign({}, this.state.active);
+    a[id] = !a[id];
+    this.setState({ active: a });
+  }
+  toggleForm(){
+    this.setState({ showForm: !this.state.showForm });
+  }
+  renderVals(){
+    var self = this;
+    var base = [
+      { id:'t1', title:'Repas du matin', time:'8h00', freq:'Tous les jours' },
+      { id:'t2', title:'Sortie', time:'12h30', freq:'Tous les jours' },
+      { id:'t3', title:'Repas du soir', time:'19h00', freq:'Tous les jours' },
+      { id:'t4', title:'Séance de jeu', time:'20h30', freq:'Lun / Mer / Ven' }
+    ];
+    var routines = base.map(function(r){
+      var on = !!self.state.active[r.id];
+      return Object.assign({}, r, {
+        rowOpacity: on ? '1' : '.5',
+        switchBg: on ? '#52D6A3' : '#242B3A',
+        knobPos: on ? '21px' : '3px',
+        toggle: function(){ self.toggle(r.id); }
+      });
+    });
+    return {
+      routines: routines,
+      showForm: this.state.showForm,
+      showAddBtn: !this.state.showForm,
+      toggleForm: function(){ self.toggleForm(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

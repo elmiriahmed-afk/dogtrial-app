@@ -1,0 +1,364 @@
+<title>DogTrial — Audit &amp; Feuille de route</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    /* Dark, matching the live app's own palette (its only theme today) */
+    --bg:#0B0E15; --card:#121722; --card-2:#191F2D; --surface-3:#222A3D;
+    --border:#242B3A; --border-elevated:#2D3850;
+    --ink:#F4F5FA; --ink-soft:#A5ADBF; --ink-faint:#697287;
+    --accent:#858EFF; --accent-bright:#9DA4FF; --accent-soft:rgba(133,142,255,.14);
+    --teal:#52D6A3; --teal-soft:rgba(82,214,163,.14);
+    --warn:#FFBD63; --warn-soft:rgba(255,189,99,.14);
+    --bad:#FF6F7D; --bad-soft:rgba(255,111,125,.14);
+    --shadow: 0 2px 6px rgba(0,0,0,.3), 0 14px 30px rgba(0,0,0,.35);
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      /* Light, matching the marketing site's own palette */
+      --bg:#F6F4EC; --card:#FFFFFF; --card-2:#EFECE0; --surface-3:#E7E2D2;
+      --border:#DEDACB; --border-elevated:#CFC9B4;
+      --ink:#1B2420; --ink-soft:#57645C; --ink-faint:#8B9790;
+      --accent:#2F5D50; --accent-bright:#244A40; --accent-soft:rgba(47,93,80,.10);
+      --teal:#2F5D50; --teal-soft:rgba(47,93,80,.10);
+      --warn:#C48A3A; --warn-soft:rgba(196,138,58,.12);
+      --bad:#A6432E; --bad-soft:rgba(166,67,46,.10);
+      --shadow: 0 1px 2px rgba(27,36,32,.05), 0 12px 32px rgba(27,36,32,.08);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#F6F4EC; --card:#FFFFFF; --card-2:#EFECE0; --surface-3:#E7E2D2;
+    --border:#DEDACB; --border-elevated:#CFC9B4;
+    --ink:#1B2420; --ink-soft:#57645C; --ink-faint:#8B9790;
+    --accent:#2F5D50; --accent-bright:#244A40; --accent-soft:rgba(47,93,80,.10);
+    --teal:#2F5D50; --teal-soft:rgba(47,93,80,.10);
+    --warn:#C48A3A; --warn-soft:rgba(196,138,58,.12);
+    --bad:#A6432E; --bad-soft:rgba(166,67,46,.10);
+    --shadow: 0 1px 2px rgba(27,36,32,.05), 0 12px 32px rgba(27,36,32,.08);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    line-height:1.6; font-size:15.5px;
+    padding-inline:20px; padding-block:8px 64px;
+  }
+  h1,h2,h3{font-family:"Poppins",system-ui,sans-serif; font-weight:700; text-wrap:balance; margin:0;}
+  .mono{font-family:"IBM Plex Mono",monospace;}
+  a{color:var(--accent-bright);}
+  .wrap{max-width:760px; margin:0 auto;}
+
+  /* Header */
+  .masthead{padding-block:36px 20px; border-bottom:1px solid var(--border);}
+  .eyebrow{font-size:11.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--accent-bright); margin-bottom:10px;}
+  .masthead h1{font-size:clamp(28px,5vw,38px); line-height:1.12;}
+  .masthead .sub{color:var(--ink-soft); font-size:15px; margin-top:12px; max-width:56ch;}
+  .meta-row{display:flex; gap:18px; flex-wrap:wrap; margin-top:18px; font-size:12.5px; color:var(--ink-faint);}
+  .meta-row span{display:flex; align-items:center; gap:6px;}
+  .dot{width:5px; height:5px; border-radius:50%; background:var(--teal); flex-shrink:0;}
+
+  /* Nav */
+  .jumpnav{display:flex; gap:6px; flex-wrap:wrap; padding-block:16px; margin-bottom:8px; border-bottom:1px solid var(--border); position:sticky; top:env(safe-area-inset-top,0px); background:var(--bg); z-index:5;}
+  .jumpnav a{font-size:12.5px; color:var(--ink-soft); text-decoration:none; padding:6px 11px; border-radius:100px; border:1px solid var(--border); white-space:nowrap;}
+  .jumpnav a:hover{color:var(--ink); border-color:var(--border-elevated);}
+
+  section{padding-block:40px; border-bottom:1px solid var(--border); scroll-margin-top:64px;}
+  section:last-of-type{border-bottom:none;}
+  .section-label{font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;}
+  section h2{font-size:23px; margin-bottom:6px;}
+  section > .lede{color:var(--ink-soft); max-width:60ch; margin-bottom:24px; font-size:14.5px;}
+
+  /* Fact grid */
+  .facts{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden;}
+  .fact{background:var(--card); padding:16px 16px;}
+  .fact .k{font-size:11px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px;}
+  .fact .v{font-size:15px; font-weight:600;}
+  .fact .v small{font-weight:400; color:var(--ink-soft); font-size:12px; display:block; margin-top:2px;}
+
+  /* Flow */
+  .flow{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:20px 0;}
+  .flow .step{background:var(--card); border:1px solid var(--border); border-radius:9px; padding:9px 13px; font-size:13px; font-weight:600;}
+  .flow .step.new{border-color:var(--accent); background:var(--accent-soft); color:var(--accent-bright);}
+  .flow .arrow{color:var(--ink-faint); font-size:14px;}
+
+  .tabs-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; margin-top:18px;}
+  .tab-card{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px;}
+  .tab-card .name{font-weight:700; font-size:14px; margin-bottom:4px;}
+  .tab-card .desc{font-size:12.5px; color:var(--ink-soft); line-height:1.5;}
+
+  /* Status list */
+  .status-list{display:flex; flex-direction:column; gap:10px; margin-top:6px;}
+  .status-row{display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:13px 15px;}
+  .status-icon{flex-shrink:0; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; margin-top:1px;}
+  .status-icon.done{background:var(--teal-soft); color:var(--teal);}
+  .status-icon.partial{background:var(--warn-soft); color:var(--warn);}
+  .status-icon.missing{background:var(--bad-soft); color:var(--bad);}
+  .status-row .t{font-weight:600; font-size:14px;}
+  .status-row .d{font-size:13px; color:var(--ink-soft); margin-top:2px; line-height:1.5;}
+
+  /* Priority board */
+  .priority-group{margin-top:28px;}
+  .priority-group:first-child{margin-top:8px;}
+  .priority-head{display:flex; align-items:center; gap:10px; margin-bottom:12px;}
+  .pill{font-size:11px; font-weight:700; letter-spacing:.04em; padding:4px 10px; border-radius:100px; text-transform:uppercase;}
+  .pill.p0{background:var(--bad-soft); color:var(--bad);}
+  .pill.p1{background:var(--warn-soft); color:var(--warn);}
+  .pill.p2{background:var(--accent-soft); color:var(--accent-bright);}
+  .pill.later{background:var(--surface-3); color:var(--ink-faint);}
+  .priority-head .label{font-size:13.5px; color:var(--ink-soft);}
+  .cards{display:flex; flex-direction:column; gap:10px;}
+  .rcard{background:var(--card); border:1px solid var(--border); border-radius:11px; padding:15px 17px;}
+  .rcard .title{font-weight:700; font-size:14.5px; margin-bottom:5px;}
+  .rcard .why{font-size:13px; color:var(--ink-soft); line-height:1.55;}
+  .rcard .foot{display:flex; gap:14px; margin-top:9px; font-size:11.5px; color:var(--ink-faint);}
+  .rcard .foot b{color:var(--ink-soft); font-weight:600;}
+
+  /* Questions */
+  .qlist{display:flex; flex-direction:column; gap:14px; margin-top:6px;}
+  .qitem{display:flex; gap:12px;}
+  .qnum{flex-shrink:0; width:24px; height:24px; border-radius:7px; background:var(--accent-soft); color:var(--accent-bright); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-top:1px;}
+  .qitem .qt{font-weight:600; font-size:14px;}
+  .qitem .qd{font-size:13px; color:var(--ink-soft); margin-top:3px; line-height:1.55;}
+
+  .next-box{background:var(--card); border:1px solid var(--border-elevated); border-radius:14px; padding:22px 24px; margin-top:8px;}
+  .next-box h3{font-size:16px; margin-bottom:8px;}
+  .next-box p{font-size:14px; color:var(--ink-soft); margin:0 0 8px 0;}
+  .next-box p:last-child{margin-bottom:0;}
+
+  footer{padding-top:32px; font-size:12px; color:var(--ink-faint); text-align:center;}
+
+  @media (max-width:480px){
+    body{padding-inline:16px;}
+    .jumpnav{overflow-x:auto; flex-wrap:nowrap;}
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="eyebrow">Audit produit &amp; technique</div>
+    <h1>DogTrial — état des lieux et feuille de route</h1>
+    <p class="sub">Photographie du produit tel qu'il existe aujourd'hui (simulation 30 jours + socle "après adoption"), et proposition de priorisation avant toute nouvelle ligne de code.</p>
+    <div class="meta-row">
+      <span><span class="dot"></span>22 septembre 2026</span>
+      <span>www/index.html · 5 940 lignes</span>
+      <span>iOS (TestFlight) · Android (Play, tests fermés) · PWA</span>
+    </div>
+  </div>
+
+  <div class="jumpnav">
+    <a href="#technique">1. Stack</a>
+    <a href="#parcours">2. Parcours actuel</a>
+    <a href="#apres-adoption">3. Après adoption</a>
+    <a href="#constats">4. Constats</a>
+    <a href="#plan">5. Plan priorisé</a>
+    <a href="#questions">6. À préciser ensemble</a>
+    <a href="#next">7. Prochaine étape</a>
+  </div>
+
+  <section id="technique">
+    <div class="section-label">Section 1</div>
+    <h2>Ce qui existe — vue technique</h2>
+    <p class="lede">Un seul fichier applicatif, sans framework ni build, packagé en natif par Capacitor. Un backend minimal mais réel est déjà en place et réutilisable.</p>
+
+    <div class="facts">
+      <div class="fact"><div class="k">Frontend</div><div class="v">JS vanilla<small>www/index.html, aucun framework, aucun bundler</small></div></div>
+      <div class="fact"><div class="k">Plateformes</div><div class="v">Capacitor 7<small>iOS + Android natifs + PWA</small></div></div>
+      <div class="fact"><div class="k">Backend</div><div class="v">Cloudflare Pages Functions<small>+ D1 (SQLite)</small></div></div>
+      <div class="fact"><div class="k">Comptes</div><div class="v">Email / mot de passe<small>PBKDF2 + token signé HMAC</small></div></div>
+      <div class="fact"><div class="k">Tables D1</div><div class="v">5<small>users, onboarding_submissions, real_dogs, adoption_transitions</small></div></div>
+      <div class="fact"><div class="k">CI/CD</div><div class="v">Codemagic<small>5 workflows (iOS + 4 pistes Android)</small></div></div>
+      <div class="fact"><div class="k">Tests automatisés</div><div class="v">1 fichier<small>moteur de conséquences d'absence uniquement</small></div></div>
+      <div class="fact"><div class="k">Paiement</div><div class="v">Aucun<small>ni StoreKit, ni Play Billing, ni RevenueCat</small></div></div>
+    </div>
+  </section>
+
+  <section id="parcours">
+    <div class="section-label">Section 2</div>
+    <h2>Le parcours actuel — simulation de 30 jours</h2>
+    <p class="lede">Entièrement gratuit aujourd'hui : aucune fonctionnalité n'est verrouillée, aucun compte Premium n'existe.</p>
+
+    <div class="flow">
+      <div class="step">Splash</div><span class="arrow">→</span>
+      <div class="step new">Langue</div><span class="arrow">→</span>
+      <div class="step">Compte</div><span class="arrow">→</span>
+      <div class="step">Onboarding (6 écrans)</div><span class="arrow">→</span>
+      <div class="step">Trial 30 jours</div><span class="arrow">→</span>
+      <div class="step">Rapport final</div>
+    </div>
+    <p style="font-size:12.5px; color:var(--ink-faint); margin-top:-6px;">Onboarding : nom du chien → race → âge → sexe → logement → style de vie → résumé. L'étape langue vient d'être ajoutée en tout premier écran.</p>
+
+    <div class="tabs-grid">
+      <div class="tab-card"><div class="name">Today</div><div class="desc">Statut du chien, action prioritaire du moment, "Dog Moments" narratifs contextuels.</div></div>
+      <div class="tab-card"><div class="name">Health</div><div class="desc">Faim / vessie / énergie, anneau de bien-être, infos santé (aliments toxiques, reproduction).</div></div>
+      <div class="tab-card"><div class="name">Walks</div><div class="desc">Sortie manuelle ou suivie (podomètre / GPS réel), historique.</div></div>
+      <div class="tab-card"><div class="name">Training</div><div class="desc">Compétences à progression, sessions avec quiz, difficulté ressentie.</div></div>
+      <div class="tab-card"><div class="name">Costs</div><div class="desc">Dépenses simulées, coût cumulé, comparateur d'options.</div></div>
+      <div class="tab-card"><div class="name">Life</div><div class="desc">Profil, environnement, temps seul, réglages (langue, notifications, vérification des sorties).</div></div>
+      <div class="tab-card"><div class="name">Report</div><div class="desc">Bilan à J30 : score de compatibilité, profil d'adoptant, décision finale.</div></div>
+    </div>
+  </section>
+
+  <section id="apres-adoption">
+    <div class="section-label">Section 3</div>
+    <h2>Ce qui a démarré pour "après adoption"</h2>
+    <p class="lede">Le socle technique existe (compte réel + profil réel en base), mais aucune fonctionnalité de suivi réel n'est encore construite au-delà de la transition.</p>
+
+    <div class="status-list">
+      <div class="status-row">
+        <div class="status-icon done">✓</div>
+        <div><div class="t">Transition + profil réel</div><div class="d">CTA "J'ai adopté ce chien" (fin de trial + onglet Life en permanence), formulaire court, création idempotente en base — séparé du chien simulé, aucune donnée de simulation copiée.</div></div>
+      </div>
+      <div class="status-row">
+        <div class="status-icon partial">~</div>
+        <div><div class="t">"Today" réel</div><div class="d">Écran minimal : nom, "Jour N ensemble". Pas encore de routines, pas d'action du jour.</div></div>
+      </div>
+      <div class="status-row">
+        <div class="status-icon missing">×</div>
+        <div><div class="t">Routines, entraînement, santé, dépenses réelles</div><div class="d">Rien n'existe encore : ni schéma de données, ni écrans, ni logique.</div></div>
+      </div>
+      <div class="status-row">
+        <div class="status-icon missing">×</div>
+        <div><div class="t">Partage famille / vétérinaire</div><div class="d">Non commencé.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="constats">
+    <div class="section-label">Section 4</div>
+    <h2>Constats</h2>
+    <p class="lede">Les manques les plus structurants avant de pouvoir monétiser ou promettre un vrai suivi post-adoption.</p>
+
+    <div class="status-list">
+      <div class="status-row">
+        <div class="status-icon missing">×</div>
+        <div><div class="t">Monétisation</div><div class="d">Aucune infrastructure de paiement. Plusieurs pistes de prix évoquées par le passé (2,99–4,99 €/mois) mais jamais figées, et aucune matrice Free/Premium précise n'existe.</div></div>
+      </div>
+      <div class="status-row">
+        <div class="status-icon partial">~</div>
+        <div><div class="t">Traduction FR</div><div class="d">Les libellés d'interface sont traduits, mais une partie du contenu narratif (Dog Moments, infos santé, noms de races/logements, textes générés) reste en anglais quelle que soit la langue choisie. Corrections en cours.</div></div>
+      </div>
+      <div class="status-row">
+        <div class="status-icon missing">×</div>
+        <div><div class="t">Tests automatisés</div><div class="d">Un seul fichier de test sur toute l'application — quasiment aucun filet de sécurité contre la régression.</div></div>
+      </div>
+      <div class="status-row">
+        <div class="status-icon partial">~</div>
+        <div><div class="t">Notifications</div><div class="d">Best-effort via l'API Notification du navigateur uniquement — ne fonctionne que si l'app est ouverte ou en arrière-plan récent, pas de vraies notifications push natives.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plan">
+    <div class="section-label">Section 5</div>
+    <h2>Plan priorisé proposé</h2>
+    <p class="lede">Avant toute nouvelle fonctionnalité, on cadre (wireframes + prototype validé), on comble les fondations, puis on construit le suivi réel par étapes.</p>
+
+    <div class="priority-group">
+      <div class="priority-head"><span class="pill p0">P0 — avant tout</span><span class="label">Cadrage, sans quoi le reste se construit à l'aveugle</span></div>
+      <div class="cards">
+        <div class="rcard">
+          <div class="title">Préciser le modèle Free / Premium</div>
+          <div class="why">Définir la matrice exacte des fonctionnalités gratuites vs payantes (simulation, suivi post-adoption, historique, multi-chien) avant de dessiner le moindre écran d'offre.</div>
+          <div class="foot"><span><b>Décision</b> produit/business</span><span><b>Bloque</b> les wireframes de l'écran d'offre</span></div>
+        </div>
+        <div class="rcard">
+          <div class="title">Wireframes + prototype HTML interactif</div>
+          <div class="why">Parcours simulation affiné + parcours après-adoption complet, dans une UI épurée et moderne, à valider avant d'écrire du code applicatif.</div>
+          <div class="foot"><span><b>Livrable</b> prototype cliquable</span><span><b>Bloque</b> l'implémentation</span></div>
+        </div>
+        <div class="rcard">
+          <div class="title">Finir la traduction FR restante</div>
+          <div class="why">Dog Moments (17 événements), infos santé, races/logements, textes générés — pour que le choix de langue soit tenu partout, pas seulement dans l'interface.</div>
+          <div class="foot"><span><b>Effort</b> ~150–250 phrases</span><span><b>Indépendant</b> du reste</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="priority-group">
+      <div class="priority-head"><span class="pill p1">P1 — après validation</span><span class="label">Le vrai suivi post-adoption, une brique à la fois</span></div>
+      <div class="cards">
+        <div class="rcard">
+          <div class="title">Routines réelles + Today complet</div>
+          <div class="why">Créer/éditer/désactiver une routine, cocher/corriger/reporter une activité — le cœur de la promesse "après adoption".</div>
+          <div class="foot"><span><b>Nécessite</b> nouvelles tables D1</span></div>
+        </div>
+        <div class="rcard">
+          <div class="title">Programme d'entraînement réel</div>
+          <div class="why">Bibliothèque de leçons avec suivi de progression par chien — sans vidéo dans un premier temps (états "à venir" propres).</div>
+        </div>
+        <div class="rcard">
+          <div class="title">Santé, poids, dépenses, journal réels</div>
+          <div class="why">Saisie manuelle, rappels, courbe de poids — données réelles distinctes de la simulation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="priority-group">
+      <div class="priority-head"><span class="pill p2">P2 — une fois le socle stable</span><span class="label">Monétisation et robustesse</span></div>
+      <div class="cards">
+        <div class="rcard">
+          <div class="title">Intégration paiement</div>
+          <div class="why">StoreKit / Play Billing (ou RevenueCat pour unifier), interface d'achat désactivée en production tant que la grille tarifaire n'est pas validée commercialement.</div>
+        </div>
+        <div class="rcard">
+          <div class="title">Notifications natives</div>
+          <div class="why">Vraies notifications push via Capacitor, pour que les rappels de routine fonctionnent app fermée.</div>
+        </div>
+        <div class="rcard">
+          <div class="title">Couverture de tests</div>
+          <div class="why">Étendre au-delà du seul moteur d'absence, en particulier sur la transition simulé → réel et sur les futures routines.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="priority-group">
+      <div class="priority-head"><span class="pill later">Plus tard</span><span class="label">Hors scope immédiat</span></div>
+      <div class="cards">
+        <div class="rcard">
+          <div class="title">Partage famille, multi-chien avancé, marketplace pro / affiliation</div>
+          <div class="why">Pertinent une fois le suivi post-adoption mono-chien stable et la monétisation validée.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="questions">
+    <div class="section-label">Section 6</div>
+    <h2>Ce qu'il me faut préciser avec vous</h2>
+    <p class="lede">Avant de dessiner les wireframes, quelques décisions produit qui changent directement l'écran d'offre et le parcours après-adoption.</p>
+
+    <div class="qlist">
+      <div class="qitem">
+        <div class="qnum">1</div>
+        <div><div class="qt">Frontière Free / Premium</div><div class="qd">La simulation de 30 jours reste-t-elle intégralement gratuite ? Et côté "après adoption" — combien de routines / quel historique / quel accès sont gratuits avant de proposer Premium ?</div></div>
+      </div>
+      <div class="qitem">
+        <div class="qnum">2</div>
+        <div><div class="qt">Déclenchement de l'offre Premium</div><div class="qd">Proposée à la fin du trial simulé, seulement après une vraie adoption, ou aux deux moments ? Avec ou sans essai gratuit Premium ?</div></div>
+      </div>
+      <div class="qitem">
+        <div class="qnum">3</div>
+        <div><div class="qt">Grille tarifaire</div><div class="qd">Plusieurs pistes existent dans l'historique du projet (2,99 à 4,99 €/mois) — laquelle sert de base de travail pour les wireframes de l'écran d'offre ?</div></div>
+      </div>
+      <div class="qitem">
+        <div class="qnum">4</div>
+        <div><div class="qt">Priorité du contenu après-adoption</div><div class="qd">Entre routines, entraînement et santé/dépenses, quel module voulez-vous voir prototypé et construit en premier ?</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="next" style="border-bottom:none;">
+    <div class="section-label">Section 7</div>
+    <h2>Prochaine étape proposée</h2>
+    <div class="next-box">
+      <h3>Wireframes + prototype interactif</h3>
+      <p>Une fois la frontière Free/Premium et le module post-adoption prioritaire clarifiés (section 6), je construis un prototype HTML cliquable couvrant le parcours simulation affiné et le parcours après-adoption complet — pour validation avant toute modification du code applicatif.</p>
+      <p>Le plan ci-dessus reste une proposition : dites-moi s'il faut réordonner, retirer ou ajouter quelque chose avant que je parte sur le prototype.</p>
+    </div>
+  </section>
+
+  <footer>DogTrial · Audit interne · Ce document ne modifie aucun code</footer>
+
+</div>
