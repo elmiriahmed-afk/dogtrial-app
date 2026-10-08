@@ -9,3 +9,6 @@ ios/App/build/
 *.log
 scratchpad/
 .wrangler/
+.env.local
+.env
+marketing/out/

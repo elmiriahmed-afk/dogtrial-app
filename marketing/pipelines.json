@@ -1,0 +1,33 @@
+{
+  "post": {
+    "description": "Social post or short-video script: draft, independent review, revision",
+    "steps": [
+      { "name": "draft", "agent": "marketing-writer", "provider": "anthropic",
+        "task": "Brief:\n{{brief}}\n\nWrite the deliverable following your rules." },
+      { "name": "review", "agent": "marketing-writer", "provider": "openai",
+        "task": "You are reviewing another writer's draft, not writing from scratch.\n\nBrief:\n{{brief}}\n\nDraft:\n{{prev}}\n\nList every violation of your rules (invented facts, claims not in the product facts, availability errors, health claims, platform limits) and every weak hook, then give concrete fixes." },
+      { "name": "final", "agent": "marketing-writer", "provider": "anthropic",
+        "task": "Brief:\n{{brief}}\n\nYour first draft:\n{{first}}\n\nReviewer feedback:\n{{prev}}\n\nProduce the final version, applying the valid feedback and rejecting feedback that contradicts the product facts. End with a short list of what you changed and any assumption left for the owner to confirm." }
+    ]
+  },
+  "store-listing": {
+    "description": "App Store / Google Play listing text: draft, independent review, revision",
+    "steps": [
+      { "name": "draft", "agent": "aso-specialist", "provider": "anthropic",
+        "task": "Brief:\n{{brief}}\n\nProduce the listing text with character counts. You have no web access in this run: rely on the product facts and say which keyword choices are unverified guesses." },
+      { "name": "review", "agent": "aso-specialist", "provider": "openai",
+        "task": "You are reviewing another ASO specialist's listing, not writing from scratch.\n\nBrief:\n{{brief}}\n\nDraft:\n{{prev}}\n\nCheck every character count and limit, policy risks (misleading claims, keyword stuffing, unsupported superlatives), availability claims, and keyword quality. Give concrete fixes." },
+      { "name": "final", "agent": "aso-specialist", "provider": "anthropic",
+        "task": "Brief:\n{{brief}}\n\nYour first draft:\n{{first}}\n\nReviewer feedback:\n{{prev}}\n\nProduce the final listing with verified character counts, and list what you changed." }
+    ]
+  },
+  "video-brief": {
+    "description": "Video concepts and generator prompts: draft, independent review",
+    "steps": [
+      { "name": "draft", "agent": "video-creative", "provider": "anthropic",
+        "task": "Brief:\n{{brief}}\n\nProduce concepts, shot list and generator prompts. You cannot inspect files in this run: base the visual style on the product facts and the style description in your instructions." },
+      { "name": "review", "agent": "video-creative", "provider": "openai",
+        "task": "You are reviewing another creative director's brief.\n\nBrief:\n{{brief}}\n\nDraft:\n{{prev}}\n\nFlag unsafe or distressing dog scenes, claims the app cannot support, unclear prompts (more than one action per clip), and weak hooks. Give concrete fixes and a revised version of the weakest prompt." }
+    ]
+  }
+}
