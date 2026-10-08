@@ -57,6 +57,8 @@ workflows:
           NEW_BUILD=$((BUILD_NUMBER + 1))
           sed -i '' "s/CURRENT_PROJECT_VERSION = [0-9]*;/CURRENT_PROJECT_VERSION = $NEW_BUILD;/g" ios/App/App.xcodeproj/project.pbxproj
           echo "Set iOS build number to $NEW_BUILD"
+          sed -i '' 's/MARKETING_VERSION = [0-9.]*;/MARKETING_VERSION = 1.1;/g' ios/App/App.xcodeproj/project.pbxproj
+          echo "Set iOS marketing version to 1.1"
       - name: Declare export compliance (no custom encryption)
         script: |
           PLIST="ios/App/App/Info.plist"
