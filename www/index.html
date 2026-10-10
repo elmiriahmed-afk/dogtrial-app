@@ -4249,7 +4249,7 @@
     var sniffPhoto = sniffingPhotoFor();
     return '' +
       '<div class="today-hero'+(sniffActive ? ' sniff-active' : '')+'">' +
-        '<img class="today-hero-layer today-hero-default" src="media/onboarding/name-walk.jpg" alt="">' +
+        '<img class="today-hero-layer today-hero-default" src="media/onboarding/walk_'+state.breedId+'.jpg" alt="" onerror="this.onerror=null;this.src=\'media/onboarding/name-walk.jpg\';">' +
         (sniffPhoto ? '<img class="today-hero-layer today-hero-sniff" src="'+sniffPhoto+'" alt="">' : '') +
         '<div class="today-hero-caption">' +
           '<div class="today-hero-caption-label">'+tr('sniff_caption_label',"Sniffing around the house")+'</div>' +
