@@ -1751,6 +1751,19 @@
       lt_walk_history: "Recent outings",
       lt_walk_empty: "No walk recorded yet.",
       lt_walk_min: "{n} min",
+      lt_remind_title: "Daily reminder",
+      lt_remind_sub: "A notification on your lock screen, to write in the journal.",
+      lt_remind_time: "Time",
+      lt_remind_web: "Lock-screen reminders work in the iPhone and Android apps, not in the browser.",
+      lt_remind_denied: "Notifications are blocked. Turn them on in your phone's settings.",
+      lt_remind_set: "Reminder set for {time} every day.",
+      lt_notif_journal_title: "{name}'s journal",
+      lt_notif_journal_body: "Take a minute to note today's moments.",
+      lt_notif_care_tomorrow: "Appointment tomorrow",
+      lt_notif_care_today: "Appointment today",
+      lt_notif_care_body: "{label} for {name}",
+      lt_care_notice_native: "You get a lock-screen reminder the day before (6 pm) and on the morning of the appointment (9 am).",
+      lt_care_notice_web: "Lock-screen reminders work in the iPhone and Android apps, not in the browser.",
       lt_journal_title: "Journal.",
       lt_journal_sub: "The small moments that matter.",
       lt_journal_label: "Your observation",
@@ -2276,6 +2289,19 @@
       lt_walk_history: "Vos dernières sorties",
       lt_walk_empty: "Aucune balade enregistrée pour le moment.",
       lt_walk_min: "{n} min",
+      lt_remind_title: "Rappel quotidien",
+      lt_remind_sub: "Une notification sur votre écran verrouillé, pour écrire dans le carnet.",
+      lt_remind_time: "Heure",
+      lt_remind_web: "Les rappels sur écran verrouillé fonctionnent dans les apps iPhone et Android, pas dans le navigateur.",
+      lt_remind_denied: "Les notifications sont bloquées. Activez-les dans les réglages de votre téléphone.",
+      lt_remind_set: "Rappel programmé à {time} chaque jour.",
+      lt_notif_journal_title: "Le carnet de {name}",
+      lt_notif_journal_body: "Prenez une minute pour noter les moments du jour.",
+      lt_notif_care_tomorrow: "Rendez-vous demain",
+      lt_notif_care_today: "Rendez-vous aujourd’hui",
+      lt_notif_care_body: "{label} pour {name}",
+      lt_care_notice_native: "Vous recevez un rappel sur l’écran verrouillé la veille (18 h) et le matin du rendez-vous (9 h).",
+      lt_care_notice_web: "Les rappels sur écran verrouillé fonctionnent dans les apps iPhone et Android, pas dans le navigateur.",
       lt_journal_title: "Son carnet.",
       lt_journal_sub: "Les petits moments qui comptent.",
       lt_journal_label: "Votre observation",
@@ -4024,6 +4050,7 @@
     else if (view === "notifications") root.innerHTML = brandStrip() + renderNotifications();
     else if (view === "adoptIntro") root.innerHTML = brandStrip() + renderAdoptIntro();
     else if (view === "adoptForm") root.innerHTML = brandStrip() + renderAdoptForm();
+    else if (view === "realToday" && realPendingView && realDog){ view = realPendingView; realPendingView = null; render(); return; }
     else if (view === "realToday") root.innerHTML = brandStrip(realDog ? "media/onboarding/name-walk.jpg" : null) + renderRealToday();
     else if (view === "realLearn") root.innerHTML = brandStrip() + renderRealLearn();
     else if (view === "realLesson") root.innerHTML = brandStrip() + renderRealLesson();
@@ -6376,12 +6403,13 @@
   function realExtrasLoad(){
     var id = realDog ? realDog.id : null;
     if (realExtras && realExtrasFor === id) return realExtras;
-    var x = { walks:[], care:[], notes:[], expenses:[] };
+    var x = { walks:[], care:[], notes:[], expenses:[], settings:{ journalOn:false, journalTime:"20:00" } };
     try {
       var raw = localStorage.getItem(realExtrasKey());
       if (raw){
         var p = JSON.parse(raw);
-        Object.keys(x).forEach(function(k){ if (Array.isArray(p[k])) x[k] = p[k]; });
+        ["walks","care","notes","expenses"].forEach(function(k){ if (Array.isArray(p[k])) x[k] = p[k]; });
+        if (p.settings && typeof p.settings === "object"){ x.settings.journalOn = !!p.settings.journalOn; if (typeof p.settings.journalTime === "string") x.settings.journalTime = p.settings.journalTime; }
       }
     } catch(e){}
     realExtras = x; realExtrasFor = id;
@@ -6398,6 +6426,71 @@
     try { return new Date(ts).toLocaleDateString(appLocale(), { day:"numeric", month:"short", year:"numeric" }); }
     catch(e){ return ""; }
   }
+
+  // ---- lock-screen reminders (native LocalNotifications, scheduled for a future time so they fire with the app closed) ----
+  var RN_JOURNAL_ID = 71000;
+  var realPendingView = null;
+  function realLN(){ return (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.LocalNotifications) || null; }
+  function realNotifPermission(){
+    var LN = realLN();
+    if (!LN) return Promise.resolve("unsupported");
+    return LN.checkPermissions().then(function(p){
+      if (p && p.display === "granted") return "granted";
+      return LN.requestPermissions().then(function(r){ return (r && r.display === "granted") ? "granted" : "denied"; });
+    }).catch(function(){ return "denied"; });
+  }
+  // Applies the journal reminder setting: cancels the old schedule, then (if on) schedules one repeating daily notification.
+  function realJournalReminderApply(){
+    var LN = realLN(); if (!LN || !realDog) return Promise.resolve("unsupported");
+    var ex = realExtrasLoad();
+    return LN.cancel({ notifications:[{ id: RN_JOURNAL_ID }] }).catch(function(){}).then(function(){
+      if (!ex.settings.journalOn) return "off";
+      return realNotifPermission().then(function(perm){
+        if (perm !== "granted") return perm;
+        var t = (ex.settings.journalTime || "20:00").split(":");
+        return LN.schedule({ notifications:[{
+          id: RN_JOURNAL_ID,
+          title: tr('lt_notif_journal_title',"{name}'s journal").replace('{name}', realDog.name),
+          body: tr('lt_notif_journal_body',"Take a minute to note today's moments."),
+          schedule: { on: { hour: +t[0] || 0, minute: +t[1] || 0 }, allowWhileIdle: true },
+          extra: { open: "realJournal" }
+        }] }).then(function(){ return "ok"; });
+      });
+    }).catch(function(){ return "error"; });
+  }
+  function realCareNotifIds(item){
+    var h = 0, str = (item.label || "") + "|" + (item.date || "");
+    for (var i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) % 90000;
+    return [80000 + h * 2, 80000 + h * 2 + 1];
+  }
+  // Day-before (18:00) and morning-of (09:00) reminders, only for times still in the future.
+  function realCareReminderSchedule(item){
+    var LN = realLN(); if (!LN || !realDog) return Promise.resolve("unsupported");
+    var parts = (item.date || "").split("-"); if (parts.length !== 3) return Promise.resolve("error");
+    var y = +parts[0], m = +parts[1] - 1, d = +parts[2], ids = realCareNotifIds(item);
+    var body = tr('lt_notif_care_body',"{label} for {name}").replace('{label}', item.label).replace('{name}', realDog.name);
+    var list = [
+      { id: ids[0], at: new Date(y, m, d - 1, 18, 0), title: tr('lt_notif_care_tomorrow',"Appointment tomorrow") },
+      { id: ids[1], at: new Date(y, m, d, 9, 0), title: tr('lt_notif_care_today',"Appointment today") }
+    ].filter(function(n){ return n.at.getTime() > Date.now() + 60000; })
+     .map(function(n){ return { id: n.id, title: n.title, body: body, schedule: { at: n.at, allowWhileIdle: true }, extra: { open: "realCare" } }; });
+    if (!list.length) return Promise.resolve("past");
+    return realNotifPermission().then(function(perm){
+      if (perm !== "granted") return perm;
+      return LN.schedule({ notifications: list }).then(function(){ return "ok"; });
+    }).catch(function(){ return "error"; });
+  }
+  (function(){
+    try {
+      var LN = realLN(); if (!LN) return;
+      LN.addListener("localNotificationActionPerformed", function(ev){
+        var target = ev && ev.notification && ev.notification.extra && ev.notification.extra.open;
+        if (target !== "realJournal" && target !== "realCare") return;
+        realPendingView = target;
+        goToRealAdoption();
+      });
+    } catch(e){}
+  })();
   function realBackBtn(){
     return '<button class="btn-ghost" id="real-extra-back">'+tr('btn_back_to_today',"← Back to today")+'</button>';
   }
@@ -6438,6 +6531,20 @@
       '<p class="lt-note">'+tr('lt_local_note',"Saved on this device only.")+'</p>';
   }
 
+  function realReminderCardHTML(){
+    var ex = realExtrasLoad();
+    if (!realLN()){
+      return '<div class="card"><b>'+tr('lt_remind_title',"Daily reminder")+'</b><p class="muted" style="margin-top:6px;">'+tr('lt_remind_web',"")+'</p></div>';
+    }
+    return '<div class="card">' +
+      '<div style="display:flex; align-items:center; gap:12px;">' +
+        '<div style="flex:1; min-width:0;"><b>'+tr('lt_remind_title',"Daily reminder")+'</b><p class="muted" style="margin-top:4px;">'+tr('lt_remind_sub',"")+'</p></div>' +
+        '<input id="real-journal-remind" type="checkbox" '+(ex.settings.journalOn ? "checked" : "")+' aria-label="'+esc(tr('lt_remind_title',"Daily reminder"))+'" style="width:22px; height:22px;">' +
+      '</div>' +
+      (ex.settings.journalOn ? '<div class="field" style="margin-top:12px;"><label for="real-journal-time">'+tr('lt_remind_time',"Time")+'</label><input id="real-journal-time" type="time" value="'+esc(ex.settings.journalTime)+'" style="width:100%; padding:12px 14px; border-radius:14px; border:1px solid var(--line); background:var(--card-2); color:var(--ink); font-size:16px; font-family:inherit;"></div>' : '') +
+      '<p class="muted" id="real-remind-status" style="margin-top:8px; font-size:12.5px;">'+(ex.settings.journalOn ? esc(tr('lt_remind_set',"Reminder set for {time} every day.").replace('{time}', ex.settings.journalTime)) : '')+'</p>' +
+    '</div>';
+  }
   function renderRealJournal(){
     var ex = realExtrasLoad();
     var entries = ex.notes.length
@@ -6448,6 +6555,7 @@
     return realBackBtn() +
       '<div class="page-header" style="padding-top:10px;"><h1>'+tr('lt_journal_title',"Journal.")+'</h1></div>' +
       '<p class="muted" style="margin:0 2px 12px;">'+tr('lt_journal_sub',"")+'</p>' +
+      realReminderCardHTML() +
       '<form class="card" id="real-form-note">' +
         '<div class="field"><label for="real-note-text">'+tr('lt_journal_label',"Your observation")+'</label>' +
         '<textarea id="real-note-text" name="text" required maxlength="1200" placeholder="'+esc(tr('lt_journal_ph',"Today, we…"))+'"></textarea></div>' +
@@ -6500,7 +6608,7 @@
         '<input id="real-care-date" name="date" type="date" required></div>' +
         '<button class="btn btn-primary" type="submit" style="margin-top:12px;">'+tr('lt_care_submit',"Save")+'</button>' +
       '</form>' +
-      '<p class="lt-note">'+tr('lt_care_notice',"")+'</p>' +
+      '<p class="lt-note">'+(realLN() ? tr('lt_care_notice_native',"") : tr('lt_care_notice_web',""))+'</p>' +
       '<div class="section-title" style="margin:18px 2px 10px;">'+tr('lt_care_upcoming',"Upcoming")+'</div>' + list +
       '<p class="lt-note">'+tr('lt_local_note',"Saved on this device only.")+'</p>';
   }
@@ -7972,6 +8080,24 @@
       }
     }
     if (view === "realJournal"){
+      var remindToggle = document.getElementById("real-journal-remind");
+      if (remindToggle) remindToggle.addEventListener("change", function(){
+        var ex = realExtrasLoad(); ex.settings.journalOn = remindToggle.checked; realExtrasSave();
+        realJournalReminderApply().then(function(r){
+          if (r === "denied"){
+            ex.settings.journalOn = false; realExtrasSave(); render();
+            var st = document.getElementById("real-remind-status");
+            if (st) st.textContent = tr('lt_remind_denied',"Notifications are blocked. Turn them on in your phone's settings.");
+            return;
+          }
+          render();
+        });
+      });
+      var remindTime = document.getElementById("real-journal-time");
+      if (remindTime) remindTime.addEventListener("change", function(){
+        var ex = realExtrasLoad();
+        if (remindTime.value){ ex.settings.journalTime = remindTime.value; realExtrasSave(); realJournalReminderApply().then(function(){ render(); }); }
+      });
       var noteForm = document.getElementById("real-form-note");
       if (noteForm) noteForm.addEventListener("submit", function(e){
         e.preventDefault();
@@ -7997,9 +8123,9 @@
         var label = (document.getElementById("real-care-label").value || "").trim();
         var date = document.getElementById("real-care-date").value;
         if (!label || !date) return;
-        var ex = realExtrasLoad(); ex.care.push({ label: label, date: date });
+        var ex = realExtrasLoad(); var item = { label: label, date: date }; ex.care.push(item);
         ex.care.sort(function(a, b){ return a.date < b.date ? -1 : 1; });
-        realExtrasSave(); render();
+        realExtrasSave(); realCareReminderSchedule(item); render();
       });
     }
 
