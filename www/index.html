@@ -104,6 +104,40 @@
   .moment-card{position:fixed; left:16px; right:16px; bottom:0; max-width:408px; margin:0 auto; z-index:27; background:var(--card); border:1px solid var(--border-elevated); border-radius:20px 20px 0 0; box-shadow:var(--shadow); animation:momentCardIn .25s ease; overflow:hidden; min-height:48dvh; max-height:82dvh; display:flex; flex-direction:column;}
   .moment-card:focus-visible{outline:none;}
   .moment-card-photo{width:calc(100% + 36px); margin:0 -18px 14px; height:150px; object-fit:cover; display:block;}
+  /* ---- Discover capsules (30 s illustrated capsules) ---- */
+  .cap-feature{padding:0; overflow:hidden;}
+  .cap-feature-photo{position:relative; display:block; width:100%; height:190px; object-fit:cover; object-position:50% 30%; background:#0b1020;}
+  .cap-feature-body{padding:14px 16px 16px;}
+  .cap-chip{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:#fff; background:rgba(16,27,70,.78); padding:6px 10px; border-radius:999px;}
+  .cap-chip-abs{position:absolute; left:12px; bottom:12px;}
+  .cap-play-badge{position:absolute; right:12px; bottom:12px; width:44px; height:44px; border-radius:50%; background:var(--accent); color:#fff; display:grid; place-items:center; box-shadow:0 6px 18px rgba(75,96,255,.45);}
+  .cap-feature-title{font-size:18px; font-weight:700; margin:0 0 4px;}
+  .cap-note{font-size:12.5px; color:var(--ink-soft); margin:0;}
+  .cap-row{display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:none; border:0; padding:8px 0; cursor:pointer; color:inherit; font:inherit; min-height:56px;}
+  .cap-row + .cap-row{border-top:1px solid var(--line);}
+  .cap-thumb{width:48px; height:64px; border-radius:10px; object-fit:cover; flex:none; background:#0b1020;}
+  .cap-row-title{font-weight:600; font-size:15px;} .cap-row-sub{font-size:12px; color:var(--ink-soft); margin-top:2px;}
+  .cap-seen{margin-left:auto; flex:none; color:var(--teal); display:flex; align-items:center; gap:4px; font-size:12px; font-weight:600;}
+  .cap-overlay{position:fixed; inset:0; z-index:1000; background:#05070b; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:max(10px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));}
+  .cap-close{position:absolute; top:max(10px, env(safe-area-inset-top)); right:12px; z-index:3; min-width:44px; min-height:44px; border-radius:50%; border:1px solid rgba(255,255,255,.3); background:rgba(0,0,0,.45); color:#fff; display:grid; place-items:center; cursor:pointer;}
+  .cap-stage{position:relative; aspect-ratio:9/16; background:#000; overflow:hidden; border-radius:14px; height:min(calc(100dvh - 150px), calc((100vw - 24px) * 16 / 9)); max-width:calc(100vw - 24px);}
+  .cap-stage img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; will-change:transform, opacity;}
+  .cap-scrim{position:absolute; left:0; right:0; top:0; height:44%; background:linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,0)); pointer-events:none;}
+  .cap-txt{position:absolute; left:8%; right:8%; top:7.5%; opacity:0; pointer-events:none; text-shadow:0 1px 6px rgba(0,0,0,.75);}
+  .cap-txt p{margin:0;} .cap-txt .t-title{font-weight:700; line-height:1.21; color:#fff; font-size:calc(var(--u,3.5px) * 6.1);}
+  .cap-txt .t-body{color:#fff; margin-top:calc(var(--u,3.5px) * 1.5); font-size:calc(var(--u,3.5px) * 3.7); line-height:1.36;}
+  .cap-txt .t-note{font-style:italic; color:#E8C27A; margin-top:calc(var(--u,3.5px) * 1.1); font-size:calc(var(--u,3.5px) * 3.15);}
+  .cap-txt .t-small{color:#FAF3E4; margin-top:calc(var(--u,3.5px) * 1.2); font-size:calc(var(--u,3.5px) * 3.35); line-height:1.35;}
+  .cap-txt .t-source{color:#E8C27A; margin-top:calc(var(--u,3.5px) * 1); font-size:calc(var(--u,3.5px) * 2.8);}
+  .cap-load{position:absolute; inset:0; display:grid; place-items:center; background:#000; color:#cfc7b6; font-size:14px;}
+  .cap-controls{width:min(100%, 520px); display:flex; flex-direction:column; gap:8px;}
+  .cap-row-ctl{display:flex; align-items:center; gap:10px;}
+  .cap-btn{appearance:none; border:1px solid rgba(255,255,255,.28); background:rgba(255,255,255,.08); color:#faf3e4; font:600 14px/1 inherit; padding:11px 16px; border-radius:999px; cursor:pointer; min-height:44px;}
+  .cap-btn.primary{background:#E8C27A; border-color:#E8C27A; color:#14110a; min-width:112px;}
+  .cap-controls input[type=range]{width:100%; accent-color:#E8C27A; height:28px;}
+  .cap-time{margin-left:auto; font-variant-numeric:tabular-nums; font-size:13px; color:#cfc7b6;}
+  .cap-foot{font-size:11px; color:#9aa2b6; text-align:center; margin:0;}
+
   .moment-card-top{display:flex; align-items:center; gap:8px; flex:none; padding:20px 18px 0;}
   .moment-card-scroll{overflow-y:auto; overscroll-behavior:contain; padding:12px 18px calc(20px + env(safe-area-inset-bottom,0px));}
   .moment-card-label{font-size:10px; font-weight:800; letter-spacing:.08em; color:var(--ink-faint); text-transform:uppercase; flex:1;}
@@ -617,6 +651,7 @@
 
 <script src="absence-consequence-engine.js"></script>
 <script src="notifications-catalog.js"></script>
+<script src="capsules.js"></script>
 <script>
 (function(){
   "use strict";
@@ -2016,7 +2051,17 @@
       today_tile_away: "My time away",
       today_tile_hours_total: "{h} total",
       today_tile_discover: "Discover their world",
-      today_tile_discover_sub: "Today's tip & breed notes",
+      today_tile_discover_sub: "Today's capsule, tip & breed notes",
+      capsule_today_label: "Today's capsule",
+      capsule_watch: "Watch \u00b7 30 s",
+      capsule_watch_again: "Watch again \u00b7 30 s",
+      capsule_all_label: "All capsules",
+      capsule_seen: "Watched",
+      capsule_general_note: "General guidance, illustrated with a Labrador",
+      capsule_lab_note: "Breed-specific information",
+      capsule_disclaimer: "AI-generated illustrations. General information, not veterinary advice.",
+      capsule_play: "Play", capsule_pause: "Pause", capsule_resume: "Resume", capsule_restart: "Restart", capsule_replay: "Replay",
+      capsule_close: "Close", capsule_timeline: "Timeline position", capsule_loading: "Loading\u2026",
       sniff_caption_label: "Sniffing around the house",
       sniff_caption_text: "Dogs check in on their environment most days — new smells, sounds, and small changes since last time.",
       discover_tip_label: "Today's tip",
@@ -2467,7 +2512,17 @@
       today_tile_away: "Mes absences",
       today_tile_hours_total: "{h} au total",
       today_tile_discover: "Découvrir son monde",
-      today_tile_discover_sub: "Conseil du jour & infos sur la race",
+      today_tile_discover_sub: "Capsule du jour, conseil & infos sur la race",
+      capsule_today_label: "La capsule du jour",
+      capsule_watch: "Regarder \u00b7 30 s",
+      capsule_watch_again: "Revoir \u00b7 30 s",
+      capsule_all_label: "Toutes les capsules",
+      capsule_seen: "Vue",
+      capsule_general_note: "Conseils g\u00e9n\u00e9raux, illustr\u00e9s avec un Labrador",
+      capsule_lab_note: "Information propre \u00e0 la race",
+      capsule_disclaimer: "Illustrations g\u00e9n\u00e9r\u00e9es par IA. Information g\u00e9n\u00e9rale, ne remplace pas l\u2019avis d\u2019un v\u00e9t\u00e9rinaire.",
+      capsule_play: "Lecture", capsule_pause: "Pause", capsule_resume: "Reprendre", capsule_restart: "Recommencer", capsule_replay: "Rejouer",
+      capsule_close: "Fermer", capsule_timeline: "Position dans la chronologie", capsule_loading: "Chargement\u2026",
       sniff_caption_label: "Explore la maison",
       sniff_caption_text: "La plupart des jours, les chiens font le tour de leur environnement — nouvelles odeurs, nouveaux sons, petits changements depuis la dernière fois.",
       discover_tip_label: "Le conseil du jour",
@@ -4326,7 +4381,7 @@
         tr('today_tile_hours_total','{h} total').replace('{h}', fmtHours(state.totalHoursAway)),
         'data-today-tile="away"') +
       todayTileHTML('compass', 'tan', tr('today_tile_discover',"Discover their world"),
-        tr('today_tile_discover_sub',"Today's tip & breed notes"),
+        tr('today_tile_discover_sub',"Today's capsule, tip & breed notes"),
         'data-today-tile="discover"') +
       todayTileHTML('bell', 'tan', tr('today_tile_reminders','Reminders'),
         remindersDueCount() > 0 ? tr('today_tile_reminders_due','{n} due now').replace('{n}', remindersDueCount()) : tr('today_tile_reminders_ontrack','All caught up'),
@@ -4360,6 +4415,196 @@
   // Real tip-of-the-day (same deterministic pick tipOfDayHTML uses) plus the
   // real breed/age training notes already shown on the Training tab — no
   // invented "sniffing the house" copy like the reference mockup's version.
+  // ---------- Discover capsules: illustrated 30 s capsules (EN/FR), one suggested per trial day ----------
+  // Data lives in capsules.js (DT_CAPSULES). Each capsule is a timeline of images (slow zoom, crossfades)
+  // plus short texts; there is no video file, so the whole library costs a few MB. "breeds" is either
+  // "all" (general guidance, illustrated with a Labrador) or a breed id (breed-specific information).
+  function capsuleLang(){ return ((state && state.lang) || uiLang || "en") === "fr" ? "fr" : "en"; }
+  function capsuleAll(){ return (typeof DT_CAPSULES !== "undefined") ? DT_CAPSULES : []; }
+  // A breed with its own set sees only that set; a breed without one falls back to the general capsules.
+  // Labrador keeps both (its set was the first one built and the general capsules are illustrated with it).
+  function capsulesForBreed(){
+    var id = state && state.breedId;
+    var all = capsuleAll();
+    var own = all.filter(function(c){ return c.breeds === id; });
+    var general = all.filter(function(c){ return c.breeds === "all"; });
+    if (id === "lab") return all.filter(function(c){ return c.breeds === "all" || c.breeds === "lab"; });
+    return own.length ? own : general;
+  }
+  function capsuleById(id){ return capsuleAll().filter(function(c){ return c.id === id; })[0] || null; }
+  function capsuleSeenMap(){ if (!state.capsulesSeen) state.capsulesSeen = {}; return state.capsulesSeen; }
+  function todaysCapsule(){
+    var list = capsulesForBreed();
+    if (!list.length) return null;
+    var day = tripDay();
+    var stored = state.capsuleToday;
+    if (stored && stored.day === day){
+      var keep = capsuleById(stored.id);
+      if (keep) return keep;
+    }
+    var seen = capsuleSeenMap();
+    var start = (((day - 1) % list.length) + list.length) % list.length;
+    var pick = list[start];
+    for (var k = 0; k < list.length; k++){
+      var c = list[(start + k) % list.length];
+      if (!seen[c.id]){ pick = c; break; }
+    }
+    state.capsuleToday = { day: day, id: pick.id };
+    save();
+    return pick;
+  }
+  function capsuleNoteFor(c){
+    if (c.breeds === "all") return tr('capsule_general_note',"General guidance, illustrated with a Labrador");
+    var b = byId(c.breeds);
+    return b ? b.name : tr('capsule_lab_note',"Breed-specific information");
+  }
+  function capsuleFeatureHTML(){
+    var c = todaysCapsule();
+    if (!c) return "";
+    var seen = !!capsuleSeenMap()[c.id];
+    var title = c.title[capsuleLang()];
+    return '' +
+      '<div class="card cap-feature">' +
+        '<div style="position:relative;">' +
+          '<img class="cap-feature-photo" src="'+c.images[0].src+'" alt="" loading="lazy" decoding="async">' +
+          '<span class="cap-chip cap-chip-abs">'+tr('capsule_today_label',"Today's capsule")+'</span>' +
+          '<button class="cap-play-badge" data-capsule="'+c.id+'" aria-label="'+esc(tr('capsule_watch',"Watch · 30 s")+' — '+title)+'">'+icon('play',18)+'</button>' +
+        '</div>' +
+        '<div class="cap-feature-body">' +
+          '<h3 class="cap-feature-title">'+esc(title)+'</h3>' +
+          '<p class="cap-note">'+esc(capsuleNoteFor(c))+'</p>' +
+          '<button class="btn btn-primary" data-capsule="'+c.id+'" style="margin-top:12px; width:100%;">'+icon('play',16)+' '+(seen ? tr('capsule_watch_again',"Watch again · 30 s") : tr('capsule_watch',"Watch · 30 s"))+'</button>' +
+        '</div>' +
+      '</div>';
+  }
+  function capsuleLibraryHTML(){
+    var list = capsulesForBreed();
+    if (!list.length) return "";
+    var seen = capsuleSeenMap();
+    var rows = list.map(function(c){
+      var title = c.title[capsuleLang()];
+      return '' +
+        '<button class="cap-row" data-capsule="'+c.id+'">' +
+          '<img class="cap-thumb" src="'+c.images[0].src+'" alt="" loading="lazy" decoding="async">' +
+          '<span style="min-width:0;"><div class="cap-row-title">'+esc(title)+'</div><div class="cap-row-sub">'+esc(capsuleNoteFor(c))+' · 30 s</div></span>' +
+          (seen[c.id] ? '<span class="cap-seen">'+icon('check',14)+' '+tr('capsule_seen',"Watched")+'</span>' : '') +
+        '</button>';
+    }).join("");
+    return '<div class="card"><div class="section-title">'+tr('capsule_all_label',"All capsules")+'</div><div style="margin-top:6px;">'+rows+'</div></div>';
+  }
+
+  var capsulePlayer = null;
+  function capSmooth(x){ x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); }
+  function openCapsule(id, openerEl){
+    var c = capsuleById(id);
+    if (!c || capsulePlayer) return;
+    var lang = capsuleLang();
+    var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var title = c.title[lang];
+    var imgsHTML = c.images.map(function(m, i){ return '<img id="cap-img'+i+'" src="'+m.src+'" alt="" decoding="async">'; }).join("");
+    var txtHTML = c.texts.map(function(t){
+      var inner = t.lines.map(function(l){ return '<p class="t-'+(l.kind==="title"?"title":l.kind)+'">'+esc(l[lang])+'</p>'; }).join("");
+      return '<div class="cap-txt" id="cap-'+t.id+'"'+(t.y ? ' style="top:'+(t.y*100).toFixed(1)+'%"' : '')+'>'+inner+'</div>';
+    }).join("");
+    var node = document.createElement("div");
+    node.className = "cap-overlay";
+    node.id = "capsule-overlay";
+    node.setAttribute("role", "dialog");
+    node.setAttribute("aria-modal", "true");
+    node.setAttribute("aria-label", title);
+    node.innerHTML = '' +
+      '<button class="cap-close" id="cap-close" aria-label="'+esc(tr('capsule_close',"Close"))+'">'+icon('x',18)+'</button>' +
+      '<div class="cap-stage" id="cap-stage">'+imgsHTML+'<div class="cap-scrim"></div>'+txtHTML+'<div class="cap-load" id="cap-load">'+tr('capsule_loading',"Loading…")+'</div></div>' +
+      '<div class="cap-controls">' +
+        '<div class="cap-row-ctl"><button class="cap-btn primary" id="cap-play" type="button">'+tr('capsule_play',"Play")+'</button>' +
+        '<button class="cap-btn" id="cap-restart" type="button">'+tr('capsule_restart',"Restart")+'</button><span class="cap-time" id="cap-time">00:00 / 00:30</span></div>' +
+        '<input id="cap-seek" type="range" min="0" max="'+c.duration+'" step="0.01" value="0" aria-label="'+esc(tr('capsule_timeline',"Timeline position"))+'">' +
+        '<p class="cap-foot">'+esc(tr('capsule_disclaimer',"AI-generated illustrations. General information, not veterinary advice."))+'</p>' +
+      '</div>';
+    document.body.appendChild(node);
+    document.body.style.overflow = "hidden";
+
+    var P = { c:c, t:0, playing:false, last:0, raf:0, node:node, opener:openerEl || null, marked:false, keyHandler:null, resize:null };
+    capsulePlayer = P;
+    var stage = node.querySelector("#cap-stage");
+    var imgEls = c.images.map(function(_, i){ return node.querySelector("#cap-img"+i); });
+    var txtEls = c.texts.map(function(t){ return node.querySelector("#cap-"+t.id); });
+    var playBtn = node.querySelector("#cap-play"), seek = node.querySelector("#cap-seek"), timeEl = node.querySelector("#cap-time");
+
+    function sizeUnit(){ stage.style.setProperty("--u", (stage.clientWidth / 100) + "px"); }
+    P.resize = sizeUnit; window.addEventListener("resize", sizeUnit); sizeUnit();
+
+    function imgAlpha(i, t){
+      var m = c.images[i], a = i === 0 ? capSmooth(t / c.fadeInFirst) : capSmooth((t - (m.start - c.xf/2)) / c.xf);
+      if (i < c.images.length - 1) a *= 1 - capSmooth((t - (m.end - c.xf/2)) / c.xf);
+      return a;
+    }
+    function render(){
+      var t = P.t, i;
+      for (i = 0; i < c.images.length; i++){
+        var m = c.images[i], lo = m.start - c.xf/2, hi = m.end + c.xf/2;
+        var p = Math.min(1, Math.max(0, (t - lo) / (hi - lo)));
+        var sc = reduce ? 1 : m.s0 + (m.s1 - m.s0) * p, px = reduce ? 0 : (m.p0 + (m.p1 - m.p0) * p) * 100;
+        var el = imgEls[i];
+        el.style.opacity = imgAlpha(i, t).toFixed(3);
+        el.style.transformOrigin = (m.ox*100)+"% "+(m.oy*100)+"%";
+        el.style.transform = "translateX("+px.toFixed(3)+"%) scale("+sc.toFixed(4)+")";
+      }
+      for (i = 0; i < c.texts.length; i++){
+        var T = c.texts[i], ta = capSmooth((t - T.start) / (T.fastIn || c.textIn));
+        if (!T.persist) ta *= 1 - capSmooth((t - (T.end - c.textOut)) / c.textOut);
+        txtEls[i].style.opacity = ta.toFixed(3);
+      }
+      seek.value = t;
+      timeEl.textContent = "00:" + String(Math.floor(t)).padStart(2, "0") + " / 00:30";
+      if (!P.marked && t >= c.duration - 5){ P.marked = true; capsuleSeenMap()[c.id] = Date.now(); save(); }
+    }
+    function label(){
+      playBtn.textContent = P.playing ? tr('capsule_pause',"Pause") : (P.t >= c.duration ? tr('capsule_replay',"Replay") : (P.t > 0 ? tr('capsule_resume',"Resume") : tr('capsule_play',"Play")));
+    }
+    function tick(now){
+      if (!P.playing) return;
+      P.t += (now - P.last) / 1000; P.last = now;
+      if (P.t >= c.duration){ P.t = c.duration; P.playing = false; label(); render(); return; }
+      render(); P.raf = requestAnimationFrame(tick);
+    }
+    function play(){ if (P.t >= c.duration) P.t = 0; P.playing = true; P.last = performance.now(); label(); P.raf = requestAnimationFrame(tick); }
+    function pause(){ P.playing = false; cancelAnimationFrame(P.raf); label(); }
+    playBtn.addEventListener("click", function(){ P.playing ? pause() : play(); });
+    node.querySelector("#cap-restart").addEventListener("click", function(){ P.t = 0; render(); play(); });
+    seek.addEventListener("input", function(){ P.t = parseFloat(seek.value); render(); label(); if (P.playing) P.last = performance.now(); });
+    node.querySelector("#cap-close").addEventListener("click", closeCapsule);
+    P.keyHandler = function(e){
+      if (e.key === "Escape"){ closeCapsule(); }
+      else if (e.code === "Space" && e.target.tagName !== "BUTTON" && e.target.tagName !== "INPUT"){ e.preventDefault(); P.playing ? pause() : play(); }
+    };
+    document.addEventListener("keydown", P.keyHandler);
+    P.api = { seekTo:function(x){ P.t = x; render(); label(); }, state:function(){ return { t:P.t, playing:P.playing }; } };
+    window.__capsulePlayer = P.api;
+
+    render(); label();
+    Promise.all(imgEls.map(function(el){ return el.decode ? el.decode().catch(function(){}) : Promise.resolve(); })).then(function(){
+      if (capsulePlayer !== P) return;
+      var ld = node.querySelector("#cap-load"); if (ld) ld.style.display = "none";
+      render();
+      if (!reduce) play();
+    });
+    node.querySelector("#cap-close").focus();
+  }
+  function closeCapsule(){
+    var P = capsulePlayer;
+    if (!P) return;
+    P.playing = false; cancelAnimationFrame(P.raf);
+    document.removeEventListener("keydown", P.keyHandler);
+    window.removeEventListener("resize", P.resize);
+    if (P.node && P.node.parentNode) P.node.parentNode.removeChild(P.node);
+    document.body.style.overflow = "";
+    capsulePlayer = null;
+    window.__capsulePlayer = null;
+    if (view === "discoverToday") render();
+    if (P.opener && document.contains(P.opener)) P.opener.focus();
+  }
+
   function renderDiscoverToday(){
     var breed = byId(state.breedId);
     var stage = stageOf(state.dogDays);
@@ -4370,13 +4615,15 @@
     return '' +
       '<button class="btn-ghost" id="back-home">'+tr('btn_back','Back')+'</button>' +
       '<div class="page-header" style="padding-top:10px;"><h1>'+tr('today_tile_discover',"Discover their world")+'</h1></div>' +
+      capsuleFeatureHTML() +
       sniffingWelcomeCard() +
       '<div class="card">' +
         '<div class="section-title">'+tr('discover_tip_label',"Today's tip")+'</div>' +
         '<p class="muted" style="margin-top:6px; display:flex; gap:6px;"><span style="color:var(--warn); flex:none;">'+icon('bulb',13)+'</span><span>'+tipText+'</span></p>' +
       '</div>' +
       (BREED_TRAINING_NOTE[breed.id] ? '<div class="card"><p class="muted" style="font-size:13px; display:flex; gap:6px;"><span style="color:var(--accent); flex:none;">'+icon('paw',13)+'</span><span>'+BREED_TRAINING_NOTE[breed.id]+'</span></p></div>' : '') +
-      (AGE_TRAINING_NOTE[stage] ? '<div class="card"><p class="muted" style="font-size:13px;">'+AGE_TRAINING_NOTE[stage]+'</p></div>' : '');
+      (AGE_TRAINING_NOTE[stage] ? '<div class="card"><p class="muted" style="font-size:13px;">'+AGE_TRAINING_NOTE[stage]+'</p></div>' : '') +
+      capsuleLibraryHTML();
   }
 
   function dogSex(){
@@ -7204,6 +7451,11 @@
     if (view === "walksDetail" || view === "costsDetail" || view === "discoverToday"){
       document.getElementById("back-home").addEventListener("click", function(){
         view = "home"; render();
+      });
+    }
+    if (view === "discoverToday"){
+      root.querySelectorAll("[data-capsule]").forEach(function(btn){
+        btn.addEventListener("click", function(){ openCapsule(btn.getAttribute("data-capsule"), btn); });
       });
     }
 
