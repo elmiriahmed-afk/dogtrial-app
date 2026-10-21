@@ -260,6 +260,9 @@
   .lt-note{font-size:12.5px; color:var(--ink-faint); margin:8px 2px 0;}
   .lt-clock{font-family:'Poppins',system-ui,sans-serif; font-weight:700; font-size:34px; margin:6px 0 4px;}
   .breed-grid{display:flex; flex-direction:column; gap:10px;}
+  .breed-photo-card.locked{opacity:.55;}
+  .breed-lock{position:absolute; top:10px; left:10px; width:26px; height:26px; border-radius:50%; background:rgba(16,27,70,.78); color:#fff; display:flex; align-items:center; justify-content:center; pointer-events:none;}
+  .gif-slot.locked{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--ink-soft); text-align:center; padding:16px; cursor:pointer;}
   .breed-card{
     border:1.5px solid var(--line); border-radius:18px; padding:14px; background:var(--card-2);
     text-align:left; display:flex; gap:12px; align-items:flex-start;
@@ -1764,6 +1767,34 @@
       lt_notif_care_body: "{label} for {name}",
       lt_care_notice_native: "You get a lock-screen reminder the day before (6 pm) and on the morning of the appointment (9 am).",
       lt_care_notice_web: "Lock-screen reminders work in the iPhone and Android apps, not in the browser.",
+      pw_title: "Try Premium free for 7 days",
+      pw_per_month: "/ month",
+      pw_after_trial: "after your free week. Cancel anytime.",
+      pw_cta: "Start my free week",
+      pw_restore: "Restore purchases",
+      pw_continue_free: "Continue with the free version",
+      pw_native_only: "Subscriptions are available in the iPhone and Android apps.",
+      pw_error: "The purchase didn't go through. Please try again.",
+      pw_restore_none: "No active subscription found for this account.",
+      pw_fineprint: "Payment is charged to your store account when the free week ends, unless you cancel at least 24 hours before. The subscription renews every month until you cancel in your store account settings.",
+      pw_privacy: "Privacy policy",
+      pw_terms: "Terms of use",
+      pw_feat_breeds: "All 10 breeds",
+      pw_feat_reminders: "Reminders and lock-screen notifications",
+      pw_feat_walk: "Walk timer and step counter",
+      pw_feat_videos: "Training and information videos",
+      pw_feat_photos: "Photos and moments",
+      pw_locked_title: "Part of Premium",
+      pw_see_premium: "See Premium",
+      pw_reason_generic: "This feature is part of Premium.",
+      pw_reason_reminders: "Reminders and notifications are part of Premium.",
+      pw_reason_breed: "Choosing a breed is part of Premium. The free version uses a Labrador.",
+      pw_reason_walk: "The walk timer and step counter are part of Premium.",
+      pw_reason_videos: "Training and information videos are part of Premium.",
+      pw_reason_capsules: "The illustrated capsules are part of Premium.",
+      pw_reason_photos: "Photos are part of Premium.",
+      lt_walk_log: "I went for a walk",
+      lt_walk_logged: "Walk logged",
       lt_journal_title: "Journal.",
       lt_journal_sub: "The small moments that matter.",
       lt_journal_label: "Your observation",
@@ -2302,6 +2333,34 @@
       lt_notif_care_body: "{label} pour {name}",
       lt_care_notice_native: "Vous recevez un rappel sur l’écran verrouillé la veille (18 h) et le matin du rendez-vous (9 h).",
       lt_care_notice_web: "Les rappels sur écran verrouillé fonctionnent dans les apps iPhone et Android, pas dans le navigateur.",
+      pw_title: "Essayez Premium gratuitement pendant 7 jours",
+      pw_per_month: "/ mois",
+      pw_after_trial: "après votre semaine gratuite. Annulable à tout moment.",
+      pw_cta: "Démarrer ma semaine gratuite",
+      pw_restore: "Restaurer mes achats",
+      pw_continue_free: "Continuer avec la version gratuite",
+      pw_native_only: "L’abonnement est disponible dans les apps iPhone et Android.",
+      pw_error: "L’achat n’a pas abouti. Veuillez réessayer.",
+      pw_restore_none: "Aucun abonnement actif trouvé pour ce compte.",
+      pw_fineprint: "Le paiement est prélevé sur votre compte du store à la fin de la semaine gratuite, sauf si vous annulez au moins 24 heures avant. L’abonnement se renouvelle chaque mois jusqu’à ce que vous l’annuliez dans les réglages de votre compte du store.",
+      pw_privacy: "Politique de confidentialité",
+      pw_terms: "Conditions d’utilisation",
+      pw_feat_breeds: "Les 10 races",
+      pw_feat_reminders: "Rappels et notifications sur l’écran verrouillé",
+      pw_feat_walk: "Minuteur et compteur de pas pour les balades",
+      pw_feat_videos: "Vidéos d’éducation et d’information",
+      pw_feat_photos: "Photos et moments",
+      pw_locked_title: "Inclus dans Premium",
+      pw_see_premium: "Voir Premium",
+      pw_reason_generic: "Cette fonction est incluse dans Premium.",
+      pw_reason_reminders: "Les rappels et notifications sont inclus dans Premium.",
+      pw_reason_breed: "Le choix de la race est inclus dans Premium. La version gratuite utilise un Labrador.",
+      pw_reason_walk: "Le minuteur et le compteur de pas sont inclus dans Premium.",
+      pw_reason_videos: "Les vidéos d’éducation et d’information sont incluses dans Premium.",
+      pw_reason_capsules: "Les capsules illustrées sont incluses dans Premium.",
+      pw_reason_photos: "Les photos sont incluses dans Premium.",
+      lt_walk_log: "Je suis sorti en balade",
+      lt_walk_logged: "Balade enregistrée",
       lt_journal_title: "Son carnet.",
       lt_journal_sub: "Les petits moments qui comptent.",
       lt_journal_label: "Votre observation",
@@ -3488,7 +3547,7 @@
   }
 
   function checkNotify(){
-    if (!state || !state.settings.notifications || !("Notification" in window) || Notification.permission !== "granted") return;
+    if (!state || !isPremium() || !state.settings.notifications || !("Notification" in window) || Notification.permission !== "granted") return;
     var checks = [["hunger","is pacing by the food bowl, waiting"],["bladder","is circling by the door and whining"],["energy","is bouncing off the walls with pent-up energy"]];
     checks.forEach(function(pair){
       var key = pair[0];
@@ -3591,7 +3650,7 @@
   // in-app Notification-API poll (checkNotify's pattern) on web/PWA where
   // that plugin no-ops. Never claims remote push or cross-device delivery.
   function scheduleReminderNotifications(){
-    if (!state || !state.settings.notifications) return;
+    if (!state || !state.settings.notifications || !isPremium()) return;
     var perm = ("Notification" in window) ? Notification.permission : "unsupported";
     var LN = (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.LocalNotifications) || null;
     if (!LN && perm !== "granted") return;
@@ -3684,6 +3743,123 @@
     if (state.bond >= 55) return tr('bond_getting_closer',"Getting closer");
     if (state.bond >= 35) return tr('bond_still_adjusting',"Still adjusting");
     return tr('bond_just_met',"Just met");
+  }
+
+  // ---------- Premium / free plan ----------
+  // Free: the simulation basics, Labrador only, manual walks. Premium: all breeds, reminders and notifications,
+  // walk timer and step counter, training and information videos, photos. 7-day free trial, then monthly,
+  // both handled by the stores through RevenueCat (Capacitor plugin "Purchases").
+  var MONETIZATION_ENABLED = false;      // flip to true once the store products and RevenueCat keys are live
+  var PAYWALL_DEBUG_OVERRIDE = true;     // lets localStorage "dogtrial_plan" = free|premium force a plan; set to false at launch
+  var REVENUECAT_KEYS = { ios:"", android:"" };
+  var PREMIUM_ENTITLEMENT_ID = "premium";
+  var PREMIUM_PRICE_FALLBACK = "$2.99";
+  var entitlement = { premium:false, priceString:null, busy:false, error:"" };
+  var paywallReturnView = "home", paywallReason = "";
+  function planOverride(){
+    if (!PAYWALL_DEBUG_OVERRIDE) return null;
+    try { var v = localStorage.getItem("dogtrial_plan"); return (v === "free" || v === "premium") ? v : null; } catch(e){ return null; }
+  }
+  function isPremium(){
+    var o = planOverride();
+    if (o) return o === "premium";
+    if (!MONETIZATION_ENABLED) return true;
+    return !!entitlement.premium;
+  }
+  function billingPlugin(){ return (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Purchases) || null; }
+  function applyCustomerInfo(info){
+    var act = info && info.entitlements && info.entitlements.active;
+    entitlement.premium = !!(act && act[PREMIUM_ENTITLEMENT_ID]);
+  }
+  function billingInit(){
+    try {
+      var P = billingPlugin();
+      if (!P || !MONETIZATION_ENABLED) return;
+      var platform = (window.Capacitor && window.Capacitor.getPlatform && window.Capacitor.getPlatform()) || "web";
+      var apiKey = REVENUECAT_KEYS[platform];
+      if (!apiKey) return;
+      P.configure({ apiKey: apiKey }).then(function(){
+        P.addCustomerInfoUpdateListener(function(info){ applyCustomerInfo(info); render(); });
+        return P.getCustomerInfo();
+      }).then(function(r){ applyCustomerInfo(r && r.customerInfo); render(); }).catch(function(){});
+      P.getOfferings().then(function(o){
+        var pkg = o && o.current && o.current.monthly;
+        if (pkg && pkg.product && pkg.product.priceString) entitlement.priceString = pkg.product.priceString;
+      }).catch(function(){});
+    } catch(e){}
+  }
+  function openPaywall(reason){
+    if (view !== "paywall") paywallReturnView = view;
+    paywallReason = reason || "";
+    entitlement.error = "";
+    view = "paywall"; render();
+  }
+  function closePaywall(){ view = paywallReturnView || "home"; render(); }
+  function purchasePremium(){
+    var P = billingPlugin();
+    if (!P) return;
+    entitlement.busy = true; entitlement.error = ""; render();
+    P.getOfferings().then(function(o){
+      var pkg = o && o.current && o.current.monthly;
+      if (!pkg) throw new Error("no_package");
+      return P.purchasePackage({ aPackage: pkg });
+    }).then(function(r){
+      applyCustomerInfo(r && r.customerInfo);
+      entitlement.busy = false;
+      if (entitlement.premium) closePaywall(); else render();
+    }).catch(function(e){
+      entitlement.busy = false;
+      if (!(e && e.userCancelled)) entitlement.error = tr('pw_error',"The purchase didn't go through. Please try again.");
+      render();
+    });
+  }
+  function restorePremium(){
+    var P = billingPlugin();
+    if (!P) return;
+    entitlement.busy = true; entitlement.error = ""; render();
+    P.restorePurchases().then(function(r){
+      applyCustomerInfo(r && r.customerInfo);
+      entitlement.busy = false;
+      if (entitlement.premium) closePaywall();
+      else { entitlement.error = tr('pw_restore_none',"No active subscription found for this account."); render(); }
+    }).catch(function(){
+      entitlement.busy = false; entitlement.error = tr('pw_error',"The purchase didn't go through. Please try again."); render();
+    });
+  }
+  function lockedCardHTML(reason, backId){
+    return (backId ? '<button class="btn-ghost" id="'+backId+'">'+tr('btn_back','Back')+'</button>' : '') +
+      '<div class="card" style="margin-top:10px; text-align:center;">' +
+        '<div style="display:flex; justify-content:center; margin-bottom:8px;">'+iconTileHTML('lock','purple',44)+'</div>' +
+        '<b>'+tr('pw_locked_title',"Part of Premium")+'</b>' +
+        '<p class="muted" style="margin-top:6px;">'+tr('pw_reason_'+reason, tr('pw_reason_generic',"This feature is part of Premium."))+'</p>' +
+        '<button class="btn btn-primary" data-open-paywall="'+reason+'" style="margin-top:12px;">'+tr('pw_see_premium',"See Premium")+'</button>' +
+      '</div>';
+  }
+  function renderPaywall(){
+    var price = entitlement.priceString || PREMIUM_PRICE_FALLBACK;
+    var canBuy = !!billingPlugin() && MONETIZATION_ENABLED;
+    var feats = [["paw","pw_feat_breeds","All 10 breeds"],["bell","pw_feat_reminders","Reminders and lock-screen notifications"],
+      ["clock","pw_feat_walk","Walk timer and step counter"],["play","pw_feat_videos","Training and information videos"],
+      ["camera","pw_feat_photos","Photos and moments"]].map(function(f){
+      return '<div class="cost-row" style="align-items:center; gap:10px; justify-content:flex-start;"><span style="display:inline-flex; color:var(--accent-bright);">'+icon(f[0],18)+'</span><b style="font-weight:600;">'+tr(f[1],f[2])+'</b></div>';
+    }).join("");
+    var reasonLine = paywallReason ? '<p class="muted" style="margin:0 2px 12px;">'+tr('pw_reason_'+paywallReason, "")+'</p>' : "";
+    return '<button class="btn-ghost" id="paywall-close">'+tr('btn_back','Back')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('pw_title',"Try Premium free for 7 days")+'</h1></div>' +
+      reasonLine +
+      '<div class="card">' + feats + '</div>' +
+      '<div class="card" style="text-align:center;">' +
+        '<div class="lt-clock">'+esc(price)+'<span class="muted" style="font-size:14px; font-weight:500;"> '+tr('pw_per_month',"/ month")+'</span></div>' +
+        '<p class="muted">'+tr('pw_after_trial',"after your free week. Cancel anytime.")+'</p>' +
+        (entitlement.error ? '<p style="color:var(--bad); font-size:13px; margin-top:8px;">'+esc(entitlement.error)+'</p>' : '') +
+        (canBuy
+          ? '<button class="btn btn-primary" id="paywall-buy" style="margin-top:12px;" '+(entitlement.busy?"disabled":"")+'>'+(entitlement.busy ? tr('onboard_please_wait',"Please wait…") : tr('pw_cta',"Start my free week"))+'</button>' +
+            '<button class="btn-ghost" id="paywall-restore" style="margin-top:8px; width:100%;" '+(entitlement.busy?"disabled":"")+'>'+tr('pw_restore',"Restore purchases")+'</button>'
+          : '<p class="muted" style="margin-top:10px;">'+tr('pw_native_only',"Subscriptions are available in the iPhone and Android apps.")+'</p>') +
+        '<button class="btn-ghost" id="paywall-free" style="margin-top:8px; width:100%; border:1px solid var(--line);">'+tr('pw_continue_free',"Continue with the free version")+'</button>' +
+      '</div>' +
+      '<p class="lt-note">'+tr('pw_fineprint',"Payment is charged to your store account when the free week ends, unless you cancel at least 24 hours before. The subscription renews every month until you cancel in your store account settings.")+'</p>' +
+      '<p class="lt-note"><a href="https://dogtrial.dog/privacy.html" target="_blank" rel="noopener">'+tr('pw_privacy',"Privacy policy")+'</a> · <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">'+tr('pw_terms',"Terms of use")+'</a></p>';
   }
 
   function esc(s){
@@ -4055,6 +4231,7 @@
     else if (view === "realLearn") root.innerHTML = brandStrip() + renderRealLearn();
     else if (view === "realLesson") root.innerHTML = brandStrip() + renderRealLesson();
     else if (view === "realRoutines") root.innerHTML = brandStrip() + renderRealRoutines();
+    else if (view === "paywall") root.innerHTML = brandStrip() + renderPaywall();
     else if (view === "realArrival") root.innerHTML = brandStrip() + renderRealArrival();
     else if (view === "realWalk") root.innerHTML = brandStrip() + renderRealWalk();
     else if (view === "realCare") root.innerHTML = brandStrip() + renderRealCare();
@@ -4273,12 +4450,13 @@
       var cards = filtered.map(function(b){
         var sel = b.id === pendingBreed;
         return '<div class="breed-card-wrap">' +
-          '<button class="breed-photo-card'+(sel?' selected':'')+'" data-breed="'+b.id+'">' +
+          '<button class="breed-photo-card'+(sel?' selected':'')+((!isPremium() && b.id !== "lab") ? ' locked' : '')+'" data-breed="'+b.id+'">' +
             '<img class="breed-photo" src="media/moments/sniffing/'+b.id+'_puppy.jpg" alt="">' +
             '<div class="name">'+esc(b.name)+'</div>' +
             '<span class="size-tag">'+esc(SIZE_LABEL_BY_ID[BREED_SIZE[b.id]] || "")+'</span>' +
           '</button>' +
           (sel ? '<span class="breed-photo-tick" aria-hidden="true">'+icon('check',13)+'</span>' : '') +
+          ((!isPremium() && b.id !== "lab") ? '<span class="breed-lock" aria-hidden="true">'+icon('lock',13)+'</span>' : '') +
           '<button class="breed-info-btn" data-breed-info="'+b.id+'" aria-label="'+esc(tr('breed_info_aria','Information about {name}').replace('{name}', b.name))+'">'+icon('info',15)+'</button>' +
         '</div>';
       }).join("");
@@ -4664,6 +4842,7 @@
   var capsulePlayer = null;
   function capSmooth(x){ x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); }
   function openCapsule(id, openerEl){
+    if (!isPremium()){ openPaywall("capsules"); return; }
     var c = capsuleById(id);
     if (!c || capsulePlayer) return;
     var lang = capsuleLang();
@@ -5118,6 +5297,9 @@
   }
 
   function trainingMediaHTML(skill){
+    if (skill.media && !isPremium()) {
+      return '<div class="gif-slot locked" data-open-paywall="videos">'+icon('lock',30)+'<span style="font-size:13px; font-weight:600;">'+tr('pw_reason_videos',"Training and information videos are part of Premium.")+'</span></div>';
+    }
     if (skill.media) {
       return '<video class="gif-slot" src="'+skill.media+'" autoplay loop muted playsinline></video>';
     }
@@ -5331,6 +5513,7 @@
   // due card does (it navigates to the existing walk/feed/training flow,
   // same as the Today tiles), per the conception pack's own requirement.
   function renderReminders(){
+    if (!isPremium()) return lockedCardHTML("reminders", "back-home");
     var mode = "simulation";
     var stage = stageOf(state.dogDays);
     var templates = selectReminderTemplates(state.breedId, stage, mode);
@@ -5387,6 +5570,7 @@
   // state.settings for simulation mode — matches how every other setting
   // already persists (renderSettingsCard, same pattern).
   function renderReminderPreferences(){
+    if (!isPremium()) return lockedCardHTML("reminders", "back-reminders");
     var s = state.settings;
     var cats = s.reminderCategories || { daily:true, activity:true, care:true };
     var quietStart = s.reminderQuietStart || "22:00";
@@ -6441,7 +6625,7 @@
   }
   // Applies the journal reminder setting: cancels the old schedule, then (if on) schedules one repeating daily notification.
   function realJournalReminderApply(){
-    var LN = realLN(); if (!LN || !realDog) return Promise.resolve("unsupported");
+    var LN = realLN(); if (!LN || !realDog || !isPremium()) return Promise.resolve("unsupported");
     var ex = realExtrasLoad();
     return LN.cancel({ notifications:[{ id: RN_JOURNAL_ID }] }).catch(function(){}).then(function(){
       if (!ex.settings.journalOn) return "off";
@@ -6465,7 +6649,7 @@
   }
   // Day-before (18:00) and morning-of (09:00) reminders, only for times still in the future.
   function realCareReminderSchedule(item){
-    var LN = realLN(); if (!LN || !realDog) return Promise.resolve("unsupported");
+    var LN = realLN(); if (!LN || !realDog || !isPremium()) return Promise.resolve("unsupported");
     var parts = (item.date || "").split("-"); if (parts.length !== 3) return Promise.resolve("error");
     var y = +parts[0], m = +parts[1] - 1, d = +parts[2], ids = realCareNotifIds(item);
     var body = tr('lt_notif_care_body',"{label} for {name}").replace('{label}', item.label).replace('{name}', realDog.name);
@@ -6516,16 +6700,19 @@
     var walking = !!realWalkStartedAt;
     var history = ex.walks.length
       ? ex.walks.map(function(w){
-          return rowCardHTML({ icon:"paw", color:"teal", title: esc(realDateLabel(w.ts)), subtitle: esc(tr('lt_walk_min',"{n} min").replace('{n}', w.minutes)) });
+          return rowCardHTML({ icon:"paw", color:"teal", title: esc(realDateLabel(w.ts)), subtitle: w.minutes ? esc(tr('lt_walk_min',"{n} min").replace('{n}', w.minutes)) : esc(tr('lt_walk_logged',"Walk logged")) });
         }).join("")
       : '<p class="muted" style="margin:0 2px;">'+tr('lt_walk_empty',"No walk recorded yet.")+'</p>';
     return realBackBtn() +
       '<div class="page-header" style="padding-top:10px;"><h1>'+tr('lt_walk_title',"Time outside.")+'</h1></div>' +
       '<div class="card">' +
-        '<span class="expense-badge">'+tr('lt_walk_eyebrow',"WALK IN PROGRESS")+'</span>' +
-        '<div class="lt-clock" id="real-walk-clock">'+realWalkClock()+'</div>' +
-        '<p class="muted">'+tr('lt_walk_notice',"A simple timer, with no GPS tracking.")+'</p>' +
-        '<button class="btn btn-primary" id="real-walk-toggle" style="margin-top:10px;">'+(walking ? tr('lt_walk_stop',"End the walk") : tr('lt_walk_start',"Start the walk"))+'</button>' +
+        (isPremium() ? '<span class="expense-badge">'+tr('lt_walk_eyebrow',"WALK IN PROGRESS")+'</span>' : '') +
+        (isPremium()
+          ? '<div class="lt-clock" id="real-walk-clock">'+realWalkClock()+'</div>' +
+            '<p class="muted">'+tr('lt_walk_notice',"A simple timer, with no GPS tracking.")+'</p>' +
+            '<button class="btn btn-primary" id="real-walk-toggle" style="margin-top:10px;">'+(walking ? tr('lt_walk_stop',"End the walk") : tr('lt_walk_start',"Start the walk"))+'</button>'
+          : '<button class="btn btn-primary" id="real-walk-log" style="margin-top:10px;">'+tr('lt_walk_log',"I went for a walk")+'</button>' +
+            '<button class="btn-ghost" data-open-paywall="walk" style="margin-top:8px; width:100%;">'+tr('pw_reason_walk',"")+'</button>') +
       '</div>' +
       '<div class="section-title" style="margin:18px 2px 10px;">'+tr('lt_walk_history',"Recent outings")+'</div>' + history +
       '<p class="lt-note">'+tr('lt_local_note',"Saved on this device only.")+'</p>';
@@ -6533,6 +6720,7 @@
 
   function realReminderCardHTML(){
     var ex = realExtrasLoad();
+    if (!isPremium()) return lockedCardHTML("reminders", "");
     if (!realLN()){
       return '<div class="card"><b>'+tr('lt_remind_title',"Daily reminder")+'</b><p class="muted" style="margin-top:6px;">'+tr('lt_remind_web',"")+'</p></div>';
     }
@@ -6608,7 +6796,7 @@
         '<input id="real-care-date" name="date" type="date" required></div>' +
         '<button class="btn btn-primary" type="submit" style="margin-top:12px;">'+tr('lt_care_submit',"Save")+'</button>' +
       '</form>' +
-      '<p class="lt-note">'+(realLN() ? tr('lt_care_notice_native',"") : tr('lt_care_notice_web',""))+'</p>' +
+      '<p class="lt-note">'+(!isPremium() ? tr('pw_reason_reminders',"") : realLN() ? tr('lt_care_notice_native',"") : tr('lt_care_notice_web',""))+'</p>' +
       '<div class="section-title" style="margin:18px 2px 10px;">'+tr('lt_care_upcoming',"Upcoming")+'</div>' + list +
       '<p class="lt-note">'+tr('lt_local_note',"Saved on this device only.")+'</p>';
   }
@@ -6999,7 +7187,7 @@
     return "media/moments/sniffing/" + state.breedId + "_" + stage + ".jpg";
   }
   function momentPhotoFor(m){
-    if (!m || !state) return null;
+    if (!m || !state || !isPremium()) return null;
     if (m.category === "Incident") return m.assetPath || null;
     return null;
   }
@@ -7349,6 +7537,7 @@
       });
       root.querySelectorAll("[data-breed]").forEach(function(el){
         el.addEventListener("click", function(){
+          if (!isPremium() && el.getAttribute("data-breed") !== "lab"){ openPaywall("breed"); return; }
           pendingBreed = el.getAttribute("data-breed");
           breedInfoId = null;
           render();
@@ -7468,8 +7657,8 @@
           var fb = document.getElementById("feed-btn");
           if (fb) fb.click();
         } else if (action === "walk"){
-          if (state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined") startStepsWalk();
-          else if (state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
+          if (isPremium() && state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined") startStepsWalk();
+          else if (isPremium() && state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
           else doManualWalk();
         } else if (action === "play"){
           view = "safeActivities"; render();
@@ -7486,9 +7675,9 @@
       });
       var walkBtn = document.getElementById("walk-btn");
       if (walkBtn) walkBtn.addEventListener("click", function(){
-        if (state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined"){
+        if (isPremium() && state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined"){
           walkCtx = null; view = "walkSteps"; render();
-        } else if (state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
+        } else if (isPremium() && state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
         else doManualWalk();
       });
       var playBtn = document.getElementById("play-btn");
@@ -7585,9 +7774,9 @@
         el.addEventListener("click", function(){
           var action = el.getAttribute("data-remind-action");
           if (action === "open_walk"){
-            if (state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined"){
+            if (isPremium() && state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined"){
               walkCtx = null; view = "walkSteps"; render();
-            } else if (state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
+            } else if (isPremium() && state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
             else doManualWalk();
           } else if (action === "open_meal"){
             feedQuizCtx = { question: pickFeedingQuestion(), answer: null };
@@ -7601,6 +7790,7 @@
       });
       var notifToggle = document.getElementById("notif-toggle");
       if (notifToggle) notifToggle.addEventListener("change", function(){
+        if (notifToggle.checked && !isPremium()){ notifToggle.checked = false; openPaywall("reminders"); return; }
         if (notifToggle.checked){
           if (!("Notification" in window)){
             notifToggle.checked = false;
@@ -7619,6 +7809,7 @@
       });
       var gpsToggle = document.getElementById("gps-toggle");
       if (gpsToggle) gpsToggle.addEventListener("change", function(){
+        if (gpsToggle.checked && !isPremium()){ gpsToggle.checked = false; openPaywall("walk"); return; }
         if (gpsToggle.checked && !("geolocation" in navigator)){
           gpsToggle.checked = false;
           window.alert("This browser doesn't support location.");
@@ -7629,6 +7820,7 @@
       });
       var stepsToggle = document.getElementById("steps-toggle");
       if (stepsToggle) stepsToggle.addEventListener("change", function(){
+        if (stepsToggle.checked && !isPremium()){ stepsToggle.checked = false; openPaywall("walk"); return; }
         if (stepsToggle.checked && typeof DeviceMotionEvent === "undefined"){
           stepsToggle.checked = false;
           window.alert("This browser doesn't support motion sensing.");
@@ -7689,9 +7881,9 @@
       });
       var walkSummaryNewBtn = document.getElementById("walk-summary-new");
       if (walkSummaryNewBtn) walkSummaryNewBtn.addEventListener("click", function(){
-        if (state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined"){
+        if (isPremium() && state.settings.stepWalks && typeof DeviceMotionEvent !== "undefined"){
           walkCtx = null; view = "walkSteps"; render();
-        } else if (state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
+        } else if (isPremium() && state.settings.gpsWalks && "geolocation" in navigator) startGpsWalk();
         else doManualWalk();
       });
     }
@@ -8048,6 +8240,15 @@
       });
     }
 
+    root.querySelectorAll("[data-open-paywall]").forEach(function(el){
+      el.addEventListener("click", function(){ openPaywall(el.getAttribute("data-open-paywall")); });
+    });
+    if (view === "paywall"){
+      var pwClose = document.getElementById("paywall-close"); if (pwClose) pwClose.addEventListener("click", closePaywall);
+      var pwFree = document.getElementById("paywall-free"); if (pwFree) pwFree.addEventListener("click", closePaywall);
+      var pwBuy = document.getElementById("paywall-buy"); if (pwBuy) pwBuy.addEventListener("click", purchasePremium);
+      var pwRestore = document.getElementById("paywall-restore"); if (pwRestore) pwRestore.addEventListener("click", restorePremium);
+    }
     if (view !== "realWalk" && realWalkTick){ clearInterval(realWalkTick); realWalkTick = null; }
     if (["realArrival","realWalk","realCare","realJournal","realBudget","realProfile"].indexOf(view) !== -1){
       var realExtraBack = document.getElementById("real-extra-back");
@@ -8058,6 +8259,12 @@
       if (realArrivalCta) realArrivalCta.addEventListener("click", function(){ realRoutineFormOpen = true; view = "realRoutines"; render(); });
     }
     if (view === "realWalk"){
+      var realWalkLogBtn = document.getElementById("real-walk-log");
+      if (realWalkLogBtn) realWalkLogBtn.addEventListener("click", function(){
+        var ex = realExtrasLoad(); ex.walks.unshift({ ts: Date.now(), minutes: 0 });
+        if (ex.walks.length > 30) ex.walks.length = 30;
+        realExtrasSave(); render();
+      });
       var realWalkBtn = document.getElementById("real-walk-toggle");
       if (realWalkBtn) realWalkBtn.addEventListener("click", function(){
         if (realWalkStartedAt){
