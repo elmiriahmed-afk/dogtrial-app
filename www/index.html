@@ -252,6 +252,13 @@
     width:100%; padding:12px 14px; border-radius:14px; border:1px solid var(--line);
     background:var(--card-2); color:var(--ink); font-size:16px; font-family:inherit;
   }
+  .field input[type=date], .field input[type=number], .field textarea{
+    width:100%; padding:12px 14px; border-radius:14px; border:1px solid var(--line);
+    background:var(--card-2); color:var(--ink); font-size:16px; font-family:inherit;
+  }
+  .field textarea{min-height:110px; resize:vertical;}
+  .lt-note{font-size:12.5px; color:var(--ink-faint); margin:8px 2px 0;}
+  .lt-clock{font-family:'Poppins',system-ui,sans-serif; font-weight:700; font-size:34px; margin:6px 0 4px;}
   .breed-grid{display:flex; flex-direction:column; gap:10px;}
   .breed-card{
     border:1.5px solid var(--line); border-radius:18px; padding:14px; background:var(--card-2);
@@ -1712,6 +1719,70 @@
       adopt_intro_title: "You completed the trial.<br>Now your real life together begins.",
       adopt_intro_body: "We'll switch to tracking your actual dog — separate from the simulation. Nothing from the trial (incidents, stats) carries over: you tell us what's real.",
       adopt_continue: "I adopted a dog — continue",
+      lt_arrival_card_title: "Its first days at home",
+      lt_arrival_card_sub: "Simple landmarks to get started well.",
+      lt_arrival_title: "Welcome home.",
+      lt_arrival_sub: "Every dog discovers their home at their own pace.",
+      lt_tip1_t: "A quiet corner",
+      lt_tip1_b: "Prepare a space where they can rest without being disturbed.",
+      lt_tip2_t: "Regular landmarks",
+      lt_tip2_b: "Organise outings and rest around your daily life.",
+      lt_tip3_t: "Gradual meetings",
+      lt_tip3_b: "Give them time to discover people and places.",
+      lt_arrival_cta: "Set up our routine →",
+      lt_section_daily: "Your daily life together",
+      lt_tile_walk_t: "Walks & play",
+      lt_tile_walk_s: "Your time outside",
+      lt_tile_care_t: "Health & care",
+      lt_tile_care_s: "Appointments to keep",
+      lt_tile_journal_t: "Journal",
+      lt_tile_journal_s: "Memories and observations",
+      lt_tile_budget_t: "Budget",
+      lt_tile_budget_s: "What you actually spend",
+      lt_tile_profile_t: "Your dog's profile",
+      lt_tile_profile_s: "Name, breed, arrival",
+      lt_local_note: "Saved on this device only.",
+      lt_walk_title: "Time outside.",
+      lt_walk_eyebrow: "WALK IN PROGRESS",
+      lt_walk_ready: "Ready to go?",
+      lt_walk_notice: "A simple timer, with no GPS tracking.",
+      lt_walk_start: "Start the walk",
+      lt_walk_stop: "End the walk",
+      lt_walk_history: "Recent outings",
+      lt_walk_empty: "No walk recorded yet.",
+      lt_walk_min: "{n} min",
+      lt_journal_title: "Journal.",
+      lt_journal_sub: "The small moments that matter.",
+      lt_journal_label: "Your observation",
+      lt_journal_ph: "Today, we…",
+      lt_journal_submit: "Add to the journal",
+      lt_journal_history: "Memories",
+      lt_journal_empty: "Your journal is waiting for its first note.",
+      lt_budget_title: "Budget.",
+      lt_budget_eyebrow: "EXPENSES LOGGED",
+      lt_budget_item: "Expense",
+      lt_budget_item_ph: "e.g. accessories",
+      lt_budget_amount: "Amount",
+      lt_budget_submit: "Add the expense",
+      lt_budget_history: "History",
+      lt_budget_empty: "No expense logged.",
+      lt_care_title: "Health & care.",
+      lt_care_sub: "Keep {name}'s appointments in one place.",
+      lt_care_item: "Appointment or care",
+      lt_care_item_ph: "e.g. vet appointment",
+      lt_care_date: "Date",
+      lt_care_submit: "Save",
+      lt_care_notice: "Entries are kept here. No notification is sent.",
+      lt_care_upcoming: "Upcoming",
+      lt_care_empty: "No appointment saved.",
+      lt_profile_title: "Your companion.",
+      lt_profile_name: "Name",
+      lt_profile_breed: "Breed",
+      lt_profile_breed_unknown: "Not specified",
+      lt_profile_arrival: "Arrival date",
+      lt_profile_birth: "Birth date",
+      lt_profile_days: "Days together",
+      lt_profile_note: "Editing these details arrives in a later update.",
       adopt_profile_title: "Your dog",
       adopt_name_label: "Name",
       adopt_arrival_label: "Arrival date",
@@ -2173,6 +2244,70 @@
       adopt_intro_title: "Vous avez terminé l'essai.<br>Votre vraie vie ensemble commence maintenant.",
       adopt_intro_body: "On passe au suivi de votre vrai chien, séparé de la simulation. Rien de l'essai (incidents, statistiques) n'est repris : c'est vous qui confirmez ce qui est réel.",
       adopt_continue: "J'ai adopté un chien — continuer",
+      lt_arrival_card_title: "Ses premiers jours à la maison",
+      lt_arrival_card_sub: "Des repères simples pour bien commencer.",
+      lt_arrival_title: "Bienvenue à la maison.",
+      lt_arrival_sub: "Chaque chien découvre son foyer à son rythme.",
+      lt_tip1_t: "Un coin tranquille",
+      lt_tip1_b: "Préparez un espace où il peut se reposer sans être dérangé.",
+      lt_tip2_t: "Des repères réguliers",
+      lt_tip2_b: "Organisez les sorties et les moments de repos selon votre quotidien.",
+      lt_tip3_t: "Des rencontres progressives",
+      lt_tip3_b: "Laissez-lui le temps de découvrir les personnes et les lieux.",
+      lt_arrival_cta: "Créer nos repères →",
+      lt_section_daily: "Votre quotidien à deux",
+      lt_tile_walk_t: "Balades & jeu",
+      lt_tile_walk_s: "Vos moments dehors",
+      lt_tile_care_t: "Santé & soins",
+      lt_tile_care_s: "Rendez-vous à ne pas oublier",
+      lt_tile_journal_t: "Son carnet",
+      lt_tile_journal_s: "Souvenirs et observations",
+      lt_tile_budget_t: "Budget",
+      lt_tile_budget_s: "Vos dépenses réelles",
+      lt_tile_profile_t: "Profil de votre chien",
+      lt_tile_profile_s: "Prénom, race, arrivée",
+      lt_local_note: "Enregistré uniquement sur cet appareil.",
+      lt_walk_title: "Un moment dehors.",
+      lt_walk_eyebrow: "BALADE EN COURS",
+      lt_walk_ready: "Prêts à partir ?",
+      lt_walk_notice: "Un simple chronomètre, sans suivi GPS.",
+      lt_walk_start: "Commencer la balade",
+      lt_walk_stop: "Terminer la balade",
+      lt_walk_history: "Vos dernières sorties",
+      lt_walk_empty: "Aucune balade enregistrée pour le moment.",
+      lt_walk_min: "{n} min",
+      lt_journal_title: "Son carnet.",
+      lt_journal_sub: "Les petits moments qui comptent.",
+      lt_journal_label: "Votre observation",
+      lt_journal_ph: "Aujourd’hui, nous avons…",
+      lt_journal_submit: "Ajouter au carnet",
+      lt_journal_history: "Vos souvenirs",
+      lt_journal_empty: "Votre carnet attend sa première note.",
+      lt_budget_title: "Son budget.",
+      lt_budget_eyebrow: "DÉPENSES SAISIES",
+      lt_budget_item: "Dépense",
+      lt_budget_item_ph: "Ex. : accessoires",
+      lt_budget_amount: "Montant",
+      lt_budget_submit: "Ajouter la dépense",
+      lt_budget_history: "Historique",
+      lt_budget_empty: "Aucune dépense saisie.",
+      lt_care_title: "Santé & soins.",
+      lt_care_sub: "Gardez les rendez-vous de {name} au même endroit.",
+      lt_care_item: "Rendez-vous ou soin",
+      lt_care_item_ph: "Ex. : rendez-vous vétérinaire",
+      lt_care_date: "Date",
+      lt_care_submit: "Enregistrer",
+      lt_care_notice: "Vos entrées sont conservées ici. Aucune notification n’est envoyée.",
+      lt_care_upcoming: "À venir",
+      lt_care_empty: "Aucun rendez-vous enregistré.",
+      lt_profile_title: "Votre compagnon.",
+      lt_profile_name: "Prénom",
+      lt_profile_breed: "Race",
+      lt_profile_breed_unknown: "Non précisée",
+      lt_profile_arrival: "Date d’arrivée",
+      lt_profile_birth: "Date de naissance",
+      lt_profile_days: "Jours ensemble",
+      lt_profile_note: "La modification de ces informations arrivera dans une prochaine mise à jour.",
       adopt_profile_title: "Votre chien",
       adopt_name_label: "Nom",
       adopt_arrival_label: "Date d'arrivée",
@@ -3893,6 +4028,12 @@
     else if (view === "realLearn") root.innerHTML = brandStrip() + renderRealLearn();
     else if (view === "realLesson") root.innerHTML = brandStrip() + renderRealLesson();
     else if (view === "realRoutines") root.innerHTML = brandStrip() + renderRealRoutines();
+    else if (view === "realArrival") root.innerHTML = brandStrip() + renderRealArrival();
+    else if (view === "realWalk") root.innerHTML = brandStrip() + renderRealWalk();
+    else if (view === "realCare") root.innerHTML = brandStrip() + renderRealCare();
+    else if (view === "realJournal") root.innerHTML = brandStrip() + renderRealJournal();
+    else if (view === "realBudget") root.innerHTML = brandStrip() + renderRealBudget();
+    else if (view === "realProfile") root.innerHTML = brandStrip() + renderRealProfile();
     // "La vie ensemble" (after-adoption) — dormant, unreachable views.
     // See dogtrial-after-adoption/INTEGRATION.md. Not linked from any nav.
     else if (view === "afterAdoptHome") root.innerHTML = renderAfterAdoptHome();
@@ -6226,6 +6367,162 @@
       '</div>';
   }
 
+
+  // ---------- "Life together" screens (from the La vie ensemble mockup): arrival, walks, care, journal, budget, profile ----------
+  // Routines and the 8-week program live on the server. These extras stay on this device (localStorage, per dog).
+  var realExtras = null, realExtrasFor = null;
+  var realWalkStartedAt = null, realWalkTick = null;
+  function realExtrasKey(){ return "dogtrial_real_extras_v1_" + (realDog ? realDog.id : "none"); }
+  function realExtrasLoad(){
+    var id = realDog ? realDog.id : null;
+    if (realExtras && realExtrasFor === id) return realExtras;
+    var x = { walks:[], care:[], notes:[], expenses:[] };
+    try {
+      var raw = localStorage.getItem(realExtrasKey());
+      if (raw){
+        var p = JSON.parse(raw);
+        Object.keys(x).forEach(function(k){ if (Array.isArray(p[k])) x[k] = p[k]; });
+      }
+    } catch(e){}
+    realExtras = x; realExtrasFor = id;
+    return x;
+  }
+  function realExtrasSave(){
+    try { localStorage.setItem(realExtrasKey(), JSON.stringify(realExtras)); } catch(e){}
+  }
+  function realMoney(n){
+    try { return Number(n).toLocaleString(appLocale(), { style:"currency", currency: appLocale() === "fr-FR" ? "EUR" : "USD" }); }
+    catch(e){ return String(n); }
+  }
+  function realDateLabel(ts){
+    try { return new Date(ts).toLocaleDateString(appLocale(), { day:"numeric", month:"short", year:"numeric" }); }
+    catch(e){ return ""; }
+  }
+  function realBackBtn(){
+    return '<button class="btn-ghost" id="real-extra-back">'+tr('btn_back_to_today',"← Back to today")+'</button>';
+  }
+  function realWalkClock(){
+    if (!realWalkStartedAt) return tr('lt_walk_ready',"Ready to go?");
+    var s = Math.floor((Date.now() - realWalkStartedAt) / 1000);
+    return pad2(Math.floor(s/60)) + ":" + pad2(s%60);
+  }
+
+  function renderRealArrival(){
+    var tips = [1,2,3].map(function(i){
+      return '<div class="card"><b>'+tr('lt_tip'+i+'_t',"")+'</b><p class="muted" style="margin-top:6px;">'+tr('lt_tip'+i+'_b',"")+'</p></div>';
+    }).join("");
+    return realBackBtn() +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('lt_arrival_title',"Welcome home.")+'</h1></div>' +
+      '<p class="muted" style="margin:0 2px 12px;">'+tr('lt_arrival_sub',"")+'</p>' +
+      tips +
+      '<button class="btn btn-primary" id="real-arrival-cta" style="margin-top:6px;">'+tr('lt_arrival_cta',"Set up our routine →")+'</button>';
+  }
+
+  function renderRealWalk(){
+    var ex = realExtrasLoad();
+    var walking = !!realWalkStartedAt;
+    var history = ex.walks.length
+      ? ex.walks.map(function(w){
+          return rowCardHTML({ icon:"paw", color:"teal", title: esc(realDateLabel(w.ts)), subtitle: esc(tr('lt_walk_min',"{n} min").replace('{n}', w.minutes)) });
+        }).join("")
+      : '<p class="muted" style="margin:0 2px;">'+tr('lt_walk_empty',"No walk recorded yet.")+'</p>';
+    return realBackBtn() +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('lt_walk_title',"Time outside.")+'</h1></div>' +
+      '<div class="card">' +
+        '<span class="expense-badge">'+tr('lt_walk_eyebrow',"WALK IN PROGRESS")+'</span>' +
+        '<div class="lt-clock" id="real-walk-clock">'+realWalkClock()+'</div>' +
+        '<p class="muted">'+tr('lt_walk_notice',"A simple timer, with no GPS tracking.")+'</p>' +
+        '<button class="btn btn-primary" id="real-walk-toggle" style="margin-top:10px;">'+(walking ? tr('lt_walk_stop',"End the walk") : tr('lt_walk_start',"Start the walk"))+'</button>' +
+      '</div>' +
+      '<div class="section-title" style="margin:18px 2px 10px;">'+tr('lt_walk_history',"Recent outings")+'</div>' + history +
+      '<p class="lt-note">'+tr('lt_local_note',"Saved on this device only.")+'</p>';
+  }
+
+  function renderRealJournal(){
+    var ex = realExtrasLoad();
+    var entries = ex.notes.length
+      ? ex.notes.map(function(n){
+          return '<div class="card"><span class="muted" style="font-size:12px;">'+esc(realDateLabel(n.ts))+'</span><p style="white-space:pre-wrap; margin-top:4px;">'+esc(n.text)+'</p></div>';
+        }).join("")
+      : '<p class="muted" style="margin:0 2px;">'+tr('lt_journal_empty',"")+'</p>';
+    return realBackBtn() +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('lt_journal_title',"Journal.")+'</h1></div>' +
+      '<p class="muted" style="margin:0 2px 12px;">'+tr('lt_journal_sub',"")+'</p>' +
+      '<form class="card" id="real-form-note">' +
+        '<div class="field"><label for="real-note-text">'+tr('lt_journal_label',"Your observation")+'</label>' +
+        '<textarea id="real-note-text" name="text" required maxlength="1200" placeholder="'+esc(tr('lt_journal_ph',"Today, we…"))+'"></textarea></div>' +
+        '<button class="btn btn-primary" type="submit" style="margin-top:12px;">'+tr('lt_journal_submit',"Add to the journal")+'</button>' +
+      '</form>' +
+      '<div class="section-title" style="margin:18px 2px 10px;">'+tr('lt_journal_history',"Memories")+'</div>' + entries +
+      '<p class="lt-note">'+tr('lt_local_note',"Saved on this device only.")+'</p>';
+  }
+
+  function renderRealBudget(){
+    var ex = realExtrasLoad();
+    var total = ex.expenses.reduce(function(s, x){ return s + x.amount; }, 0);
+    var list = ex.expenses.length
+      ? ex.expenses.map(function(x){
+          return rowCardHTML({ icon:"wallet", color:"accent", title: esc(x.label), subtitle: esc(realDateLabel(x.ts)), pillText: esc(realMoney(x.amount)), pillColor:"accent" });
+        }).join("")
+      : '<p class="muted" style="margin:0 2px;">'+tr('lt_budget_empty',"No expense logged.")+'</p>';
+    return realBackBtn() +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('lt_budget_title',"Budget.")+'</h1></div>' +
+      '<div class="card"><span class="expense-badge">'+tr('lt_budget_eyebrow',"EXPENSES LOGGED")+'</span>' +
+        '<div class="lt-clock">'+esc(realMoney(total))+'</div></div>' +
+      '<form class="card" id="real-form-expense">' +
+        '<div class="field"><label for="real-expense-label">'+tr('lt_budget_item',"Expense")+'</label>' +
+        '<input id="real-expense-label" name="label" type="text" required maxlength="100" placeholder="'+esc(tr('lt_budget_item_ph',"e.g. accessories"))+'"></div>' +
+        '<div class="field" style="margin-top:12px;"><label for="real-expense-amount">'+tr('lt_budget_amount',"Amount")+'</label>' +
+        '<input id="real-expense-amount" name="amount" type="number" inputmode="decimal" min="0.01" max="100000" step="0.01" required></div>' +
+        '<button class="btn btn-primary" type="submit" style="margin-top:12px;">'+tr('lt_budget_submit',"Add the expense")+'</button>' +
+      '</form>' +
+      '<div class="section-title" style="margin:18px 2px 10px;">'+tr('lt_budget_history',"History")+'</div>' + list +
+      '<p class="lt-note">'+tr('lt_local_note',"Saved on this device only.")+'</p>';
+  }
+
+  function renderRealCare(){
+    var ex = realExtrasLoad();
+    var name = realDog ? realDog.name : "";
+    var list = ex.care.length
+      ? ex.care.map(function(x){
+          var parts = (x.date || "").split("-");
+          var label = parts.length === 3 ? new Date(+parts[0], +parts[1]-1, +parts[2]).toLocaleDateString(appLocale(), { day:"numeric", month:"long", year:"numeric" }) : "";
+          return rowCardHTML({ icon:"medical", color:"purple", title: esc(x.label), subtitle: esc(label) });
+        }).join("")
+      : '<p class="muted" style="margin:0 2px;">'+tr('lt_care_empty',"No appointment saved.")+'</p>';
+    return realBackBtn() +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('lt_care_title',"Health & care.")+'</h1></div>' +
+      '<p class="muted" style="margin:0 2px 12px;">'+esc(tr('lt_care_sub',"Keep {name}'s appointments in one place.").replace('{name}', name))+'</p>' +
+      '<form class="card" id="real-form-care">' +
+        '<div class="field"><label for="real-care-label">'+tr('lt_care_item',"Appointment or care")+'</label>' +
+        '<input id="real-care-label" name="label" type="text" required maxlength="100" placeholder="'+esc(tr('lt_care_item_ph',"e.g. vet appointment"))+'"></div>' +
+        '<div class="field" style="margin-top:12px;"><label for="real-care-date">'+tr('lt_care_date',"Date")+'</label>' +
+        '<input id="real-care-date" name="date" type="date" required></div>' +
+        '<button class="btn btn-primary" type="submit" style="margin-top:12px;">'+tr('lt_care_submit',"Save")+'</button>' +
+      '</form>' +
+      '<p class="lt-note">'+tr('lt_care_notice',"")+'</p>' +
+      '<div class="section-title" style="margin:18px 2px 10px;">'+tr('lt_care_upcoming',"Upcoming")+'</div>' + list +
+      '<p class="lt-note">'+tr('lt_local_note',"Saved on this device only.")+'</p>';
+  }
+
+  function renderRealProfile(){
+    var dog = realDog;
+    if (!dog) return renderAdoptIntro();
+    function row(label, value, last){
+      return '<div class="cost-row"'+(last ? ' style="border-bottom:none;"' : '')+'><span>'+label+'</span><b>'+esc(value)+'</b></div>';
+    }
+    return realBackBtn() +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('lt_profile_title',"Your companion.")+'</h1></div>' +
+      '<div class="card">' +
+        row(tr('lt_profile_name',"Name"), dog.name) +
+        row(tr('lt_profile_breed',"Breed"), dog.breed || tr('lt_profile_breed_unknown',"Not specified")) +
+        row(tr('lt_profile_arrival',"Arrival date"), dog.arrival_date || "") +
+        (dog.birth_date ? row(tr('lt_profile_birth',"Birth date"), dog.birth_date) : "") +
+        row(tr('lt_profile_days',"Days together"), String(daysTogether(dog)), true) +
+      '</div>' +
+      '<p class="lt-note">'+tr('lt_profile_note',"")+'</p>';
+  }
+
   var ROUTINE_TYPE_ICON = { meal:"bowl", walk:"paw", play:"ball", other:"cap" };
   function routineTimeLabel(localTime){
     var parts = (localTime||"00:00").split(":");
@@ -6252,6 +6549,21 @@
       '<button class="real-quick-btn" data-real-quick="learn">'+iconTileHTML('cap','purple',36)+'<span>'+tr('real_quick_learn',"Learn")+'</span></button>' +
     '</div>';
 
+    var arrivalCard = rowCardHTML({
+      icon:"home", color:"warn",
+      title: tr('lt_arrival_card_title',"Its first days at home"),
+      subtitle: tr('lt_arrival_card_sub',"Simple landmarks to get started well."),
+      attrs: 'id="real-arrival-link"'
+    });
+    var lifeTiles = '<div class="section-title" style="margin:18px 2px 10px;">'+tr('lt_section_daily',"Your daily life together")+'</div>' +
+      [["realWalk","paw","teal","lt_tile_walk","Walks & play","Your time outside"],
+       ["realCare","medical","purple","lt_tile_care","Health & care","Appointments to keep"],
+       ["realJournal","notebook","warn","lt_tile_journal","Journal","Memories and observations"],
+       ["realBudget","wallet","accent","lt_tile_budget","Budget","What you actually spend"],
+       ["realProfile","user","teal","lt_tile_profile","Your dog's profile","Name, breed, arrival"]].map(function(t){
+        return rowCardHTML({ icon:t[1], color:t[2], title: tr(t[3]+'_t', t[4]), subtitle: tr(t[3]+'_s', t[5]), attrs: 'data-real-go="'+t[0]+'"' });
+      }).join("");
+
     var learnLink = rowCardHTML({
       icon:"cap", color:"purple",
       title: tr('real_learn_program_title',"Your 8-week program"),
@@ -6265,12 +6577,12 @@
 
     var active = realRoutines.filter(function(r){ return r.active; });
     if (!active.length){
-      return hero + quickRow + learnLink +
+      return hero + arrivalCard + quickRow + learnLink +
         '<div class="card">' +
           '<div class="section-title">'+tr('real_whats_next',"What's next")+'</div>' +
           '<p class="muted">'+tr('routine_empty_state',"No routines yet — add your first one to start tracking real life with "+esc(dog.name)+".")+'</p>' +
           '<button class="btn btn-primary" id="real-add-first-routine" style="margin-top:12px;">'+tr('routine_add_first',"Add a routine")+'</button>' +
-        '</div>';
+        '</div>' + lifeTiles;
     }
 
     var notDone = active.filter(function(r){ return realLogsToday[r.id] !== "completed"; });
@@ -6299,7 +6611,7 @@
       });
     }).join("");
 
-    return hero + quickRow + learnLink + nextHTML +
+    return hero + arrivalCard + quickRow + learnLink + nextHTML + lifeTiles +
       '<div class="section-title" style="margin-top:18px;">'+tr('real_all_routines',"All routines")+'</div>' +
       rows +
       '<a href="#" id="real-manage-routines" style="display:block; text-align:center; margin-top:10px; padding:10px; color:var(--accent-bright); font-size:13.5px; font-weight:600;">'+tr('routine_manage',"Manage routines")+'</a>';
@@ -7588,6 +7900,11 @@
         view = "realLearn"; render();
         loadRealTrainingData();
       });
+      var realArrivalLink = document.getElementById("real-arrival-link");
+      if (realArrivalLink) realArrivalLink.addEventListener("click", function(){ view = "realArrival"; render(); });
+      root.querySelectorAll("[data-real-go]").forEach(function(el){
+        el.addEventListener("click", function(){ view = el.getAttribute("data-real-go"); render(); });
+      });
       root.querySelectorAll("[data-real-quick]").forEach(function(el){
         el.addEventListener("click", function(){
           realQuickAction(el.getAttribute("data-real-quick"));
@@ -7620,6 +7937,69 @@
           realLessonDifficulty = difficulty;
           submitTrainingSession(realLessonId, difficulty);
         });
+      });
+    }
+
+    if (view !== "realWalk" && realWalkTick){ clearInterval(realWalkTick); realWalkTick = null; }
+    if (["realArrival","realWalk","realCare","realJournal","realBudget","realProfile"].indexOf(view) !== -1){
+      var realExtraBack = document.getElementById("real-extra-back");
+      if (realExtraBack) realExtraBack.addEventListener("click", function(){ view = "realToday"; render(); });
+    }
+    if (view === "realArrival"){
+      var realArrivalCta = document.getElementById("real-arrival-cta");
+      if (realArrivalCta) realArrivalCta.addEventListener("click", function(){ realRoutineFormOpen = true; view = "realRoutines"; render(); });
+    }
+    if (view === "realWalk"){
+      var realWalkBtn = document.getElementById("real-walk-toggle");
+      if (realWalkBtn) realWalkBtn.addEventListener("click", function(){
+        if (realWalkStartedAt){
+          var minutes = Math.max(1, Math.round((Date.now() - realWalkStartedAt) / 60000));
+          var ex = realExtrasLoad();
+          ex.walks.unshift({ ts: Date.now(), minutes: minutes });
+          if (ex.walks.length > 30) ex.walks.length = 30;
+          realExtrasSave();
+          realWalkStartedAt = null;
+        } else {
+          realWalkStartedAt = Date.now();
+        }
+        render();
+      });
+      if (realWalkStartedAt && !realWalkTick){
+        realWalkTick = setInterval(function(){
+          var clock = document.getElementById("real-walk-clock");
+          if (clock) clock.textContent = realWalkClock(); else { clearInterval(realWalkTick); realWalkTick = null; }
+        }, 1000);
+      }
+    }
+    if (view === "realJournal"){
+      var noteForm = document.getElementById("real-form-note");
+      if (noteForm) noteForm.addEventListener("submit", function(e){
+        e.preventDefault();
+        var text = (document.getElementById("real-note-text").value || "").trim();
+        if (!text) return;
+        var ex = realExtrasLoad(); ex.notes.unshift({ ts: Date.now(), text: text }); realExtrasSave(); render();
+      });
+    }
+    if (view === "realBudget"){
+      var expForm = document.getElementById("real-form-expense");
+      if (expForm) expForm.addEventListener("submit", function(e){
+        e.preventDefault();
+        var label = (document.getElementById("real-expense-label").value || "").trim();
+        var amount = Number(document.getElementById("real-expense-amount").value);
+        if (!label || !isFinite(amount) || amount <= 0) return;
+        var ex = realExtrasLoad(); ex.expenses.unshift({ ts: Date.now(), label: label, amount: amount }); realExtrasSave(); render();
+      });
+    }
+    if (view === "realCare"){
+      var careForm = document.getElementById("real-form-care");
+      if (careForm) careForm.addEventListener("submit", function(e){
+        e.preventDefault();
+        var label = (document.getElementById("real-care-label").value || "").trim();
+        var date = document.getElementById("real-care-date").value;
+        if (!label || !date) return;
+        var ex = realExtrasLoad(); ex.care.push({ label: label, date: date });
+        ex.care.sort(function(a, b){ return a.date < b.date ? -1 : 1; });
+        realExtrasSave(); render();
       });
     }
 
