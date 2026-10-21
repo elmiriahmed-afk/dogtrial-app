@@ -47,14 +47,16 @@ async function callAnthropic(system, user) {
     headers: { "content-type": "application/json", "x-api-key": key, "anthropic-version": "2023-06-01" },
     body: JSON.stringify({
       model: process.env.ANTHROPIC_MODEL || "claude-sonnet-5-5",
-      max_tokens: 4096,
+      max_tokens: 16000,
       system,
       messages: [{ role: "user", content: user }],
     }),
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(`Anthropic API ${res.status}: ${data?.error?.message || "request failed"}`);
-  return data.content.filter((b) => b.type === "text").map((b) => b.text).join("\n");
+  const text = data.content.filter((b) => b.type === "text").map((b) => b.text).join("\n");
+  if (!text.trim()) throw new Error(`Anthropic returned no text (stop_reason: ${data.stop_reason}); try raising max_tokens`);
+  return text;
 }
 
 async function callOpenAI(system, user) {
@@ -86,21 +88,27 @@ for (const [i, step] of steps.entries()) {
     .replaceAll("{{brief}}", brief)
     .replaceAll("{{prev}}", outputs[i - 1] ?? "")
     .replaceAll("{{first}}", outputs[0] ?? "");
-  console.log(`[${i + 1}/${steps.length}] ${step.name} — agent ${step.agent} via ${step.provider}${dryRun ? " (dry run)" : ""}`);
+  let provider = step.provider;
+  let fallbackNote = "";
+  if (provider === "openai" && !(process.env.OPENAI_API_KEY && process.env.OPENAI_MODEL)) {
+    provider = "anthropic";
+    fallbackNote = " — OpenAI not configured, reviewed by Claude instead (less independent)";
+  }
+  console.log(`[${i + 1}/${steps.length}] ${step.name} — agent ${step.agent} via ${provider}${fallbackNote}${dryRun ? " (dry run)" : ""}`);
   if (dryRun) {
     outputs.push(`<${step.name}: dry run, no API call>`);
-    log += `\n## ${step.name} (${step.agent}, ${step.provider}) — DRY RUN\n\n### System prompt (${system.length} chars)\n${system.slice(0, 300)}...\n\n### User message\n${user}\n`;
+    log += `\n## ${step.name} (${step.agent}, ${provider}${fallbackNote}) — DRY RUN\n\n### System prompt (${system.length} chars)\n${system.slice(0, 300)}...\n\n### User message\n${user}\n`;
     continue;
   }
   let text;
   try {
-    text = await providers[step.provider](system, user);
+    text = await providers[provider](system, user);
   } catch (err) {
     console.error(`\nStep "${step.name}" failed: ${err.message}`);
     process.exit(1);
   }
   outputs.push(text);
-  log += `\n## ${step.name} (${step.agent}, ${step.provider})\n\n${text}\n`;
+  log += `\n## ${step.name} (${step.agent}, ${provider}${fallbackNote})\n\n${text}\n`;
 }
 
 const outDir = join(here, "out");
