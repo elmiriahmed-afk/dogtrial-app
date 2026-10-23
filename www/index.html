@@ -3766,11 +3766,18 @@
     if (!PAYWALL_DEBUG_OVERRIDE) return null;
     try { var v = localStorage.getItem("dogtrial_plan"); return (v === "free" || v === "premium") ? v : null; } catch(e){ return null; }
   }
+  // People who already had the app before subscriptions existed keep Premium for 30 days after their first launch of this version.
+  var GRACE_KEY = "dogtrial_grace_until";
+  function graceUntil(){ try { return Number(localStorage.getItem(GRACE_KEY) || 0); } catch(e){ return 0; } }
+  function graceActive(){ return graceUntil() > Date.now(); }
+  function setupGrace(hadSavedState){
+    try { if (localStorage.getItem(GRACE_KEY) === null) localStorage.setItem(GRACE_KEY, String(hadSavedState ? Date.now() + 30*86400000 : 0)); } catch(e){}
+  }
   function isPremium(){
     var o = planOverride();
     if (o) return o === "premium";
     if (!MONETIZATION_ENABLED) return true;
-    return !!entitlement.premium;
+    return !!entitlement.premium || graceActive();
   }
   function billingPlugin(){ return (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Purchases) || null; }
   function applyCustomerInfo(info){
@@ -5336,9 +5343,15 @@
     // threshold — same idea as statTone()'s 60%, pitched a bit higher since
     // this reads as "learned" rather than just "comfortable".
     var LESSON_DONE_THRESHOLD = 70;
-    var doneCount = TRAINING_SKILLS.filter(function(s){ return (state.training[s.id]||0) >= LESSON_DONE_THRESHOLD; }).length;
+    // The count shows lessons practiced at least once, so it moves after the very first session. The bar also gives
+    // partial credit for mastery (half for having practiced a lesson, half for reaching the "done" threshold).
+    var doneCount = TRAINING_SKILLS.filter(function(s){ return (state.training[s.id]||0) > 0; }).length;
     var totalLessons = TRAINING_SKILLS.length;
-    var progressPct = Math.round(doneCount/totalLessons*100);
+    var progressCredit = TRAINING_SKILLS.reduce(function(sum, s){
+      var m = state.training[s.id] || 0;
+      return sum + (m > 0 ? 0.5 + 0.5 * Math.min(m / LESSON_DONE_THRESHOLD, 1) : 0);
+    }, 0);
+    var progressPct = Math.round(progressCredit / totalLessons * 100);
     var progressCard = '' +
       '<div class="card">' +
         '<div class="top-actions" style="margin-bottom:0;"><div class="section-title" style="margin-bottom:0;">'+tr('training_progress_title','Progress')+'</div><span style="font-size:13px; font-weight:700; color:var(--accent-bright);">'+tr('training_progress_count','{done} / {total} lessons').replace('{done}',doneCount).replace('{total}',totalLessons)+'</span></div>' +
@@ -8889,6 +8902,7 @@
   function init(){
     billingInit();
     state = load();
+    setupGrace(!!state);
     if (!state){
       view = "splash";
       render();
