@@ -3749,12 +3749,18 @@
   // Free: the simulation basics, Labrador only, manual walks. Premium: all breeds, reminders and notifications,
   // walk timer and step counter, training and information videos, photos. 7-day free trial, then monthly,
   // both handled by the stores through RevenueCat (Capacitor plugin "Purchases").
-  var MONETIZATION_ENABLED = false;      // flip to true once the store products and RevenueCat keys are live
-  var PAYWALL_DEBUG_OVERRIDE = true;     // lets localStorage "dogtrial_plan" = free|premium force a plan; set to false at launch
-  var REVENUECAT_KEYS = { ios:"", android:"" };
+  var BILLING_PLATFORM = (window.Capacitor && window.Capacitor.getPlatform && window.Capacitor.getPlatform()) || "web";
+  var REVENUECAT_KEYS = { ios:"appl_agsMDMvRWOvDcKkpGUqBvyKvnvc", android:"" };   // public SDK keys (safe to ship)
+  // The free plan is enforced only where a store key exists: today the iPhone app. The web and Android stay fully unlocked.
+  var MONETIZATION_ENABLED = !!REVENUECAT_KEYS[BILLING_PLATFORM];
+  var PAYWALL_DEBUG_OVERRIDE = false;    // true lets localStorage "dogtrial_plan" = free|premium force a plan (testing only)
   var PREMIUM_ENTITLEMENT_ID = "premium";
   var PREMIUM_PRICE_FALLBACK = "$2.99";
-  var entitlement = { premium:false, priceString:null, busy:false, error:"" };
+  function readPremiumCache(){
+    try { var c = JSON.parse(localStorage.getItem("dogtrial_premium_cache") || "null"); return !!(c && c.premium && Date.now() - c.ts < 7*86400000); }
+    catch(e){ return false; }
+  }
+  var entitlement = { premium: readPremiumCache(), priceString:null, busy:false, error:"" };
   var paywallReturnView = "home", paywallReason = "";
   function planOverride(){
     if (!PAYWALL_DEBUG_OVERRIDE) return null;
@@ -3770,13 +3776,13 @@
   function applyCustomerInfo(info){
     var act = info && info.entitlements && info.entitlements.active;
     entitlement.premium = !!(act && act[PREMIUM_ENTITLEMENT_ID]);
+    try { localStorage.setItem("dogtrial_premium_cache", JSON.stringify({ premium: entitlement.premium, ts: Date.now() })); } catch(e){}
   }
   function billingInit(){
     try {
       var P = billingPlugin();
       if (!P || !MONETIZATION_ENABLED) return;
-      var platform = (window.Capacitor && window.Capacitor.getPlatform && window.Capacitor.getPlatform()) || "web";
-      var apiKey = REVENUECAT_KEYS[platform];
+      var apiKey = REVENUECAT_KEYS[BILLING_PLATFORM];
       if (!apiKey) return;
       P.configure({ apiKey: apiKey }).then(function(){
         P.addCustomerInfoUpdateListener(function(info){ applyCustomerInfo(info); render(); });
@@ -8881,6 +8887,7 @@
 
   // ---------- init ----------
   function init(){
+    billingInit();
     state = load();
     if (!state){
       view = "splash";
