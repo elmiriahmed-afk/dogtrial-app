@@ -228,6 +228,29 @@
   .real-hero-overlay p{color:rgba(255,255,255,.85); font-size:13px; margin-top:4px;}
   .real-hero-days{margin-top:12px; background:rgba(255,255,255,.16); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.3); border-radius:14px; padding:8px 14px; display:inline-block; color:#fff;}
   .real-hero-days strong{font-family:'DM Serif Display',Georgia,serif; font-size:22px; display:block; line-height:1;}
+  .real-hero-id{display:flex; align-items:center; gap:12px; margin-top:10px;} .real-hero-id h1{margin-top:0;}
+  .real-avatar{border-radius:50%; object-fit:cover; flex:none; border:3px solid rgba(255,255,255,.95); background:var(--card-2); box-shadow:0 2px 8px rgba(16,27,70,.18);}
+  .real-avatar-empty{display:inline-flex; align-items:center; justify-content:center; color:var(--ink-soft);}
+  .photo-field{display:flex; align-items:center; gap:14px;}
+  .breed-select{display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px 12px; font:inherit; color:var(--ink); cursor:pointer; min-height:52px;}
+  .breed-select > span:nth-child(2){flex-grow:1;} .breed-chevron{color:var(--ink-faint); font-size:20px; line-height:1;}
+  .breed-locked{display:inline-flex; align-items:center; gap:6px; margin-top:8px; background:none; border:0; padding:4px 0; color:var(--accent-bright); font:inherit; font-size:13px; font-weight:600; cursor:pointer;}
+  .breed-picker{position:fixed; inset:0; z-index:1000; background:var(--bg); display:flex; flex-direction:column; padding:max(12px, env(safe-area-inset-top)) 14px max(12px, env(safe-area-inset-bottom));}
+  .breed-picker-head{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; font-size:18px;}
+  .breed-picker input{width:100%; box-sizing:border-box; border:1px solid var(--line); border-radius:12px; padding:12px; font:inherit; font-size:16px; background:var(--card); color:var(--ink); margin-bottom:8px;}
+  .breed-picker-list{flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch;}
+  .breed-row{display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:none; border:0; padding:8px 0; cursor:pointer; color:inherit; font:inherit; min-height:60px;}
+  .breed-row + .breed-row{border-top:1px solid var(--line);}
+  .breed-thumb{width:48px; height:48px; border-radius:50%; object-fit:cover; object-position:55% 62%; flex:none; background:var(--card-2);}
+  .breed-picker-list.grid{display:grid; grid-template-columns:1fr 1fr; grid-auto-rows:max-content; gap:12px; align-content:start; padding-bottom:12px;}
+  .breed-pick-card{display:block; width:100%; text-align:left; background:var(--card-2); border:1.5px solid var(--line); border-radius:16px; overflow:hidden; padding:0; cursor:pointer; color:inherit; font:inherit;}
+  .breed-pick-card .breed-photo-wrap{position:relative; width:100%; padding-top:76.3%; background:var(--card-2);}
+  .breed-pick-card .breed-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+  .breed-pick-card .breed-photo-empty{display:flex; align-items:center; justify-content:center; color:var(--ink-soft);}
+  .breed-pick-card .name{font-family:'DM Serif Display',Georgia,serif; font-weight:700; font-size:15px; line-height:1.15; padding:9px 10px 12px;}
+  .breed-pick-card.other{grid-column:1 / -1; display:flex; align-items:center; gap:12px; padding:14px;} .breed-pick-card.other .name{padding:0;}
+  .breed-thumb-empty{display:inline-flex; align-items:center; justify-content:center; color:var(--ink-soft);}
+  .breed-row-name{font-weight:600; font-size:15px;}
   .real-quick-row{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:14px;}
   .real-quick-btn{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 6px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:7px; font-size:12px; font-weight:600; color:var(--ink);}
   .real-quick-btn .row-icon-tile{margin:0 auto;}
@@ -1317,6 +1340,13 @@
     { id:"LT-W08-V23", week:8, order:23, title:{ en:"Home skills together", fr:"Les acquis à la maison" } },
     { id:"LT-W08-V24", week:8, order:24, title:{ en:"Review and next steps", fr:"Le bilan et la suite" } }
   ];
+  // Life Together lessons that teach the same skill as a trial lesson reuse its demonstration video.
+  var LIFE_LESSON_SKILL = {
+    "LT-W02-V04":"sit", "LT-W02-V05":"stay", "LT-W03-V07":"come", "LT-W03-V08":"come", "LT-W03-V09":"come",
+    "LT-W04-V10":"leash", "LT-W04-V11":"leash", "LT-W05-V13":"settle", "LT-W05-V14":"settle",
+    "LT-W05-V15":"nojump", "LT-W07-V21":"handling", "LT-W08-V22":"leash"
+  };
+  var realSkillId = null;
   function lifeTogetherLessonById(id){
     for (var i=0;i<LIFE_TOGETHER_PROGRAM.length;i++) if (LIFE_TOGETHER_PROGRAM[i].id===id) return LIFE_TOGETHER_PROGRAM[i];
     return LIFE_TOGETHER_PROGRAM[0];
@@ -1351,6 +1381,168 @@
     realDraft = null;
     try { localStorage.removeItem(REAL_DRAFT_KEY); } catch (e) {}
   }
+  // ---------- Life Together: breed list, breed photos and the dog's own photo ----------
+  // Trial breeds keep their walk photo and their own illustrated capsules; the extra popular breeds use the
+  // general capsule set. Any other breed is typed freely. The photo of the dog never leaves the device.
+  var REAL_BREED_FR = { lab:"Labrador retriever", husky:"Husky sibérien", frenchie:"Bouledogue français", collie:"Border collie", chihuahua:"Chihuahua", amstaff:"American Staffordshire terrier", canecorso:"Cane corso", malinois:"Berger belge malinois", gsd:"Berger allemand", bichon:"Bichon frisé" };
+  var REAL_BREED_ALIAS = { lab:["labrador"], husky:["husky"], frenchie:["bouledogue"], amstaff:["amstaff","american staffordshire","staffie"], malinois:["malinois","berger malinois"], gsd:["berger"], bichon:["bichon"], golden:["golden"] };
+  var REAL_BREEDS_EXTRA = [
+    { id:"golden", en:"Golden Retriever", fr:"Golden retriever" },
+    { id:"poodle", en:"Poodle", fr:"Caniche" },
+    { id:"rottweiler", en:"Rottweiler", fr:"Rottweiler" },
+    { id:"beagle", en:"Beagle", fr:"Beagle" },
+    { id:"dachshund", en:"Dachshund", fr:"Teckel" },
+    { id:"yorkie", en:"Yorkshire Terrier", fr:"Yorkshire terrier" },
+    { id:"shihtzu", en:"Shih Tzu", fr:"Shih tzu" },
+    { id:"boxer", en:"Boxer", fr:"Boxer" },
+    { id:"cavalier", en:"Cavalier King Charles Spaniel", fr:"Cavalier King Charles" },
+    { id:"jackrussell", en:"Jack Russell Terrier", fr:"Jack Russell" }
+  ];
+  // Breeds that have their own puppy photo file in media/moments/sniffing/<id>_puppy.jpg (add the id here when a photo is added).
+  var REAL_BREED_EXTRA_PHOTOS = ["golden","poodle","rottweiler","beagle","dachshund","yorkie","shihtzu","boxer","cavalier","jackrussell"];
+  var realBreedEntriesCache = null;
+  function realBreedEntries(){
+    if (realBreedEntriesCache) return realBreedEntriesCache;
+    var list = BREEDS.map(function(b){ return { id:b.id, en:b.name, fr:REAL_BREED_FR[b.id] || b.name, photo:"media/onboarding/walk_"+b.id+".jpg", thumb:"media/moments/sniffing/"+b.id+"_puppy.jpg" }; });
+    REAL_BREEDS_EXTRA.forEach(function(b){ list.push({ id:b.id, en:b.en, fr:b.fr, photo:null, thumb: REAL_BREED_EXTRA_PHOTOS.indexOf(b.id) !== -1 ? "media/moments/sniffing/"+b.id+"_puppy.jpg" : null }); });
+    realBreedEntriesCache = list;
+    return list;
+  }
+  function realBreedNorm(x){ return String(x || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim(); }
+  function realBreedMatch(text){
+    var n = realBreedNorm(text);
+    if (!n) return null;
+    var list = realBreedEntries();
+    for (var i = 0; i < list.length; i++){
+      var e = list[i];
+      if (realBreedNorm(e.en) === n || realBreedNorm(e.fr) === n) return e;
+      var al = REAL_BREED_ALIAS[e.id] || [];
+      for (var j = 0; j < al.length; j++) if (realBreedNorm(al[j]) === n) return e;
+    }
+    return null;
+  }
+  function realBreedName(e){ return capsuleLang() === "fr" ? e.fr : e.en; }
+  function realBreedText(dog){ var ex = realExtrasLoad(); return ex.breed || (dog && dog.breed) || ""; }
+  function realBreedEntryOf(dog){ return realBreedMatch(realBreedText(dog)); }
+  function realBreedLabelOf(text){ var m = realBreedMatch(text); return m ? realBreedName(m) : (text || ""); }
+  function realBreedThumbHTML(e){
+    return e && e.thumb ? '<img class="breed-thumb" src="'+e.thumb+'" alt="">' : '<span class="breed-thumb breed-thumb-empty">'+icon('paw',20)+'</span>';
+  }
+  var realBreedPickerEl = null;
+  function closeRealBreedPicker(){
+    if (realBreedPickerEl && realBreedPickerEl.parentNode) realBreedPickerEl.parentNode.removeChild(realBreedPickerEl);
+    realBreedPickerEl = null;
+    document.body.style.overflow = "";
+  }
+  // onPick(entry) for a listed breed, onPick(null) for "Other breed".
+  function openRealBreedPicker(onPick){
+    if (realBreedPickerEl) return;
+    var node = document.createElement("div");
+    node.className = "breed-picker";
+    node.innerHTML = '' +
+      '<div class="breed-picker-head"><b>'+tr('breed_pick_title',"Choose a breed")+'</b><button class="btn-ghost" id="bp-close" style="width:auto; padding:8px 14px;">'+tr('btn_back',"Back")+'</button></div>' +
+      '<input id="bp-search" type="text" autocomplete="off" placeholder="'+esc(tr('breed_search',"Search a breed"))+'">' +
+      '<div class="breed-picker-list grid" id="bp-list"></div>';
+    document.body.appendChild(node);
+    document.body.style.overflow = "hidden";
+    realBreedPickerEl = node;
+    var listEl = node.querySelector("#bp-list");
+    function fill(q){
+      var n = realBreedNorm(q);
+      var rows = realBreedEntries().filter(function(e){
+        return !n || realBreedNorm(e.en).indexOf(n) !== -1 || realBreedNorm(e.fr).indexOf(n) !== -1;
+      }).map(function(e){
+        var img = '<div class="breed-photo-wrap">' + (e.thumb ? '<img class="breed-photo" src="'+e.thumb+'" alt="" loading="lazy">'
+                          : '<div class="breed-photo breed-photo-empty">'+icon('paw',34)+'</div>') + '</div>';
+        return '<button class="breed-pick-card" data-bp="'+e.id+'">'+img+'<div class="name">'+esc(realBreedName(e))+'</div></button>';
+      }).join("");
+      rows += '<button class="breed-pick-card other" data-bp="__other"><span class="breed-thumb breed-thumb-empty">'+icon('cap',20)+'</span><span class="name">'+tr('breed_other',"Other breed / mixed / unknown")+'</span></button>';
+      listEl.innerHTML = rows;
+      listEl.querySelectorAll("[data-bp]").forEach(function(b){
+        b.addEventListener("click", function(){
+          var id = b.getAttribute("data-bp");
+          var entry = realBreedEntries().filter(function(e){ return e.id === id; })[0] || null;
+          closeRealBreedPicker();
+          onPick(entry);
+        });
+      });
+    }
+    fill("");
+    node.querySelector("#bp-close").addEventListener("click", closeRealBreedPicker);
+    node.querySelector("#bp-search").addEventListener("input", function(ev){ fill(ev.target.value); });
+  }
+  function realPhotoKey(id){ return "dogtrial_real_photo_v1_" + id; }
+  function realPhotoGet(dog){
+    if (!dog) return "";
+    try { return localStorage.getItem(realPhotoKey(dog.id)) || ""; } catch (e) { return ""; }
+  }
+  function realPhotoSet(id, data){
+    try { if (data) localStorage.setItem(realPhotoKey(id), data); else localStorage.removeItem(realPhotoKey(id)); } catch (e) {}
+  }
+  // Opens the system photo picker (library or camera), crops to a square and shrinks to 480 px.
+  function realPhotoPick(cb){
+    var inp = document.createElement("input");
+    inp.type = "file"; inp.accept = "image/*"; inp.style.display = "none";
+    inp.addEventListener("change", function(){
+      var f = inp.files && inp.files[0];
+      if (inp.parentNode) inp.parentNode.removeChild(inp);
+      if (!f) return;
+      var url = URL.createObjectURL(f);
+      var img = new Image();
+      img.onload = function(){
+        var S = 480, c = document.createElement("canvas");
+        c.width = S; c.height = S;
+        var side = Math.min(img.naturalWidth, img.naturalHeight);
+        var sx = (img.naturalWidth - side) / 2, sy = (img.naturalHeight - side) * 0.3;
+        c.getContext("2d").drawImage(img, sx, sy, side, side, 0, 0, S, S);
+        URL.revokeObjectURL(url);
+        var data = "";
+        try { data = c.toDataURL("image/jpeg", 0.82); } catch (e) {}
+        if (data) cb(data);
+      };
+      img.onerror = function(){ URL.revokeObjectURL(url); };
+      img.src = url;
+    });
+    document.body.appendChild(inp);
+    inp.click();
+  }
+  function realAvatarHTML(dog, size){
+    var p = realPhotoGet(dog), st = 'width:'+size+'px; height:'+size+'px;';
+    return p ? '<img class="real-avatar" src="'+p+'" alt="" style="'+st+'">'
+             : '<span class="real-avatar real-avatar-empty" style="'+st+'">'+icon('paw', Math.round(size*0.45))+'</span>';
+  }
+  // Keeps what was typed in the adoption form before a picker, a photo or the paywall re-renders the page.
+  function realFormSnapshot(){
+    var draft = loadRealDraft();
+    var n = document.getElementById("real-name"); if (n) draft.name = n.value || "";
+    var a = document.getElementById("real-arrival"); if (a && a.value) draft.arrivalDate = a.value;
+    var b = document.getElementById("real-birth"); if (b) draft.birthDate = b.value || "";
+    var br = document.getElementById("real-breed"); if (br) draft.breed = br.value || "";
+    saveRealDraft();
+  }
+  function realBreedFieldHTML(draft){
+    var m = realBreedMatch(draft.breed);
+    var label = '<label for="real-breed">'+tr('adopt_breed_label',"Breed (optional)")+'</label>';
+    var input = '<input id="real-breed" type="text" maxlength="40" placeholder="'+tr('adopt_breed_placeholder',"Known, unknown, or mixed")+'" value="'+esc(draft.breed)+'">';
+    if (isPremium()){
+      var btn = '<button type="button" class="breed-select" id="real-breed-pick">' + realBreedThumbHTML(m) +
+        '<span>'+(m ? esc(realBreedName(m)) : tr('breed_pick_btn',"Choose from the list"))+'</span><span class="breed-chevron">›</span></button>';
+      var showInput = !m && (draft.breedOther || draft.breed);
+      return '<div class="field" style="margin-top:12px">'+label+btn+(showInput ? '<div style="margin-top:8px;">'+input+'</div>' : '')+'</div>';
+    }
+    return '<div class="field" style="margin-top:12px">'+label+input+
+      '<button type="button" class="breed-locked" data-open-paywall="breeds">'+icon('lock',14)+' '+tr('breed_locked_hint',"Pick from the list · Premium")+'</button></div>';
+  }
+  function realPhotoFieldHTML(photo){
+    var st = 'width:64px; height:64px;';
+    return '<div class="field" style="margin-top:12px"><label>'+tr('photo_optional',"Photo (optional)")+'</label>' +
+      '<div class="photo-field">' +
+        (photo ? '<img class="real-avatar" src="'+photo+'" alt="" style="'+st+'">' : '<span class="real-avatar real-avatar-empty" style="'+st+'">'+icon('camera',24)+'</span>') +
+        '<button type="button" class="btn" id="real-photo-add" style="width:auto; padding:10px 16px;">'+(photo ? tr('photo_change',"Change photo") : tr('photo_add',"Add a photo"))+'</button>' +
+      '</div>' +
+      '<p class="muted" style="font-size:12px; margin-top:6px;">'+tr('photo_note',"The photo stays on this device.")+'</p></div>';
+  }
+
   function newClientId(){
     if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
     return "id-" + Date.now() + "-" + Math.random().toString(16).slice(2);
@@ -1412,6 +1604,7 @@
       }
       realDog = result.data.dog;
       if (realDogs.indexOf(realDog) === -1) realDogs.push(realDog);
+      if (draft.photo) realPhotoSet(realDog.id, draft.photo);
       clearRealDraft();
       view = "realToday";
       render();
@@ -1826,7 +2019,25 @@
       lt_profile_arrival: "Arrival date",
       lt_profile_birth: "Birth date",
       lt_profile_days: "Days together",
-      lt_profile_note: "Editing these details arrives in a later update.",
+      lt_profile_note: "Editing the name and dates arrives in a later update.",
+      pw_reason_breeds: "The breed list is part of Premium. You can still type any breed for free.",
+      breed_pick_btn: "Choose from the list",
+      breed_pick_title: "Choose a breed",
+      breed_search: "Search a breed",
+      breed_other: "Other breed / mixed / unknown",
+      breed_locked_hint: "Pick from the list · Premium",
+      breed_save: "Save",
+      lt_videos_t: "Training videos",
+      lt_videos_s: "Every skill from the trial, with its demonstration video",
+      lt_lesson_video_note: "Demonstration video from the trial program.",
+      breed_discover_t: "Discover {breed}",
+      breed_discover_s: "Short illustrated capsules about the breed",
+      breed_page_note: "General information, not veterinary advice.",
+      photo_optional: "Photo (optional)",
+      photo_add: "Add a photo",
+      photo_change: "Change photo",
+      photo_note: "The photo stays on this device.",
+      lt_premium_pill: "Premium",
       adopt_profile_title: "Your dog",
       adopt_name_label: "Name",
       adopt_arrival_label: "Arrival date",
@@ -2392,7 +2603,25 @@
       lt_profile_arrival: "Date d’arrivée",
       lt_profile_birth: "Date de naissance",
       lt_profile_days: "Jours ensemble",
-      lt_profile_note: "La modification de ces informations arrivera dans une prochaine mise à jour.",
+      lt_profile_note: "La modification du nom et des dates arrivera dans une prochaine mise à jour.",
+      pw_reason_breeds: "La liste des races est incluse dans Premium. Vous pouvez toujours saisir une race librement.",
+      breed_pick_btn: "Choisir dans la liste",
+      breed_pick_title: "Choisir une race",
+      breed_search: "Rechercher une race",
+      breed_other: "Autre race / croisé / inconnue",
+      breed_locked_hint: "Choisir dans la liste · Premium",
+      breed_save: "Enregistrer",
+      lt_videos_t: "Vidéos de dressage",
+      lt_videos_s: "Toutes les compétences du trial, avec leur vidéo de démonstration",
+      lt_lesson_video_note: "Vidéo de démonstration issue du programme du trial.",
+      breed_discover_t: "Découvrir : {breed}",
+      breed_discover_s: "Capsules illustrées sur la race",
+      breed_page_note: "Informations générales, pas un avis vétérinaire.",
+      photo_optional: "Photo (facultatif)",
+      photo_add: "Ajouter une photo",
+      photo_change: "Changer la photo",
+      photo_note: "La photo reste sur cet appareil.",
+      lt_premium_pill: "Premium",
       adopt_profile_title: "Votre chien",
       adopt_name_label: "Nom",
       adopt_arrival_label: "Date d'arrivée",
@@ -4251,6 +4480,9 @@
     else if (view === "realJournal") root.innerHTML = brandStrip() + renderRealJournal();
     else if (view === "realBudget") root.innerHTML = brandStrip() + renderRealBudget();
     else if (view === "realProfile") root.innerHTML = brandStrip() + renderRealProfile();
+    else if (view === "realBreed") root.innerHTML = brandStrip() + renderRealBreed();
+    else if (view === "realSkills") root.innerHTML = brandStrip() + renderRealSkills();
+    else if (view === "realSkill") root.innerHTML = brandStrip() + renderRealSkill();
     // "La vie ensemble" (after-adoption) — dormant, unreachable views.
     // See dogtrial-after-adoption/INTEGRATION.md. Not linked from any nav.
     else if (view === "afterAdoptHome") root.innerHTML = renderAfterAdoptHome();
@@ -4782,8 +5014,8 @@
   function capsuleAll(){ return (typeof DT_CAPSULES !== "undefined") ? DT_CAPSULES : []; }
   // A breed with its own set sees only that set; a breed without one falls back to the general capsules.
   // Labrador keeps both (its set was the first one built and the general capsules are illustrated with it).
-  function capsulesForBreed(){
-    var id = state && state.breedId;
+  function capsulesForBreed(){ return capsulesForBreedId(state && state.breedId); }
+  function capsulesForBreedId(id){
     var all = capsuleAll();
     var own = all.filter(function(c){ return c.breeds === id; });
     var general = all.filter(function(c){ return c.breeds === "all"; });
@@ -4791,7 +5023,13 @@
     return own.length ? own : general;
   }
   function capsuleById(id){ return capsuleAll().filter(function(c){ return c.id === id; })[0] || null; }
-  function capsuleSeenMap(){ if (!state.capsulesSeen) state.capsulesSeen = {}; return state.capsulesSeen; }
+  // A person who adopted without ever running the trial has no simulation state: keep "watched" in memory then.
+  var capsulesSeenNoState = {};
+  function capsuleSeenMap(){
+    if (!state) return capsulesSeenNoState;
+    if (!state.capsulesSeen) state.capsulesSeen = {};
+    return state.capsulesSeen;
+  }
   function todaysCapsule(){
     var list = capsulesForBreed();
     if (!list.length) return null;
@@ -4814,6 +5052,8 @@
   }
   function capsuleNoteFor(c){
     if (c.breeds === "all") return tr('capsule_general_note',"General guidance, illustrated with a Labrador");
+    var entry = realBreedEntries().filter(function(x){ return x.id === c.breeds; })[0];
+    if (entry) return realBreedName(entry);
     var b = byId(c.breeds);
     return b ? b.name : tr('capsule_lab_note',"Breed-specific information");
   }
@@ -4836,8 +5076,8 @@
         '</div>' +
       '</div>';
   }
-  function capsuleLibraryHTML(){
-    var list = capsulesForBreed();
+  function capsuleLibraryHTML(listOverride){
+    var list = listOverride || capsulesForBreed();
     if (!list.length) return "";
     var seen = capsuleSeenMap();
     var rows = list.map(function(c){
@@ -4917,7 +5157,7 @@
       }
       seek.value = t;
       timeEl.textContent = "00:" + String(Math.floor(t)).padStart(2, "0") + " / 00:30";
-      if (!P.marked && t >= c.duration - 5){ P.marked = true; capsuleSeenMap()[c.id] = Date.now(); save(); }
+      if (!P.marked && t >= c.duration - 5){ P.marked = true; capsuleSeenMap()[c.id] = Date.now(); if (state) save(); }
     }
     function label(){
       playBtn.textContent = P.playing ? tr('capsule_pause',"Pause") : (P.t >= c.duration ? tr('capsule_replay',"Replay") : (P.t > 0 ? tr('capsule_resume',"Resume") : tr('capsule_play',"Play")));
@@ -6573,10 +6813,8 @@
             '<label for="real-birth">'+tr('adopt_birth_label',"Birth date (optional)")+'</label>' +
             '<input id="real-birth" type="date" value="'+esc(draft.birthDate)+'">' +
           '</div>' +
-          '<div class="field" style="margin-top:12px">' +
-            '<label for="real-breed">'+tr('adopt_breed_label',"Breed (optional)")+'</label>' +
-            '<input id="real-breed" type="text" maxlength="40" placeholder="'+tr('adopt_breed_placeholder',"Known, unknown, or mixed")+'" value="'+esc(draft.breed)+'">' +
-          '</div>' +
+          realBreedFieldHTML(draft) +
+          realPhotoFieldHTML(draft.photo || "") +
           (realError ? '<p class="muted" style="color:var(--bad); margin-top:10px; font-size:13px;">'+esc(realError)+'</p>' : "") +
           '<button class="btn btn-primary" id="adopt-form-next" style="margin-top:16px;">'+tr('btn_next','Next')+'</button>' +
         '</div>';
@@ -6587,9 +6825,10 @@
       realOnboardProgressHTML() +
       '<div class="card onboard-step">' +
         '<div class="section-title">'+tr('adopt_confirm_title',"Confirm")+'</div>' +
+        (draft.photo ? '<div style="text-align:center; margin-bottom:10px;"><img class="real-avatar" src="'+draft.photo+'" alt="" style="width:84px; height:84px;"></div>' : '') +
         '<div class="cost-row"><span>'+tr('adopt_name_label',"Name")+'</span><b>'+esc(draft.name)+'</b></div>' +
         '<div class="cost-row"><span>'+tr('adopt_arrival_label',"Arrival date")+'</span><b>'+esc(draft.arrivalDate)+'</b></div>' +
-        (draft.breed ? '<div class="cost-row" style="border-bottom:none;"><span>'+tr('adopt_breed_label',"Breed")+'</span><b>'+esc(draft.breed)+'</b></div>' : '') +
+        (draft.breed ? '<div class="cost-row" style="border-bottom:none;"><span>'+tr('adopt_breed_label',"Breed")+'</span><b>'+esc(realBreedLabelOf(draft.breed))+'</b></div>' : '') +
         '<p class="muted" style="margin-top:12px; font-size:13px;">'+tr('adopt_confirm_note',"This creates your real dog's profile once. Routines and training for real life arrive next.")+'</p>' +
         (realError ? '<p class="muted" style="color:var(--bad); margin-top:10px; font-size:13px;">'+esc(realError)+'</p>' : "") +
         '<button class="btn btn-primary" id="adopt-form-confirm" style="margin-top:16px;" '+(realBusy?"disabled":"")+'>'+(realBusy?tr('onboard_please_wait',"Please wait…"):tr('adopt_confirm_btn',"Create profile"))+'</button>' +
@@ -6606,12 +6845,13 @@
   function realExtrasLoad(){
     var id = realDog ? realDog.id : null;
     if (realExtras && realExtrasFor === id) return realExtras;
-    var x = { walks:[], care:[], notes:[], expenses:[], settings:{ journalOn:false, journalTime:"20:00" } };
+    var x = { walks:[], care:[], notes:[], expenses:[], breed:"", settings:{ journalOn:false, journalTime:"20:00" } };
     try {
       var raw = localStorage.getItem(realExtrasKey());
       if (raw){
         var p = JSON.parse(raw);
         ["walks","care","notes","expenses"].forEach(function(k){ if (Array.isArray(p[k])) x[k] = p[k]; });
+        if (typeof p.breed === "string") x.breed = p.breed;
         if (p.settings && typeof p.settings === "object"){ x.settings.journalOn = !!p.settings.journalOn; if (typeof p.settings.journalTime === "string") x.settings.journalTime = p.settings.journalTime; }
       }
     } catch(e){}
@@ -6820,22 +7060,79 @@
       '<p class="lt-note">'+tr('lt_local_note',"Saved on this device only.")+'</p>';
   }
 
+  var realBreedEditOpen = false;
   function renderRealProfile(){
     var dog = realDog;
     if (!dog) return renderAdoptIntro();
     function row(label, value, last){
       return '<div class="cost-row"'+(last ? ' style="border-bottom:none;"' : '')+'><span>'+label+'</span><b>'+esc(value)+'</b></div>';
     }
+    var text = realBreedText(dog);
+    var entry = realBreedMatch(text);
+    var breedValue = text ? realBreedLabelOf(text) : tr('lt_profile_breed_unknown',"Not specified");
+    var breedRow = '<div class="cost-row" id="real-breed-edit" style="cursor:pointer;"><span>'+tr('lt_profile_breed',"Breed")+'</span><b>'+esc(breedValue)+' ›</b></div>';
+    var editor = realBreedEditOpen ? '' +
+      '<div class="card" style="margin-top:10px;">' +
+        '<div class="field"><label for="real-breed-input">'+tr('lt_profile_breed',"Breed")+'</label>' +
+        '<input id="real-breed-input" type="text" maxlength="40" placeholder="'+tr('adopt_breed_placeholder',"Known, unknown, or mixed")+'" value="'+esc(entry ? "" : text)+'"></div>' +
+        '<button class="btn btn-primary" id="real-breed-save" style="margin-top:12px;">'+tr('breed_save',"Save")+'</button>' +
+        (isPremium() ? '' : '<button type="button" class="breed-locked" data-open-paywall="breeds">'+icon('lock',14)+' '+tr('breed_locked_hint',"Pick from the list · Premium")+'</button>') +
+      '</div>' : '';
+    var discover = entry ? rowCardHTML({
+      icon:"play", color:"teal",
+      title: esc(tr('breed_discover_t',"Discover {breed}").replace('{breed}', realBreedName(entry))),
+      subtitle: tr('breed_discover_s',"Short illustrated capsules about the breed"),
+      pillText: isPremium() ? "" : tr('lt_premium_pill',"Premium"), pillColor:"purple",
+      attrs: 'data-real-go="realBreed"'
+    }) : "";
     return realBackBtn() +
       '<div class="page-header" style="padding-top:10px;"><h1>'+tr('lt_profile_title',"Your companion.")+'</h1></div>' +
+      '<div style="display:flex; flex-direction:column; align-items:center; gap:10px; margin-bottom:14px;">' + realAvatarHTML(dog, 104) +
+        '<button class="btn" id="real-photo-change" style="width:auto; padding:8px 18px;">'+(realPhotoGet(dog) ? tr('photo_change',"Change photo") : tr('photo_add',"Add a photo"))+'</button>' +
+        '<p class="muted" style="font-size:12px; margin:0;">'+tr('photo_note',"The photo stays on this device.")+'</p>' +
+      '</div>' +
       '<div class="card">' +
         row(tr('lt_profile_name',"Name"), dog.name) +
-        row(tr('lt_profile_breed',"Breed"), dog.breed || tr('lt_profile_breed_unknown',"Not specified")) +
+        breedRow +
         row(tr('lt_profile_arrival',"Arrival date"), dog.arrival_date || "") +
         (dog.birth_date ? row(tr('lt_profile_birth',"Birth date"), dog.birth_date) : "") +
         row(tr('lt_profile_days',"Days together"), String(daysTogether(dog)), true) +
-      '</div>' +
+      '</div>' + editor + discover +
       '<p class="lt-note">'+tr('lt_profile_note',"")+'</p>';
+  }
+
+  function renderRealSkills(){
+    if (!realDog) return renderAdoptIntro();
+    var rows = TRAINING_SKILLS.map(function(sk){
+      return rowCardHTML({ icon:"play", color:"teal", title: esc(sk.label), subtitle: esc(sk.whatToDo.length > 90 ? sk.whatToDo.slice(0, 88) + "…" : sk.whatToDo), attrs: 'data-life-skill="'+sk.id+'"' });
+    }).join("");
+    return '<button class="btn-ghost" id="real-skills-back">'+tr('life_back_to_program','← The 8-week program')+'</button>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+tr('lt_videos_t',"Training videos")+'</h1></div>' + rows;
+  }
+  function renderRealSkill(){
+    if (!realDog || !realSkillId) return renderRealSkills();
+    var sk = trainingSkillById(realSkillId);
+    return '<button class="btn-ghost" id="real-skill-back">'+tr('btn_back',"Back")+'</button>' +
+      '<div class="card" style="margin-top:10px;">' +
+        '<h1 style="font-size:24px;">'+esc(sk.label)+'</h1>' +
+        '<div style="margin-top:12px;">'+trainingMediaHTML(sk)+'</div>' +
+        '<p class="muted" style="margin-top:12px;">'+esc(sk.whatToDo)+'</p>' +
+      '</div>' + trainingStepsHTML(sk);
+  }
+
+  function renderRealBreed(){
+    var dog = realDog;
+    if (!dog) return renderAdoptIntro();
+    var entry = realBreedEntryOf(dog);
+    if (!entry) return realBackBtn() + '<div class="card" style="margin-top:10px;"><p class="muted">'+tr('lt_profile_breed_unknown',"Not specified")+'</p></div>';
+    var list = capsulesForBreedId(entry.id);
+    return realBackBtn() +
+      '<div class="card" style="margin-top:10px; display:flex; align-items:center; gap:14px;">' +
+        (entry.thumb ? '<img class="real-avatar" src="'+entry.thumb+'" alt="" style="width:72px; height:72px;">' : '<span class="real-avatar real-avatar-empty" style="width:72px; height:72px;">'+icon('paw',32)+'</span>') +
+        '<div><h1 style="font-size:22px; line-height:1.15;">'+esc(realBreedName(entry))+'</h1>' +
+        '<p class="muted" style="font-size:12.5px; margin-top:4px;">'+tr('breed_page_note',"General information, not veterinary advice.")+'</p></div>' +
+      '</div>' +
+      capsuleLibraryHTML(list);
   }
 
   var ROUTINE_TYPE_ICON = { meal:"bowl", walk:"paw", play:"ball", other:"cap" };
@@ -6847,12 +7144,14 @@
     var dog = realDog;
     if (!dog) return renderAdoptIntro();
     var day = daysTogether(dog);
+    var breedEntry = realBreedEntryOf(dog);
+    var heroPhoto = (breedEntry && breedEntry.photo) || "media/onboarding/name-walk.jpg";
     var hero = '' +
       '<div class="real-hero">' +
-        '<img src="media/onboarding/name-walk.jpg" alt="">' +
+        '<img src="'+heroPhoto+'" alt="">' +
         '<div class="real-hero-overlay">' +
           '<span class="real-hero-pill">'+tr('real_hero_pill',"Life together")+'</span>' +
-          '<h1>'+esc(dog.name)+'</h1>' +
+          (realPhotoGet(dog) ? '<div class="real-hero-id">'+realAvatarHTML(dog,56)+'<h1>'+esc(dog.name)+'</h1></div>' : '<h1>'+esc(dog.name)+'</h1>') +
           '<p>'+tr('real_hero_subtitle',"Real life, together — no simulation.")+'</p>' +
           '<div class="real-hero-days"><strong>'+day+'</strong>'+tr('real_hero_days_label',"days together")+'</div>' +
         '</div>' +
@@ -6886,13 +7185,21 @@
       attrs: 'id="real-learn-link"'
     });
 
+    var breedLink = breedEntry ? rowCardHTML({
+      icon:"play", color:"teal",
+      title: esc(tr('breed_discover_t',"Discover {breed}").replace('{breed}', realBreedName(breedEntry))),
+      subtitle: tr('breed_discover_s',"Short illustrated capsules about the breed"),
+      pillText: isPremium() ? "" : tr('lt_premium_pill',"Premium"), pillColor:"purple",
+      attrs: 'data-real-go="realBreed"'
+    }) : "";
+
     if (!realRoutinesLoaded){
       return hero + quickRow + '<div class="card"><p class="muted">'+tr('routine_loading',"Loading…")+'</p></div>';
     }
 
     var active = realRoutines.filter(function(r){ return r.active; });
     if (!active.length){
-      return hero + arrivalCard + quickRow + learnLink +
+      return hero + arrivalCard + quickRow + learnLink + breedLink +
         '<div class="card">' +
           '<div class="section-title">'+tr('real_whats_next',"What's next")+'</div>' +
           '<p class="muted">'+tr('routine_empty_state',"No routines yet — add your first one to start tracking real life with "+esc(dog.name)+".")+'</p>' +
@@ -6926,7 +7233,7 @@
       });
     }).join("");
 
-    return hero + arrivalCard + quickRow + learnLink + nextHTML + lifeTiles +
+    return hero + arrivalCard + quickRow + learnLink + breedLink + nextHTML + lifeTiles +
       '<div class="section-title" style="margin-top:18px;">'+tr('real_all_routines',"All routines")+'</div>' +
       rows +
       '<a href="#" id="real-manage-routines" style="display:block; text-align:center; margin-top:10px; padding:10px; color:var(--accent-bright); font-size:13.5px; font-weight:600;">'+tr('routine_manage',"Manage routines")+'</a>';
@@ -6964,6 +7271,12 @@
         '<h1 style="margin-top:8px; font-size:25px;">'+tr('life_program_title','8 weeks.<br>A growing bond.')+'</h1>' +
         '<p class="muted" style="margin-top:6px;">'+tr('life_program_subtitle',"Two short sessions a day, one new skill at a time — at your dog's pace, not a deadline.")+'</p>' +
       '</div>' +
+      rowCardHTML({
+        icon:"play", color:"teal",
+        title: tr('lt_videos_t',"Training videos"), subtitle: tr('lt_videos_s',"Every skill from the trial, with its demonstration video"),
+        pillText: isPremium() ? "" : tr('lt_premium_pill',"Premium"), pillColor:"purple",
+        attrs: 'data-life-skills="1"'
+      }) +
       weeksHTML;
   }
 
@@ -6973,18 +7286,25 @@
     var sessions = realTrainingSessions.filter(function(s){ return s.lesson_id === lesson.id; });
     var lastSession = sessions[0];
     var justSaved = realLessonDifficulty && lastSession && lastSession.difficulty === realLessonDifficulty;
+    var lessonSkill = LIFE_LESSON_SKILL[lesson.id] ? trainingSkillById(LIFE_LESSON_SKILL[lesson.id]) : null;
     return '' +
       '<button class="btn-ghost" id="real-lesson-back">'+tr('life_back_to_program','← The 8-week program')+'</button>' +
       '<div class="card" style="margin-top:10px;">' +
         '<span class="expense-badge">'+tr('life_week_label','Week {n}').replace('{n}', lesson.week)+' · '+esc(lifeTogetherWeekTitle(lesson.week))+'</span>' +
         '<h1 style="margin-top:8px; font-size:24px;">'+esc(lifeTogetherLessonTitle(lesson))+'</h1>' +
+        (lessonSkill ?
+          '<div style="margin-top:14px;">' + trainingMediaHTML(lessonSkill) +
+            '<p class="muted" style="font-size:13px; margin-top:10px;">'+esc(lessonSkill.whatToDo)+'</p>' +
+            '<p class="muted" style="font-size:12px; margin-top:6px;">'+tr('lt_lesson_video_note',"Demonstration video from the trial program.")+'</p>' +
+          '</div>'
+        :
         '<div class="extras-card" style="margin-top:14px; align-items:flex-start;">' +
           '<span class="extras-icon" style="background:var(--card-2); box-shadow:none; color:var(--ink-soft);">'+icon('clock',18)+'</span>' +
           '<span class="extras-body">' +
             '<div class="expense-label">'+tr('life_video_coming_soon',"Video coming soon")+'</div>' +
             '<p class="muted" style="font-size:12.5px; margin-top:4px;">'+tr('life_video_note',"This lesson's demonstration video is still in production — the written program and your progress are ready to use today.")+'</p>' +
           '</span>' +
-        '</div>' +
+        '</div>') +
         '<p class="muted" style="margin-top:12px; font-size:12px;">'+tr('life_draft_note',"Program content for this lesson is in editorial review, not yet published.")+'</p>' +
         (sessions.length ? '<p class="muted" style="margin-top:10px; font-size:13px;">'+tr('life_practiced_count','Practiced {n}× · last {d}').replace('{n}', sessions.length).replace('{d}', tr('difficulty_'+lastSession.difficulty, lastSession.difficulty))+'</p>' : "") +
         '<div class="section-title" style="margin-top:18px;">'+tr('life_how_did_it_go',"How did it go?")+'</div>' +
@@ -8171,12 +8491,26 @@
         var arrivalEl = document.getElementById("real-arrival");
         var birthEl = document.getElementById("real-birth");
         var breedEl = document.getElementById("real-breed");
+        var realBreedPickBtn = document.getElementById("real-breed-pick");
+        if (realBreedPickBtn) realBreedPickBtn.addEventListener("click", function(){
+          realFormSnapshot();
+          openRealBreedPicker(function(e){
+            var d = loadRealDraft();
+            if (e){ d.breed = e.en; d.breedOther = false; } else { d.breed = ""; d.breedOther = true; }
+            saveRealDraft(); render();
+          });
+        });
+        var realPhotoAddBtn = document.getElementById("real-photo-add");
+        if (realPhotoAddBtn) realPhotoAddBtn.addEventListener("click", function(){
+          realFormSnapshot();
+          realPhotoPick(function(data){ var d = loadRealDraft(); d.photo = data; saveRealDraft(); render(); });
+        });
         document.getElementById("adopt-form-next").addEventListener("click", function(){
           var draft = loadRealDraft();
           draft.name = nameEl.value || "";
           draft.arrivalDate = arrivalEl.value || draft.arrivalDate;
           draft.birthDate = birthEl.value || "";
-          draft.breed = breedEl.value || "";
+          draft.breed = breedEl ? (breedEl.value || "") : (draft.breed || "");
           if (!draft.name.trim()){ realError = tr('adopt_error_name',"Enter your dog's name."); render(); return; }
           if (!draft.arrivalDate){ realError = tr('adopt_error_arrival',"Enter the arrival date."); render(); return; }
           realError = "";
@@ -8236,6 +8570,9 @@
       if (realLearnBackBtn) realLearnBackBtn.addEventListener("click", function(){
         view = "realToday"; render();
       });
+      root.querySelectorAll("[data-life-skills]").forEach(function(el){
+        el.addEventListener("click", function(){ view = "realSkills"; render(); });
+      });
       root.querySelectorAll("[data-life-lesson]").forEach(function(el){
         el.addEventListener("click", function(){
           realLessonId = el.getAttribute("data-life-lesson");
@@ -8243,6 +8580,18 @@
           view = "realLesson"; render();
         });
       });
+    }
+
+    if (view === "realSkills"){
+      var realSkillsBack = document.getElementById("real-skills-back");
+      if (realSkillsBack) realSkillsBack.addEventListener("click", function(){ view = "realLearn"; render(); });
+      root.querySelectorAll("[data-life-skill]").forEach(function(el){
+        el.addEventListener("click", function(){ realSkillId = el.getAttribute("data-life-skill"); view = "realSkill"; render(); });
+      });
+    }
+    if (view === "realSkill"){
+      var realSkillBack = document.getElementById("real-skill-back");
+      if (realSkillBack) realSkillBack.addEventListener("click", function(){ realSkillId = null; view = "realSkills"; render(); });
     }
 
     if (view === "realLesson"){
@@ -8260,7 +8609,7 @@
     }
 
     root.querySelectorAll("[data-open-paywall]").forEach(function(el){
-      el.addEventListener("click", function(){ openPaywall(el.getAttribute("data-open-paywall")); });
+      el.addEventListener("click", function(){ if (view === "adoptForm") realFormSnapshot(); openPaywall(el.getAttribute("data-open-paywall")); });
     });
     if (view === "paywall"){
       var pwClose = document.getElementById("paywall-close"); if (pwClose) pwClose.addEventListener("click", closePaywall);
@@ -8269,9 +8618,38 @@
       var pwRestore = document.getElementById("paywall-restore"); if (pwRestore) pwRestore.addEventListener("click", restorePremium);
     }
     if (view !== "realWalk" && realWalkTick){ clearInterval(realWalkTick); realWalkTick = null; }
-    if (["realArrival","realWalk","realCare","realJournal","realBudget","realProfile"].indexOf(view) !== -1){
+    if (["realArrival","realWalk","realCare","realJournal","realBudget","realProfile","realBreed"].indexOf(view) !== -1){
       var realExtraBack = document.getElementById("real-extra-back");
       if (realExtraBack) realExtraBack.addEventListener("click", function(){ view = "realToday"; render(); });
+    }
+    if (view === "realProfile"){
+      var realPhotoChangeBtn = document.getElementById("real-photo-change");
+      if (realPhotoChangeBtn) realPhotoChangeBtn.addEventListener("click", function(){
+        realPhotoPick(function(data){ realPhotoSet(realDog.id, data); render(); });
+      });
+      var realBreedEditRow = document.getElementById("real-breed-edit");
+      if (realBreedEditRow) realBreedEditRow.addEventListener("click", function(){
+        if (!isPremium()){ realBreedEditOpen = true; render(); return; }
+        openRealBreedPicker(function(e){
+          if (e){ var ex = realExtrasLoad(); ex.breed = e.en; realExtrasSave(); realBreedEditOpen = false; }
+          else realBreedEditOpen = true;
+          render();
+        });
+      });
+      var realBreedSaveBtn = document.getElementById("real-breed-save");
+      if (realBreedSaveBtn) realBreedSaveBtn.addEventListener("click", function(){
+        var inp = document.getElementById("real-breed-input");
+        var ex = realExtrasLoad(); ex.breed = ((inp && inp.value) || "").trim();
+        realExtrasSave(); realBreedEditOpen = false; render();
+      });
+      root.querySelectorAll("[data-real-go]").forEach(function(el){
+        el.addEventListener("click", function(){ view = el.getAttribute("data-real-go"); render(); });
+      });
+    }
+    if (view === "realBreed"){
+      root.querySelectorAll("[data-capsule]").forEach(function(btn){
+        btn.addEventListener("click", function(){ openCapsule(btn.getAttribute("data-capsule"), btn); });
+      });
     }
     if (view === "realArrival"){
       var realArrivalCta = document.getElementById("real-arrival-cta");

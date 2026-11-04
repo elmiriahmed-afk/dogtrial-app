@@ -1,4 +1,4 @@
-// DogTrial "Discover their world" capsules (30 s, EN/FR). Generated from the capsule builds on 2026-10-15.
+// DogTrial "Discover their world" capsules (30 s, EN/FR). Generated from the capsule builds on 2026-10-15; the 10 added breeds (golden … jackrussell) on 2026-11-04.
 // Illustrations are AI-generated; general information, not veterinary advice.
 // breeds: "lab"/"frenchie"/... = breed-specific, "all" = general guidance illustrated with a Labrador (shown only to breeds without their own set).
 var DT_CAPSULES = [
@@ -29737,6 +29737,29706 @@ var DT_CAPSULES = [
      {
       "en": "Sources: AKC",
       "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-01-activite",
+  "n": 151,
+  "breeds": "golden",
+  "title": {
+   "en": "Daily activity",
+   "fr": "Activité au quotidien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/5dbdc40b2a.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f9314da025.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/338e518548.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bf507effbb.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7b803df862.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4d261df836.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for daily activity.",
+      "fr": "Une place pour bouger, chaque jour.",
+      "kind": "title"
+     },
+     {
+      "en": "Golden Retrievers were bred as active working dogs, so they usually need exercise every day. Needs vary from dog to dog.",
+      "fr": "Les Golden Retrievers sont des chiens de travail actifs : ils ont en général besoin d’exercice chaque jour. Les besoins varient d’un chien à l’autre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Movement involves muscles and joints.",
+      "fr": "Bouger mobilise muscles et articulations.",
+      "kind": "title"
+     },
+     {
+      "en": "Walks and play use muscles and joints. This simplified illustration shows where, and is not a diagnosis.",
+      "fr": "Promenades et jeux sollicitent muscles et articulations. Cette illustration simplifiée en montre la localisation, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Vary activities and games.",
+      "fr": "Varier les activités et les jeux.",
+      "kind": "title"
+     },
+     {
+      "en": "Mix walks, fetch and sniffing games. Variety keeps exercise interesting for your dog.",
+      "fr": "Alternez promenades, rapport et jeux de flair. La variété garde l’exercice intéressant pour votre chien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt exercise to each dog.",
+      "fr": "Adapter l’effort à chaque chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Age, health and fitness change what suits a dog. Ask your vet before intense or high-impact activities.",
+      "fr": "L’âge, la santé et la forme changent ce qui convient. Demandez l’avis du vétérinaire avant des activités intenses ou à fort impact.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Alternate activity and breaks.",
+      "fr": "Alterner activité et pauses.",
+      "kind": "title"
+     },
+     {
+      "en": "Rest between efforts matters too. The chest and lungs are shown here as a simplified locator, not a diagnosis.",
+      "fr": "Le repos entre les efforts compte aussi. Le thorax et les poumons sont montrés ici de façon simplifiée, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Does this routine fit your life?",
+      "fr": "Cette routine a-t-elle sa place chez vous ?",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC, GRCA",
+      "fr": "Sources : AKC, GRCA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-02-apprentissages",
+  "n": 152,
+  "breeds": "golden",
+  "title": {
+   "en": "Learning and thinking",
+   "fr": "Apprendre et réfléchir"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/c26e107bdc.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f7d0c4e288.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e0c72a496b.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f1d7ec8e40.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b0d8b934b9.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/73d75bfbea.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Learn together, step by step.",
+      "fr": "Apprendre ensemble, pas à pas.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, relaxed sessions work best. Teach one small thing at a time and keep it positive.",
+      "fr": "Des séances courtes et détendues fonctionnent mieux. Enseignez une petite chose à la fois, dans la bonne humeur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Reward the behaviour you want.",
+      "fr": "Récompenser les comportements souhaités.",
+      "kind": "title"
+     },
+     {
+      "en": "Give a small reward right after the behaviour you want, so your dog links the two.",
+      "fr": "Donnez une petite récompense juste après le comportement souhaité, pour que le chien fasse le lien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Try a simple search game.",
+      "fr": "Proposer une recherche simple.",
+      "kind": "title"
+     },
+     {
+      "en": "Hiding treats in a snuffle mat or around the room gives your dog a gentle mental challenge.",
+      "fr": "Cacher des friandises dans un tapis de fouille ou dans la pièce offre au chien un défi mental tout en douceur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Be clear and consistent.",
+      "fr": "Rester clair et cohérent.",
+      "kind": "title"
+     },
+     {
+      "en": "Use the same cue words and signals every time, and agree on them with everyone at home.",
+      "fr": "Utilisez les mêmes mots et les mêmes signaux à chaque fois, et mettez-vous d’accord avec toute la maison.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "End before interest fades.",
+      "fr": "S’arrêter avant de le lasser.",
+      "kind": "title"
+     },
+     {
+      "en": "Stop while your dog is still keen. A short, successful session beats a long, tiring one.",
+      "fr": "Arrêtez-vous tant que votre chien est motivé. Une séance courte et réussie vaut mieux qu’une longue et fatigante.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog learns at its own pace.",
+      "fr": "Chaque chien apprend à son rythme.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-03-repos",
+  "n": 153,
+  "breeds": "golden",
+  "title": {
+   "en": "Rest and sleep",
+   "fr": "Repos et sommeil"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/e8e892a461.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d6c18473c6.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/66b9821f49.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4e5ee62686.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/44daa553bf.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ba59fe4520.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for quiet time.",
+      "fr": "Prévoir aussi des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Dogs need plenty of rest during the day. Plan calm periods alongside walks and play.",
+      "fr": "Les chiens ont besoin de beaucoup de repos dans la journée. Prévoyez des temps calmes en plus des sorties et des jeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A place to retreat.",
+      "fr": "Un espace où se retirer.",
+      "kind": "title"
+     },
+     {
+      "en": "Give your dog a quiet place of its own, where it can go and not be disturbed.",
+      "fr": "Offrez à votre chien un endroit tranquille bien à lui, où il peut se retirer sans être dérangé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let sleeping dogs rest.",
+      "fr": "Laisser dormir sans le déranger.",
+      "kind": "title"
+     },
+     {
+      "en": "Avoid waking or handling a dog that is asleep. Rest helps it recharge.",
+      "fr": "Évitez de réveiller ou de manipuler un chien qui dort. Le repos l’aide à récupérer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Notice your dog’s own rhythm.",
+      "fr": "Observer son rythme individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs sleep more, some less. Observe when your dog is most active and when it rests.",
+      "fr": "Certains chiens dorment plus, d’autres moins. Observez quand le vôtre est actif et quand il se repose.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Anatomy does not explain everything.",
+      "fr": "L’anatomie n’explique pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified anatomy view cannot explain a dog’s behaviour or tiredness. Observe the individual dog.",
+      "fr": "Une vue anatomique simplifiée n’explique ni le comportement ni la fatigue d’un chien. Observez le chien lui-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Notice unusual changes.",
+      "fr": "Un changement inhabituel mérite attention.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC, Dogs Trust",
+      "fr": "Sources : AKC, Dogs Trust",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-04-solitude",
+  "n": 154,
+  "breeds": "golden",
+  "title": {
+   "en": "Learning to be alone",
+   "fr": "Apprendre à rester seul"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/a02d2a170f.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e45fb2b69b.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9bface791f.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d5284b1fcc.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/80b24b7e9d.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/908a3712eb.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Being alone takes practice.",
+      "fr": "Être seul, cela s’apprend.",
+      "kind": "title"
+     },
+     {
+      "en": "Staying alone is a skill dogs learn gradually. Build it up over time rather than all at once.",
+      "fr": "Rester seul est une habitude qui s’apprend progressivement. Construisez-la dans le temps, pas d’un coup.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Begin with brief separations.",
+      "fr": "Commencer par de courtes séparations.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with a few minutes, then increase slowly, as long as your dog stays relaxed.",
+      "fr": "Commencez par quelques minutes, puis allongez doucement, tant que votre chien reste détendu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe rather than assume.",
+      "fr": "Observer plutôt que supposer.",
+      "kind": "title"
+     },
+     {
+      "en": "Notice how your dog behaves when you leave and when you return, instead of assuming it is fine.",
+      "fr": "Observez le comportement de votre chien à votre départ et à votre retour, plutôt que de supposer que tout va bien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "There is no single pace for every dog.",
+      "fr": "Ne pas imposer un rythme unique.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs adapt quickly, others need longer. Follow your dog’s own pace.",
+      "fr": "Certains chiens s’adaptent vite, d’autres ont besoin de plus de temps. Suivez le rythme du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Seek help if your dog is distressed.",
+      "fr": "En cas de détresse, demander de l’aide.",
+      "kind": "title"
+     },
+     {
+      "en": "If your dog seems distressed when alone, talk to your vet or a qualified trainer or behaviourist.",
+      "fr": "Si votre chien semble en détresse quand il est seul, parlez-en à votre vétérinaire ou à un éducateur ou comportementaliste qualifié.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Plan realistic daily support.",
+      "fr": "Prévoir une organisation réaliste.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-05-socialisation",
+  "n": 155,
+  "breeds": "golden",
+  "title": {
+   "en": "Discovering without forcing",
+   "fr": "Découvrir sans forcer"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/af58b55289.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f0581a305e.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/56b4c8474c.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d9a3627751.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/84b15c6fc5.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8224b18999.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discover gradually.",
+      "fr": "Découvrir progressivement.",
+      "kind": "title"
+     },
+     {
+      "en": "Introduce new places, sounds and people step by step, at a level your dog is comfortable with.",
+      "fr": "Présentez lieux, bruits et personnes nouveaux pas à pas, à un niveau où votre chien reste à l’aise.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow the choice to approach.",
+      "fr": "Laisser le choix d’approcher.",
+      "kind": "title"
+     },
+     {
+      "en": "Let your dog decide whether to approach something new. Forcing it can make worry worse.",
+      "fr": "Laissez votre chien décider d’approcher ou non. Le forcer peut aggraver son inquiétude.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep encounters calm.",
+      "fr": "Des rencontres calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, calm meetings with calm people or dogs are easier to cope with than excited ones.",
+      "fr": "Des rencontres courtes et calmes avec des personnes ou des chiens calmes sont plus faciles à vivre que des rencontres agitées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adjust the environment.",
+      "fr": "Adapter l’environnement.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a quieter place or a greater distance if your dog seems overwhelmed.",
+      "fr": "Choisissez un endroit plus calme ou plus de distance si votre chien semble dépassé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Respect your dog’s signals.",
+      "fr": "Respecter ses signaux.",
+      "kind": "title"
+     },
+     {
+      "en": "Yawning, turning away or stiffening can mean discomfort. Give your dog space when you see them.",
+      "fr": "Bâiller, se détourner ou se raidir peut signaler un inconfort. Laissez de l’espace à votre chien quand vous les voyez.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Confidence cannot be forced.",
+      "fr": "La confiance ne se force pas.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-06-vigilance",
+  "n": 156,
+  "breeds": "golden",
+  "title": {
+   "en": "Coat, skin and ears",
+   "fr": "Pelage, peau et oreilles"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/78c5383460.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c4c100bd2e.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e2baea9af3.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9226b3fda7.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/306a15c32e.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/aa32359d7a.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A double coat to care for.",
+      "fr": "Un double pelage à entretenir.",
+      "kind": "title"
+     },
+     {
+      "en": "A double coat has a soft undercoat under a longer outer coat. It needs regular care.",
+      "fr": "Un double pelage associe un sous-poil doux et un poil de couverture plus long. Il demande un entretien régulier.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "See the two layers of the coat.",
+      "fr": "Voir les deux couches du pelage.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified illustration shows the undercoat and the outer coat. It is a locator, not a diagnosis.",
+      "fr": "Une illustration simplifiée montre le sous-poil et le poil de couverture. C’est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for regular brushing.",
+      "fr": "Prévoir du brossage régulier.",
+      "kind": "title"
+     },
+     {
+      "en": "Brushing removes loose hair and lets you check the skin. Build it into your weekly routine.",
+      "fr": "Le brossage retire les poils morts et permet de vérifier la peau. Intégrez-le à votre routine de la semaine.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the ears too.",
+      "fr": "Observer aussi les oreilles.",
+      "kind": "title"
+     },
+     {
+      "en": "Look at the ears regularly. Redness, a bad smell or head shaking are worth mentioning to your vet.",
+      "fr": "Regardez régulièrement les oreilles. Rougeur, mauvaise odeur ou secouements de tête sont à signaler au vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Anatomy worth understanding.",
+      "fr": "Une anatomie à comprendre.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows an internal structure. It is a locator and cannot diagnose anything.",
+      "fr": "Cette illustration simplifiée montre une structure interne. C’est un repère, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Discuss unusual changes with your vet.",
+      "fr": "Une anomalie se discute avec le vétérinaire.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-07-sante-a",
+  "n": 157,
+  "breeds": "golden",
+  "title": {
+   "en": "Hips",
+   "fr": "Hanches"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/19cfa1a78e.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e2a3d2e5d4.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e2b08d0070.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b2731b00ba.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e6cf820c0f.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cf416798c2.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Hips are part of health screening.",
+      "fr": "Les hanches font partie des dépistages.",
+      "kind": "title"
+     },
+     {
+      "en": "Hip evaluation is often part of health screening for this breed. Responsible breeders may share their dogs’ results.",
+      "fr": "L’évaluation des hanches fait souvent partie du dépistage de cette race. Les éleveurs sérieux peuvent partager les résultats de leurs chiens.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The hip joins the pelvis and femur.",
+      "fr": "La hanche relie bassin et fémur.",
+      "kind": "title"
+     },
+     {
+      "en": "The hip is a ball-and-socket joint where the thigh bone meets the pelvis. This illustration is simplified.",
+      "fr": "La hanche est une articulation où la tête du fémur s’emboîte dans le bassin. Cette illustration est simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Dysplasia means abnormal joint development.",
+      "fr": "Dysplasie : une articulation mal formée.",
+      "kind": "title"
+     },
+     {
+      "en": "In hip dysplasia the joint does not form normally, which can cause pain or stiffness. Only a vet can diagnose it.",
+      "fr": "Dans la dysplasie de la hanche, l’articulation se forme mal, ce qui peut causer douleur ou raideur. Seul un vétérinaire peut la diagnostiquer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Risk involves several factors.",
+      "fr": "Le risque dépend de plusieurs facteurs.",
+      "kind": "title"
+     },
+     {
+      "en": "Genetics, growth, weight and exercise can all play a part. No single factor decides the outcome.",
+      "fr": "La génétique, la croissance, le poids et l’exercice peuvent jouer un rôle. Aucun facteur ne décide seul de l’issue.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the parents’ screening results.",
+      "fr": "Demander les résultats des parents.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder for the parents’ hip results and what they mean. Your vet can help you read them.",
+      "fr": "Demandez à l’éleveur les résultats des hanches des parents et leur signification. Votre vétérinaire peut vous aider à les lire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Screening cannot guarantee everything.",
+      "fr": "Un dépistage ne garantit pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: GRCA",
+      "fr": "Sources : GRCA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-08-sante-b",
+  "n": 158,
+  "breeds": "golden",
+  "title": {
+   "en": "Elbows",
+   "fr": "Coudes"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/d61594447e.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/55cfc171ad.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/868c681ab7.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d9f8df7eb9.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/92738ef65f.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/72c1f1987a.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Elbows are screened too.",
+      "fr": "Les coudes aussi se dépistent.",
+      "kind": "title"
+     },
+     {
+      "en": "Elbow evaluation is also commonly part of screening in larger breeds.",
+      "fr": "L’évaluation des coudes fait aussi souvent partie du dépistage chez les grandes races.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Three bones meet at the elbow.",
+      "fr": "Trois os se rejoignent au coude.",
+      "kind": "title"
+     },
+     {
+      "en": "The humerus, radius and ulna meet at the elbow. This simplified illustration shows where.",
+      "fr": "L’humérus, le radius et l’ulna se rejoignent au coude. Cette illustration simplifiée en montre la place.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Several abnormalities may be involved.",
+      "fr": "Plusieurs anomalies peuvent être concernées.",
+      "kind": "title"
+     },
+     {
+      "en": "Elbow dysplasia covers several developmental problems of the joint. A vet or specialist makes the diagnosis.",
+      "fr": "La dysplasie du coude regroupe plusieurs anomalies de développement de l’articulation. Le diagnostic revient au vétérinaire ou à un spécialiste.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Appearance alone is not enough.",
+      "fr": "L’apparence seule ne suffit pas.",
+      "kind": "title"
+     },
+     {
+      "en": "A dog can look healthy and still have a joint problem. Screening relies on examination and X-rays.",
+      "fr": "Un chien peut sembler en bonne santé et avoir un problème articulaire. Le dépistage repose sur l’examen et la radiographie.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Read the screening report.",
+      "fr": "Lire le compte rendu de dépistage.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask to see the parents’ elbow report, and have your vet explain the grades.",
+      "fr": "Demandez à voir le compte rendu des coudes des parents, et faites expliquer les grades par votre vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Interpret results for this dog.",
+      "fr": "Interpréter pour ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: GRCA",
+      "fr": "Sources : GRCA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-09-sante-c",
+  "n": 159,
+  "breeds": "golden",
+  "title": {
+   "en": "Eyes and uveitis",
+   "fr": "Yeux et uvéite"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/82f6b546cd.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0fa9919d95.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3609e5fd09.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/85ba0f2ff6.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/db783bda2f.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/20fa9b45c1.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Eyes deserve attention.",
+      "fr": "Les yeux méritent un suivi.",
+      "kind": "title"
+     },
+     {
+      "en": "Eye examinations are often part of the health screening for this breed. Eyes can change over time.",
+      "fr": "Les examens des yeux font souvent partie du dépistage de cette race. Les yeux peuvent évoluer avec le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structures of the eye.",
+      "fr": "Situer les structures de l’œil.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified illustration shows the main structures of the eye. It is a locator, not a diagnosis.",
+      "fr": "Une illustration simplifiée montre les principales structures de l’œil. C’est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Pigmentary uveitis affects this breed.",
+      "fr": "L’uvéite pigmentaire concerne la race.",
+      "kind": "title"
+     },
+     {
+      "en": "Pigmentary uveitis is an inflammation inside the eye reported in Golden Retrievers.",
+      "fr": "L’uvéite pigmentaire est une inflammation à l’intérieur de l’œil, rapportée chez le Golden Retriever.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "It can develop later in life.",
+      "fr": "Elle peut apparaître plus tard dans la vie.",
+      "kind": "title"
+     },
+     {
+      "en": "Signs can appear later in life, so one clear examination does not cover a dog’s whole life.",
+      "fr": "Les signes peuvent apparaître plus tard dans la vie : un examen normal ne couvre pas toute la vie d’un chien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dates of eye examinations.",
+      "fr": "Vérifier la date des examens.",
+      "kind": "title"
+     },
+     {
+      "en": "Eye results age. Check the date of the parents’ examinations and ask your vet what is current.",
+      "fr": "Les résultats oculaires vieillissent. Vérifiez la date des examens des parents et demandez au vétérinaire ce qui est à jour.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A specialist interprets the findings.",
+      "fr": "Un spécialiste interprète les signes.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: GRCA, AKC CHF",
+      "fr": "Sources : GRCA, AKC CHF",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-10-sante-d",
+  "n": 160,
+  "breeds": "golden",
+  "title": {
+   "en": "Heart",
+   "fr": "Cœur"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/4fb08b06ff.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d8a9eea629.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/11c352017e.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a463aa9449.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/34ecf95282.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/87a0388e77.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The heart is part of screening.",
+      "fr": "Le cœur fait partie des contrôles.",
+      "kind": "title"
+     },
+     {
+      "en": "Heart examination is often part of health screening for this breed.",
+      "fr": "L’examen du cœur fait souvent partie du dépistage de cette race.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the heart within the chest.",
+      "fr": "Situer le cœur dans le thorax.",
+      "kind": "title"
+     },
+     {
+      "en": "The heart sits in the chest between the lungs. This illustration is simplified.",
+      "fr": "Le cœur se trouve dans le thorax, entre les poumons. Cette illustration est simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Subaortic stenosis is a known risk.",
+      "fr": "La sténose sous-aortique est un risque connu.",
+      "kind": "title"
+     },
+     {
+      "en": "Subaortic stenosis is a narrowing below the aortic valve. It is reported in several breeds, including this one.",
+      "fr": "La sténose sous-aortique est un rétrécissement sous la valve aortique. Elle est rapportée chez plusieurs races, dont celle-ci.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "It does not affect every Golden.",
+      "fr": "Elle ne touche pas tous les Goldens.",
+      "kind": "title"
+     },
+     {
+      "en": "Many Golden Retrievers have healthy hearts. A cardiologist can assess a particular dog.",
+      "fr": "Beaucoup de Golden Retrievers ont un cœur en bonne santé. Un cardiologue peut évaluer un chien précis.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the cardiac report.",
+      "fr": "Demander le compte rendu cardiologique.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for the parents’ heart examination reports and have a vet explain them.",
+      "fr": "Demandez les comptes rendus cardiologiques des parents et faites-les expliquer par un vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "The result applies to an individual dog.",
+      "fr": "Le résultat concerne un chien précis.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: GRCA",
+      "fr": "Sources : GRCA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-11-poids",
+  "n": 161,
+  "breeds": "golden",
+  "title": {
+   "en": "Weight and feeding",
+   "fr": "Poids et alimentation"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/fa6ba97dd2.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fe6416f9ed.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7c4a043e5f.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9d7234362e.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/65d62779e6.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/295ec3cc92.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Weight matters day to day.",
+      "fr": "Le poids compte au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "A healthy weight helps a dog move comfortably. Weigh your dog regularly and note any change.",
+      "fr": "Un poids sain aide le chien à bouger à l’aise. Pesez votre chien régulièrement et notez les changements.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe body shape.",
+      "fr": "Observer la silhouette.",
+      "kind": "title"
+     },
+     {
+      "en": "You should be able to feel the ribs under a light layer of fat, and see a waist from above.",
+      "fr": "On doit sentir les côtes sous une fine couche de graisse, et voir une taille vu du dessus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Treats count too.",
+      "fr": "Les friandises comptent aussi.",
+      "kind": "title"
+     },
+     {
+      "en": "Treats add calories. Reduce the meal a little, or use part of the daily food as rewards.",
+      "fr": "Les friandises apportent des calories. Réduisez un peu le repas, ou utilisez une partie de la ration comme récompense.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Different tissues lie beneath the skin.",
+      "fr": "Sous la peau, des tissus différents.",
+      "kind": "title"
+     },
+     {
+      "en": "Under the skin lie fat, muscle and bone. This illustration is a simplified locator, not a diagnosis.",
+      "fr": "Sous la peau se trouvent graisse, muscle et os. Cette illustration simplifiée est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt to age and activity.",
+      "fr": "Adapter à l’âge et à l’activité.",
+      "kind": "title"
+     },
+     {
+      "en": "Food needs change with age, activity and health. Ask your vet how much and what to feed.",
+      "fr": "Les besoins alimentaires changent avec l’âge, l’activité et la santé. Demandez au vétérinaire quoi donner et en quelle quantité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog has individual needs.",
+      "fr": "Chaque chien a ses besoins.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-12-enfants",
+  "n": 162,
+  "breeds": "golden",
+  "title": {
+   "en": "Children and dog",
+   "fr": "Enfants et chien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/f0c501afc4.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8fa601d0d3.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d8b9fc4bc2.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7a6409be11.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/74dda63a84.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/80fa390970.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A relationship built over time.",
+      "fr": "Une relation qui se construit.",
+      "kind": "title"
+     },
+     {
+      "en": "A child and a dog need time to get to know each other. Do not rush the relationship.",
+      "fr": "Un enfant et un chien ont besoin de temps pour se connaître. Ne précipitez pas la relation.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An adult actively supervises.",
+      "fr": "Un adulte supervise activement.",
+      "kind": "title"
+     },
+     {
+      "en": "An adult should stay close and pay attention whenever a child and a dog are together.",
+      "fr": "Un adulte doit rester proche et attentif chaque fois qu’un enfant et un chien sont ensemble.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let the dog approach.",
+      "fr": "Laisser le chien venir.",
+      "kind": "title"
+     },
+     {
+      "en": "Teach children to let the dog come to them, and to stop if the dog moves away.",
+      "fr": "Apprenez aux enfants à laisser le chien venir à eux, et à s’arrêter s’il s’éloigne.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Protect resting time.",
+      "fr": "Protéger son repos.",
+      "kind": "title"
+     },
+     {
+      "en": "Do not disturb a dog that is eating, sleeping or resting. Children should learn to leave it alone.",
+      "fr": "Ne dérangez pas un chien qui mange, dort ou se repose. Les enfants doivent apprendre à le laisser tranquille.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Provide a quiet space.",
+      "fr": "Prévoir un espace tranquille.",
+      "kind": "title"
+     },
+     {
+      "en": "Give the dog a place to retreat to, where children do not follow.",
+      "fr": "Offrez au chien un endroit où se retirer, où les enfants ne le suivent pas.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Breed never replaces supervision.",
+      "fr": "La race ne remplace pas la supervision.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-13-cohabitation",
+  "n": 163,
+  "breeds": "golden",
+  "title": {
+   "en": "Other animals",
+   "fr": "Autres animaux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/1f572119d2.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d5bbbcd01f.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/486f133e82.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/de25a07a1c.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/709636d1b4.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cca834d09a.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Prepare introductions.",
+      "fr": "Les présentations se préparent.",
+      "kind": "title"
+     },
+     {
+      "en": "Plan introductions between animals ahead of time, in a calm setting.",
+      "fr": "Préparez à l’avance les présentations entre animaux, dans un cadre calme.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep space between animals.",
+      "fr": "Garder de l’espace.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with distance, and reduce it gradually if both animals stay relaxed.",
+      "fr": "Commencez avec de la distance, et réduisez-la peu à peu si les deux animaux restent détendus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow room to retreat.",
+      "fr": "Laisser des possibilités de retrait.",
+      "kind": "title"
+     },
+     {
+      "en": "Each animal should be able to move away. Keep escape routes free.",
+      "fr": "Chaque animal doit pouvoir s’éloigner. Gardez les issues dégagées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Do not force a meeting.",
+      "fr": "Ne pas forcer la rencontre.",
+      "kind": "title"
+     },
+     {
+      "en": "Forcing animals to meet can create fear or conflict. Let them take their time.",
+      "fr": "Forcer une rencontre peut créer peur ou conflit. Laissez-leur le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange separate resources.",
+      "fr": "Organiser les ressources séparément.",
+      "kind": "title"
+     },
+     {
+      "en": "Give each animal its own bowls, beds and toys to avoid disputes.",
+      "fr": "Donnez à chaque animal ses propres gamelles, couchages et jouets pour éviter les conflits.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Adapt to the individual animals.",
+      "fr": "S’adapter aux individus.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-14-documents",
+  "n": 164,
+  "breeds": "golden",
+  "title": {
+   "en": "Documents before adoption",
+   "fr": "Documents avant l’adoption"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/2553f23d34.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/412eb2cd20.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b458dc796c.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0c206a519a.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b9d323433b.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f1328b674e.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Read the records before committing.",
+      "fr": "Lire les documents avant de s’engager.",
+      "kind": "title"
+     },
+     {
+      "en": "Read the health and identity documents before you decide, not after.",
+      "fr": "Lisez les documents de santé et d’identité avant de vous décider, pas après.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dog’s identity.",
+      "fr": "Vérifier l’identité du chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Check that the microchip, registration and papers match the dog in front of you.",
+      "fr": "Vérifiez que la puce, l’inscription et les papiers correspondent bien au chien que vous avez devant vous.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the available history.",
+      "fr": "Demander l’historique disponible.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for vaccination, veterinary and family history, as far as it is available.",
+      "fr": "Demandez l’historique de vaccination, vétérinaire et familial, dans la mesure où il existe.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Distinguish examinations from DNA tests.",
+      "fr": "Distinguer les examens des tests ADN.",
+      "kind": "title"
+     },
+     {
+      "en": "An examination looks at a dog’s body now. A DNA test looks for specific genetic changes. They answer different questions.",
+      "fr": "Un examen regarde le corps du chien aujourd’hui. Un test ADN cherche des variations génétiques précises. Ce sont deux questions différentes.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Parents: hips, elbows, eyes and heart.",
+      "fr": "Les parents : hanches, coudes, yeux, cœur.",
+      "kind": "title"
+     },
+     {
+      "en": "For this breed, ask about the parents’ hip, elbow, eye and heart results.",
+      "fr": "Pour cette race, interrogez sur les résultats des hanches, coudes, yeux et cœur des parents.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Missing records are not a diagnosis.",
+      "fr": "L’absence de dossier n’est pas un diagnostic.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: GRCA",
+      "fr": "Sources : GRCA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "golden-15-engagement",
+  "n": 165,
+  "breeds": "golden",
+  "title": {
+   "en": "Preparing life together",
+   "fr": "Préparer la vie ensemble"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/7a14aaf41f.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9ee9805468.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/eb740487de.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/534e081b0d.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0b0faef459.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/66ec829586.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan a sustainable routine.",
+      "fr": "Prévoir une routine durable.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a daily routine you can really keep up for years.",
+      "fr": "Choisissez une routine quotidienne que vous pourrez vraiment tenir pendant des années.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for daily outings.",
+      "fr": "Du temps pour les sorties.",
+      "kind": "title"
+     },
+     {
+      "en": "Count the time for outings every day, in all weathers.",
+      "fr": "Comptez le temps des sorties chaque jour, par tous les temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for everyday care.",
+      "fr": "Du temps pour les soins.",
+      "kind": "title"
+     },
+     {
+      "en": "Feeding, grooming and cleaning add up. Include them in your daily schedule.",
+      "fr": "Repas, toilettage et nettoyage s’additionnent. Intégrez-les à votre emploi du temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan for costs and unexpected needs.",
+      "fr": "Prévoir les dépenses et les imprévus.",
+      "kind": "title"
+     },
+     {
+      "en": "Add up food, vet care and insurance, and keep a reserve for the unexpected.",
+      "fr": "Additionnez nourriture, soins vétérinaires et assurance, et gardez une réserve pour l’imprévu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange support when needed.",
+      "fr": "Organiser un relais si nécessaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Know who can help when you travel or fall ill: a friend, family or a sitter.",
+      "fr": "Sachez qui peut vous aider si vous partez ou tombez malade : un ami, la famille ou un gardien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Choose with your real life in mind.",
+      "fr": "Choisir selon votre vie réelle.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-01-activite",
+  "n": 166,
+  "breeds": "poodle",
+  "title": {
+   "en": "Daily activity",
+   "fr": "Activité au quotidien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/0401268e8a.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/74c4c29e1e.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/730cbbce49.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/253e94e785.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8a8bd9247c.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4a1d8b8986.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An active everyday companion.",
+      "fr": "Un chien actif au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "This breed can enjoy daily outings and play. Every dog is different, so watch your own dog’s energy.",
+      "fr": "Cette race peut apprécier sorties et jeux au quotidien. Chaque chien est différent : observez l’énergie du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Vary the activities.",
+      "fr": "Varier les activités.",
+      "kind": "title"
+     },
+     {
+      "en": "Alternate walks, games and training so exercise stays varied for your dog.",
+      "fr": "Alternez promenades, jeux et petits exercices pour que l’activité reste variée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Movement involves the joints.",
+      "fr": "Bouger mobilise les articulations.",
+      "kind": "title"
+     },
+     {
+      "en": "Daily movement uses the joints. This simplified illustration shows where, and is not a diagnosis.",
+      "fr": "Le mouvement quotidien sollicite les articulations. Cette illustration simplifiée en montre la localisation, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt activity to this dog.",
+      "fr": "Adapter l’effort à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Age, health and temperament change how much exercise suits a dog. Adjust gradually, and ask your vet if unsure.",
+      "fr": "L’âge, la santé et le tempérament changent l’effort adapté. Ajustez progressivement, et demandez au vétérinaire en cas de doute.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for quiet moments.",
+      "fr": "Prévoir des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Calm time after activity helps a dog settle. Plan rest as part of the day, not only exercise.",
+      "fr": "Un moment calme après l’effort aide le chien à se poser. Prévoyez le repos dans la journée, pas seulement l’exercice.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Can your routine make room for this?",
+      "fr": "Votre routine lui laisse-t-elle cette place ?",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-02-apprentissages",
+  "n": 167,
+  "breeds": "poodle",
+  "title": {
+   "en": "Learning and thinking",
+   "fr": "Apprendre et réfléchir"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/3c5ac22b1a.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ba37e50954.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/82dd9313a2.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f743109f19.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/80b91c9b2b.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ba05d8fe7a.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Learn together, step by step.",
+      "fr": "Apprendre ensemble, pas à pas.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, relaxed sessions work best. Teach one small thing at a time and keep it positive.",
+      "fr": "Des séances courtes et détendues fonctionnent mieux. Enseignez une petite chose à la fois, dans la bonne humeur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Reward the behaviour you want.",
+      "fr": "Récompenser les comportements souhaités.",
+      "kind": "title"
+     },
+     {
+      "en": "Give a small reward right after the behaviour you want, so your dog links the two.",
+      "fr": "Donnez une petite récompense juste après le comportement souhaité, pour que le chien fasse le lien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Try a simple search game.",
+      "fr": "Proposer une recherche simple.",
+      "kind": "title"
+     },
+     {
+      "en": "Hiding treats in a snuffle mat or around the room gives your dog a gentle mental challenge.",
+      "fr": "Cacher des friandises dans un tapis de fouille ou dans la pièce offre au chien un défi mental tout en douceur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Be clear and consistent.",
+      "fr": "Rester clair et cohérent.",
+      "kind": "title"
+     },
+     {
+      "en": "Use the same cue words and signals every time, and agree on them with everyone at home.",
+      "fr": "Utilisez les mêmes mots et les mêmes signaux à chaque fois, et mettez-vous d’accord avec toute la maison.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "End before interest fades.",
+      "fr": "S’arrêter avant de le lasser.",
+      "kind": "title"
+     },
+     {
+      "en": "Stop while your dog is still keen. A short, successful session beats a long, tiring one.",
+      "fr": "Arrêtez-vous tant que votre chien est motivé. Une séance courte et réussie vaut mieux qu’une longue et fatigante.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog learns at its own pace.",
+      "fr": "Chaque chien apprend à son rythme.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-03-repos",
+  "n": 168,
+  "breeds": "poodle",
+  "title": {
+   "en": "Rest and sleep",
+   "fr": "Repos et sommeil"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/6cd9a50f17.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3f56a0eebc.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8f884fd06a.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6d08b34135.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4d8df60704.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9761fdb28b.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for quiet time.",
+      "fr": "Prévoir aussi des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Dogs need plenty of rest during the day. Plan calm periods alongside walks and play.",
+      "fr": "Les chiens ont besoin de beaucoup de repos dans la journée. Prévoyez des temps calmes en plus des sorties et des jeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A place to retreat.",
+      "fr": "Un espace où se retirer.",
+      "kind": "title"
+     },
+     {
+      "en": "Give your dog a quiet place of its own, where it can go and not be disturbed.",
+      "fr": "Offrez à votre chien un endroit tranquille bien à lui, où il peut se retirer sans être dérangé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let sleeping dogs rest.",
+      "fr": "Laisser dormir sans le déranger.",
+      "kind": "title"
+     },
+     {
+      "en": "Avoid waking or handling a dog that is asleep. Rest helps it recharge.",
+      "fr": "Évitez de réveiller ou de manipuler un chien qui dort. Le repos l’aide à récupérer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Notice your dog’s own rhythm.",
+      "fr": "Observer son rythme individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs sleep more, some less. Observe when your dog is most active and when it rests.",
+      "fr": "Certains chiens dorment plus, d’autres moins. Observez quand le vôtre est actif et quand il se repose.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Anatomy does not explain everything.",
+      "fr": "L’anatomie n’explique pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified anatomy view cannot explain a dog’s behaviour or tiredness. Observe the individual dog.",
+      "fr": "Une vue anatomique simplifiée n’explique ni le comportement ni la fatigue d’un chien. Observez le chien lui-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Notice unusual changes.",
+      "fr": "Un changement inhabituel mérite attention.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC, Dogs Trust",
+      "fr": "Sources : AKC, Dogs Trust",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-04-solitude",
+  "n": 169,
+  "breeds": "poodle",
+  "title": {
+   "en": "Learning to be alone",
+   "fr": "Apprendre à rester seul"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/bfec079d30.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7dd5ddd51a.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e6488300d0.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3d19739968.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/87b48971f8.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/422b1b1329.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Being alone takes practice.",
+      "fr": "Être seul, cela s’apprend.",
+      "kind": "title"
+     },
+     {
+      "en": "Staying alone is a skill dogs learn gradually. Build it up over time rather than all at once.",
+      "fr": "Rester seul est une habitude qui s’apprend progressivement. Construisez-la dans le temps, pas d’un coup.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Begin with brief separations.",
+      "fr": "Commencer par de courtes séparations.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with a few minutes, then increase slowly, as long as your dog stays relaxed.",
+      "fr": "Commencez par quelques minutes, puis allongez doucement, tant que votre chien reste détendu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe rather than assume.",
+      "fr": "Observer plutôt que supposer.",
+      "kind": "title"
+     },
+     {
+      "en": "Notice how your dog behaves when you leave and when you return, instead of assuming it is fine.",
+      "fr": "Observez le comportement de votre chien à votre départ et à votre retour, plutôt que de supposer que tout va bien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "There is no single pace for every dog.",
+      "fr": "Ne pas imposer un rythme unique.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs adapt quickly, others need longer. Follow your dog’s own pace.",
+      "fr": "Certains chiens s’adaptent vite, d’autres ont besoin de plus de temps. Suivez le rythme du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Seek help if your dog is distressed.",
+      "fr": "En cas de détresse, demander de l’aide.",
+      "kind": "title"
+     },
+     {
+      "en": "If your dog seems distressed when alone, talk to your vet or a qualified trainer or behaviourist.",
+      "fr": "Si votre chien semble en détresse quand il est seul, parlez-en à votre vétérinaire ou à un éducateur ou comportementaliste qualifié.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Plan realistic daily support.",
+      "fr": "Prévoir une organisation réaliste.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-05-socialisation",
+  "n": 170,
+  "breeds": "poodle",
+  "title": {
+   "en": "Discovering without forcing",
+   "fr": "Découvrir sans forcer"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/48fa45d8a5.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1e77b7fe7c.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0bb9923f43.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/10af3f82fc.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e6926cd06d.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/520a4709e2.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discover gradually.",
+      "fr": "Découvrir progressivement.",
+      "kind": "title"
+     },
+     {
+      "en": "Introduce new places, sounds and people step by step, at a level your dog is comfortable with.",
+      "fr": "Présentez lieux, bruits et personnes nouveaux pas à pas, à un niveau où votre chien reste à l’aise.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow the choice to approach.",
+      "fr": "Laisser le choix d’approcher.",
+      "kind": "title"
+     },
+     {
+      "en": "Let your dog decide whether to approach something new. Forcing it can make worry worse.",
+      "fr": "Laissez votre chien décider d’approcher ou non. Le forcer peut aggraver son inquiétude.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep encounters calm.",
+      "fr": "Des rencontres calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, calm meetings with calm people or dogs are easier to cope with than excited ones.",
+      "fr": "Des rencontres courtes et calmes avec des personnes ou des chiens calmes sont plus faciles à vivre que des rencontres agitées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adjust the environment.",
+      "fr": "Adapter l’environnement.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a quieter place or a greater distance if your dog seems overwhelmed.",
+      "fr": "Choisissez un endroit plus calme ou plus de distance si votre chien semble dépassé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Respect your dog’s signals.",
+      "fr": "Respecter ses signaux.",
+      "kind": "title"
+     },
+     {
+      "en": "Yawning, turning away or stiffening can mean discomfort. Give your dog space when you see them.",
+      "fr": "Bâiller, se détourner ou se raidir peut signaler un inconfort. Laissez de l’espace à votre chien quand vous les voyez.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Confidence cannot be forced.",
+      "fr": "La confiance ne se force pas.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-06-vigilance",
+  "n": 171,
+  "breeds": "poodle",
+  "title": {
+   "en": "Coat, skin and ears",
+   "fr": "Pelage, peau et oreilles"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/7d5ae82f73.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d55b5b2fbd.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/895160b727.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4fc14ff789.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f0e31471a7.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0b7596025a.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Coat care takes time.",
+      "fr": "Le pelage demande du temps.",
+      "kind": "title"
+     },
+     {
+      "en": "A Poodle’s coat keeps growing and needs regular care. Plan the time and the budget for it.",
+      "fr": "Le poil du Caniche pousse en continu et demande un entretien régulier. Prévoyez le temps et le budget.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Curls can become tangled.",
+      "fr": "Les boucles peuvent former des nœuds.",
+      "kind": "title"
+     },
+     {
+      "en": "Curly coats can mat, especially close to the skin. Regular brushing helps prevent tangles.",
+      "fr": "Les poils bouclés peuvent s’emmêler, surtout près de la peau. Un brossage régulier aide à éviter les nœuds.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Care reaches down to the coat roots.",
+      "fr": "Atteindre aussi la base du poil.",
+      "kind": "title"
+     },
+     {
+      "en": "Brushing should reach the base of the coat, not only the surface. This illustration is simplified.",
+      "fr": "Le brossage doit atteindre la base du poil, pas seulement la surface. Cette illustration est simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Introduce handling gently.",
+      "fr": "Habituer aux manipulations doucement.",
+      "kind": "title"
+     },
+     {
+      "en": "Touch paws, ears and coat in short, positive sessions so that grooming becomes familiar.",
+      "fr": "Touchez pattes, oreilles et pelage en séances courtes et positives, pour que le toilettage devienne familier.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan for professional grooming.",
+      "fr": "Prévoir l’entretien professionnel.",
+      "kind": "title"
+     },
+     {
+      "en": "Many Poodle owners use a professional groomer regularly. Include it in your budget.",
+      "fr": "Beaucoup de propriétaires de Caniche font appel régulièrement à un toiletteur. Intégrez-le à votre budget.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Choose a practical trim.",
+      "fr": "Choisir une coupe pratique.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-07-sante-a",
+  "n": 172,
+  "breeds": "poodle",
+  "title": {
+   "en": "Hips",
+   "fr": "Hanches"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/48e44e79b1.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/809210fbef.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6dda3a6579.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/99506b6606.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/73a415489b.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7e2d02c984.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Hips are part of health screening.",
+      "fr": "Les hanches font partie des dépistages.",
+      "kind": "title"
+     },
+     {
+      "en": "Hip evaluation is often part of health screening for this breed. Responsible breeders may share their dogs’ results.",
+      "fr": "L’évaluation des hanches fait souvent partie du dépistage de cette race. Les éleveurs sérieux peuvent partager les résultats de leurs chiens.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The hip joins the pelvis and femur.",
+      "fr": "La hanche relie bassin et fémur.",
+      "kind": "title"
+     },
+     {
+      "en": "The hip is a ball-and-socket joint where the thigh bone meets the pelvis. This illustration is simplified.",
+      "fr": "La hanche est une articulation où la tête du fémur s’emboîte dans le bassin. Cette illustration est simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Dysplasia means abnormal joint development.",
+      "fr": "Dysplasie : une articulation mal formée.",
+      "kind": "title"
+     },
+     {
+      "en": "In hip dysplasia the joint does not form normally, which can cause pain or stiffness. Only a vet can diagnose it.",
+      "fr": "Dans la dysplasie de la hanche, l’articulation se forme mal, ce qui peut causer douleur ou raideur. Seul un vétérinaire peut la diagnostiquer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Risk involves several factors.",
+      "fr": "Le risque dépend de plusieurs facteurs.",
+      "kind": "title"
+     },
+     {
+      "en": "Genetics, growth, weight and exercise can all play a part. No single factor decides the outcome.",
+      "fr": "La génétique, la croissance, le poids et l’exercice peuvent jouer un rôle. Aucun facteur ne décide seul de l’issue.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the parents’ screening results.",
+      "fr": "Demander les résultats des parents.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder for the parents’ hip results and what they mean. Your vet can help you read them.",
+      "fr": "Demandez à l’éleveur les résultats des hanches des parents et leur signification. Votre vétérinaire peut vous aider à les lire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Screening cannot guarantee everything.",
+      "fr": "Un dépistage ne garantit pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Poodle Club of America, AKC",
+      "fr": "Sources : Poodle Club of America, AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-08-sante-b",
+  "n": 173,
+  "breeds": "poodle",
+  "title": {
+   "en": "Skin and glands",
+   "fr": "Peau et glandes"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/857b2a369e.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6bc96ef824.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/09978dab4a.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/870a0093a7.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2a08b7d9b5.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c0c3f05cd7.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Skin is part of health awareness.",
+      "fr": "La peau fait partie des sujets de santé.",
+      "kind": "title"
+     },
+     {
+      "en": "Skin and coat problems are worth knowing about in Poodles. Ask the breeder about the family’s history.",
+      "fr": "Les problèmes de peau et de poil méritent d’être connus chez le Caniche. Interrogez l’éleveur sur les antécédents de la famille.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the sebaceous glands.",
+      "fr": "Situer les glandes sébacées.",
+      "kind": "title"
+     },
+     {
+      "en": "Sebaceous glands in the skin produce an oily substance that protects the coat. This illustration is simplified.",
+      "fr": "Les glandes sébacées de la peau produisent un film gras qui protège le poil. Cette illustration est simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Sebaceous adenitis occurs in this breed.",
+      "fr": "L’adénite sébacée est connue dans la race.",
+      "kind": "title"
+     },
+     {
+      "en": "Sebaceous adenitis is an inflammation of these glands, reported in Standard Poodles. A vet must diagnose it.",
+      "fr": "L’adénite sébacée est une inflammation de ces glandes, rapportée chez le grand Caniche. Seul un vétérinaire peut la diagnostiquer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An image cannot provide a diagnosis.",
+      "fr": "Une image ne pose pas de diagnostic.",
+      "kind": "title"
+     },
+     {
+      "en": "A picture cannot tell whether a dog has a skin condition. Only a veterinary examination can.",
+      "fr": "Une image ne permet pas de savoir si un chien a une maladie de peau. Seul un examen vétérinaire le peut.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask about available examinations.",
+      "fr": "Demander les examens disponibles.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder and your vet which skin examinations are available.",
+      "fr": "Demandez à l’éleveur et à votre vétérinaire quels examens de la peau existent.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A vet interprets changes.",
+      "fr": "Le vétérinaire interprète les changements.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Poodle Club of America, AKC",
+      "fr": "Sources : Poodle Club of America, AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-09-sante-c",
+  "n": 174,
+  "breeds": "poodle",
+  "title": {
+   "en": "Eyes",
+   "fr": "Yeux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/bba9b62455.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d89c72ca73.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ad43eb225a.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/494ecf8128.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2139dbf388.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0d76ab10e6.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Eyes are part of screening.",
+      "fr": "Les yeux font partie des dépistages.",
+      "kind": "title"
+     },
+     {
+      "en": "Eye examinations are often part of health screening for this breed.",
+      "fr": "Les examens des yeux font souvent partie du dépistage de cette race.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structures of the eye.",
+      "fr": "Repérer les structures de l’œil.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified illustration shows the main structures of the eye. It is a locator, not a diagnosis.",
+      "fr": "Une illustration simplifiée montre les principales structures de l’œil. C’est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Several conditions are possible.",
+      "fr": "Plusieurs affections sont possibles.",
+      "kind": "title"
+     },
+     {
+      "en": "Different eye conditions can affect Poodles. Ask the breeder which ones the parents were tested for.",
+      "fr": "Plusieurs maladies des yeux peuvent toucher le Caniche. Demandez à l’éleveur pour lesquelles les parents ont été testés.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A DNA test does not cover everything.",
+      "fr": "Un test ADN ne couvre pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "A DNA test checks for specific known mutations. It does not replace an eye examination.",
+      "fr": "Un test ADN recherche des mutations précises et connues. Il ne remplace pas un examen des yeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask about an eye examination.",
+      "fr": "Demander un examen ophtalmologique.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask whether the parents had a recent examination by a veterinary eye specialist.",
+      "fr": "Demandez si les parents ont eu un examen récent par un vétérinaire spécialiste des yeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Tailor follow-up to this dog.",
+      "fr": "Adapter le suivi à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Poodle Club of America, AKC",
+      "fr": "Sources : Poodle Club of America, AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-10-sante-d",
+  "n": 175,
+  "breeds": "poodle",
+  "title": {
+   "en": "Bloat",
+   "fr": "Dilatation-torsion"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/9740fa94c3.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9254aa4b72.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9b081b330b.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/796c9df393.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6e4d03a65e.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/69d77f560e.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk to know in Standard Poodles.",
+      "fr": "Un risque à connaître chez le grand Caniche.",
+      "kind": "title"
+     },
+     {
+      "en": "Standard Poodles, like other deep-chested dogs, can be at risk of a stomach emergency called bloat.",
+      "fr": "Le grand Caniche, comme d’autres chiens à poitrine profonde, peut être exposé à une urgence de l’estomac appelée dilatation-torsion.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the stomach in the abdomen.",
+      "fr": "Situer l’estomac dans l’abdomen.",
+      "kind": "title"
+     },
+     {
+      "en": "The stomach lies behind the ribs. This simplified illustration only shows its position.",
+      "fr": "L’estomac se trouve derrière les côtes. Cette illustration simplifiée n’en montre que la position.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Gastric dilatation-volvulus is an emergency.",
+      "fr": "La dilatation-torsion est une urgence.",
+      "kind": "title"
+     },
+     {
+      "en": "In gastric dilatation-volvulus (bloat) the stomach fills with gas and can twist. It is an emergency: call a vet at once.",
+      "fr": "Dans la dilatation-torsion de l’estomac, celui-ci se remplit de gaz et peut se tordre. C’est une urgence : appelez un vétérinaire sans attendre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Not every dog is affected.",
+      "fr": "Tous les chiens ne sont pas concernés.",
+      "kind": "title"
+     },
+     {
+      "en": "Most dogs never have it, but knowing the signs and your nearest emergency vet helps.",
+      "fr": "La plupart des chiens n’en souffrent jamais, mais connaître les signes et le vétérinaire d’urgence le plus proche aide.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discuss it during the veterinary visit.",
+      "fr": "En parler lors du bilan vétérinaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask your vet about bloat and what to watch for, especially in deep-chested dogs.",
+      "fr": "Parlez de la dilatation-torsion à votre vétérinaire et demandez ce qu’il faut surveiller, surtout chez les chiens à poitrine profonde.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "An illustration cannot diagnose this condition.",
+      "fr": "Une illustration ne permet pas de diagnostiquer.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Poodle Club of America, AKC, ACVS",
+      "fr": "Sources : Poodle Club of America, AKC, ACVS",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-11-poids",
+  "n": 176,
+  "breeds": "poodle",
+  "title": {
+   "en": "Weight and feeding",
+   "fr": "Poids et alimentation"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/362a80f2da.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3b78bc6b29.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/746b542dcd.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5e158673cd.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/df0b585dfc.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b13935579f.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Weight matters day to day.",
+      "fr": "Le poids compte au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "A healthy weight helps a dog move comfortably. Weigh your dog regularly and note any change.",
+      "fr": "Un poids sain aide le chien à bouger à l’aise. Pesez votre chien régulièrement et notez les changements.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe body shape.",
+      "fr": "Observer la silhouette.",
+      "kind": "title"
+     },
+     {
+      "en": "You should be able to feel the ribs under a light layer of fat, and see a waist from above.",
+      "fr": "On doit sentir les côtes sous une fine couche de graisse, et voir une taille vu du dessus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Treats count too.",
+      "fr": "Les friandises comptent aussi.",
+      "kind": "title"
+     },
+     {
+      "en": "Treats add calories. Reduce the meal a little, or use part of the daily food as rewards.",
+      "fr": "Les friandises apportent des calories. Réduisez un peu le repas, ou utilisez une partie de la ration comme récompense.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Different tissues lie beneath the skin.",
+      "fr": "Sous la peau, des tissus différents.",
+      "kind": "title"
+     },
+     {
+      "en": "Under the skin lie fat, muscle and bone. This illustration is a simplified locator, not a diagnosis.",
+      "fr": "Sous la peau se trouvent graisse, muscle et os. Cette illustration simplifiée est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt to age and activity.",
+      "fr": "Adapter à l’âge et à l’activité.",
+      "kind": "title"
+     },
+     {
+      "en": "Food needs change with age, activity and health. Ask your vet how much and what to feed.",
+      "fr": "Les besoins alimentaires changent avec l’âge, l’activité et la santé. Demandez au vétérinaire quoi donner et en quelle quantité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog has individual needs.",
+      "fr": "Chaque chien a ses besoins.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-12-enfants",
+  "n": 177,
+  "breeds": "poodle",
+  "title": {
+   "en": "Children and dog",
+   "fr": "Enfants et chien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/3e6ecf6196.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/926a5259b3.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7f42ab396d.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/24f6024639.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6b33d617b7.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cf90883d24.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A relationship built over time.",
+      "fr": "Une relation qui se construit.",
+      "kind": "title"
+     },
+     {
+      "en": "A child and a dog need time to get to know each other. Do not rush the relationship.",
+      "fr": "Un enfant et un chien ont besoin de temps pour se connaître. Ne précipitez pas la relation.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An adult actively supervises.",
+      "fr": "Un adulte supervise activement.",
+      "kind": "title"
+     },
+     {
+      "en": "An adult should stay close and pay attention whenever a child and a dog are together.",
+      "fr": "Un adulte doit rester proche et attentif chaque fois qu’un enfant et un chien sont ensemble.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let the dog approach.",
+      "fr": "Laisser le chien venir.",
+      "kind": "title"
+     },
+     {
+      "en": "Teach children to let the dog come to them, and to stop if the dog moves away.",
+      "fr": "Apprenez aux enfants à laisser le chien venir à eux, et à s’arrêter s’il s’éloigne.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Protect resting time.",
+      "fr": "Protéger son repos.",
+      "kind": "title"
+     },
+     {
+      "en": "Do not disturb a dog that is eating, sleeping or resting. Children should learn to leave it alone.",
+      "fr": "Ne dérangez pas un chien qui mange, dort ou se repose. Les enfants doivent apprendre à le laisser tranquille.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Provide a quiet space.",
+      "fr": "Prévoir un espace tranquille.",
+      "kind": "title"
+     },
+     {
+      "en": "Give the dog a place to retreat to, where children do not follow.",
+      "fr": "Offrez au chien un endroit où se retirer, où les enfants ne le suivent pas.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Breed never replaces supervision.",
+      "fr": "La race ne remplace pas la supervision.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-13-cohabitation",
+  "n": 178,
+  "breeds": "poodle",
+  "title": {
+   "en": "Other animals",
+   "fr": "Autres animaux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/3e06f3d254.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e55bfc5188.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b2a210fba6.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/27ee1d39d3.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e962cf4efe.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0820a86203.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Prepare introductions.",
+      "fr": "Les présentations se préparent.",
+      "kind": "title"
+     },
+     {
+      "en": "Plan introductions between animals ahead of time, in a calm setting.",
+      "fr": "Préparez à l’avance les présentations entre animaux, dans un cadre calme.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep space between animals.",
+      "fr": "Garder de l’espace.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with distance, and reduce it gradually if both animals stay relaxed.",
+      "fr": "Commencez avec de la distance, et réduisez-la peu à peu si les deux animaux restent détendus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow room to retreat.",
+      "fr": "Laisser des possibilités de retrait.",
+      "kind": "title"
+     },
+     {
+      "en": "Each animal should be able to move away. Keep escape routes free.",
+      "fr": "Chaque animal doit pouvoir s’éloigner. Gardez les issues dégagées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Do not force a meeting.",
+      "fr": "Ne pas forcer la rencontre.",
+      "kind": "title"
+     },
+     {
+      "en": "Forcing animals to meet can create fear or conflict. Let them take their time.",
+      "fr": "Forcer une rencontre peut créer peur ou conflit. Laissez-leur le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange separate resources.",
+      "fr": "Organiser les ressources séparément.",
+      "kind": "title"
+     },
+     {
+      "en": "Give each animal its own bowls, beds and toys to avoid disputes.",
+      "fr": "Donnez à chaque animal ses propres gamelles, couchages et jouets pour éviter les conflits.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Adapt to the individual animals.",
+      "fr": "S’adapter aux individus.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-14-documents",
+  "n": 179,
+  "breeds": "poodle",
+  "title": {
+   "en": "Documents before adoption",
+   "fr": "Documents avant l’adoption"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/ac7fbae0fc.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/72e27bd72e.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8360e1fa43.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ed2ec68394.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6800392f67.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9eda80245d.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check available records.",
+      "fr": "Vérifier les documents disponibles.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for the records that exist, including those of the parents.",
+      "fr": "Demandez les documents qui existent, y compris ceux des parents.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Confirm the Standard variety.",
+      "fr": "Identifier la variété standard.",
+      "kind": "title"
+     },
+     {
+      "en": "Poodles come in several sizes, and some health tests differ. Confirm which variety this dog is.",
+      "fr": "Le Caniche existe en plusieurs tailles, et certains tests de santé diffèrent. Confirmez la variété de ce chien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Hips, eyes and thyroid.",
+      "fr": "Hanches, yeux et thyroïde.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask about hip, eye and thyroid screening for the parents.",
+      "fr": "Interrogez sur le dépistage des hanches, des yeux et de la thyroïde chez les parents.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "NEwS and vWD1 are targeted tests.",
+      "fr": "NEwS et vWD1 : des tests ciblés.",
+      "kind": "title"
+     },
+     {
+      "en": "Some DNA tests look for specific conditions, such as NEwS and von Willebrand disease type 1. Ask which were done.",
+      "fr": "Certains tests ADN recherchent des maladies précises, comme le NEwS et la maladie de von Willebrand de type 1. Demandez lesquels ont été faits.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check identity and results.",
+      "fr": "Vérifier l’identité et les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "Check that the identity and the test results belong to this dog or its parents.",
+      "fr": "Vérifiez que l’identité et les résultats de tests concernent bien ce chien ou ses parents.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Tests cannot guarantee everything.",
+      "fr": "Les tests ne garantissent pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Poodle Club of America, AKC",
+      "fr": "Sources : Poodle Club of America, AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "poodle-15-engagement",
+  "n": 180,
+  "breeds": "poodle",
+  "title": {
+   "en": "Preparing life together",
+   "fr": "Préparer la vie ensemble"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/d3fefc37a3.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fd62604fd5.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e12f0b8437.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3e895cc854.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/da899be3db.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/108b24541d.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan a sustainable routine.",
+      "fr": "Prévoir une routine durable.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a daily routine you can really keep up for years.",
+      "fr": "Choisissez une routine quotidienne que vous pourrez vraiment tenir pendant des années.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for daily outings.",
+      "fr": "Du temps pour les sorties.",
+      "kind": "title"
+     },
+     {
+      "en": "Count the time for outings every day, in all weathers.",
+      "fr": "Comptez le temps des sorties chaque jour, par tous les temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for everyday care.",
+      "fr": "Du temps pour les soins.",
+      "kind": "title"
+     },
+     {
+      "en": "Feeding, grooming and cleaning add up. Include them in your daily schedule.",
+      "fr": "Repas, toilettage et nettoyage s’additionnent. Intégrez-les à votre emploi du temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan for costs and unexpected needs.",
+      "fr": "Prévoir les dépenses et les imprévus.",
+      "kind": "title"
+     },
+     {
+      "en": "Add up food, vet care and insurance, and keep a reserve for the unexpected.",
+      "fr": "Additionnez nourriture, soins vétérinaires et assurance, et gardez une réserve pour l’imprévu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange support when needed.",
+      "fr": "Organiser un relais si nécessaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Know who can help when you travel or fall ill: a friend, family or a sitter.",
+      "fr": "Sachez qui peut vous aider si vous partez ou tombez malade : un ami, la famille ou un gardien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Choose with your real life in mind.",
+      "fr": "Choisir selon votre vie réelle.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-01-activite",
+  "n": 181,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Daily activity",
+   "fr": "Activité au quotidien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/c5ed8c314f.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/817073d69d.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/068bd9f059.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/04979a4d40.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a9d9e9f947.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bbcca1abdd.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An active everyday companion.",
+      "fr": "Un chien actif au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "This breed can enjoy daily outings and play. Every dog is different, so watch your own dog’s energy.",
+      "fr": "Cette race peut apprécier sorties et jeux au quotidien. Chaque chien est différent : observez l’énergie du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Vary the activities.",
+      "fr": "Varier les activités.",
+      "kind": "title"
+     },
+     {
+      "en": "Alternate walks, games and training so exercise stays varied for your dog.",
+      "fr": "Alternez promenades, jeux et petits exercices pour que l’activité reste variée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Movement involves the joints.",
+      "fr": "Bouger mobilise les articulations.",
+      "kind": "title"
+     },
+     {
+      "en": "Daily movement uses the joints. This simplified illustration shows where, and is not a diagnosis.",
+      "fr": "Le mouvement quotidien sollicite les articulations. Cette illustration simplifiée en montre la localisation, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt activity to this dog.",
+      "fr": "Adapter l’effort à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Age, health and temperament change how much exercise suits a dog. Adjust gradually, and ask your vet if unsure.",
+      "fr": "L’âge, la santé et le tempérament changent l’effort adapté. Ajustez progressivement, et demandez au vétérinaire en cas de doute.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for quiet moments.",
+      "fr": "Prévoir des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Calm time after activity helps a dog settle. Plan rest as part of the day, not only exercise.",
+      "fr": "Un moment calme après l’effort aide le chien à se poser. Prévoyez le repos dans la journée, pas seulement l’exercice.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Can your routine make room for this?",
+      "fr": "Votre routine lui laisse-t-elle cette place ?",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-02-apprentissages",
+  "n": 182,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Learning and thinking",
+   "fr": "Apprendre et réfléchir"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/16cee675b0.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/219fbace9f.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f879d33526.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2d13623955.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/865366a235.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/13e221333d.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Learn together, step by step.",
+      "fr": "Apprendre ensemble, pas à pas.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, relaxed sessions work best. Teach one small thing at a time and keep it positive.",
+      "fr": "Des séances courtes et détendues fonctionnent mieux. Enseignez une petite chose à la fois, dans la bonne humeur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Reward the behaviour you want.",
+      "fr": "Récompenser les comportements souhaités.",
+      "kind": "title"
+     },
+     {
+      "en": "Give a small reward right after the behaviour you want, so your dog links the two.",
+      "fr": "Donnez une petite récompense juste après le comportement souhaité, pour que le chien fasse le lien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Try a simple search game.",
+      "fr": "Proposer une recherche simple.",
+      "kind": "title"
+     },
+     {
+      "en": "Hiding treats in a snuffle mat or around the room gives your dog a gentle mental challenge.",
+      "fr": "Cacher des friandises dans un tapis de fouille ou dans la pièce offre au chien un défi mental tout en douceur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Be clear and consistent.",
+      "fr": "Rester clair et cohérent.",
+      "kind": "title"
+     },
+     {
+      "en": "Use the same cue words and signals every time, and agree on them with everyone at home.",
+      "fr": "Utilisez les mêmes mots et les mêmes signaux à chaque fois, et mettez-vous d’accord avec toute la maison.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "End before interest fades.",
+      "fr": "S’arrêter avant de le lasser.",
+      "kind": "title"
+     },
+     {
+      "en": "Stop while your dog is still keen. A short, successful session beats a long, tiring one.",
+      "fr": "Arrêtez-vous tant que votre chien est motivé. Une séance courte et réussie vaut mieux qu’une longue et fatigante.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog learns at its own pace.",
+      "fr": "Chaque chien apprend à son rythme.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-03-repos",
+  "n": 183,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Rest and sleep",
+   "fr": "Repos et sommeil"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/a95d781637.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0436529ca2.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/46afe3bb6c.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f1662b48c8.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3dbfc5eb56.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ba9d636ef9.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for quiet time.",
+      "fr": "Prévoir aussi des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Dogs need plenty of rest during the day. Plan calm periods alongside walks and play.",
+      "fr": "Les chiens ont besoin de beaucoup de repos dans la journée. Prévoyez des temps calmes en plus des sorties et des jeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A place to retreat.",
+      "fr": "Un espace où se retirer.",
+      "kind": "title"
+     },
+     {
+      "en": "Give your dog a quiet place of its own, where it can go and not be disturbed.",
+      "fr": "Offrez à votre chien un endroit tranquille bien à lui, où il peut se retirer sans être dérangé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let sleeping dogs rest.",
+      "fr": "Laisser dormir sans le déranger.",
+      "kind": "title"
+     },
+     {
+      "en": "Avoid waking or handling a dog that is asleep. Rest helps it recharge.",
+      "fr": "Évitez de réveiller ou de manipuler un chien qui dort. Le repos l’aide à récupérer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Notice your dog’s own rhythm.",
+      "fr": "Observer son rythme individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs sleep more, some less. Observe when your dog is most active and when it rests.",
+      "fr": "Certains chiens dorment plus, d’autres moins. Observez quand le vôtre est actif et quand il se repose.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Anatomy does not explain everything.",
+      "fr": "L’anatomie n’explique pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified anatomy view cannot explain a dog’s behaviour or tiredness. Observe the individual dog.",
+      "fr": "Une vue anatomique simplifiée n’explique ni le comportement ni la fatigue d’un chien. Observez le chien lui-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Notice unusual changes.",
+      "fr": "Un changement inhabituel mérite attention.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC, Dogs Trust",
+      "fr": "Sources : AKC, Dogs Trust",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-04-solitude",
+  "n": 184,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Learning to be alone",
+   "fr": "Apprendre à rester seul"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/d716a1e062.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b9910e01c2.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c43386f20a.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/48cd3a22e9.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b0b89c9218.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d53b1ab31f.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Being alone takes practice.",
+      "fr": "Être seul, cela s’apprend.",
+      "kind": "title"
+     },
+     {
+      "en": "Staying alone is a skill dogs learn gradually. Build it up over time rather than all at once.",
+      "fr": "Rester seul est une habitude qui s’apprend progressivement. Construisez-la dans le temps, pas d’un coup.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Begin with brief separations.",
+      "fr": "Commencer par de courtes séparations.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with a few minutes, then increase slowly, as long as your dog stays relaxed.",
+      "fr": "Commencez par quelques minutes, puis allongez doucement, tant que votre chien reste détendu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe rather than assume.",
+      "fr": "Observer plutôt que supposer.",
+      "kind": "title"
+     },
+     {
+      "en": "Notice how your dog behaves when you leave and when you return, instead of assuming it is fine.",
+      "fr": "Observez le comportement de votre chien à votre départ et à votre retour, plutôt que de supposer que tout va bien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "There is no single pace for every dog.",
+      "fr": "Ne pas imposer un rythme unique.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs adapt quickly, others need longer. Follow your dog’s own pace.",
+      "fr": "Certains chiens s’adaptent vite, d’autres ont besoin de plus de temps. Suivez le rythme du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Seek help if your dog is distressed.",
+      "fr": "En cas de détresse, demander de l’aide.",
+      "kind": "title"
+     },
+     {
+      "en": "If your dog seems distressed when alone, talk to your vet or a qualified trainer or behaviourist.",
+      "fr": "Si votre chien semble en détresse quand il est seul, parlez-en à votre vétérinaire ou à un éducateur ou comportementaliste qualifié.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Plan realistic daily support.",
+      "fr": "Prévoir une organisation réaliste.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-05-socialisation",
+  "n": 185,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Discovering without forcing",
+   "fr": "Découvrir sans forcer"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/03ee1aa14c.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/579b6f1952.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/df59413e69.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/252b97b2c7.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0b94b33e67.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fe4cfe2d61.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discover gradually.",
+      "fr": "Découvrir progressivement.",
+      "kind": "title"
+     },
+     {
+      "en": "Introduce new places, sounds and people step by step, at a level your dog is comfortable with.",
+      "fr": "Présentez lieux, bruits et personnes nouveaux pas à pas, à un niveau où votre chien reste à l’aise.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow the choice to approach.",
+      "fr": "Laisser le choix d’approcher.",
+      "kind": "title"
+     },
+     {
+      "en": "Let your dog decide whether to approach something new. Forcing it can make worry worse.",
+      "fr": "Laissez votre chien décider d’approcher ou non. Le forcer peut aggraver son inquiétude.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep encounters calm.",
+      "fr": "Des rencontres calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, calm meetings with calm people or dogs are easier to cope with than excited ones.",
+      "fr": "Des rencontres courtes et calmes avec des personnes ou des chiens calmes sont plus faciles à vivre que des rencontres agitées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adjust the environment.",
+      "fr": "Adapter l’environnement.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a quieter place or a greater distance if your dog seems overwhelmed.",
+      "fr": "Choisissez un endroit plus calme ou plus de distance si votre chien semble dépassé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Respect your dog’s signals.",
+      "fr": "Respecter ses signaux.",
+      "kind": "title"
+     },
+     {
+      "en": "Yawning, turning away or stiffening can mean discomfort. Give your dog space when you see them.",
+      "fr": "Bâiller, se détourner ou se raidir peut signaler un inconfort. Laissez de l’espace à votre chien quand vous les voyez.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Confidence cannot be forced.",
+      "fr": "La confiance ne se force pas.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-06-vigilance",
+  "n": 186,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Coat, skin and ears",
+   "fr": "Pelage, peau et oreilles"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/e1cf9aa1dc.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7a0926f37b.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0599e769f1.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/484c9936a2.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8f1d05f8e4.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2337afc33f.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A double coat to care for.",
+      "fr": "Un double pelage à entretenir.",
+      "kind": "title"
+     },
+     {
+      "en": "A double coat has a soft undercoat under a longer outer coat. It needs regular care.",
+      "fr": "Un double pelage associe un sous-poil doux et un poil de couverture plus long. Il demande un entretien régulier.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "See the two layers of the coat.",
+      "fr": "Voir les deux couches du pelage.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified illustration shows the undercoat and the outer coat. It is a locator, not a diagnosis.",
+      "fr": "Une illustration simplifiée montre le sous-poil et le poil de couverture. C’est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for regular brushing.",
+      "fr": "Prévoir du brossage régulier.",
+      "kind": "title"
+     },
+     {
+      "en": "Brushing removes loose hair and lets you check the skin. Build it into your weekly routine.",
+      "fr": "Le brossage retire les poils morts et permet de vérifier la peau. Intégrez-le à votre routine de la semaine.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the ears too.",
+      "fr": "Observer aussi les oreilles.",
+      "kind": "title"
+     },
+     {
+      "en": "Look at the ears regularly. Redness, a bad smell or head shaking are worth mentioning to your vet.",
+      "fr": "Regardez régulièrement les oreilles. Rougeur, mauvaise odeur ou secouements de tête sont à signaler au vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The ear canal has an L-shaped bend.",
+      "fr": "Le conduit auditif forme un coude.",
+      "kind": "title"
+     },
+     {
+      "en": "The canal has a vertical and a horizontal part, which can make ears harder to clean. This illustration is schematic, not to scale.",
+      "fr": "Le conduit a une partie verticale et une partie horizontale, ce qui peut rendre le nettoyage plus délicat. Illustration schématique, hors échelle.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Discuss unusual changes with your vet.",
+      "fr": "Une anomalie se discute avec le vétérinaire.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC, American Rottweiler Club, Cornell Vet",
+      "fr": "Sources : AKC, American Rottweiler Club, Cornell Vet",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-07-sante-a",
+  "n": 187,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Hips",
+   "fr": "Hanches"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/126ca788c3.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5f5f33fc63.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8bce122e10.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ac087369d6.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/abf816a5f9.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b524ce75a4.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Hips are part of health screening.",
+      "fr": "Les hanches font partie des dépistages.",
+      "kind": "title"
+     },
+     {
+      "en": "Hip evaluation is often part of health screening for this breed. Responsible breeders may share their dogs’ results.",
+      "fr": "L’évaluation des hanches fait souvent partie du dépistage de cette race. Les éleveurs sérieux peuvent partager les résultats de leurs chiens.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The hip joins the pelvis and femur.",
+      "fr": "La hanche relie bassin et fémur.",
+      "kind": "title"
+     },
+     {
+      "en": "The hip is a ball-and-socket joint where the thigh bone meets the pelvis. This illustration is simplified.",
+      "fr": "La hanche est une articulation où la tête du fémur s’emboîte dans le bassin. Cette illustration est simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Dysplasia means abnormal joint development.",
+      "fr": "Dysplasie : une articulation mal formée.",
+      "kind": "title"
+     },
+     {
+      "en": "In hip dysplasia the joint does not form normally, which can cause pain or stiffness. Only a vet can diagnose it.",
+      "fr": "Dans la dysplasie de la hanche, l’articulation se forme mal, ce qui peut causer douleur ou raideur. Seul un vétérinaire peut la diagnostiquer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Risk involves several factors.",
+      "fr": "Le risque dépend de plusieurs facteurs.",
+      "kind": "title"
+     },
+     {
+      "en": "Genetics, growth, weight and exercise can all play a part. No single factor decides the outcome.",
+      "fr": "La génétique, la croissance, le poids et l’exercice peuvent jouer un rôle. Aucun facteur ne décide seul de l’issue.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the parents’ screening results.",
+      "fr": "Demander les résultats des parents.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder for the parents’ hip results and what they mean. Your vet can help you read them.",
+      "fr": "Demandez à l’éleveur les résultats des hanches des parents et leur signification. Votre vétérinaire peut vous aider à les lire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Screening cannot guarantee everything.",
+      "fr": "Un dépistage ne garantit pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: American Rottweiler Club",
+      "fr": "Sources : American Rottweiler Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-08-sante-b",
+  "n": 188,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Elbows",
+   "fr": "Coudes"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/150995599a.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6944df99eb.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/aaaa328255.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c2fd65e96c.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7e379b4b1f.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2f8f9e4d75.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Elbows are screened too.",
+      "fr": "Les coudes aussi se dépistent.",
+      "kind": "title"
+     },
+     {
+      "en": "Elbow evaluation is also commonly part of screening in larger breeds.",
+      "fr": "L’évaluation des coudes fait aussi souvent partie du dépistage chez les grandes races.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Three bones meet at the elbow.",
+      "fr": "Trois os se rejoignent au coude.",
+      "kind": "title"
+     },
+     {
+      "en": "The humerus, radius and ulna meet at the elbow. This simplified illustration shows where.",
+      "fr": "L’humérus, le radius et l’ulna se rejoignent au coude. Cette illustration simplifiée en montre la place.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Several abnormalities may be involved.",
+      "fr": "Plusieurs anomalies peuvent être concernées.",
+      "kind": "title"
+     },
+     {
+      "en": "Elbow dysplasia covers several developmental problems of the joint. A vet or specialist makes the diagnosis.",
+      "fr": "La dysplasie du coude regroupe plusieurs anomalies de développement de l’articulation. Le diagnostic revient au vétérinaire ou à un spécialiste.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Appearance alone is not enough.",
+      "fr": "L’apparence seule ne suffit pas.",
+      "kind": "title"
+     },
+     {
+      "en": "A dog can look healthy and still have a joint problem. Screening relies on examination and X-rays.",
+      "fr": "Un chien peut sembler en bonne santé et avoir un problème articulaire. Le dépistage repose sur l’examen et la radiographie.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Read the screening report.",
+      "fr": "Lire le compte rendu de dépistage.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask to see the parents’ elbow report, and have your vet explain the grades.",
+      "fr": "Demandez à voir le compte rendu des coudes des parents, et faites expliquer les grades par votre vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Interpret results for this dog.",
+      "fr": "Interpréter pour ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: American Rottweiler Club",
+      "fr": "Sources : American Rottweiler Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-09-sante-c",
+  "n": 189,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Eyes",
+   "fr": "Yeux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/d76f72b839.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/95126d9301.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/59a2a82c53.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4ddef42c07.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c800192c47.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a3a3c174d5.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Eyes deserve attention.",
+      "fr": "Les yeux méritent un suivi.",
+      "kind": "title"
+     },
+     {
+      "en": "Eye examinations are often part of the health screening for this breed. Eyes can change over time.",
+      "fr": "Les examens des yeux font souvent partie du dépistage de cette race. Les yeux peuvent évoluer avec le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structures of the eye.",
+      "fr": "Situer les structures de l’œil.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified illustration shows the main structures of the eye. It is a locator, not a diagnosis.",
+      "fr": "Une illustration simplifiée montre les principales structures de l’œil. C’est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Cataracts and eyelid abnormalities are reported.",
+      "fr": "Cataracte et anomalies des paupières sont rapportées.",
+      "kind": "title"
+     },
+     {
+      "en": "Cataracts, which cloud the lens, and eyelid abnormalities are reported in Rottweilers.",
+      "fr": "La cataracte, qui trouble le cristallin, et des anomalies des paupières sont rapportées chez le Rottweiler.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An examination assesses this dog’s eyes.",
+      "fr": "Un examen évalue les yeux de ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Only an eye examination can assess a particular dog’s eyes. Ask for recent results.",
+      "fr": "Seul un examen peut évaluer les yeux d’un chien précis. Demandez des résultats récents.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dates of eye examinations.",
+      "fr": "Vérifier la date des examens.",
+      "kind": "title"
+     },
+     {
+      "en": "Eye results age. Check the date of the parents’ examinations and ask your vet what is current.",
+      "fr": "Les résultats oculaires vieillissent. Vérifiez la date des examens des parents et demandez au vétérinaire ce qui est à jour.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A specialist interprets the findings.",
+      "fr": "Un spécialiste interprète les signes.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: American Rottweiler Club",
+      "fr": "Sources : American Rottweiler Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-10-sante-d",
+  "n": 190,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Heart",
+   "fr": "Cœur"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/5bdf1dcaf6.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/199855ac80.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/82090bd99a.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/062dcb0074.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/580bcaf0a9.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f546edc882.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The heart is part of screening.",
+      "fr": "Le cœur fait partie des contrôles.",
+      "kind": "title"
+     },
+     {
+      "en": "Heart examination is often part of health screening for this breed.",
+      "fr": "L’examen du cœur fait souvent partie du dépistage de cette race.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the heart within the chest.",
+      "fr": "Situer le cœur dans le thorax.",
+      "kind": "title"
+     },
+     {
+      "en": "The heart sits in the chest between the lungs. This illustration is simplified.",
+      "fr": "Le cœur se trouve dans le thorax, entre les poumons. Cette illustration est simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Subaortic stenosis is a known risk.",
+      "fr": "La sténose sous-aortique est un risque connu.",
+      "kind": "title"
+     },
+     {
+      "en": "Subaortic stenosis is a narrowing below the aortic valve. It is reported in several breeds, including this one.",
+      "fr": "La sténose sous-aortique est un rétrécissement sous la valve aortique. Elle est rapportée chez plusieurs races, dont celle-ci.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "It does not affect every Rottweiler.",
+      "fr": "Elle ne touche pas tous les Rottweilers.",
+      "kind": "title"
+     },
+     {
+      "en": "Many Rottweilers have healthy hearts. A cardiologist can assess a particular dog.",
+      "fr": "Beaucoup de Rottweilers ont un cœur en bonne santé. Un cardiologue peut évaluer un chien précis.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the cardiac report.",
+      "fr": "Demander le compte rendu cardiologique.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for the parents’ heart examination reports and have a vet explain them.",
+      "fr": "Demandez les comptes rendus cardiologiques des parents et faites-les expliquer par un vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "The result applies to an individual dog.",
+      "fr": "Le résultat concerne un chien précis.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: American Rottweiler Club",
+      "fr": "Sources : American Rottweiler Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-11-poids",
+  "n": 191,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Weight and feeding",
+   "fr": "Poids et alimentation"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/7f48d2c0ca.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b76235f217.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/90d8493055.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/34c4cd79cd.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6270aade6c.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/57cd126d61.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Weight matters day to day.",
+      "fr": "Le poids compte au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "A healthy weight helps a dog move comfortably. Weigh your dog regularly and note any change.",
+      "fr": "Un poids sain aide le chien à bouger à l’aise. Pesez votre chien régulièrement et notez les changements.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe body shape.",
+      "fr": "Observer la silhouette.",
+      "kind": "title"
+     },
+     {
+      "en": "You should be able to feel the ribs under a light layer of fat, and see a waist from above.",
+      "fr": "On doit sentir les côtes sous une fine couche de graisse, et voir une taille vu du dessus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Treats count too.",
+      "fr": "Les friandises comptent aussi.",
+      "kind": "title"
+     },
+     {
+      "en": "Treats add calories. Reduce the meal a little, or use part of the daily food as rewards.",
+      "fr": "Les friandises apportent des calories. Réduisez un peu le repas, ou utilisez une partie de la ration comme récompense.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Different tissues lie beneath the skin.",
+      "fr": "Sous la peau, des tissus différents.",
+      "kind": "title"
+     },
+     {
+      "en": "Under the skin lie fat, muscle and bone. This illustration is a simplified locator, not a diagnosis.",
+      "fr": "Sous la peau se trouvent graisse, muscle et os. Cette illustration simplifiée est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt to age and activity.",
+      "fr": "Adapter à l’âge et à l’activité.",
+      "kind": "title"
+     },
+     {
+      "en": "Food needs change with age, activity and health. Ask your vet how much and what to feed.",
+      "fr": "Les besoins alimentaires changent avec l’âge, l’activité et la santé. Demandez au vétérinaire quoi donner et en quelle quantité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog has individual needs.",
+      "fr": "Chaque chien a ses besoins.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-12-enfants",
+  "n": 192,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Children and dog",
+   "fr": "Enfants et chien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/1a5c6c72d3.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3217987681.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5f823824b0.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fea005ee2e.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a992d548bd.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0c0e556b8e.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A relationship built over time.",
+      "fr": "Une relation qui se construit.",
+      "kind": "title"
+     },
+     {
+      "en": "A child and a dog need time to get to know each other. Do not rush the relationship.",
+      "fr": "Un enfant et un chien ont besoin de temps pour se connaître. Ne précipitez pas la relation.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An adult actively supervises.",
+      "fr": "Un adulte supervise activement.",
+      "kind": "title"
+     },
+     {
+      "en": "An adult should stay close and pay attention whenever a child and a dog are together.",
+      "fr": "Un adulte doit rester proche et attentif chaque fois qu’un enfant et un chien sont ensemble.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let the dog approach.",
+      "fr": "Laisser le chien venir.",
+      "kind": "title"
+     },
+     {
+      "en": "Teach children to let the dog come to them, and to stop if the dog moves away.",
+      "fr": "Apprenez aux enfants à laisser le chien venir à eux, et à s’arrêter s’il s’éloigne.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Protect resting time.",
+      "fr": "Protéger son repos.",
+      "kind": "title"
+     },
+     {
+      "en": "Do not disturb a dog that is eating, sleeping or resting. Children should learn to leave it alone.",
+      "fr": "Ne dérangez pas un chien qui mange, dort ou se repose. Les enfants doivent apprendre à le laisser tranquille.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Provide a quiet space.",
+      "fr": "Prévoir un espace tranquille.",
+      "kind": "title"
+     },
+     {
+      "en": "Give the dog a place to retreat to, where children do not follow.",
+      "fr": "Offrez au chien un endroit où se retirer, où les enfants ne le suivent pas.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Breed never replaces supervision.",
+      "fr": "La race ne remplace pas la supervision.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-13-cohabitation",
+  "n": 193,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Other animals",
+   "fr": "Autres animaux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/d7da78c030.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/deba53d87a.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4a181e9dbd.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3b5aaab517.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7dae96cbd2.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/da2365dbb4.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Prepare introductions.",
+      "fr": "Les présentations se préparent.",
+      "kind": "title"
+     },
+     {
+      "en": "Plan introductions between animals ahead of time, in a calm setting.",
+      "fr": "Préparez à l’avance les présentations entre animaux, dans un cadre calme.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep space between animals.",
+      "fr": "Garder de l’espace.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with distance, and reduce it gradually if both animals stay relaxed.",
+      "fr": "Commencez avec de la distance, et réduisez-la peu à peu si les deux animaux restent détendus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow room to retreat.",
+      "fr": "Laisser des possibilités de retrait.",
+      "kind": "title"
+     },
+     {
+      "en": "Each animal should be able to move away. Keep escape routes free.",
+      "fr": "Chaque animal doit pouvoir s’éloigner. Gardez les issues dégagées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Do not force a meeting.",
+      "fr": "Ne pas forcer la rencontre.",
+      "kind": "title"
+     },
+     {
+      "en": "Forcing animals to meet can create fear or conflict. Let them take their time.",
+      "fr": "Forcer une rencontre peut créer peur ou conflit. Laissez-leur le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange separate resources.",
+      "fr": "Organiser les ressources séparément.",
+      "kind": "title"
+     },
+     {
+      "en": "Give each animal its own bowls, beds and toys to avoid disputes.",
+      "fr": "Donnez à chaque animal ses propres gamelles, couchages et jouets pour éviter les conflits.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Adapt to the individual animals.",
+      "fr": "S’adapter aux individus.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-14-documents",
+  "n": 194,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Documents before adoption",
+   "fr": "Documents avant l’adoption"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/da9ec74da2.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2f62e5254f.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ef692b6613.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a0ea917989.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a8e8cb5404.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ae70ba39bb.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Read the records before committing.",
+      "fr": "Lire les documents avant de s’engager.",
+      "kind": "title"
+     },
+     {
+      "en": "Read the health and identity documents before you decide, not after.",
+      "fr": "Lisez les documents de santé et d’identité avant de vous décider, pas après.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dog’s identity.",
+      "fr": "Vérifier l’identité du chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Check that the microchip, registration and papers match the dog in front of you.",
+      "fr": "Vérifiez que la puce, l’inscription et les papiers correspondent bien au chien que vous avez devant vous.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the available history.",
+      "fr": "Demander l’historique disponible.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for vaccination, veterinary and family history, as far as it is available.",
+      "fr": "Demandez l’historique de vaccination, vétérinaire et familial, dans la mesure où il existe.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "JLPP: ask for the DNA test result.",
+      "fr": "JLPP : demander le résultat du test ADN.",
+      "kind": "title"
+     },
+     {
+      "en": "JLPP is an inherited condition of Rottweilers that affects the nerves, and a DNA test exists. Ask for the result.",
+      "fr": "La JLPP est une maladie héréditaire du Rottweiler qui touche les nerfs, et un test ADN existe. Demandez le résultat.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Parents: hips, elbows, eyes and heart.",
+      "fr": "Les parents : hanches, coudes, yeux, cœur.",
+      "kind": "title"
+     },
+     {
+      "en": "For this breed, ask about the parents’ hip, elbow, eye and heart results.",
+      "fr": "Pour cette race, interrogez sur les résultats des hanches, coudes, yeux et cœur des parents.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A CHIC number does not mean all results are normal.",
+      "fr": "CHIC ne signifie pas que tout est normal.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: American Rottweiler Club, OFA",
+      "fr": "Sources : American Rottweiler Club, OFA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rottweiler-15-engagement",
+  "n": 195,
+  "breeds": "rottweiler",
+  "title": {
+   "en": "Preparing life together",
+   "fr": "Préparer la vie ensemble"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/b6f0faaa79.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b87f835fe1.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b19cd027a7.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4ef207682b.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/08d8783736.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a1a83227aa.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan a sustainable routine.",
+      "fr": "Prévoir une routine durable.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a daily routine you can really keep up for years.",
+      "fr": "Choisissez une routine quotidienne que vous pourrez vraiment tenir pendant des années.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for daily outings.",
+      "fr": "Du temps pour les sorties.",
+      "kind": "title"
+     },
+     {
+      "en": "Count the time for outings every day, in all weathers.",
+      "fr": "Comptez le temps des sorties chaque jour, par tous les temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for everyday care.",
+      "fr": "Du temps pour les soins.",
+      "kind": "title"
+     },
+     {
+      "en": "Feeding, grooming and cleaning add up. Include them in your daily schedule.",
+      "fr": "Repas, toilettage et nettoyage s’additionnent. Intégrez-les à votre emploi du temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan for costs and unexpected needs.",
+      "fr": "Prévoir les dépenses et les imprévus.",
+      "kind": "title"
+     },
+     {
+      "en": "Add up food, vet care and insurance, and keep a reserve for the unexpected.",
+      "fr": "Additionnez nourriture, soins vétérinaires et assurance, et gardez une réserve pour l’imprévu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange support when needed.",
+      "fr": "Organiser un relais si nécessaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Know who can help when you travel or fall ill: a friend, family or a sitter.",
+      "fr": "Sachez qui peut vous aider si vous partez ou tombez malade : un ami, la famille ou un gardien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Choose with your real life in mind.",
+      "fr": "Choisir selon votre vie réelle.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-01-activite",
+  "n": 196,
+  "breeds": "beagle",
+  "title": {
+   "en": "Daily activity",
+   "fr": "Activité au quotidien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/8027ffed05.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1af033e645.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/46bcee4812.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/97dc0ed9cf.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/98992f7390.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6a285a0f1d.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An active everyday companion.",
+      "fr": "Un chien actif au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "This breed can enjoy daily outings and play. Every dog is different, so watch your own dog’s energy.",
+      "fr": "Cette race peut apprécier sorties et jeux au quotidien. Chaque chien est différent : observez l’énergie du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for sniffing.",
+      "fr": "Laisser une place au flair.",
+      "kind": "title"
+     },
+     {
+      "en": "Sniffing walks let a dog explore at its own pace. For many dogs it is a calm, enriching way to spend time outdoors.",
+      "fr": "Les promenades de flair laissent le chien explorer à son rythme. Pour beaucoup, c’est une façon calme et enrichissante de profiter du dehors.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Movement involves the joints.",
+      "fr": "Bouger mobilise les articulations.",
+      "kind": "title"
+     },
+     {
+      "en": "Daily movement uses the joints. This simplified illustration shows where, and is not a diagnosis.",
+      "fr": "Le mouvement quotidien sollicite les articulations. Cette illustration simplifiée en montre la localisation, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt activity to this dog.",
+      "fr": "Adapter l’effort à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Age, health and temperament change how much exercise suits a dog. Adjust gradually, and ask your vet if unsure.",
+      "fr": "L’âge, la santé et le tempérament changent l’effort adapté. Ajustez progressivement, et demandez au vétérinaire en cas de doute.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for quiet moments.",
+      "fr": "Prévoir des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Calm time after activity helps a dog settle. Plan rest as part of the day, not only exercise.",
+      "fr": "Un moment calme après l’effort aide le chien à se poser. Prévoyez le repos dans la journée, pas seulement l’exercice.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Can your routine make room for this?",
+      "fr": "Votre routine lui laisse-t-elle cette place ?",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-02-apprentissages",
+  "n": 197,
+  "breeds": "beagle",
+  "title": {
+   "en": "Learning and thinking",
+   "fr": "Apprendre et réfléchir"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/63c54757ac.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a3b559b84c.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e0d00605bf.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/898503dec1.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7adecd3b7f.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1f1944af2c.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Learn together, step by step.",
+      "fr": "Apprendre ensemble, pas à pas.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, relaxed sessions work best. Teach one small thing at a time and keep it positive.",
+      "fr": "Des séances courtes et détendues fonctionnent mieux. Enseignez une petite chose à la fois, dans la bonne humeur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Reward the behaviour you want.",
+      "fr": "Récompenser les comportements souhaités.",
+      "kind": "title"
+     },
+     {
+      "en": "Give a small reward right after the behaviour you want, so your dog links the two.",
+      "fr": "Donnez une petite récompense juste après le comportement souhaité, pour que le chien fasse le lien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Try a simple search game.",
+      "fr": "Proposer une recherche simple.",
+      "kind": "title"
+     },
+     {
+      "en": "Hiding treats in a snuffle mat or around the room gives your dog a gentle mental challenge.",
+      "fr": "Cacher des friandises dans un tapis de fouille ou dans la pièce offre au chien un défi mental tout en douceur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Be clear and consistent.",
+      "fr": "Rester clair et cohérent.",
+      "kind": "title"
+     },
+     {
+      "en": "Use the same cue words and signals every time, and agree on them with everyone at home.",
+      "fr": "Utilisez les mêmes mots et les mêmes signaux à chaque fois, et mettez-vous d’accord avec toute la maison.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "End before interest fades.",
+      "fr": "S’arrêter avant de le lasser.",
+      "kind": "title"
+     },
+     {
+      "en": "Stop while your dog is still keen. A short, successful session beats a long, tiring one.",
+      "fr": "Arrêtez-vous tant que votre chien est motivé. Une séance courte et réussie vaut mieux qu’une longue et fatigante.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog learns at its own pace.",
+      "fr": "Chaque chien apprend à son rythme.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-03-repos",
+  "n": 198,
+  "breeds": "beagle",
+  "title": {
+   "en": "Rest and sleep",
+   "fr": "Repos et sommeil"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/52c3c5fa34.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9132cfece4.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/aeebfe9130.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a98ca29b1e.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7e5c014e81.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c5e020a5bc.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for quiet time.",
+      "fr": "Prévoir aussi des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Dogs need plenty of rest during the day. Plan calm periods alongside walks and play.",
+      "fr": "Les chiens ont besoin de beaucoup de repos dans la journée. Prévoyez des temps calmes en plus des sorties et des jeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A place to retreat.",
+      "fr": "Un espace où se retirer.",
+      "kind": "title"
+     },
+     {
+      "en": "Give your dog a quiet place of its own, where it can go and not be disturbed.",
+      "fr": "Offrez à votre chien un endroit tranquille bien à lui, où il peut se retirer sans être dérangé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let sleeping dogs rest.",
+      "fr": "Laisser dormir sans le déranger.",
+      "kind": "title"
+     },
+     {
+      "en": "Avoid waking or handling a dog that is asleep. Rest helps it recharge.",
+      "fr": "Évitez de réveiller ou de manipuler un chien qui dort. Le repos l’aide à récupérer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Notice your dog’s own rhythm.",
+      "fr": "Observer son rythme individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs sleep more, some less. Observe when your dog is most active and when it rests.",
+      "fr": "Certains chiens dorment plus, d’autres moins. Observez quand le vôtre est actif et quand il se repose.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Anatomy does not explain everything.",
+      "fr": "L’anatomie n’explique pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified anatomy view cannot explain a dog’s behaviour or tiredness. Observe the individual dog.",
+      "fr": "Une vue anatomique simplifiée n’explique ni le comportement ni la fatigue d’un chien. Observez le chien lui-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Notice unusual changes.",
+      "fr": "Un changement inhabituel mérite attention.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC, Dogs Trust",
+      "fr": "Sources : AKC, Dogs Trust",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-04-solitude",
+  "n": 199,
+  "breeds": "beagle",
+  "title": {
+   "en": "Learning to be alone",
+   "fr": "Apprendre à rester seul"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/face49f939.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ccdc1b1ba0.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0c21046ba8.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4dd3572b22.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cdd27cf3e3.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d3e40ff979.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Being alone takes practice.",
+      "fr": "Être seul, cela s’apprend.",
+      "kind": "title"
+     },
+     {
+      "en": "Staying alone is a skill dogs learn gradually. Build it up over time rather than all at once.",
+      "fr": "Rester seul est une habitude qui s’apprend progressivement. Construisez-la dans le temps, pas d’un coup.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Begin with brief separations.",
+      "fr": "Commencer par de courtes séparations.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with a few minutes, then increase slowly, as long as your dog stays relaxed.",
+      "fr": "Commencez par quelques minutes, puis allongez doucement, tant que votre chien reste détendu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe rather than assume.",
+      "fr": "Observer plutôt que supposer.",
+      "kind": "title"
+     },
+     {
+      "en": "Notice how your dog behaves when you leave and when you return, instead of assuming it is fine.",
+      "fr": "Observez le comportement de votre chien à votre départ et à votre retour, plutôt que de supposer que tout va bien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "There is no single pace for every dog.",
+      "fr": "Ne pas imposer un rythme unique.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs adapt quickly, others need longer. Follow your dog’s own pace.",
+      "fr": "Certains chiens s’adaptent vite, d’autres ont besoin de plus de temps. Suivez le rythme du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Seek help if your dog is distressed.",
+      "fr": "En cas de détresse, demander de l’aide.",
+      "kind": "title"
+     },
+     {
+      "en": "If your dog seems distressed when alone, talk to your vet or a qualified trainer or behaviourist.",
+      "fr": "Si votre chien semble en détresse quand il est seul, parlez-en à votre vétérinaire ou à un éducateur ou comportementaliste qualifié.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Plan realistic daily support.",
+      "fr": "Prévoir une organisation réaliste.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-05-socialisation",
+  "n": 200,
+  "breeds": "beagle",
+  "title": {
+   "en": "Discovering without forcing",
+   "fr": "Découvrir sans forcer"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/42187691a7.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/be634c939f.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/67ffbc6f6c.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/687735c3fd.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/627e8ad741.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b837720b6b.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discover gradually.",
+      "fr": "Découvrir progressivement.",
+      "kind": "title"
+     },
+     {
+      "en": "Introduce new places, sounds and people step by step, at a level your dog is comfortable with.",
+      "fr": "Présentez lieux, bruits et personnes nouveaux pas à pas, à un niveau où votre chien reste à l’aise.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow the choice to approach.",
+      "fr": "Laisser le choix d’approcher.",
+      "kind": "title"
+     },
+     {
+      "en": "Let your dog decide whether to approach something new. Forcing it can make worry worse.",
+      "fr": "Laissez votre chien décider d’approcher ou non. Le forcer peut aggraver son inquiétude.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep encounters calm.",
+      "fr": "Des rencontres calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, calm meetings with calm people or dogs are easier to cope with than excited ones.",
+      "fr": "Des rencontres courtes et calmes avec des personnes ou des chiens calmes sont plus faciles à vivre que des rencontres agitées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adjust the environment.",
+      "fr": "Adapter l’environnement.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a quieter place or a greater distance if your dog seems overwhelmed.",
+      "fr": "Choisissez un endroit plus calme ou plus de distance si votre chien semble dépassé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Respect your dog’s signals.",
+      "fr": "Respecter ses signaux.",
+      "kind": "title"
+     },
+     {
+      "en": "Yawning, turning away or stiffening can mean discomfort. Give your dog space when you see them.",
+      "fr": "Bâiller, se détourner ou se raidir peut signaler un inconfort. Laissez de l’espace à votre chien quand vous les voyez.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Confidence cannot be forced.",
+      "fr": "La confiance ne se force pas.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-06-vigilance",
+  "n": 201,
+  "breeds": "beagle",
+  "title": {
+   "en": "Coat, skin and ears",
+   "fr": "Pelage, peau et oreilles"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/217fe73d01.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8508dfbb76.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0b61819d56.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/140ed5dff7.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/012a183d40.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bba9178604.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A double coat to care for.",
+      "fr": "Un double pelage à entretenir.",
+      "kind": "title"
+     },
+     {
+      "en": "A double coat has a soft undercoat under a longer outer coat. It needs regular care.",
+      "fr": "Un double pelage associe un sous-poil doux et un poil de couverture plus long. Il demande un entretien régulier.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "See the two layers of the coat.",
+      "fr": "Voir les deux couches du pelage.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified illustration shows the undercoat and the outer coat. It is a locator, not a diagnosis.",
+      "fr": "Une illustration simplifiée montre le sous-poil et le poil de couverture. C’est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for regular brushing.",
+      "fr": "Prévoir du brossage régulier.",
+      "kind": "title"
+     },
+     {
+      "en": "Brushing removes loose hair and lets you check the skin. Build it into your weekly routine.",
+      "fr": "Le brossage retire les poils morts et permet de vérifier la peau. Intégrez-le à votre routine de la semaine.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the ears too.",
+      "fr": "Observer aussi les oreilles.",
+      "kind": "title"
+     },
+     {
+      "en": "Look at the ears regularly. Redness, a bad smell or head shaking are worth mentioning to your vet.",
+      "fr": "Regardez régulièrement les oreilles. Rougeur, mauvaise odeur ou secouements de tête sont à signaler au vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The ear canal has an L-shaped bend.",
+      "fr": "Le conduit auditif forme un coude.",
+      "kind": "title"
+     },
+     {
+      "en": "The canal has a vertical and a horizontal part, which can make ears harder to clean. This illustration is schematic, not to scale.",
+      "fr": "Le conduit a une partie verticale et une partie horizontale, ce qui peut rendre le nettoyage plus délicat. Illustration schématique, hors échelle.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Discuss unusual changes with your vet.",
+      "fr": "Une anomalie se discute avec le vétérinaire.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC, Cornell Vet",
+      "fr": "Sources : AKC, Cornell Vet",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-07-sante-a",
+  "n": 202,
+  "breeds": "beagle",
+  "title": {
+   "en": "Hips",
+   "fr": "Hanches"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/fd1db83a33.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/004e3ae264.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1f541e3f69.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a09c87521e.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1d4a0691be.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ac74991531.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Hips are part of health screening.",
+      "fr": "Les hanches font partie des dépistages.",
+      "kind": "title"
+     },
+     {
+      "en": "Hip evaluation is often part of health screening for this breed. Responsible breeders may share their dogs’ results.",
+      "fr": "L’évaluation des hanches fait souvent partie du dépistage de cette race. Les éleveurs sérieux peuvent partager les résultats de leurs chiens.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The hip joins the pelvis and femur.",
+      "fr": "La hanche relie bassin et fémur.",
+      "kind": "title"
+     },
+     {
+      "en": "The hip is a ball-and-socket joint where the thigh bone meets the pelvis. This illustration is simplified.",
+      "fr": "La hanche est une articulation où la tête du fémur s’emboîte dans le bassin. Cette illustration est simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Dysplasia means abnormal joint development.",
+      "fr": "Dysplasie : une articulation mal formée.",
+      "kind": "title"
+     },
+     {
+      "en": "In hip dysplasia the joint does not form normally, which can cause pain or stiffness. Only a vet can diagnose it.",
+      "fr": "Dans la dysplasie de la hanche, l’articulation se forme mal, ce qui peut causer douleur ou raideur. Seul un vétérinaire peut la diagnostiquer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Risk involves several factors.",
+      "fr": "Le risque dépend de plusieurs facteurs.",
+      "kind": "title"
+     },
+     {
+      "en": "Genetics, growth, weight and exercise can all play a part. No single factor decides the outcome.",
+      "fr": "La génétique, la croissance, le poids et l’exercice peuvent jouer un rôle. Aucun facteur ne décide seul de l’issue.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the parents’ screening results.",
+      "fr": "Demander les résultats des parents.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder for the parents’ hip results and what they mean. Your vet can help you read them.",
+      "fr": "Demandez à l’éleveur les résultats des hanches des parents et leur signification. Votre vétérinaire peut vous aider à les lire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Screening cannot guarantee everything.",
+      "fr": "Un dépistage ne garantit pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: National Beagle Club, AKC",
+      "fr": "Sources : National Beagle Club, AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-08-sante-b",
+  "n": 203,
+  "breeds": "beagle",
+  "title": {
+   "en": "Thyroid",
+   "fr": "Thyroïde"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/2e5495ac9d.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/633b67f567.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/86691b7b90.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4f1c303c75.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/13cab81469.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a34de0fb43.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Thyroid health is one area to discuss.",
+      "fr": "La thyroïde fait partie des sujets de santé.",
+      "kind": "title"
+     },
+     {
+      "en": "Thyroid disorders are among the health topics to discuss for the Beagle.",
+      "fr": "Les troubles de la thyroïde font partie des sujets de santé à aborder pour le Beagle.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A small gland in the neck.",
+      "fr": "Une petite glande dans le cou.",
+      "kind": "title"
+     },
+     {
+      "en": "The thyroid is a small gland in the neck that helps regulate metabolism. This illustration is simplified.",
+      "fr": "La thyroïde est une petite glande du cou qui aide à réguler le métabolisme. Cette illustration est simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Hypothyroidism is reported in the breed.",
+      "fr": "L’hypothyroïdie est rapportée dans la race.",
+      "kind": "title"
+     },
+     {
+      "en": "Hypothyroidism means the thyroid makes too little hormone. It is reported in Beagles and can usually be managed with a vet’s help.",
+      "fr": "L’hypothyroïdie signifie que la thyroïde produit trop peu d’hormone. Elle est rapportée chez le Beagle et se gère en général avec l’aide d’un vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Signs alone are not enough.",
+      "fr": "Les signes seuls ne suffisent pas.",
+      "kind": "title"
+     },
+     {
+      "en": "Weight gain or tiredness can have many causes. Blood tests are needed to know.",
+      "fr": "Une prise de poids ou une fatigue peuvent avoir de nombreuses causes. Seule une prise de sang permet de savoir.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for available test results.",
+      "fr": "Demander les résultats disponibles.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask whether thyroid tests were done on the parents, and have your vet interpret them.",
+      "fr": "Demandez si des tests thyroïdiens ont été faits chez les parents, et faites-les interpréter par votre vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the tests.",
+      "fr": "Le vétérinaire interprète les examens.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: National Beagle Club, AKC",
+      "fr": "Sources : National Beagle Club, AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-09-sante-c",
+  "n": 204,
+  "breeds": "beagle",
+  "title": {
+   "en": "Eyes",
+   "fr": "Yeux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/49318056de.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d9789d20d6.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/504d58ab9c.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/450e360b52.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6b3e87007b.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/60bce127b0.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Eyes deserve attention.",
+      "fr": "Les yeux méritent un suivi.",
+      "kind": "title"
+     },
+     {
+      "en": "Eye examinations are often part of the health screening for this breed. Eyes can change over time.",
+      "fr": "Les examens des yeux font souvent partie du dépistage de cette race. Les yeux peuvent évoluer avec le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structures of the eye.",
+      "fr": "Situer les structures de l’œil.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified illustration shows the main structures of the eye. It is a locator, not a diagnosis.",
+      "fr": "Une illustration simplifiée montre les principales structures de l’œil. C’est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Inherited eye conditions are known.",
+      "fr": "Des affections héréditaires sont connues.",
+      "kind": "title"
+     },
+     {
+      "en": "Several inherited eye conditions are known in Beagles, for example glaucoma.",
+      "fr": "Plusieurs maladies oculaires héréditaires sont connues chez le Beagle, par exemple le glaucome.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An examination assesses this dog’s eyes.",
+      "fr": "Un examen évalue les yeux de ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Only an eye examination can assess a particular dog’s eyes. Ask for recent results.",
+      "fr": "Seul un examen peut évaluer les yeux d’un chien précis. Demandez des résultats récents.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dates of eye examinations.",
+      "fr": "Vérifier la date des examens.",
+      "kind": "title"
+     },
+     {
+      "en": "Eye results age. Check the date of the parents’ examinations and ask your vet what is current.",
+      "fr": "Les résultats oculaires vieillissent. Vérifiez la date des examens des parents et demandez au vétérinaire ce qui est à jour.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A specialist interprets the findings.",
+      "fr": "Un spécialiste interprète les signes.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: National Beagle Club, AKC",
+      "fr": "Sources : National Beagle Club, AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-10-sante-d",
+  "n": 205,
+  "breeds": "beagle",
+  "title": {
+   "en": "MLS",
+   "fr": "MLS"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/05c8394ca1.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cb247bd7fb.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/703568b048.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4c27c64625.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/780122e500.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1fe9d60f61.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "MLS is a genetic disease in Beagles.",
+      "fr": "MLS : une maladie génétique du Beagle.",
+      "kind": "title"
+     },
+     {
+      "en": "Musladin-Lueke syndrome (MLS) is an inherited condition reported in Beagles.",
+      "fr": "Le syndrome de Musladin-Lueke (MLS) est une maladie héréditaire rapportée chez le Beagle.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Connective tissue is affected.",
+      "fr": "Le tissu conjonctif est concerné.",
+      "kind": "title"
+     },
+     {
+      "en": "It affects connective tissue such as skin and joints. This illustration only shows where.",
+      "fr": "Il touche le tissu conjonctif, comme la peau et les articulations. Cette illustration n’en montre que la localisation.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Several organs can be affected.",
+      "fr": "Plusieurs organes peuvent être concernés.",
+      "kind": "title"
+     },
+     {
+      "en": "It can affect several parts of the body, mainly the skin and joints. A vet can explain what to look for.",
+      "fr": "Il peut toucher plusieurs parties du corps, surtout la peau et les articulations. Un vétérinaire peut expliquer ce qu’il faut surveiller.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A DNA test targets this condition.",
+      "fr": "Un test ADN cible cette maladie.",
+      "kind": "title"
+     },
+     {
+      "en": "A DNA test can show whether a dog carries the MLS gene change.",
+      "fr": "Un test ADN peut montrer si un chien porte la mutation du MLS.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the parents’ results.",
+      "fr": "Demander les résultats des parents.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder for the parents’ results and what they mean, and have your vet explain them.",
+      "fr": "Demandez à l’éleveur les résultats des parents et leur signification, et faites-les expliquer par votre vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "This test does not cover all health risks.",
+      "fr": "Ce test ne couvre pas toute la santé.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: UC Davis VGL",
+      "fr": "Sources : UC Davis VGL",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-11-poids",
+  "n": 206,
+  "breeds": "beagle",
+  "title": {
+   "en": "Weight and feeding",
+   "fr": "Poids et alimentation"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/a40596f4aa.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/98bdfaddda.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f4b1d4e57f.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5f399302e9.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/967d3260b1.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/01b1433333.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Weight matters day to day.",
+      "fr": "Le poids compte au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "A healthy weight helps a dog move comfortably. Weigh your dog regularly and note any change.",
+      "fr": "Un poids sain aide le chien à bouger à l’aise. Pesez votre chien régulièrement et notez les changements.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe body shape.",
+      "fr": "Observer la silhouette.",
+      "kind": "title"
+     },
+     {
+      "en": "You should be able to feel the ribs under a light layer of fat, and see a waist from above.",
+      "fr": "On doit sentir les côtes sous une fine couche de graisse, et voir une taille vu du dessus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Treats count too.",
+      "fr": "Les friandises comptent aussi.",
+      "kind": "title"
+     },
+     {
+      "en": "Treats add calories. Reduce the meal a little, or use part of the daily food as rewards.",
+      "fr": "Les friandises apportent des calories. Réduisez un peu le repas, ou utilisez une partie de la ration comme récompense.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Different tissues lie beneath the skin.",
+      "fr": "Sous la peau, des tissus différents.",
+      "kind": "title"
+     },
+     {
+      "en": "Under the skin lie fat, muscle and bone. This illustration is a simplified locator, not a diagnosis.",
+      "fr": "Sous la peau se trouvent graisse, muscle et os. Cette illustration simplifiée est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt to age and activity.",
+      "fr": "Adapter à l’âge et à l’activité.",
+      "kind": "title"
+     },
+     {
+      "en": "Food needs change with age, activity and health. Ask your vet how much and what to feed.",
+      "fr": "Les besoins alimentaires changent avec l’âge, l’activité et la santé. Demandez au vétérinaire quoi donner et en quelle quantité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog has individual needs.",
+      "fr": "Chaque chien a ses besoins.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-12-enfants",
+  "n": 207,
+  "breeds": "beagle",
+  "title": {
+   "en": "Children and dog",
+   "fr": "Enfants et chien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/5d2707e61b.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cd05eb9278.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0d30d0a4d3.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8dab4627af.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bc59e768f4.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/603876187a.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A relationship built over time.",
+      "fr": "Une relation qui se construit.",
+      "kind": "title"
+     },
+     {
+      "en": "A child and a dog need time to get to know each other. Do not rush the relationship.",
+      "fr": "Un enfant et un chien ont besoin de temps pour se connaître. Ne précipitez pas la relation.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An adult actively supervises.",
+      "fr": "Un adulte supervise activement.",
+      "kind": "title"
+     },
+     {
+      "en": "An adult should stay close and pay attention whenever a child and a dog are together.",
+      "fr": "Un adulte doit rester proche et attentif chaque fois qu’un enfant et un chien sont ensemble.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let the dog approach.",
+      "fr": "Laisser le chien venir.",
+      "kind": "title"
+     },
+     {
+      "en": "Teach children to let the dog come to them, and to stop if the dog moves away.",
+      "fr": "Apprenez aux enfants à laisser le chien venir à eux, et à s’arrêter s’il s’éloigne.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Protect resting time.",
+      "fr": "Protéger son repos.",
+      "kind": "title"
+     },
+     {
+      "en": "Do not disturb a dog that is eating, sleeping or resting. Children should learn to leave it alone.",
+      "fr": "Ne dérangez pas un chien qui mange, dort ou se repose. Les enfants doivent apprendre à le laisser tranquille.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Provide a quiet space.",
+      "fr": "Prévoir un espace tranquille.",
+      "kind": "title"
+     },
+     {
+      "en": "Give the dog a place to retreat to, where children do not follow.",
+      "fr": "Offrez au chien un endroit où se retirer, où les enfants ne le suivent pas.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Breed never replaces supervision.",
+      "fr": "La race ne remplace pas la supervision.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-13-cohabitation",
+  "n": 208,
+  "breeds": "beagle",
+  "title": {
+   "en": "Other animals",
+   "fr": "Autres animaux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/a03eb202c9.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0ff4512260.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7c99d481ca.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6ac61e0535.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fe7e6e95e6.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/441c454711.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Prepare introductions.",
+      "fr": "Les présentations se préparent.",
+      "kind": "title"
+     },
+     {
+      "en": "Plan introductions between animals ahead of time, in a calm setting.",
+      "fr": "Préparez à l’avance les présentations entre animaux, dans un cadre calme.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep space between animals.",
+      "fr": "Garder de l’espace.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with distance, and reduce it gradually if both animals stay relaxed.",
+      "fr": "Commencez avec de la distance, et réduisez-la peu à peu si les deux animaux restent détendus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow room to retreat.",
+      "fr": "Laisser des possibilités de retrait.",
+      "kind": "title"
+     },
+     {
+      "en": "Each animal should be able to move away. Keep escape routes free.",
+      "fr": "Chaque animal doit pouvoir s’éloigner. Gardez les issues dégagées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Do not force a meeting.",
+      "fr": "Ne pas forcer la rencontre.",
+      "kind": "title"
+     },
+     {
+      "en": "Forcing animals to meet can create fear or conflict. Let them take their time.",
+      "fr": "Forcer une rencontre peut créer peur ou conflit. Laissez-leur le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange separate resources.",
+      "fr": "Organiser les ressources séparément.",
+      "kind": "title"
+     },
+     {
+      "en": "Give each animal its own bowls, beds and toys to avoid disputes.",
+      "fr": "Donnez à chaque animal ses propres gamelles, couchages et jouets pour éviter les conflits.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Adapt to the individual animals.",
+      "fr": "S’adapter aux individus.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-14-documents",
+  "n": 209,
+  "breeds": "beagle",
+  "title": {
+   "en": "Documents before adoption",
+   "fr": "Documents avant l’adoption"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/b2a9c653b2.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ef461d1f0b.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/133ac4b43d.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/55c2864ffe.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/09ce83297b.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9625ff1768.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Read the records before committing.",
+      "fr": "Lire les documents avant de s’engager.",
+      "kind": "title"
+     },
+     {
+      "en": "Read the health and identity documents before you decide, not after.",
+      "fr": "Lisez les documents de santé et d’identité avant de vous décider, pas après.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dog’s identity.",
+      "fr": "Vérifier l’identité du chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Check that the microchip, registration and papers match the dog in front of you.",
+      "fr": "Vérifiez que la puce, l’inscription et les papiers correspondent bien au chien que vous avez devant vous.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the available history.",
+      "fr": "Demander l’historique disponible.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for vaccination, veterinary and family history, as far as it is available.",
+      "fr": "Demandez l’historique de vaccination, vétérinaire et familial, dans la mesure où il existe.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "MLS: ask for the DNA test result.",
+      "fr": "MLS : demander le résultat du test ADN.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for the parents’ MLS DNA test results, and have your vet explain them.",
+      "fr": "Demandez les résultats du test ADN MLS des parents, et faites-les expliquer par votre vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discuss hips, eyes, heart and thyroid screening.",
+      "fr": "Hanches, yeux, cœur et thyroïde : en parler.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder which of these screenings were done on the parents.",
+      "fr": "Demandez à l’éleveur lesquels de ces dépistages ont été faits chez les parents.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A CHIC number does not mean all results are normal.",
+      "fr": "CHIC ne signifie pas que tout est normal.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: National Beagle Club, AKC, UC Davis VGL",
+      "fr": "Sources : National Beagle Club, AKC, UC Davis VGL",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "beagle-15-engagement",
+  "n": 210,
+  "breeds": "beagle",
+  "title": {
+   "en": "Preparing life together",
+   "fr": "Préparer la vie ensemble"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/bc5cb5fc10.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e8daeca37c.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/31cc2844c5.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f4f27bcffb.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/190634431e.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f5a6f83c62.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan a sustainable routine.",
+      "fr": "Prévoir une routine durable.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a daily routine you can really keep up for years.",
+      "fr": "Choisissez une routine quotidienne que vous pourrez vraiment tenir pendant des années.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for daily outings.",
+      "fr": "Du temps pour les sorties.",
+      "kind": "title"
+     },
+     {
+      "en": "Count the time for outings every day, in all weathers.",
+      "fr": "Comptez le temps des sorties chaque jour, par tous les temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for everyday care.",
+      "fr": "Du temps pour les soins.",
+      "kind": "title"
+     },
+     {
+      "en": "Feeding, grooming and cleaning add up. Include them in your daily schedule.",
+      "fr": "Repas, toilettage et nettoyage s’additionnent. Intégrez-les à votre emploi du temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan for costs and unexpected needs.",
+      "fr": "Prévoir les dépenses et les imprévus.",
+      "kind": "title"
+     },
+     {
+      "en": "Add up food, vet care and insurance, and keep a reserve for the unexpected.",
+      "fr": "Additionnez nourriture, soins vétérinaires et assurance, et gardez une réserve pour l’imprévu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange support when needed.",
+      "fr": "Organiser un relais si nécessaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Know who can help when you travel or fall ill: a friend, family or a sitter.",
+      "fr": "Sachez qui peut vous aider si vous partez ou tombez malade : un ami, la famille ou un gardien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Choose with your real life in mind.",
+      "fr": "Choisir selon votre vie réelle.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-01-activite",
+  "n": 211,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Daily activity",
+   "fr": "Activité au quotidien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/5e38a4f3a0.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/63d12a1bb3.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5e717cb61e.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a1b24c449c.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/296fc8b843.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/78314b7214.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An active everyday companion.",
+      "fr": "Un chien actif au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "This breed can enjoy daily outings and play. Every dog is different, so watch your own dog’s energy.",
+      "fr": "Cette race peut apprécier sorties et jeux au quotidien. Chaque chien est différent : observez l’énergie du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for sniffing.",
+      "fr": "Laisser une place au flair.",
+      "kind": "title"
+     },
+     {
+      "en": "Sniffing walks let a dog explore at its own pace. For many dogs it is a calm, enriching way to spend time outdoors.",
+      "fr": "Les promenades de flair laissent le chien explorer à son rythme. Pour beaucoup, c’est une façon calme et enrichissante de profiter du dehors.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Movement involves the joints.",
+      "fr": "Bouger mobilise les articulations.",
+      "kind": "title"
+     },
+     {
+      "en": "Daily movement uses the joints. This simplified illustration shows where, and is not a diagnosis.",
+      "fr": "Le mouvement quotidien sollicite les articulations. Cette illustration simplifiée en montre la localisation, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt activity to this dog.",
+      "fr": "Adapter l’effort à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Age, health and temperament change how much exercise suits a dog. Adjust gradually, and ask your vet if unsure.",
+      "fr": "L’âge, la santé et le tempérament changent l’effort adapté. Ajustez progressivement, et demandez au vétérinaire en cas de doute.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for quiet moments.",
+      "fr": "Prévoir des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Calm time after activity helps a dog settle. Plan rest as part of the day, not only exercise.",
+      "fr": "Un moment calme après l’effort aide le chien à se poser. Prévoyez le repos dans la journée, pas seulement l’exercice.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Can your routine make room for this?",
+      "fr": "Votre routine lui laisse-t-elle cette place ?",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-02-apprentissages",
+  "n": 212,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Learning and thinking",
+   "fr": "Apprendre et réfléchir"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/05ea08d200.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0ac290c019.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c9883ff216.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b104bb2e21.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d8dcf06986.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a2683c563c.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Learn together, step by step.",
+      "fr": "Apprendre ensemble, pas à pas.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, relaxed sessions work best. Teach one small thing at a time and keep it positive.",
+      "fr": "Des séances courtes et détendues fonctionnent mieux. Enseignez une petite chose à la fois, dans la bonne humeur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Reward the behaviour you want.",
+      "fr": "Récompenser les comportements souhaités.",
+      "kind": "title"
+     },
+     {
+      "en": "Give a small reward right after the behaviour you want, so your dog links the two.",
+      "fr": "Donnez une petite récompense juste après le comportement souhaité, pour que le chien fasse le lien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Try a simple search game.",
+      "fr": "Proposer une recherche simple.",
+      "kind": "title"
+     },
+     {
+      "en": "Hiding treats in a snuffle mat or around the room gives your dog a gentle mental challenge.",
+      "fr": "Cacher des friandises dans un tapis de fouille ou dans la pièce offre au chien un défi mental tout en douceur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Be clear and consistent.",
+      "fr": "Rester clair et cohérent.",
+      "kind": "title"
+     },
+     {
+      "en": "Use the same cue words and signals every time, and agree on them with everyone at home.",
+      "fr": "Utilisez les mêmes mots et les mêmes signaux à chaque fois, et mettez-vous d’accord avec toute la maison.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "End before interest fades.",
+      "fr": "S’arrêter avant de le lasser.",
+      "kind": "title"
+     },
+     {
+      "en": "Stop while your dog is still keen. A short, successful session beats a long, tiring one.",
+      "fr": "Arrêtez-vous tant que votre chien est motivé. Une séance courte et réussie vaut mieux qu’une longue et fatigante.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog learns at its own pace.",
+      "fr": "Chaque chien apprend à son rythme.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-03-repos",
+  "n": 213,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Rest and sleep",
+   "fr": "Repos et sommeil"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/47dc42a446.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/68f5726482.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/82a32e8808.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e7d56b3952.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/afb1c232c6.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/96d5f4156c.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for quiet time.",
+      "fr": "Prévoir aussi des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Dogs need plenty of rest during the day. Plan calm periods alongside walks and play.",
+      "fr": "Les chiens ont besoin de beaucoup de repos dans la journée. Prévoyez des temps calmes en plus des sorties et des jeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A place to retreat.",
+      "fr": "Un espace où se retirer.",
+      "kind": "title"
+     },
+     {
+      "en": "Give your dog a quiet place of its own, where it can go and not be disturbed.",
+      "fr": "Offrez à votre chien un endroit tranquille bien à lui, où il peut se retirer sans être dérangé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let sleeping dogs rest.",
+      "fr": "Laisser dormir sans le déranger.",
+      "kind": "title"
+     },
+     {
+      "en": "Avoid waking or handling a dog that is asleep. Rest helps it recharge.",
+      "fr": "Évitez de réveiller ou de manipuler un chien qui dort. Le repos l’aide à récupérer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Notice your dog’s own rhythm.",
+      "fr": "Observer son rythme individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs sleep more, some less. Observe when your dog is most active and when it rests.",
+      "fr": "Certains chiens dorment plus, d’autres moins. Observez quand le vôtre est actif et quand il se repose.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Anatomy does not explain everything.",
+      "fr": "L’anatomie n’explique pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified anatomy view cannot explain a dog’s behaviour or tiredness. Observe the individual dog.",
+      "fr": "Une vue anatomique simplifiée n’explique ni le comportement ni la fatigue d’un chien. Observez le chien lui-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Notice unusual changes.",
+      "fr": "Un changement inhabituel mérite attention.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Dogs Trust",
+      "fr": "Sources : Dogs Trust",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-04-solitude",
+  "n": 214,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Learning to be alone",
+   "fr": "Apprendre à rester seul"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/b698ff851f.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1e1549dda3.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c627dbfba9.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e049f1e074.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/93dcabd0e3.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/907ec0b249.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Being alone takes practice.",
+      "fr": "Être seul, cela s’apprend.",
+      "kind": "title"
+     },
+     {
+      "en": "Staying alone is a skill dogs learn gradually. Build it up over time rather than all at once.",
+      "fr": "Rester seul est une habitude qui s’apprend progressivement. Construisez-la dans le temps, pas d’un coup.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Begin with brief separations.",
+      "fr": "Commencer par de courtes séparations.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with a few minutes, then increase slowly, as long as your dog stays relaxed.",
+      "fr": "Commencez par quelques minutes, puis allongez doucement, tant que votre chien reste détendu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe rather than assume.",
+      "fr": "Observer plutôt que supposer.",
+      "kind": "title"
+     },
+     {
+      "en": "Notice how your dog behaves when you leave and when you return, instead of assuming it is fine.",
+      "fr": "Observez le comportement de votre chien à votre départ et à votre retour, plutôt que de supposer que tout va bien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "There is no single pace for every dog.",
+      "fr": "Ne pas imposer un rythme unique.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs adapt quickly, others need longer. Follow your dog’s own pace.",
+      "fr": "Certains chiens s’adaptent vite, d’autres ont besoin de plus de temps. Suivez le rythme du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Seek help if your dog is distressed.",
+      "fr": "En cas de détresse, demander de l’aide.",
+      "kind": "title"
+     },
+     {
+      "en": "If your dog seems distressed when alone, talk to your vet or a qualified trainer or behaviourist.",
+      "fr": "Si votre chien semble en détresse quand il est seul, parlez-en à votre vétérinaire ou à un éducateur ou comportementaliste qualifié.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Plan realistic daily support.",
+      "fr": "Prévoir une organisation réaliste.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-05-socialisation",
+  "n": 215,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Discovering without forcing",
+   "fr": "Découvrir sans forcer"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/81a7c6d6b8.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cac98c1160.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/444c29170e.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c170bb1e95.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c9283ec02d.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/312bf8a48c.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discover gradually.",
+      "fr": "Découvrir progressivement.",
+      "kind": "title"
+     },
+     {
+      "en": "Introduce new places, sounds and people step by step, at a level your dog is comfortable with.",
+      "fr": "Présentez lieux, bruits et personnes nouveaux pas à pas, à un niveau où votre chien reste à l’aise.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow the choice to approach.",
+      "fr": "Laisser le choix d’approcher.",
+      "kind": "title"
+     },
+     {
+      "en": "Let your dog decide whether to approach something new. Forcing it can make worry worse.",
+      "fr": "Laissez votre chien décider d’approcher ou non. Le forcer peut aggraver son inquiétude.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep encounters calm.",
+      "fr": "Des rencontres calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, calm meetings with calm people or dogs are easier to cope with than excited ones.",
+      "fr": "Des rencontres courtes et calmes avec des personnes ou des chiens calmes sont plus faciles à vivre que des rencontres agitées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adjust the environment.",
+      "fr": "Adapter l’environnement.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a quieter place or a greater distance if your dog seems overwhelmed.",
+      "fr": "Choisissez un endroit plus calme ou plus de distance si votre chien semble dépassé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Respect your dog’s signals.",
+      "fr": "Respecter ses signaux.",
+      "kind": "title"
+     },
+     {
+      "en": "Yawning, turning away or stiffening can mean discomfort. Give your dog space when you see them.",
+      "fr": "Bâiller, se détourner ou se raidir peut signaler un inconfort. Laissez de l’espace à votre chien quand vous les voyez.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Confidence cannot be forced.",
+      "fr": "La confiance ne se force pas.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-06-vigilance",
+  "n": 216,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Coat, skin and ears",
+   "fr": "Pelage, peau et oreilles"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/b0f9b3c9f0.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/18c245e15f.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/97076be32f.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/dcc4c8ddfd.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8a12189ec9.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e6bb92cb5f.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Care is part of everyday life.",
+      "fr": "L’entretien fait partie du quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "Brushing, ear checks and nail care are small daily or weekly tasks. Plan them into your routine.",
+      "fr": "Brossage, contrôle des oreilles et soin des griffes sont de petites tâches quotidiennes ou hebdomadaires. Prévoyez-les dans votre routine.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Introduce handling gradually.",
+      "fr": "Prévoir des manipulations progressives.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, gentle handling sessions make grooming and vet visits easier later.",
+      "fr": "De courtes séances de manipulation douce facilitent plus tard le toilettage et les visites chez le vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The skin lies beneath the coat.",
+      "fr": "La peau se trouve sous le pelage.",
+      "kind": "title"
+     },
+     {
+      "en": "Skin is not always visible through the coat. Part the hair to check it while grooming. This illustration is simplified.",
+      "fr": "La peau n’est pas toujours visible sous le poil. Écartez le poil pour la vérifier pendant le toilettage. Illustration simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe without making a diagnosis.",
+      "fr": "Observer sans poser de diagnostic.",
+      "kind": "title"
+     },
+     {
+      "en": "Note changes such as redness or lumps and describe them to your vet. Do not try to diagnose them yourself.",
+      "fr": "Notez les changements comme une rougeur ou une boule et décrivez-les au vétérinaire. N’essayez pas de les diagnostiquer vous-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan care suited to this dog.",
+      "fr": "Prévoir les soins adaptés à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Coat, ear and skin needs differ between dogs. Ask your vet or groomer what suits yours.",
+      "fr": "Les besoins du pelage, des oreilles et de la peau varient d’un chien à l’autre. Demandez au vétérinaire ou au toiletteur ce qui convient au vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Make room for care in your routine.",
+      "fr": "Inclure ce temps dans votre routine.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-07-sante-a",
+  "n": 217,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Back and discs",
+   "fr": "Dos et disques"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/ba388559ca.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fa8e1f4db3.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/92a8aa5294.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f7f82a8c1f.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/34b596632e.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/174db0189a.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Disc disease is a major health topic.",
+      "fr": "La maladie des disques est un sujet majeur.",
+      "kind": "title"
+     },
+     {
+      "en": "Intervertebral disc disease (IVDD) is a well-known health topic in Dachshunds, because of their long backs.",
+      "fr": "La maladie des disques intervertébraux (IVDD) est un sujet de santé bien connu chez le Teckel, en raison de son dos long.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discs lie between the vertebrae.",
+      "fr": "Les disques se trouvent entre les vertèbres.",
+      "kind": "title"
+     },
+     {
+      "en": "Discs act as cushions between the bones of the spine. A damaged disc can press on nearby nerves.",
+      "fr": "Les disques servent d’amortisseurs entre les os de la colonne. Un disque abîmé peut comprimer les nerfs voisins.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for available IVDD screening results.",
+      "fr": "Demander les dépistages IVDD disponibles.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder about back or disc screening done on the parents, and have your vet explain what it shows.",
+      "fr": "Demandez à l’éleveur quels dépistages du dos ou des disques ont été faits chez les parents, et faites-les expliquer par votre vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: ACVS",
+      "fr": "Sources : ACVS",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-08-sante-b",
+  "n": 218,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Kneecaps",
+   "fr": "Rotules"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/8f5e20d803.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0a3e9a3420.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e178447bf9.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5a71b3b123.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4e5b3f9e09.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c7ac639ae4.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Patellas are part of health screening.",
+      "fr": "Les rotules font partie des contrôles.",
+      "kind": "title"
+     },
+     {
+      "en": "Kneecap checks are often part of health screening in small breeds such as the Dachshund.",
+      "fr": "Le contrôle des rotules fait souvent partie du dépistage des petites races comme le Teckel.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The patella is a small bone at the knee.",
+      "fr": "La rotule est un petit os du genou.",
+      "kind": "title"
+     },
+     {
+      "en": "The patella, or kneecap, normally slides in a groove at the front of the knee.",
+      "fr": "La rotule coulisse normalement dans une gouttière à l’avant du genou.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the patellar examination result.",
+      "fr": "Demander le résultat de l’examen des rotules.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for the parents’ kneecap examination results, and what the vet concluded.",
+      "fr": "Demandez le résultat de l’examen des rotules des parents, et ce qu’en a conclu le vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-09-sante-c",
+  "n": 219,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Eyes",
+   "fr": "Yeux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/f2bad90e2e.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/00bcc700c8.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f8ed0beaab.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6d218ca95a.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a84cfb2d96.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/dfe08b0f72.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Eye examinations are recommended.",
+      "fr": "Les examens oculaires sont recommandés.",
+      "kind": "title"
+     },
+     {
+      "en": "Eye examinations are recommended for breeding Dachshunds. Ask for the parents’ results.",
+      "fr": "Les examens des yeux sont recommandés pour les Teckels destinés à la reproduction. Demandez les résultats des parents.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Testing varies by variety.",
+      "fr": "Les tests varient selon la variété.",
+      "kind": "title"
+     },
+     {
+      "en": "Dachshunds come in different coat varieties, and some eye tests differ between them. Ask the breeder which apply.",
+      "fr": "Les Teckels existent en plusieurs variétés de poil, et certains tests oculaires diffèrent. Demandez à l’éleveur lesquels s’appliquent.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the eye examination and variety.",
+      "fr": "Vérifier l’examen des yeux et la variété.",
+      "kind": "title"
+     },
+     {
+      "en": "Check which variety this dog is, and whether the eye examination and DNA tests match it.",
+      "fr": "Vérifiez la variété du chien, et si l’examen des yeux et les tests ADN lui correspondent.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Dachshund Health UK",
+      "fr": "Sources : Dachshund Health UK",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-10-sante-d",
+  "n": 220,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Heart",
+   "fr": "Cœur"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/f7a8e49afe.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5b2f6a7aeb.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3a138cfe66.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b345422760.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9a1a4cfa2b.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2522933474.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Heart checks are among recommended screenings.",
+      "fr": "Le cœur fait partie des contrôles recommandés.",
+      "kind": "title"
+     },
+     {
+      "en": "Breed clubs list heart checks among the recommended screenings for Dachshunds.",
+      "fr": "Les clubs de race placent le contrôle du cœur parmi les dépistages recommandés pour le Teckel.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An examination concerns an individual dog.",
+      "fr": "Un examen concerne un chien précis.",
+      "kind": "title"
+     },
+     {
+      "en": "A heart examination describes one dog on one day. Ask what it covers.",
+      "fr": "Un examen du cœur décrit un chien à un moment précis. Demandez ce qu’il couvre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for available cardiac results.",
+      "fr": "Demander les résultats cardiaques disponibles.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for the parents’ heart results with dates, and have a vet explain them.",
+      "fr": "Demandez les résultats cardiaques des parents, avec leurs dates, et faites-les expliquer par un vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-11-poids",
+  "n": 221,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Weight and feeding",
+   "fr": "Poids et alimentation"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/7f19c989fa.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a9868fd07a.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/08b7331863.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e82ed52336.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2e9803c187.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5c9d4a6216.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Weight matters day to day.",
+      "fr": "Le poids compte au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "A healthy weight helps a dog move comfortably. Weigh your dog regularly and note any change.",
+      "fr": "Un poids sain aide le chien à bouger à l’aise. Pesez votre chien régulièrement et notez les changements.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe body shape.",
+      "fr": "Observer la silhouette.",
+      "kind": "title"
+     },
+     {
+      "en": "You should be able to feel the ribs under a light layer of fat, and see a waist from above.",
+      "fr": "On doit sentir les côtes sous une fine couche de graisse, et voir une taille vu du dessus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Treats count too.",
+      "fr": "Les friandises comptent aussi.",
+      "kind": "title"
+     },
+     {
+      "en": "Treats add calories. Reduce the meal a little, or use part of the daily food as rewards.",
+      "fr": "Les friandises apportent des calories. Réduisez un peu le repas, ou utilisez une partie de la ration comme récompense.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Different tissues lie beneath the skin.",
+      "fr": "Sous la peau, des tissus différents.",
+      "kind": "title"
+     },
+     {
+      "en": "Under the skin lie fat, muscle and bone. This illustration is a simplified locator, not a diagnosis.",
+      "fr": "Sous la peau se trouvent graisse, muscle et os. Cette illustration simplifiée est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt to age and activity.",
+      "fr": "Adapter à l’âge et à l’activité.",
+      "kind": "title"
+     },
+     {
+      "en": "Food needs change with age, activity and health. Ask your vet how much and what to feed.",
+      "fr": "Les besoins alimentaires changent avec l’âge, l’activité et la santé. Demandez au vétérinaire quoi donner et en quelle quantité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog has individual needs.",
+      "fr": "Chaque chien a ses besoins.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-12-enfants",
+  "n": 222,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Children and dog",
+   "fr": "Enfants et chien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/802bb8de44.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/07c9a09901.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8b9525d2e0.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5536ec1961.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f57b777e6d.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b9e8c90255.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A relationship built over time.",
+      "fr": "Une relation qui se construit.",
+      "kind": "title"
+     },
+     {
+      "en": "A child and a dog need time to get to know each other. Do not rush the relationship.",
+      "fr": "Un enfant et un chien ont besoin de temps pour se connaître. Ne précipitez pas la relation.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An adult actively supervises.",
+      "fr": "Un adulte supervise activement.",
+      "kind": "title"
+     },
+     {
+      "en": "An adult should stay close and pay attention whenever a child and a dog are together.",
+      "fr": "Un adulte doit rester proche et attentif chaque fois qu’un enfant et un chien sont ensemble.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let the dog approach.",
+      "fr": "Laisser le chien venir.",
+      "kind": "title"
+     },
+     {
+      "en": "Teach children to let the dog come to them, and to stop if the dog moves away.",
+      "fr": "Apprenez aux enfants à laisser le chien venir à eux, et à s’arrêter s’il s’éloigne.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Protect resting time.",
+      "fr": "Protéger son repos.",
+      "kind": "title"
+     },
+     {
+      "en": "Do not disturb a dog that is eating, sleeping or resting. Children should learn to leave it alone.",
+      "fr": "Ne dérangez pas un chien qui mange, dort ou se repose. Les enfants doivent apprendre à le laisser tranquille.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Provide a quiet space.",
+      "fr": "Prévoir un espace tranquille.",
+      "kind": "title"
+     },
+     {
+      "en": "Give the dog a place to retreat to, where children do not follow.",
+      "fr": "Offrez au chien un endroit où se retirer, où les enfants ne le suivent pas.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Breed never replaces supervision.",
+      "fr": "La race ne remplace pas la supervision.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-13-cohabitation",
+  "n": 223,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Other animals",
+   "fr": "Autres animaux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/176aa327d2.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8ec5183379.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/54beaf4b21.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a0b42ce3bf.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bfb5fbfe23.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c4d9a3d260.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Prepare introductions.",
+      "fr": "Les présentations se préparent.",
+      "kind": "title"
+     },
+     {
+      "en": "Plan introductions between animals ahead of time, in a calm setting.",
+      "fr": "Préparez à l’avance les présentations entre animaux, dans un cadre calme.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep space between animals.",
+      "fr": "Garder de l’espace.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with distance, and reduce it gradually if both animals stay relaxed.",
+      "fr": "Commencez avec de la distance, et réduisez-la peu à peu si les deux animaux restent détendus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow room to retreat.",
+      "fr": "Laisser des possibilités de retrait.",
+      "kind": "title"
+     },
+     {
+      "en": "Each animal should be able to move away. Keep escape routes free.",
+      "fr": "Chaque animal doit pouvoir s’éloigner. Gardez les issues dégagées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Do not force a meeting.",
+      "fr": "Ne pas forcer la rencontre.",
+      "kind": "title"
+     },
+     {
+      "en": "Forcing animals to meet can create fear or conflict. Let them take their time.",
+      "fr": "Forcer une rencontre peut créer peur ou conflit. Laissez-leur le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange separate resources.",
+      "fr": "Organiser les ressources séparément.",
+      "kind": "title"
+     },
+     {
+      "en": "Give each animal its own bowls, beds and toys to avoid disputes.",
+      "fr": "Donnez à chaque animal ses propres gamelles, couchages et jouets pour éviter les conflits.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Adapt to the individual animals.",
+      "fr": "S’adapter aux individus.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-14-documents",
+  "n": 224,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Documents before adoption",
+   "fr": "Documents avant l’adoption"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/54726d4767.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e69f7a1892.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/74667a3d4d.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/76965dec8c.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/26a9b32b05.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/34a87ba021.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Read the available records.",
+      "fr": "Lire le dossier disponible.",
+      "kind": "title"
+     },
+     {
+      "en": "Read the whole file: identity, vaccinations, examinations and test results.",
+      "fr": "Lisez tout le dossier : identité, vaccinations, examens et résultats de tests.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dog’s identity.",
+      "fr": "Vérifier l’identité du chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Check that the microchip, registration and papers match the dog in front of you.",
+      "fr": "Vérifiez que la puce, l’inscription et les papiers correspondent bien au chien que vous avez devant vous.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask about individual and family history.",
+      "fr": "Demander l’historique individuel et familial.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask about the puppy’s own health and its family’s, as far as the breeder knows it.",
+      "fr": "Interrogez sur la santé du chiot et celle de sa famille, dans la mesure où l’éleveur la connaît.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Choose tests suited to the breed.",
+      "fr": "Choisir les tests adaptés à la race.",
+      "kind": "title"
+     },
+     {
+      "en": "Each breed has its own recommended tests. Ask your vet or the breed club which apply.",
+      "fr": "Chaque race a ses propres tests recommandés. Demandez au vétérinaire ou au club de race lesquels s’appliquent.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check dates and results.",
+      "fr": "Vérifier les dates et les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "Check the date and the exact result of every test. Old results may no longer apply.",
+      "fr": "Vérifiez la date et le résultat exact de chaque test. Des résultats anciens peuvent ne plus être valables.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A test cannot guarantee all aspects of health.",
+      "fr": "Un test ne garantit pas toute la santé.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: ACVS, AKC, Dachshund Health UK",
+      "fr": "Sources : ACVS, AKC, Dachshund Health UK",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dachshund-15-engagement",
+  "n": 225,
+  "breeds": "dachshund",
+  "title": {
+   "en": "Preparing life together",
+   "fr": "Préparer la vie ensemble"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/dfeeb8ce43.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6ac1b53971.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0595462d22.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3fd0b9bcc3.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f6e5234b57.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/75118acf75.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan a sustainable routine.",
+      "fr": "Prévoir une routine durable.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a daily routine you can really keep up for years.",
+      "fr": "Choisissez une routine quotidienne que vous pourrez vraiment tenir pendant des années.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for daily outings.",
+      "fr": "Du temps pour les sorties.",
+      "kind": "title"
+     },
+     {
+      "en": "Count the time for outings every day, in all weathers.",
+      "fr": "Comptez le temps des sorties chaque jour, par tous les temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for everyday care.",
+      "fr": "Du temps pour les soins.",
+      "kind": "title"
+     },
+     {
+      "en": "Feeding, grooming and cleaning add up. Include them in your daily schedule.",
+      "fr": "Repas, toilettage et nettoyage s’additionnent. Intégrez-les à votre emploi du temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan for costs and unexpected needs.",
+      "fr": "Prévoir les dépenses et les imprévus.",
+      "kind": "title"
+     },
+     {
+      "en": "Add up food, vet care and insurance, and keep a reserve for the unexpected.",
+      "fr": "Additionnez nourriture, soins vétérinaires et assurance, et gardez une réserve pour l’imprévu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange support when needed.",
+      "fr": "Organiser un relais si nécessaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Know who can help when you travel or fall ill: a friend, family or a sitter.",
+      "fr": "Sachez qui peut vous aider si vous partez ou tombez malade : un ami, la famille ou un gardien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Choose with your real life in mind.",
+      "fr": "Choisir selon votre vie réelle.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-01-activite",
+  "n": 226,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Daily activity",
+   "fr": "Activité au quotidien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/9a7f20606e.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d236e2821c.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e364d8f549.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/397b02d96f.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b75769ead4.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/de7026209e.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An active everyday companion.",
+      "fr": "Un chien actif au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "This breed can enjoy daily outings and play. Every dog is different, so watch your own dog’s energy.",
+      "fr": "Cette race peut apprécier sorties et jeux au quotidien. Chaque chien est différent : observez l’énergie du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for sniffing.",
+      "fr": "Laisser une place au flair.",
+      "kind": "title"
+     },
+     {
+      "en": "Sniffing walks let a dog explore at its own pace. For many dogs it is a calm, enriching way to spend time outdoors.",
+      "fr": "Les promenades de flair laissent le chien explorer à son rythme. Pour beaucoup, c’est une façon calme et enrichissante de profiter du dehors.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Movement involves the joints.",
+      "fr": "Bouger mobilise les articulations.",
+      "kind": "title"
+     },
+     {
+      "en": "Daily movement uses the joints. This simplified illustration shows where, and is not a diagnosis.",
+      "fr": "Le mouvement quotidien sollicite les articulations. Cette illustration simplifiée en montre la localisation, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt activity to this dog.",
+      "fr": "Adapter l’effort à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Age, health and temperament change how much exercise suits a dog. Adjust gradually, and ask your vet if unsure.",
+      "fr": "L’âge, la santé et le tempérament changent l’effort adapté. Ajustez progressivement, et demandez au vétérinaire en cas de doute.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for quiet moments.",
+      "fr": "Prévoir des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Calm time after activity helps a dog settle. Plan rest as part of the day, not only exercise.",
+      "fr": "Un moment calme après l’effort aide le chien à se poser. Prévoyez le repos dans la journée, pas seulement l’exercice.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Can your routine make room for this?",
+      "fr": "Votre routine lui laisse-t-elle cette place ?",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-02-apprentissages",
+  "n": 227,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Learning and thinking",
+   "fr": "Apprendre et réfléchir"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/14b2b1c79f.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e2d5227539.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ce1bf695b3.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/edbc3276f8.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/af3c064e73.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/12557d8677.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Learn together, step by step.",
+      "fr": "Apprendre ensemble, pas à pas.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, relaxed sessions work best. Teach one small thing at a time and keep it positive.",
+      "fr": "Des séances courtes et détendues fonctionnent mieux. Enseignez une petite chose à la fois, dans la bonne humeur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Reward the behaviour you want.",
+      "fr": "Récompenser les comportements souhaités.",
+      "kind": "title"
+     },
+     {
+      "en": "Give a small reward right after the behaviour you want, so your dog links the two.",
+      "fr": "Donnez une petite récompense juste après le comportement souhaité, pour que le chien fasse le lien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Try a simple search game.",
+      "fr": "Proposer une recherche simple.",
+      "kind": "title"
+     },
+     {
+      "en": "Hiding treats in a snuffle mat or around the room gives your dog a gentle mental challenge.",
+      "fr": "Cacher des friandises dans un tapis de fouille ou dans la pièce offre au chien un défi mental tout en douceur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Be clear and consistent.",
+      "fr": "Rester clair et cohérent.",
+      "kind": "title"
+     },
+     {
+      "en": "Use the same cue words and signals every time, and agree on them with everyone at home.",
+      "fr": "Utilisez les mêmes mots et les mêmes signaux à chaque fois, et mettez-vous d’accord avec toute la maison.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "End before interest fades.",
+      "fr": "S’arrêter avant de le lasser.",
+      "kind": "title"
+     },
+     {
+      "en": "Stop while your dog is still keen. A short, successful session beats a long, tiring one.",
+      "fr": "Arrêtez-vous tant que votre chien est motivé. Une séance courte et réussie vaut mieux qu’une longue et fatigante.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog learns at its own pace.",
+      "fr": "Chaque chien apprend à son rythme.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-03-repos",
+  "n": 228,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Rest and sleep",
+   "fr": "Repos et sommeil"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/28c53384d1.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e8a7d835f0.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c2d6a25597.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2f96383e5f.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3c3ca842d8.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9966f271cd.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for quiet time.",
+      "fr": "Prévoir aussi des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Dogs need plenty of rest during the day. Plan calm periods alongside walks and play.",
+      "fr": "Les chiens ont besoin de beaucoup de repos dans la journée. Prévoyez des temps calmes en plus des sorties et des jeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A place to retreat.",
+      "fr": "Un espace où se retirer.",
+      "kind": "title"
+     },
+     {
+      "en": "Give your dog a quiet place of its own, where it can go and not be disturbed.",
+      "fr": "Offrez à votre chien un endroit tranquille bien à lui, où il peut se retirer sans être dérangé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let sleeping dogs rest.",
+      "fr": "Laisser dormir sans le déranger.",
+      "kind": "title"
+     },
+     {
+      "en": "Avoid waking or handling a dog that is asleep. Rest helps it recharge.",
+      "fr": "Évitez de réveiller ou de manipuler un chien qui dort. Le repos l’aide à récupérer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Notice your dog’s own rhythm.",
+      "fr": "Observer son rythme individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs sleep more, some less. Observe when your dog is most active and when it rests.",
+      "fr": "Certains chiens dorment plus, d’autres moins. Observez quand le vôtre est actif et quand il se repose.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Anatomy does not explain everything.",
+      "fr": "L’anatomie n’explique pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified anatomy view cannot explain a dog’s behaviour or tiredness. Observe the individual dog.",
+      "fr": "Une vue anatomique simplifiée n’explique ni le comportement ni la fatigue d’un chien. Observez le chien lui-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Notice unusual changes.",
+      "fr": "Un changement inhabituel mérite attention.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Dogs Trust",
+      "fr": "Sources : Dogs Trust",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-04-solitude",
+  "n": 229,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Learning to be alone",
+   "fr": "Apprendre à rester seul"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/047e6dbe76.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7a950d99bf.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5b5cf3e06c.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4123ebf321.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8f6ec37e62.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/de4f39e581.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Being alone takes practice.",
+      "fr": "Être seul, cela s’apprend.",
+      "kind": "title"
+     },
+     {
+      "en": "Staying alone is a skill dogs learn gradually. Build it up over time rather than all at once.",
+      "fr": "Rester seul est une habitude qui s’apprend progressivement. Construisez-la dans le temps, pas d’un coup.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Begin with brief separations.",
+      "fr": "Commencer par de courtes séparations.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with a few minutes, then increase slowly, as long as your dog stays relaxed.",
+      "fr": "Commencez par quelques minutes, puis allongez doucement, tant que votre chien reste détendu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe rather than assume.",
+      "fr": "Observer plutôt que supposer.",
+      "kind": "title"
+     },
+     {
+      "en": "Notice how your dog behaves when you leave and when you return, instead of assuming it is fine.",
+      "fr": "Observez le comportement de votre chien à votre départ et à votre retour, plutôt que de supposer que tout va bien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "There is no single pace for every dog.",
+      "fr": "Ne pas imposer un rythme unique.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs adapt quickly, others need longer. Follow your dog’s own pace.",
+      "fr": "Certains chiens s’adaptent vite, d’autres ont besoin de plus de temps. Suivez le rythme du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Seek help if your dog is distressed.",
+      "fr": "En cas de détresse, demander de l’aide.",
+      "kind": "title"
+     },
+     {
+      "en": "If your dog seems distressed when alone, talk to your vet or a qualified trainer or behaviourist.",
+      "fr": "Si votre chien semble en détresse quand il est seul, parlez-en à votre vétérinaire ou à un éducateur ou comportementaliste qualifié.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Plan realistic daily support.",
+      "fr": "Prévoir une organisation réaliste.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-05-socialisation",
+  "n": 230,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Discovering without forcing",
+   "fr": "Découvrir sans forcer"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/5abc6c34c1.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/381678cd4e.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/72d2c23125.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5b7eb7edc4.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/59b099c7cd.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3e0d6fb065.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discover gradually.",
+      "fr": "Découvrir progressivement.",
+      "kind": "title"
+     },
+     {
+      "en": "Introduce new places, sounds and people step by step, at a level your dog is comfortable with.",
+      "fr": "Présentez lieux, bruits et personnes nouveaux pas à pas, à un niveau où votre chien reste à l’aise.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow the choice to approach.",
+      "fr": "Laisser le choix d’approcher.",
+      "kind": "title"
+     },
+     {
+      "en": "Let your dog decide whether to approach something new. Forcing it can make worry worse.",
+      "fr": "Laissez votre chien décider d’approcher ou non. Le forcer peut aggraver son inquiétude.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep encounters calm.",
+      "fr": "Des rencontres calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, calm meetings with calm people or dogs are easier to cope with than excited ones.",
+      "fr": "Des rencontres courtes et calmes avec des personnes ou des chiens calmes sont plus faciles à vivre que des rencontres agitées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adjust the environment.",
+      "fr": "Adapter l’environnement.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a quieter place or a greater distance if your dog seems overwhelmed.",
+      "fr": "Choisissez un endroit plus calme ou plus de distance si votre chien semble dépassé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Respect your dog’s signals.",
+      "fr": "Respecter ses signaux.",
+      "kind": "title"
+     },
+     {
+      "en": "Yawning, turning away or stiffening can mean discomfort. Give your dog space when you see them.",
+      "fr": "Bâiller, se détourner ou se raidir peut signaler un inconfort. Laissez de l’espace à votre chien quand vous les voyez.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Confidence cannot be forced.",
+      "fr": "La confiance ne se force pas.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-06-vigilance",
+  "n": 231,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Coat, skin and ears",
+   "fr": "Pelage, peau et oreilles"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/12c53faf92.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/eb4681c524.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0c4e040046.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/acc5cd33a8.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3c023c42bb.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3c8b3ab917.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Care is part of everyday life.",
+      "fr": "L’entretien fait partie du quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "Brushing, ear checks and nail care are small daily or weekly tasks. Plan them into your routine.",
+      "fr": "Brossage, contrôle des oreilles et soin des griffes sont de petites tâches quotidiennes ou hebdomadaires. Prévoyez-les dans votre routine.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Introduce handling gradually.",
+      "fr": "Prévoir des manipulations progressives.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, gentle handling sessions make grooming and vet visits easier later.",
+      "fr": "De courtes séances de manipulation douce facilitent plus tard le toilettage et les visites chez le vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The skin lies beneath the coat.",
+      "fr": "La peau se trouve sous le pelage.",
+      "kind": "title"
+     },
+     {
+      "en": "Skin is not always visible through the coat. Part the hair to check it while grooming. This illustration is simplified.",
+      "fr": "La peau n’est pas toujours visible sous le poil. Écartez le poil pour la vérifier pendant le toilettage. Illustration simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe without making a diagnosis.",
+      "fr": "Observer sans poser de diagnostic.",
+      "kind": "title"
+     },
+     {
+      "en": "Note changes such as redness or lumps and describe them to your vet. Do not try to diagnose them yourself.",
+      "fr": "Notez les changements comme une rougeur ou une boule et décrivez-les au vétérinaire. N’essayez pas de les diagnostiquer vous-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan care suited to this dog.",
+      "fr": "Prévoir les soins adaptés à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Coat, ear and skin needs differ between dogs. Ask your vet or groomer what suits yours.",
+      "fr": "Les besoins du pelage, des oreilles et de la peau varient d’un chien à l’autre. Demandez au vétérinaire ou au toiletteur ce qui convient au vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Make room for care in your routine.",
+      "fr": "Inclure ce temps dans votre routine.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-07-sante-a",
+  "n": 232,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Teeth and gums",
+   "fr": "Dents et gencives"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/13bab9d3f9.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2ae9a8ec08.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/873c96b7fc.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/247802b8d4.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/94fc5d551d.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/70363c702f.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Dental health deserves attention.",
+      "fr": "La santé dentaire mérite de l’attention.",
+      "kind": "title"
+     },
+     {
+      "en": "Small breeds such as the Yorkshire Terrier are prone to dental problems, so teeth deserve regular attention.",
+      "fr": "Les petites races comme le Yorkshire sont sujettes aux problèmes dentaires : les dents méritent une attention régulière.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Periodontal disease affects the supporting tissues.",
+      "fr": "La maladie parodontale touche les tissus de soutien.",
+      "kind": "title"
+     },
+     {
+      "en": "Periodontal disease affects the gums and the tissues that hold the teeth in place.",
+      "fr": "La maladie parodontale touche les gencives et les tissus qui maintiennent les dents en place.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discuss the dental examination.",
+      "fr": "Faire le point sur l’examen dentaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask your vet how often to check the teeth and what home care suits your dog.",
+      "fr": "Demandez au vétérinaire à quelle fréquence contrôler les dents et quels soins à la maison conviennent à votre chien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Royal Veterinary College",
+      "fr": "Sources : Royal Veterinary College",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-08-sante-b",
+  "n": 233,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Kneecaps",
+   "fr": "Rotules"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/311bda357f.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b557da8d5f.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f383e778ed.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c69401f862.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fe554d3b27.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4e49cad739.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Patellar luxation is a known risk.",
+      "fr": "La luxation de rotule est un risque connu.",
+      "kind": "title"
+     },
+     {
+      "en": "In patellar luxation the kneecap slips out of place. It is reported in small breeds, including Yorkshire Terriers.",
+      "fr": "Dans la luxation de rotule, la rotule sort de sa place. Elle est rapportée chez les petites races, dont le Yorkshire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The kneecap can move out of its normal position.",
+      "fr": "La rotule peut sortir de sa position normale.",
+      "kind": "title"
+     },
+     {
+      "en": "The kneecap can slip out of its groove, which can cause skipping or limping. A vet grades its severity.",
+      "fr": "La rotule peut sortir de sa gouttière, ce qui peut causer des sautillements ou une boiterie. Un vétérinaire en évalue la gravité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the parents’ patellar evaluations.",
+      "fr": "Demander l’examen des rotules des parents.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder for the parents’ kneecap evaluations and have your vet explain them.",
+      "fr": "Demandez à l’éleveur l’évaluation des rotules des parents et faites-la expliquer par votre vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-09-sante-c",
+  "n": 234,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Eyes",
+   "fr": "Yeux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/3811269274.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/946557ec7c.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/690d893e81.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/747835356a.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5bde05d855.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7dd1a20ffb.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Eyes are part of screening.",
+      "fr": "Les yeux font partie des dépistages.",
+      "kind": "title"
+     },
+     {
+      "en": "Eye examinations are often part of health screening for this breed.",
+      "fr": "Les examens des yeux font souvent partie du dépistage de cette race.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A DNA test cannot replace every examination.",
+      "fr": "Un test ADN ne remplace pas tout examen.",
+      "kind": "title"
+     },
+     {
+      "en": "A DNA result covers specific conditions. An eye examination looks at the whole eye.",
+      "fr": "Un résultat ADN couvre des maladies précises. Un examen ophtalmologique regarde tout l’œil.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the date of the eye examination.",
+      "fr": "Vérifier la date du bilan ophtalmologique.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask when the eye examination was done. Dates matter because eyes can change.",
+      "fr": "Demandez la date de l’examen des yeux. Les dates comptent, car les yeux peuvent évoluer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Yorkshire Terrier Club of America",
+      "fr": "Sources : Yorkshire Terrier Club of America",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-10-sante-d",
+  "n": 235,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Liver shunt",
+   "fr": "Shunt hépatique"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/7697cea719.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/380990e3f2.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0d27abc1b6.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fc7cbb89ef.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1cbd8add4b.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0c77b422b5.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Liver shunts are reported in the breed.",
+      "fr": "Les shunts hépatiques sont rapportés dans la race.",
+      "kind": "title"
+     },
+     {
+      "en": "A portosystemic shunt is an abnormal blood vessel that bypasses the liver. It is reported in Yorkshire Terriers.",
+      "fr": "Un shunt porto-systémique est un vaisseau anormal qui contourne le foie. Il est rapporté chez le Yorkshire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A shunt diverts some blood away from the liver.",
+      "fr": "Un shunt détourne une partie du sang du foie.",
+      "kind": "title"
+     },
+     {
+      "en": "Blood that should be filtered by the liver bypasses it, which can affect growth and health. A vet diagnoses it.",
+      "fr": "Du sang qui devrait être filtré par le foie le contourne, ce qui peut affecter croissance et santé. Seul un vétérinaire le diagnostique.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discuss available history and examinations.",
+      "fr": "Discuter les antécédents et examens disponibles.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder about the family’s liver history, and ask your vet which examinations exist.",
+      "fr": "Interrogez l’éleveur sur les antécédents hépatiques de la famille, et demandez au vétérinaire quels examens existent.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Yorkshire Terrier Club of America",
+      "fr": "Sources : Yorkshire Terrier Club of America",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-11-poids",
+  "n": 236,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Weight and feeding",
+   "fr": "Poids et alimentation"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/1cb0db4477.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b7613d8372.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/228742c4f7.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f1cf469666.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1089ef87aa.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/80fb4494c6.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Weight matters day to day.",
+      "fr": "Le poids compte au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "A healthy weight helps a dog move comfortably. Weigh your dog regularly and note any change.",
+      "fr": "Un poids sain aide le chien à bouger à l’aise. Pesez votre chien régulièrement et notez les changements.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe body shape.",
+      "fr": "Observer la silhouette.",
+      "kind": "title"
+     },
+     {
+      "en": "You should be able to feel the ribs under a light layer of fat, and see a waist from above.",
+      "fr": "On doit sentir les côtes sous une fine couche de graisse, et voir une taille vu du dessus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Treats count too.",
+      "fr": "Les friandises comptent aussi.",
+      "kind": "title"
+     },
+     {
+      "en": "Treats add calories. Reduce the meal a little, or use part of the daily food as rewards.",
+      "fr": "Les friandises apportent des calories. Réduisez un peu le repas, ou utilisez une partie de la ration comme récompense.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Different tissues lie beneath the skin.",
+      "fr": "Sous la peau, des tissus différents.",
+      "kind": "title"
+     },
+     {
+      "en": "Under the skin lie fat, muscle and bone. This illustration is a simplified locator, not a diagnosis.",
+      "fr": "Sous la peau se trouvent graisse, muscle et os. Cette illustration simplifiée est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt to age and activity.",
+      "fr": "Adapter à l’âge et à l’activité.",
+      "kind": "title"
+     },
+     {
+      "en": "Food needs change with age, activity and health. Ask your vet how much and what to feed.",
+      "fr": "Les besoins alimentaires changent avec l’âge, l’activité et la santé. Demandez au vétérinaire quoi donner et en quelle quantité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog has individual needs.",
+      "fr": "Chaque chien a ses besoins.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-12-enfants",
+  "n": 237,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Children and dog",
+   "fr": "Enfants et chien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/b99ff2cd4a.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/affcf416a9.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4b3ffc264d.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cda4d5aa22.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2ae37348b4.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/383615d250.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A relationship built over time.",
+      "fr": "Une relation qui se construit.",
+      "kind": "title"
+     },
+     {
+      "en": "A child and a dog need time to get to know each other. Do not rush the relationship.",
+      "fr": "Un enfant et un chien ont besoin de temps pour se connaître. Ne précipitez pas la relation.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An adult actively supervises.",
+      "fr": "Un adulte supervise activement.",
+      "kind": "title"
+     },
+     {
+      "en": "An adult should stay close and pay attention whenever a child and a dog are together.",
+      "fr": "Un adulte doit rester proche et attentif chaque fois qu’un enfant et un chien sont ensemble.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let the dog approach.",
+      "fr": "Laisser le chien venir.",
+      "kind": "title"
+     },
+     {
+      "en": "Teach children to let the dog come to them, and to stop if the dog moves away.",
+      "fr": "Apprenez aux enfants à laisser le chien venir à eux, et à s’arrêter s’il s’éloigne.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Protect resting time.",
+      "fr": "Protéger son repos.",
+      "kind": "title"
+     },
+     {
+      "en": "Do not disturb a dog that is eating, sleeping or resting. Children should learn to leave it alone.",
+      "fr": "Ne dérangez pas un chien qui mange, dort ou se repose. Les enfants doivent apprendre à le laisser tranquille.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Provide a quiet space.",
+      "fr": "Prévoir un espace tranquille.",
+      "kind": "title"
+     },
+     {
+      "en": "Give the dog a place to retreat to, where children do not follow.",
+      "fr": "Offrez au chien un endroit où se retirer, où les enfants ne le suivent pas.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Breed never replaces supervision.",
+      "fr": "La race ne remplace pas la supervision.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-13-cohabitation",
+  "n": 238,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Other animals",
+   "fr": "Autres animaux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/210c5ded2d.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4a59fd6d2a.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/97a45ee0bc.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/38093b805f.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5763c1cb35.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3324c3b658.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Prepare introductions.",
+      "fr": "Les présentations se préparent.",
+      "kind": "title"
+     },
+     {
+      "en": "Plan introductions between animals ahead of time, in a calm setting.",
+      "fr": "Préparez à l’avance les présentations entre animaux, dans un cadre calme.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep space between animals.",
+      "fr": "Garder de l’espace.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with distance, and reduce it gradually if both animals stay relaxed.",
+      "fr": "Commencez avec de la distance, et réduisez-la peu à peu si les deux animaux restent détendus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow room to retreat.",
+      "fr": "Laisser des possibilités de retrait.",
+      "kind": "title"
+     },
+     {
+      "en": "Each animal should be able to move away. Keep escape routes free.",
+      "fr": "Chaque animal doit pouvoir s’éloigner. Gardez les issues dégagées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Do not force a meeting.",
+      "fr": "Ne pas forcer la rencontre.",
+      "kind": "title"
+     },
+     {
+      "en": "Forcing animals to meet can create fear or conflict. Let them take their time.",
+      "fr": "Forcer une rencontre peut créer peur ou conflit. Laissez-leur le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange separate resources.",
+      "fr": "Organiser les ressources séparément.",
+      "kind": "title"
+     },
+     {
+      "en": "Give each animal its own bowls, beds and toys to avoid disputes.",
+      "fr": "Donnez à chaque animal ses propres gamelles, couchages et jouets pour éviter les conflits.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Adapt to the individual animals.",
+      "fr": "S’adapter aux individus.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-14-documents",
+  "n": 239,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Documents before adoption",
+   "fr": "Documents avant l’adoption"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/6d51b02191.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/39fb9e4aac.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1b22e3332d.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/026dd856e8.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6aa02809b2.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/aac303237a.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Read the available records.",
+      "fr": "Lire le dossier disponible.",
+      "kind": "title"
+     },
+     {
+      "en": "Read the whole file: identity, vaccinations, examinations and test results.",
+      "fr": "Lisez tout le dossier : identité, vaccinations, examens et résultats de tests.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dog’s identity.",
+      "fr": "Vérifier l’identité du chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Check that the microchip, registration and papers match the dog in front of you.",
+      "fr": "Vérifiez que la puce, l’inscription et les papiers correspondent bien au chien que vous avez devant vous.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask about individual and family history.",
+      "fr": "Demander l’historique individuel et familial.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask about the puppy’s own health and its family’s, as far as the breeder knows it.",
+      "fr": "Interrogez sur la santé du chiot et celle de sa famille, dans la mesure où l’éleveur la connaît.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Choose tests suited to the breed.",
+      "fr": "Choisir les tests adaptés à la race.",
+      "kind": "title"
+     },
+     {
+      "en": "Each breed has its own recommended tests. Ask your vet or the breed club which apply.",
+      "fr": "Chaque race a ses propres tests recommandés. Demandez au vétérinaire ou au club de race lesquels s’appliquent.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check dates and results.",
+      "fr": "Vérifier les dates et les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "Check the date and the exact result of every test. Old results may no longer apply.",
+      "fr": "Vérifiez la date et le résultat exact de chaque test. Des résultats anciens peuvent ne plus être valables.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A test cannot guarantee all aspects of health.",
+      "fr": "Un test ne garantit pas toute la santé.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Royal Veterinary College, AKC, Yorkshire Terrier Club of America",
+      "fr": "Sources : Royal Veterinary College, AKC, Yorkshire Terrier Club of America",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "yorkie-15-engagement",
+  "n": 240,
+  "breeds": "yorkie",
+  "title": {
+   "en": "Preparing life together",
+   "fr": "Préparer la vie ensemble"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/cefb9264f9.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b941c63ab8.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fba53e1ec3.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1b83022379.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/62933627ac.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8bf1208b04.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan a sustainable routine.",
+      "fr": "Prévoir une routine durable.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a daily routine you can really keep up for years.",
+      "fr": "Choisissez une routine quotidienne que vous pourrez vraiment tenir pendant des années.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for daily outings.",
+      "fr": "Du temps pour les sorties.",
+      "kind": "title"
+     },
+     {
+      "en": "Count the time for outings every day, in all weathers.",
+      "fr": "Comptez le temps des sorties chaque jour, par tous les temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for everyday care.",
+      "fr": "Du temps pour les soins.",
+      "kind": "title"
+     },
+     {
+      "en": "Feeding, grooming and cleaning add up. Include them in your daily schedule.",
+      "fr": "Repas, toilettage et nettoyage s’additionnent. Intégrez-les à votre emploi du temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan for costs and unexpected needs.",
+      "fr": "Prévoir les dépenses et les imprévus.",
+      "kind": "title"
+     },
+     {
+      "en": "Add up food, vet care and insurance, and keep a reserve for the unexpected.",
+      "fr": "Additionnez nourriture, soins vétérinaires et assurance, et gardez une réserve pour l’imprévu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange support when needed.",
+      "fr": "Organiser un relais si nécessaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Know who can help when you travel or fall ill: a friend, family or a sitter.",
+      "fr": "Sachez qui peut vous aider si vous partez ou tombez malade : un ami, la famille ou un gardien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Choose with your real life in mind.",
+      "fr": "Choisir selon votre vie réelle.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-01-activite",
+  "n": 241,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Daily activity",
+   "fr": "Activité au quotidien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/064e7fc47a.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c0aebd5629.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/da095bf51d.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fc764a3e14.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/46c43306ee.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/41ac25c5e0.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An active everyday companion.",
+      "fr": "Un chien actif au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "This breed can enjoy daily outings and play. Every dog is different, so watch your own dog’s energy.",
+      "fr": "Cette race peut apprécier sorties et jeux au quotidien. Chaque chien est différent : observez l’énergie du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for sniffing.",
+      "fr": "Laisser une place au flair.",
+      "kind": "title"
+     },
+     {
+      "en": "Sniffing walks let a dog explore at its own pace. For many dogs it is a calm, enriching way to spend time outdoors.",
+      "fr": "Les promenades de flair laissent le chien explorer à son rythme. Pour beaucoup, c’est une façon calme et enrichissante de profiter du dehors.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Movement involves the joints.",
+      "fr": "Bouger mobilise les articulations.",
+      "kind": "title"
+     },
+     {
+      "en": "Daily movement uses the joints. This simplified illustration shows where, and is not a diagnosis.",
+      "fr": "Le mouvement quotidien sollicite les articulations. Cette illustration simplifiée en montre la localisation, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt activity to this dog.",
+      "fr": "Adapter l’effort à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Age, health and temperament change how much exercise suits a dog. Adjust gradually, and ask your vet if unsure.",
+      "fr": "L’âge, la santé et le tempérament changent l’effort adapté. Ajustez progressivement, et demandez au vétérinaire en cas de doute.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for quiet moments.",
+      "fr": "Prévoir des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Calm time after activity helps a dog settle. Plan rest as part of the day, not only exercise.",
+      "fr": "Un moment calme après l’effort aide le chien à se poser. Prévoyez le repos dans la journée, pas seulement l’exercice.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Can your routine make room for this?",
+      "fr": "Votre routine lui laisse-t-elle cette place ?",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-02-apprentissages",
+  "n": 242,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Learning and thinking",
+   "fr": "Apprendre et réfléchir"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/0e512d5c99.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/920b97f6aa.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/38626e5bcb.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5f81dea78a.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3a2b599707.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0a2b92cf2b.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Learn together, step by step.",
+      "fr": "Apprendre ensemble, pas à pas.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, relaxed sessions work best. Teach one small thing at a time and keep it positive.",
+      "fr": "Des séances courtes et détendues fonctionnent mieux. Enseignez une petite chose à la fois, dans la bonne humeur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Reward the behaviour you want.",
+      "fr": "Récompenser les comportements souhaités.",
+      "kind": "title"
+     },
+     {
+      "en": "Give a small reward right after the behaviour you want, so your dog links the two.",
+      "fr": "Donnez une petite récompense juste après le comportement souhaité, pour que le chien fasse le lien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Try a simple search game.",
+      "fr": "Proposer une recherche simple.",
+      "kind": "title"
+     },
+     {
+      "en": "Hiding treats in a snuffle mat or around the room gives your dog a gentle mental challenge.",
+      "fr": "Cacher des friandises dans un tapis de fouille ou dans la pièce offre au chien un défi mental tout en douceur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Be clear and consistent.",
+      "fr": "Rester clair et cohérent.",
+      "kind": "title"
+     },
+     {
+      "en": "Use the same cue words and signals every time, and agree on them with everyone at home.",
+      "fr": "Utilisez les mêmes mots et les mêmes signaux à chaque fois, et mettez-vous d’accord avec toute la maison.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "End before interest fades.",
+      "fr": "S’arrêter avant de le lasser.",
+      "kind": "title"
+     },
+     {
+      "en": "Stop while your dog is still keen. A short, successful session beats a long, tiring one.",
+      "fr": "Arrêtez-vous tant que votre chien est motivé. Une séance courte et réussie vaut mieux qu’une longue et fatigante.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog learns at its own pace.",
+      "fr": "Chaque chien apprend à son rythme.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-03-repos",
+  "n": 243,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Rest and sleep",
+   "fr": "Repos et sommeil"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/4eab442d6c.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ca87c64070.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4cb5caa527.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/89b997440a.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fb9f05ad6b.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5d44f24175.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for quiet time.",
+      "fr": "Prévoir aussi des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Dogs need plenty of rest during the day. Plan calm periods alongside walks and play.",
+      "fr": "Les chiens ont besoin de beaucoup de repos dans la journée. Prévoyez des temps calmes en plus des sorties et des jeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A place to retreat.",
+      "fr": "Un espace où se retirer.",
+      "kind": "title"
+     },
+     {
+      "en": "Give your dog a quiet place of its own, where it can go and not be disturbed.",
+      "fr": "Offrez à votre chien un endroit tranquille bien à lui, où il peut se retirer sans être dérangé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let sleeping dogs rest.",
+      "fr": "Laisser dormir sans le déranger.",
+      "kind": "title"
+     },
+     {
+      "en": "Avoid waking or handling a dog that is asleep. Rest helps it recharge.",
+      "fr": "Évitez de réveiller ou de manipuler un chien qui dort. Le repos l’aide à récupérer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Notice your dog’s own rhythm.",
+      "fr": "Observer son rythme individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs sleep more, some less. Observe when your dog is most active and when it rests.",
+      "fr": "Certains chiens dorment plus, d’autres moins. Observez quand le vôtre est actif et quand il se repose.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Anatomy does not explain everything.",
+      "fr": "L’anatomie n’explique pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified anatomy view cannot explain a dog’s behaviour or tiredness. Observe the individual dog.",
+      "fr": "Une vue anatomique simplifiée n’explique ni le comportement ni la fatigue d’un chien. Observez le chien lui-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Notice unusual changes.",
+      "fr": "Un changement inhabituel mérite attention.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Dogs Trust",
+      "fr": "Sources : Dogs Trust",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-04-solitude",
+  "n": 244,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Learning to be alone",
+   "fr": "Apprendre à rester seul"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/f906cccd04.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f3f95dcabf.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6833127271.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/55375c3d78.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/09df7e861f.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9177c542fd.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Being alone takes practice.",
+      "fr": "Être seul, cela s’apprend.",
+      "kind": "title"
+     },
+     {
+      "en": "Staying alone is a skill dogs learn gradually. Build it up over time rather than all at once.",
+      "fr": "Rester seul est une habitude qui s’apprend progressivement. Construisez-la dans le temps, pas d’un coup.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Begin with brief separations.",
+      "fr": "Commencer par de courtes séparations.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with a few minutes, then increase slowly, as long as your dog stays relaxed.",
+      "fr": "Commencez par quelques minutes, puis allongez doucement, tant que votre chien reste détendu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe rather than assume.",
+      "fr": "Observer plutôt que supposer.",
+      "kind": "title"
+     },
+     {
+      "en": "Notice how your dog behaves when you leave and when you return, instead of assuming it is fine.",
+      "fr": "Observez le comportement de votre chien à votre départ et à votre retour, plutôt que de supposer que tout va bien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "There is no single pace for every dog.",
+      "fr": "Ne pas imposer un rythme unique.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs adapt quickly, others need longer. Follow your dog’s own pace.",
+      "fr": "Certains chiens s’adaptent vite, d’autres ont besoin de plus de temps. Suivez le rythme du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Seek help if your dog is distressed.",
+      "fr": "En cas de détresse, demander de l’aide.",
+      "kind": "title"
+     },
+     {
+      "en": "If your dog seems distressed when alone, talk to your vet or a qualified trainer or behaviourist.",
+      "fr": "Si votre chien semble en détresse quand il est seul, parlez-en à votre vétérinaire ou à un éducateur ou comportementaliste qualifié.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Plan realistic daily support.",
+      "fr": "Prévoir une organisation réaliste.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-05-socialisation",
+  "n": 245,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Discovering without forcing",
+   "fr": "Découvrir sans forcer"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/2dd2bb7912.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b2eac9bb6c.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2d2f922f30.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6c595e93f8.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7f053aac1e.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9d90bff800.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discover gradually.",
+      "fr": "Découvrir progressivement.",
+      "kind": "title"
+     },
+     {
+      "en": "Introduce new places, sounds and people step by step, at a level your dog is comfortable with.",
+      "fr": "Présentez lieux, bruits et personnes nouveaux pas à pas, à un niveau où votre chien reste à l’aise.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow the choice to approach.",
+      "fr": "Laisser le choix d’approcher.",
+      "kind": "title"
+     },
+     {
+      "en": "Let your dog decide whether to approach something new. Forcing it can make worry worse.",
+      "fr": "Laissez votre chien décider d’approcher ou non. Le forcer peut aggraver son inquiétude.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep encounters calm.",
+      "fr": "Des rencontres calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, calm meetings with calm people or dogs are easier to cope with than excited ones.",
+      "fr": "Des rencontres courtes et calmes avec des personnes ou des chiens calmes sont plus faciles à vivre que des rencontres agitées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adjust the environment.",
+      "fr": "Adapter l’environnement.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a quieter place or a greater distance if your dog seems overwhelmed.",
+      "fr": "Choisissez un endroit plus calme ou plus de distance si votre chien semble dépassé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Respect your dog’s signals.",
+      "fr": "Respecter ses signaux.",
+      "kind": "title"
+     },
+     {
+      "en": "Yawning, turning away or stiffening can mean discomfort. Give your dog space when you see them.",
+      "fr": "Bâiller, se détourner ou se raidir peut signaler un inconfort. Laissez de l’espace à votre chien quand vous les voyez.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Confidence cannot be forced.",
+      "fr": "La confiance ne se force pas.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-06-vigilance",
+  "n": 246,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Coat, skin and ears",
+   "fr": "Pelage, peau et oreilles"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/7d519ef449.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/84a2930c60.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6013b6d005.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/02afb658c4.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/166ee6759c.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7de027fc1d.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Care is part of everyday life.",
+      "fr": "L’entretien fait partie du quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "Brushing, ear checks and nail care are small daily or weekly tasks. Plan them into your routine.",
+      "fr": "Brossage, contrôle des oreilles et soin des griffes sont de petites tâches quotidiennes ou hebdomadaires. Prévoyez-les dans votre routine.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Introduce handling gradually.",
+      "fr": "Prévoir des manipulations progressives.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, gentle handling sessions make grooming and vet visits easier later.",
+      "fr": "De courtes séances de manipulation douce facilitent plus tard le toilettage et les visites chez le vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The skin lies beneath the coat.",
+      "fr": "La peau se trouve sous le pelage.",
+      "kind": "title"
+     },
+     {
+      "en": "Skin is not always visible through the coat. Part the hair to check it while grooming. This illustration is simplified.",
+      "fr": "La peau n’est pas toujours visible sous le poil. Écartez le poil pour la vérifier pendant le toilettage. Illustration simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe without making a diagnosis.",
+      "fr": "Observer sans poser de diagnostic.",
+      "kind": "title"
+     },
+     {
+      "en": "Note changes such as redness or lumps and describe them to your vet. Do not try to diagnose them yourself.",
+      "fr": "Notez les changements comme une rougeur ou une boule et décrivez-les au vétérinaire. N’essayez pas de les diagnostiquer vous-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan care suited to this dog.",
+      "fr": "Prévoir les soins adaptés à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Coat, ear and skin needs differ between dogs. Ask your vet or groomer what suits yours.",
+      "fr": "Les besoins du pelage, des oreilles et de la peau varient d’un chien à l’autre. Demandez au vétérinaire ou au toiletteur ce qui convient au vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Make room for care in your routine.",
+      "fr": "Inclure ce temps dans votre routine.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-07-sante-a",
+  "n": 247,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Eyes and corneas",
+   "fr": "Yeux et cornée"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/cbda83f9e1.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0fda363de7.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ecb869f90a.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/83335c5a66.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/607e2bc066.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/aeb4fbd24f.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Corneal ulcers occur more often in this breed.",
+      "fr": "Les ulcères cornéens concernent davantage cette race.",
+      "kind": "title"
+     },
+     {
+      "en": "Prominent eyes are more exposed to injury. See a vet quickly if an eye looks red, painful or cloudy.",
+      "fr": "Des yeux proéminents sont plus exposés aux blessures. Consultez vite un vétérinaire si un œil est rouge, douloureux ou trouble.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The cornea forms the eye’s clear front surface.",
+      "fr": "La cornée forme la surface transparente de l’œil.",
+      "kind": "title"
+     },
+     {
+      "en": "The cornea is the transparent layer at the front of the eye. It can be scratched or ulcerated.",
+      "fr": "La cornée est la couche transparente à l’avant de l’œil. Elle peut être rayée ou ulcérée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask about eye history and examination.",
+      "fr": "Demander l’historique et l’examen oculaires.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder about the family’s eye history and whether the parents had an eye examination.",
+      "fr": "Interrogez l’éleveur sur les antécédents oculaires de la famille et sur un éventuel examen des yeux des parents.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: PubMed Central",
+      "fr": "Sources : PubMed Central",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-08-sante-b",
+  "n": 248,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Breathing",
+   "fr": "Respiration"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/c2f1aef47f.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/84527959d9.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/25cda5b704.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6c86ed9a5a.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/67b7e36e9d.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/66ff29e442.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The short face calls for particular awareness.",
+      "fr": "La face courte demande une vigilance particulière.",
+      "kind": "title"
+     },
+     {
+      "en": "Short-faced dogs can have narrower airways, so breathing and heat deserve attention.",
+      "fr": "Les chiens à face courte peuvent avoir les voies respiratoires plus étroites : la respiration et la chaleur demandent de l’attention.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Some dogs have narrowed airways.",
+      "fr": "Certains chiens ont des voies aériennes étroites.",
+      "kind": "title"
+     },
+     {
+      "en": "Narrow nostrils or a long soft palate can make breathing harder, especially in heat or during exercise.",
+      "fr": "Des narines étroites ou un voile du palais long peuvent gêner la respiration, surtout par temps chaud ou à l’effort.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Have this dog’s breathing assessed.",
+      "fr": "Faire évaluer la respiration de ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask a vet to assess the dog’s breathing before you commit, and avoid hard exercise in the heat.",
+      "fr": "Demandez à un vétérinaire d’évaluer la respiration du chien avant de vous engager, et évitez l’effort intense par forte chaleur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: The Kennel Club",
+      "fr": "Sources : The Kennel Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-09-sante-c",
+  "n": 249,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Kneecaps",
+   "fr": "Rotules"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/e603da14ba.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b1da461ebc.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/42f2f600bc.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0609f63f9a.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c9c83744c5.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d192f79eff.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Patellar evaluation is part of club screening.",
+      "fr": "Les rotules font partie du dépistage du club.",
+      "kind": "title"
+     },
+     {
+      "en": "Breed clubs often include kneecap evaluation among the recommended health checks for Shih Tzus.",
+      "fr": "Les clubs de race incluent souvent l’évaluation des rotules parmi les contrôles recommandés pour le Shih Tzu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Appearance does not replace an examination.",
+      "fr": "L’apparence ne remplace pas l’examen.",
+      "kind": "title"
+     },
+     {
+      "en": "A dog can walk normally and still have a kneecap problem. Only an examination can tell.",
+      "fr": "Un chien peut marcher normalement et avoir un problème de rotule. Seul un examen permet de le savoir.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for patellar evaluation results.",
+      "fr": "Demander les résultats des rotules.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for the parents’ kneecap results and have your vet explain them.",
+      "fr": "Demandez les résultats des rotules des parents et faites-les expliquer par votre vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: American Shih Tzu Club",
+      "fr": "Sources : American Shih Tzu Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-10-sante-d",
+  "n": 250,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Kidneys",
+   "fr": "Reins"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/a9f08b810a.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/dc1cd82bb1.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/017d7d6e45.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f4d2ccd31c.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f17c568b41.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/52c4dfeb72.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Juvenile renal dysplasia is a known risk.",
+      "fr": "La dysplasie rénale juvénile est un risque connu.",
+      "kind": "title"
+     },
+     {
+      "en": "Juvenile renal dysplasia is a kidney development condition reported in Shih Tzus.",
+      "fr": "La dysplasie rénale juvénile est une maladie du développement des reins rapportée chez le Shih Tzu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "It affects kidney development.",
+      "fr": "Elle concerne le développement des reins.",
+      "kind": "title"
+     },
+     {
+      "en": "The kidneys do not develop normally, and signs can appear in young dogs. A vet makes the diagnosis.",
+      "fr": "Les reins se développent mal, et des signes peuvent apparaître chez le jeune chien. Le diagnostic revient au vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discuss the family’s kidney history.",
+      "fr": "Discuter les antécédents rénaux familiaux.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder about kidney problems among the puppy’s relatives.",
+      "fr": "Interrogez l’éleveur sur d’éventuels problèmes rénaux chez les apparentés du chiot.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-11-poids",
+  "n": 251,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Weight and feeding",
+   "fr": "Poids et alimentation"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/8d94b0a712.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e3940fcf50.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bd10be0478.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1ffc1fada6.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2c435aecd0.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/62926acc7b.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Weight matters day to day.",
+      "fr": "Le poids compte au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "A healthy weight helps a dog move comfortably. Weigh your dog regularly and note any change.",
+      "fr": "Un poids sain aide le chien à bouger à l’aise. Pesez votre chien régulièrement et notez les changements.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe body shape.",
+      "fr": "Observer la silhouette.",
+      "kind": "title"
+     },
+     {
+      "en": "You should be able to feel the ribs under a light layer of fat, and see a waist from above.",
+      "fr": "On doit sentir les côtes sous une fine couche de graisse, et voir une taille vu du dessus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Treats count too.",
+      "fr": "Les friandises comptent aussi.",
+      "kind": "title"
+     },
+     {
+      "en": "Treats add calories. Reduce the meal a little, or use part of the daily food as rewards.",
+      "fr": "Les friandises apportent des calories. Réduisez un peu le repas, ou utilisez une partie de la ration comme récompense.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Different tissues lie beneath the skin.",
+      "fr": "Sous la peau, des tissus différents.",
+      "kind": "title"
+     },
+     {
+      "en": "Under the skin lie fat, muscle and bone. This illustration is a simplified locator, not a diagnosis.",
+      "fr": "Sous la peau se trouvent graisse, muscle et os. Cette illustration simplifiée est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt to age and activity.",
+      "fr": "Adapter à l’âge et à l’activité.",
+      "kind": "title"
+     },
+     {
+      "en": "Food needs change with age, activity and health. Ask your vet how much and what to feed.",
+      "fr": "Les besoins alimentaires changent avec l’âge, l’activité et la santé. Demandez au vétérinaire quoi donner et en quelle quantité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog has individual needs.",
+      "fr": "Chaque chien a ses besoins.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-12-enfants",
+  "n": 252,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Children and dog",
+   "fr": "Enfants et chien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/5b87fed9f4.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6f8184ca11.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e4ce761d87.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b2f227ba2b.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/76eaec27be.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/57211f95dd.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A relationship built over time.",
+      "fr": "Une relation qui se construit.",
+      "kind": "title"
+     },
+     {
+      "en": "A child and a dog need time to get to know each other. Do not rush the relationship.",
+      "fr": "Un enfant et un chien ont besoin de temps pour se connaître. Ne précipitez pas la relation.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An adult actively supervises.",
+      "fr": "Un adulte supervise activement.",
+      "kind": "title"
+     },
+     {
+      "en": "An adult should stay close and pay attention whenever a child and a dog are together.",
+      "fr": "Un adulte doit rester proche et attentif chaque fois qu’un enfant et un chien sont ensemble.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let the dog approach.",
+      "fr": "Laisser le chien venir.",
+      "kind": "title"
+     },
+     {
+      "en": "Teach children to let the dog come to them, and to stop if the dog moves away.",
+      "fr": "Apprenez aux enfants à laisser le chien venir à eux, et à s’arrêter s’il s’éloigne.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Protect resting time.",
+      "fr": "Protéger son repos.",
+      "kind": "title"
+     },
+     {
+      "en": "Do not disturb a dog that is eating, sleeping or resting. Children should learn to leave it alone.",
+      "fr": "Ne dérangez pas un chien qui mange, dort ou se repose. Les enfants doivent apprendre à le laisser tranquille.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Provide a quiet space.",
+      "fr": "Prévoir un espace tranquille.",
+      "kind": "title"
+     },
+     {
+      "en": "Give the dog a place to retreat to, where children do not follow.",
+      "fr": "Offrez au chien un endroit où se retirer, où les enfants ne le suivent pas.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Breed never replaces supervision.",
+      "fr": "La race ne remplace pas la supervision.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-13-cohabitation",
+  "n": 253,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Other animals",
+   "fr": "Autres animaux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/0899eb5ec8.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2f0706fcd0.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4a3b805bd4.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b226211218.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2586e95b1d.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/8cc3620dfb.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Prepare introductions.",
+      "fr": "Les présentations se préparent.",
+      "kind": "title"
+     },
+     {
+      "en": "Plan introductions between animals ahead of time, in a calm setting.",
+      "fr": "Préparez à l’avance les présentations entre animaux, dans un cadre calme.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep space between animals.",
+      "fr": "Garder de l’espace.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with distance, and reduce it gradually if both animals stay relaxed.",
+      "fr": "Commencez avec de la distance, et réduisez-la peu à peu si les deux animaux restent détendus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow room to retreat.",
+      "fr": "Laisser des possibilités de retrait.",
+      "kind": "title"
+     },
+     {
+      "en": "Each animal should be able to move away. Keep escape routes free.",
+      "fr": "Chaque animal doit pouvoir s’éloigner. Gardez les issues dégagées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Do not force a meeting.",
+      "fr": "Ne pas forcer la rencontre.",
+      "kind": "title"
+     },
+     {
+      "en": "Forcing animals to meet can create fear or conflict. Let them take their time.",
+      "fr": "Forcer une rencontre peut créer peur ou conflit. Laissez-leur le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange separate resources.",
+      "fr": "Organiser les ressources séparément.",
+      "kind": "title"
+     },
+     {
+      "en": "Give each animal its own bowls, beds and toys to avoid disputes.",
+      "fr": "Donnez à chaque animal ses propres gamelles, couchages et jouets pour éviter les conflits.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Adapt to the individual animals.",
+      "fr": "S’adapter aux individus.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-14-documents",
+  "n": 254,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Documents before adoption",
+   "fr": "Documents avant l’adoption"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/4ff5ed8b93.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/40fde4130a.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/eafae41c45.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/14b76affd3.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7161dcb313.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/27e6f48015.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Read the available records.",
+      "fr": "Lire le dossier disponible.",
+      "kind": "title"
+     },
+     {
+      "en": "Read the whole file: identity, vaccinations, examinations and test results.",
+      "fr": "Lisez tout le dossier : identité, vaccinations, examens et résultats de tests.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dog’s identity.",
+      "fr": "Vérifier l’identité du chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Check that the microchip, registration and papers match the dog in front of you.",
+      "fr": "Vérifiez que la puce, l’inscription et les papiers correspondent bien au chien que vous avez devant vous.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask about individual and family history.",
+      "fr": "Demander l’historique individuel et familial.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask about the puppy’s own health and its family’s, as far as the breeder knows it.",
+      "fr": "Interrogez sur la santé du chiot et celle de sa famille, dans la mesure où l’éleveur la connaît.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Choose tests suited to the breed.",
+      "fr": "Choisir les tests adaptés à la race.",
+      "kind": "title"
+     },
+     {
+      "en": "Each breed has its own recommended tests. Ask your vet or the breed club which apply.",
+      "fr": "Chaque race a ses propres tests recommandés. Demandez au vétérinaire ou au club de race lesquels s’appliquent.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check dates and results.",
+      "fr": "Vérifier les dates et les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "Check the date and the exact result of every test. Old results may no longer apply.",
+      "fr": "Vérifiez la date et le résultat exact de chaque test. Des résultats anciens peuvent ne plus être valables.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A test cannot guarantee all aspects of health.",
+      "fr": "Un test ne garantit pas toute la santé.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: PubMed Central, The Kennel Club, American Shih Tzu Club",
+      "fr": "Sources : PubMed Central, The Kennel Club, American Shih Tzu Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "shihtzu-15-engagement",
+  "n": 255,
+  "breeds": "shihtzu",
+  "title": {
+   "en": "Preparing life together",
+   "fr": "Préparer la vie ensemble"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/2c588b7e9c.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1458c5efd9.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/96f7b0bf92.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b55172557c.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/58999246c1.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/280696f896.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan a sustainable routine.",
+      "fr": "Prévoir une routine durable.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a daily routine you can really keep up for years.",
+      "fr": "Choisissez une routine quotidienne que vous pourrez vraiment tenir pendant des années.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for daily outings.",
+      "fr": "Du temps pour les sorties.",
+      "kind": "title"
+     },
+     {
+      "en": "Count the time for outings every day, in all weathers.",
+      "fr": "Comptez le temps des sorties chaque jour, par tous les temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for everyday care.",
+      "fr": "Du temps pour les soins.",
+      "kind": "title"
+     },
+     {
+      "en": "Feeding, grooming and cleaning add up. Include them in your daily schedule.",
+      "fr": "Repas, toilettage et nettoyage s’additionnent. Intégrez-les à votre emploi du temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan for costs and unexpected needs.",
+      "fr": "Prévoir les dépenses et les imprévus.",
+      "kind": "title"
+     },
+     {
+      "en": "Add up food, vet care and insurance, and keep a reserve for the unexpected.",
+      "fr": "Additionnez nourriture, soins vétérinaires et assurance, et gardez une réserve pour l’imprévu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange support when needed.",
+      "fr": "Organiser un relais si nécessaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Know who can help when you travel or fall ill: a friend, family or a sitter.",
+      "fr": "Sachez qui peut vous aider si vous partez ou tombez malade : un ami, la famille ou un gardien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Choose with your real life in mind.",
+      "fr": "Choisir selon votre vie réelle.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-01-activite",
+  "n": 256,
+  "breeds": "boxer",
+  "title": {
+   "en": "Daily activity",
+   "fr": "Activité au quotidien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/d40b9372ff.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6b1f17fa33.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a5e86347c8.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e26811e400.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/49498fc6a7.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/94dd8696a4.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An active everyday companion.",
+      "fr": "Un chien actif au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "This breed can enjoy daily outings and play. Every dog is different, so watch your own dog’s energy.",
+      "fr": "Cette race peut apprécier sorties et jeux au quotidien. Chaque chien est différent : observez l’énergie du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for sniffing.",
+      "fr": "Laisser une place au flair.",
+      "kind": "title"
+     },
+     {
+      "en": "Sniffing walks let a dog explore at its own pace. For many dogs it is a calm, enriching way to spend time outdoors.",
+      "fr": "Les promenades de flair laissent le chien explorer à son rythme. Pour beaucoup, c’est une façon calme et enrichissante de profiter du dehors.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Movement involves the joints.",
+      "fr": "Bouger mobilise les articulations.",
+      "kind": "title"
+     },
+     {
+      "en": "Daily movement uses the joints. This simplified illustration shows where, and is not a diagnosis.",
+      "fr": "Le mouvement quotidien sollicite les articulations. Cette illustration simplifiée en montre la localisation, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt activity to this dog.",
+      "fr": "Adapter l’effort à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Age, health and temperament change how much exercise suits a dog. Adjust gradually, and ask your vet if unsure.",
+      "fr": "L’âge, la santé et le tempérament changent l’effort adapté. Ajustez progressivement, et demandez au vétérinaire en cas de doute.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for quiet moments.",
+      "fr": "Prévoir des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Calm time after activity helps a dog settle. Plan rest as part of the day, not only exercise.",
+      "fr": "Un moment calme après l’effort aide le chien à se poser. Prévoyez le repos dans la journée, pas seulement l’exercice.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Can your routine make room for this?",
+      "fr": "Votre routine lui laisse-t-elle cette place ?",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-02-apprentissages",
+  "n": 257,
+  "breeds": "boxer",
+  "title": {
+   "en": "Learning and thinking",
+   "fr": "Apprendre et réfléchir"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/cc52067856.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/037712f32e.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7ae5dafd13.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4cd589053b.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fe98ce14c5.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/475d91a3cc.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Learn together, step by step.",
+      "fr": "Apprendre ensemble, pas à pas.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, relaxed sessions work best. Teach one small thing at a time and keep it positive.",
+      "fr": "Des séances courtes et détendues fonctionnent mieux. Enseignez une petite chose à la fois, dans la bonne humeur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Reward the behaviour you want.",
+      "fr": "Récompenser les comportements souhaités.",
+      "kind": "title"
+     },
+     {
+      "en": "Give a small reward right after the behaviour you want, so your dog links the two.",
+      "fr": "Donnez une petite récompense juste après le comportement souhaité, pour que le chien fasse le lien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Try a simple search game.",
+      "fr": "Proposer une recherche simple.",
+      "kind": "title"
+     },
+     {
+      "en": "Hiding treats in a snuffle mat or around the room gives your dog a gentle mental challenge.",
+      "fr": "Cacher des friandises dans un tapis de fouille ou dans la pièce offre au chien un défi mental tout en douceur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Be clear and consistent.",
+      "fr": "Rester clair et cohérent.",
+      "kind": "title"
+     },
+     {
+      "en": "Use the same cue words and signals every time, and agree on them with everyone at home.",
+      "fr": "Utilisez les mêmes mots et les mêmes signaux à chaque fois, et mettez-vous d’accord avec toute la maison.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "End before interest fades.",
+      "fr": "S’arrêter avant de le lasser.",
+      "kind": "title"
+     },
+     {
+      "en": "Stop while your dog is still keen. A short, successful session beats a long, tiring one.",
+      "fr": "Arrêtez-vous tant que votre chien est motivé. Une séance courte et réussie vaut mieux qu’une longue et fatigante.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog learns at its own pace.",
+      "fr": "Chaque chien apprend à son rythme.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-03-repos",
+  "n": 258,
+  "breeds": "boxer",
+  "title": {
+   "en": "Rest and sleep",
+   "fr": "Repos et sommeil"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/719082ac7e.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/04bbad064f.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e06247fe26.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0a74104585.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/07fb45f199.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9aaf91e1ef.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for quiet time.",
+      "fr": "Prévoir aussi des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Dogs need plenty of rest during the day. Plan calm periods alongside walks and play.",
+      "fr": "Les chiens ont besoin de beaucoup de repos dans la journée. Prévoyez des temps calmes en plus des sorties et des jeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A place to retreat.",
+      "fr": "Un espace où se retirer.",
+      "kind": "title"
+     },
+     {
+      "en": "Give your dog a quiet place of its own, where it can go and not be disturbed.",
+      "fr": "Offrez à votre chien un endroit tranquille bien à lui, où il peut se retirer sans être dérangé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let sleeping dogs rest.",
+      "fr": "Laisser dormir sans le déranger.",
+      "kind": "title"
+     },
+     {
+      "en": "Avoid waking or handling a dog that is asleep. Rest helps it recharge.",
+      "fr": "Évitez de réveiller ou de manipuler un chien qui dort. Le repos l’aide à récupérer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Notice your dog’s own rhythm.",
+      "fr": "Observer son rythme individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs sleep more, some less. Observe when your dog is most active and when it rests.",
+      "fr": "Certains chiens dorment plus, d’autres moins. Observez quand le vôtre est actif et quand il se repose.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Anatomy does not explain everything.",
+      "fr": "L’anatomie n’explique pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified anatomy view cannot explain a dog’s behaviour or tiredness. Observe the individual dog.",
+      "fr": "Une vue anatomique simplifiée n’explique ni le comportement ni la fatigue d’un chien. Observez le chien lui-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Notice unusual changes.",
+      "fr": "Un changement inhabituel mérite attention.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Dogs Trust",
+      "fr": "Sources : Dogs Trust",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-04-solitude",
+  "n": 259,
+  "breeds": "boxer",
+  "title": {
+   "en": "Learning to be alone",
+   "fr": "Apprendre à rester seul"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/8ad685f804.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6f74da6fac.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bf5ccfd993.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/14706d6582.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/41a18e7025.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/41cb0bee1a.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Being alone takes practice.",
+      "fr": "Être seul, cela s’apprend.",
+      "kind": "title"
+     },
+     {
+      "en": "Staying alone is a skill dogs learn gradually. Build it up over time rather than all at once.",
+      "fr": "Rester seul est une habitude qui s’apprend progressivement. Construisez-la dans le temps, pas d’un coup.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Begin with brief separations.",
+      "fr": "Commencer par de courtes séparations.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with a few minutes, then increase slowly, as long as your dog stays relaxed.",
+      "fr": "Commencez par quelques minutes, puis allongez doucement, tant que votre chien reste détendu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe rather than assume.",
+      "fr": "Observer plutôt que supposer.",
+      "kind": "title"
+     },
+     {
+      "en": "Notice how your dog behaves when you leave and when you return, instead of assuming it is fine.",
+      "fr": "Observez le comportement de votre chien à votre départ et à votre retour, plutôt que de supposer que tout va bien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "There is no single pace for every dog.",
+      "fr": "Ne pas imposer un rythme unique.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs adapt quickly, others need longer. Follow your dog’s own pace.",
+      "fr": "Certains chiens s’adaptent vite, d’autres ont besoin de plus de temps. Suivez le rythme du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Seek help if your dog is distressed.",
+      "fr": "En cas de détresse, demander de l’aide.",
+      "kind": "title"
+     },
+     {
+      "en": "If your dog seems distressed when alone, talk to your vet or a qualified trainer or behaviourist.",
+      "fr": "Si votre chien semble en détresse quand il est seul, parlez-en à votre vétérinaire ou à un éducateur ou comportementaliste qualifié.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Plan realistic daily support.",
+      "fr": "Prévoir une organisation réaliste.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-05-socialisation",
+  "n": 260,
+  "breeds": "boxer",
+  "title": {
+   "en": "Discovering without forcing",
+   "fr": "Découvrir sans forcer"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/87c63a155d.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e51e61efd4.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1ad82f5f74.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/18e5e6c572.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a9e7c037cd.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a0034bc69b.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discover gradually.",
+      "fr": "Découvrir progressivement.",
+      "kind": "title"
+     },
+     {
+      "en": "Introduce new places, sounds and people step by step, at a level your dog is comfortable with.",
+      "fr": "Présentez lieux, bruits et personnes nouveaux pas à pas, à un niveau où votre chien reste à l’aise.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow the choice to approach.",
+      "fr": "Laisser le choix d’approcher.",
+      "kind": "title"
+     },
+     {
+      "en": "Let your dog decide whether to approach something new. Forcing it can make worry worse.",
+      "fr": "Laissez votre chien décider d’approcher ou non. Le forcer peut aggraver son inquiétude.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep encounters calm.",
+      "fr": "Des rencontres calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, calm meetings with calm people or dogs are easier to cope with than excited ones.",
+      "fr": "Des rencontres courtes et calmes avec des personnes ou des chiens calmes sont plus faciles à vivre que des rencontres agitées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adjust the environment.",
+      "fr": "Adapter l’environnement.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a quieter place or a greater distance if your dog seems overwhelmed.",
+      "fr": "Choisissez un endroit plus calme ou plus de distance si votre chien semble dépassé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Respect your dog’s signals.",
+      "fr": "Respecter ses signaux.",
+      "kind": "title"
+     },
+     {
+      "en": "Yawning, turning away or stiffening can mean discomfort. Give your dog space when you see them.",
+      "fr": "Bâiller, se détourner ou se raidir peut signaler un inconfort. Laissez de l’espace à votre chien quand vous les voyez.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Confidence cannot be forced.",
+      "fr": "La confiance ne se force pas.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-06-vigilance",
+  "n": 261,
+  "breeds": "boxer",
+  "title": {
+   "en": "Coat, skin and ears",
+   "fr": "Pelage, peau et oreilles"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/f93ac27489.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b6e1f30613.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b63a9c0db9.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0ae14ce5cc.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2342cfe32d.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/eff4a48b18.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Care is part of everyday life.",
+      "fr": "L’entretien fait partie du quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "Brushing, ear checks and nail care are small daily or weekly tasks. Plan them into your routine.",
+      "fr": "Brossage, contrôle des oreilles et soin des griffes sont de petites tâches quotidiennes ou hebdomadaires. Prévoyez-les dans votre routine.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Introduce handling gradually.",
+      "fr": "Prévoir des manipulations progressives.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, gentle handling sessions make grooming and vet visits easier later.",
+      "fr": "De courtes séances de manipulation douce facilitent plus tard le toilettage et les visites chez le vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The skin lies beneath the coat.",
+      "fr": "La peau se trouve sous le pelage.",
+      "kind": "title"
+     },
+     {
+      "en": "Skin is not always visible through the coat. Part the hair to check it while grooming. This illustration is simplified.",
+      "fr": "La peau n’est pas toujours visible sous le poil. Écartez le poil pour la vérifier pendant le toilettage. Illustration simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe without making a diagnosis.",
+      "fr": "Observer sans poser de diagnostic.",
+      "kind": "title"
+     },
+     {
+      "en": "Note changes such as redness or lumps and describe them to your vet. Do not try to diagnose them yourself.",
+      "fr": "Notez les changements comme une rougeur ou une boule et décrivez-les au vétérinaire. N’essayez pas de les diagnostiquer vous-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan care suited to this dog.",
+      "fr": "Prévoir les soins adaptés à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Coat, ear and skin needs differ between dogs. Ask your vet or groomer what suits yours.",
+      "fr": "Les besoins du pelage, des oreilles et de la peau varient d’un chien à l’autre. Demandez au vétérinaire ou au toiletteur ce qui convient au vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Make room for care in your routine.",
+      "fr": "Inclure ce temps dans votre routine.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-07-sante-a",
+  "n": 262,
+  "breeds": "boxer",
+  "title": {
+   "en": "Heart muscle",
+   "fr": "Muscle cardiaque"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/0572d3156c.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/770f0d433b.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6e163bf567.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c3ed1e3b39.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a66b6e4edf.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d78708fdc8.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Cardiomyopathy is a known health concern.",
+      "fr": "La cardiomyopathie est un risque connu.",
+      "kind": "title"
+     },
+     {
+      "en": "Boxers can develop a heart muscle disease called cardiomyopathy. Screening exists for the breed.",
+      "fr": "Le Boxer peut développer une maladie du muscle cardiaque, la cardiomyopathie. Un dépistage existe pour la race.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A Holter records the heart rhythm.",
+      "fr": "Le Holter enregistre le rythme cardiaque.",
+      "kind": "title"
+     },
+     {
+      "en": "A Holter monitor records the heartbeat over about 24 hours to look for abnormal rhythms.",
+      "fr": "Un Holter enregistre le rythme cardiaque pendant environ 24 heures pour repérer d’éventuelles anomalies.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for available Holter results.",
+      "fr": "Demander les résultats du Holter disponibles.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask whether the parents were screened and what the vet concluded. A cardiologist can interpret the results.",
+      "fr": "Demandez si les parents ont été dépistés et ce qu’a conclu le vétérinaire. Un cardiologue peut interpréter les résultats.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: American Boxer Club",
+      "fr": "Sources : American Boxer Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-08-sante-b",
+  "n": 263,
+  "breeds": "boxer",
+  "title": {
+   "en": "Heart outflow",
+   "fr": "Sortie du cœur"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/296c4b1a2d.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/328e10137c.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7869685c2f.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4c1ecb3d3d.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e8d4e1fedf.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/364f905e3f.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Another heart concern is subaortic stenosis.",
+      "fr": "Un autre sujet cardiaque : la sténose sous-aortique.",
+      "kind": "title"
+     },
+     {
+      "en": "Subaortic stenosis is a narrowing below the aortic valve, and it is reported in Boxers.",
+      "fr": "La sténose sous-aortique est un rétrécissement sous la valve aortique, rapportée chez le Boxer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "It affects the heart’s outflow tract.",
+      "fr": "Elle touche la voie de sortie du cœur.",
+      "kind": "title"
+     },
+     {
+      "en": "The narrowing makes it harder for blood to leave the heart. A cardiologist can assess its severity.",
+      "fr": "Le rétrécissement gêne la sortie du sang hors du cœur. Un cardiologue peut en évaluer la gravité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the echocardiography report.",
+      "fr": "Demander le bilan échocardiographique.",
+      "kind": "title"
+     },
+     {
+      "en": "An echocardiogram is an ultrasound of the heart. Ask whether the parents had one and what it showed.",
+      "fr": "Une échocardiographie est une échographie du cœur. Demandez si les parents en ont eu une et ce qu’elle a montré.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: American Boxer Club",
+      "fr": "Sources : American Boxer Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-09-sante-c",
+  "n": 264,
+  "breeds": "boxer",
+  "title": {
+   "en": "Joints",
+   "fr": "Articulations"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/03bd579282.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/067e9df195.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a211180c17.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e385595d87.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/403675ad04.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d8c92fba4f.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Joint evaluations are also part of screening.",
+      "fr": "Les articulations font aussi partie des contrôles.",
+      "kind": "title"
+     },
+     {
+      "en": "Boxer screening can also include joint evaluations, such as hips and elbows.",
+      "fr": "Le dépistage du Boxer peut aussi inclure l’évaluation des articulations, comme les hanches et les coudes.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Radiographs assess specific structures.",
+      "fr": "Les radiographies évaluent des structures précises.",
+      "kind": "title"
+     },
+     {
+      "en": "X-rays let a vet assess the shape of bones and joints. A specialist grades them.",
+      "fr": "Les radiographies permettent d’évaluer la forme des os et des articulations. Un spécialiste les note.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the parents’ results.",
+      "fr": "Demander les résultats des parents.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask the breeder for the parents’ results and what they mean, and have your vet explain them.",
+      "fr": "Demandez à l’éleveur les résultats des parents et leur signification, et faites-les expliquer par votre vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: American Boxer Club",
+      "fr": "Sources : American Boxer Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-10-sante-d",
+  "n": 265,
+  "breeds": "boxer",
+  "title": {
+   "en": "Thyroid",
+   "fr": "Thyroïde"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/86283fab79.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/70e581ab26.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c98b3a70bb.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2b41e3ba70.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bb4b8f6b5d.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fa9b50fe19.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The thyroid is one area of screening.",
+      "fr": "La thyroïde fait partie des sujets de dépistage.",
+      "kind": "title"
+     },
+     {
+      "en": "Thyroid evaluation can be part of health screening in Boxers.",
+      "fr": "L’évaluation de la thyroïde peut faire partie du dépistage chez le Boxer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Blood test results need interpretation.",
+      "fr": "Un bilan sanguin doit être interprété.",
+      "kind": "title"
+     },
+     {
+      "en": "A blood test result needs a vet’s interpretation, together with the dog’s signs and history.",
+      "fr": "Un résultat de prise de sang doit être interprété par un vétérinaire, avec les signes et l’historique du chien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discuss available thyroid results.",
+      "fr": "Discuter les résultats thyroïdiens disponibles.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask whether the parents had thyroid tests, and have your vet explain them.",
+      "fr": "Demandez si les parents ont eu des tests thyroïdiens, et faites-les expliquer par votre vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: American Boxer Club",
+      "fr": "Sources : American Boxer Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-11-poids",
+  "n": 266,
+  "breeds": "boxer",
+  "title": {
+   "en": "Weight and feeding",
+   "fr": "Poids et alimentation"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/f896183aef.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/dcedde15ac.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7a1589c615.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/478ce6f49a.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/721e1fdade.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/28cf866001.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Weight matters day to day.",
+      "fr": "Le poids compte au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "A healthy weight helps a dog move comfortably. Weigh your dog regularly and note any change.",
+      "fr": "Un poids sain aide le chien à bouger à l’aise. Pesez votre chien régulièrement et notez les changements.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe body shape.",
+      "fr": "Observer la silhouette.",
+      "kind": "title"
+     },
+     {
+      "en": "You should be able to feel the ribs under a light layer of fat, and see a waist from above.",
+      "fr": "On doit sentir les côtes sous une fine couche de graisse, et voir une taille vu du dessus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Treats count too.",
+      "fr": "Les friandises comptent aussi.",
+      "kind": "title"
+     },
+     {
+      "en": "Treats add calories. Reduce the meal a little, or use part of the daily food as rewards.",
+      "fr": "Les friandises apportent des calories. Réduisez un peu le repas, ou utilisez une partie de la ration comme récompense.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Different tissues lie beneath the skin.",
+      "fr": "Sous la peau, des tissus différents.",
+      "kind": "title"
+     },
+     {
+      "en": "Under the skin lie fat, muscle and bone. This illustration is a simplified locator, not a diagnosis.",
+      "fr": "Sous la peau se trouvent graisse, muscle et os. Cette illustration simplifiée est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt to age and activity.",
+      "fr": "Adapter à l’âge et à l’activité.",
+      "kind": "title"
+     },
+     {
+      "en": "Food needs change with age, activity and health. Ask your vet how much and what to feed.",
+      "fr": "Les besoins alimentaires changent avec l’âge, l’activité et la santé. Demandez au vétérinaire quoi donner et en quelle quantité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog has individual needs.",
+      "fr": "Chaque chien a ses besoins.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-12-enfants",
+  "n": 267,
+  "breeds": "boxer",
+  "title": {
+   "en": "Children and dog",
+   "fr": "Enfants et chien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/f9538dd4cb.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ded71bd741.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7f6f5bcc07.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/10a7788a30.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/348be41f54.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f6108955d7.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A relationship built over time.",
+      "fr": "Une relation qui se construit.",
+      "kind": "title"
+     },
+     {
+      "en": "A child and a dog need time to get to know each other. Do not rush the relationship.",
+      "fr": "Un enfant et un chien ont besoin de temps pour se connaître. Ne précipitez pas la relation.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An adult actively supervises.",
+      "fr": "Un adulte supervise activement.",
+      "kind": "title"
+     },
+     {
+      "en": "An adult should stay close and pay attention whenever a child and a dog are together.",
+      "fr": "Un adulte doit rester proche et attentif chaque fois qu’un enfant et un chien sont ensemble.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let the dog approach.",
+      "fr": "Laisser le chien venir.",
+      "kind": "title"
+     },
+     {
+      "en": "Teach children to let the dog come to them, and to stop if the dog moves away.",
+      "fr": "Apprenez aux enfants à laisser le chien venir à eux, et à s’arrêter s’il s’éloigne.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Protect resting time.",
+      "fr": "Protéger son repos.",
+      "kind": "title"
+     },
+     {
+      "en": "Do not disturb a dog that is eating, sleeping or resting. Children should learn to leave it alone.",
+      "fr": "Ne dérangez pas un chien qui mange, dort ou se repose. Les enfants doivent apprendre à le laisser tranquille.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Provide a quiet space.",
+      "fr": "Prévoir un espace tranquille.",
+      "kind": "title"
+     },
+     {
+      "en": "Give the dog a place to retreat to, where children do not follow.",
+      "fr": "Offrez au chien un endroit où se retirer, où les enfants ne le suivent pas.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Breed never replaces supervision.",
+      "fr": "La race ne remplace pas la supervision.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-13-cohabitation",
+  "n": 268,
+  "breeds": "boxer",
+  "title": {
+   "en": "Other animals",
+   "fr": "Autres animaux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/b1ee4f1044.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4f9adbeb99.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/617de60c84.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6b0b564636.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e9cb3d7d55.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6d665b77b1.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Prepare introductions.",
+      "fr": "Les présentations se préparent.",
+      "kind": "title"
+     },
+     {
+      "en": "Plan introductions between animals ahead of time, in a calm setting.",
+      "fr": "Préparez à l’avance les présentations entre animaux, dans un cadre calme.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep space between animals.",
+      "fr": "Garder de l’espace.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with distance, and reduce it gradually if both animals stay relaxed.",
+      "fr": "Commencez avec de la distance, et réduisez-la peu à peu si les deux animaux restent détendus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow room to retreat.",
+      "fr": "Laisser des possibilités de retrait.",
+      "kind": "title"
+     },
+     {
+      "en": "Each animal should be able to move away. Keep escape routes free.",
+      "fr": "Chaque animal doit pouvoir s’éloigner. Gardez les issues dégagées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Do not force a meeting.",
+      "fr": "Ne pas forcer la rencontre.",
+      "kind": "title"
+     },
+     {
+      "en": "Forcing animals to meet can create fear or conflict. Let them take their time.",
+      "fr": "Forcer une rencontre peut créer peur ou conflit. Laissez-leur le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange separate resources.",
+      "fr": "Organiser les ressources séparément.",
+      "kind": "title"
+     },
+     {
+      "en": "Give each animal its own bowls, beds and toys to avoid disputes.",
+      "fr": "Donnez à chaque animal ses propres gamelles, couchages et jouets pour éviter les conflits.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Adapt to the individual animals.",
+      "fr": "S’adapter aux individus.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-14-documents",
+  "n": 269,
+  "breeds": "boxer",
+  "title": {
+   "en": "Documents before adoption",
+   "fr": "Documents avant l’adoption"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/f0e8adf595.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1ada2dafe8.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0babef20b3.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7e992e19d3.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/465a90d9ff.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/756a5aa380.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Read the available records.",
+      "fr": "Lire le dossier disponible.",
+      "kind": "title"
+     },
+     {
+      "en": "Read the whole file: identity, vaccinations, examinations and test results.",
+      "fr": "Lisez tout le dossier : identité, vaccinations, examens et résultats de tests.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dog’s identity.",
+      "fr": "Vérifier l’identité du chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Check that the microchip, registration and papers match the dog in front of you.",
+      "fr": "Vérifiez que la puce, l’inscription et les papiers correspondent bien au chien que vous avez devant vous.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask about individual and family history.",
+      "fr": "Demander l’historique individuel et familial.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask about the puppy’s own health and its family’s, as far as the breeder knows it.",
+      "fr": "Interrogez sur la santé du chiot et celle de sa famille, dans la mesure où l’éleveur la connaît.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Choose tests suited to the breed.",
+      "fr": "Choisir les tests adaptés à la race.",
+      "kind": "title"
+     },
+     {
+      "en": "Each breed has its own recommended tests. Ask your vet or the breed club which apply.",
+      "fr": "Chaque race a ses propres tests recommandés. Demandez au vétérinaire ou au club de race lesquels s’appliquent.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check dates and results.",
+      "fr": "Vérifier les dates et les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "Check the date and the exact result of every test. Old results may no longer apply.",
+      "fr": "Vérifiez la date et le résultat exact de chaque test. Des résultats anciens peuvent ne plus être valables.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A test cannot guarantee all aspects of health.",
+      "fr": "Un test ne garantit pas toute la santé.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: American Boxer Club",
+      "fr": "Sources : American Boxer Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "boxer-15-engagement",
+  "n": 270,
+  "breeds": "boxer",
+  "title": {
+   "en": "Preparing life together",
+   "fr": "Préparer la vie ensemble"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/51d6fff26e.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/823deefab7.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e44157e53a.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0006d430f9.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d40916d712.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/df8b6f2e8d.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan a sustainable routine.",
+      "fr": "Prévoir une routine durable.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a daily routine you can really keep up for years.",
+      "fr": "Choisissez une routine quotidienne que vous pourrez vraiment tenir pendant des années.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for daily outings.",
+      "fr": "Du temps pour les sorties.",
+      "kind": "title"
+     },
+     {
+      "en": "Count the time for outings every day, in all weathers.",
+      "fr": "Comptez le temps des sorties chaque jour, par tous les temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for everyday care.",
+      "fr": "Du temps pour les soins.",
+      "kind": "title"
+     },
+     {
+      "en": "Feeding, grooming and cleaning add up. Include them in your daily schedule.",
+      "fr": "Repas, toilettage et nettoyage s’additionnent. Intégrez-les à votre emploi du temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan for costs and unexpected needs.",
+      "fr": "Prévoir les dépenses et les imprévus.",
+      "kind": "title"
+     },
+     {
+      "en": "Add up food, vet care and insurance, and keep a reserve for the unexpected.",
+      "fr": "Additionnez nourriture, soins vétérinaires et assurance, et gardez une réserve pour l’imprévu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange support when needed.",
+      "fr": "Organiser un relais si nécessaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Know who can help when you travel or fall ill: a friend, family or a sitter.",
+      "fr": "Sachez qui peut vous aider si vous partez ou tombez malade : un ami, la famille ou un gardien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Choose with your real life in mind.",
+      "fr": "Choisir selon votre vie réelle.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-01-activite",
+  "n": 271,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Daily activity",
+   "fr": "Activité au quotidien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/f1f953cc21.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/09a038205d.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c22138104c.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a0e4693b95.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/11712fa7e0.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9ab9bcd566.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An active everyday companion.",
+      "fr": "Un chien actif au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "This breed can enjoy daily outings and play. Every dog is different, so watch your own dog’s energy.",
+      "fr": "Cette race peut apprécier sorties et jeux au quotidien. Chaque chien est différent : observez l’énergie du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for sniffing.",
+      "fr": "Laisser une place au flair.",
+      "kind": "title"
+     },
+     {
+      "en": "Sniffing walks let a dog explore at its own pace. For many dogs it is a calm, enriching way to spend time outdoors.",
+      "fr": "Les promenades de flair laissent le chien explorer à son rythme. Pour beaucoup, c’est une façon calme et enrichissante de profiter du dehors.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Movement involves the joints.",
+      "fr": "Bouger mobilise les articulations.",
+      "kind": "title"
+     },
+     {
+      "en": "Daily movement uses the joints. This simplified illustration shows where, and is not a diagnosis.",
+      "fr": "Le mouvement quotidien sollicite les articulations. Cette illustration simplifiée en montre la localisation, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt activity to this dog.",
+      "fr": "Adapter l’effort à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Age, health and temperament change how much exercise suits a dog. Adjust gradually, and ask your vet if unsure.",
+      "fr": "L’âge, la santé et le tempérament changent l’effort adapté. Ajustez progressivement, et demandez au vétérinaire en cas de doute.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for quiet moments.",
+      "fr": "Prévoir des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Calm time after activity helps a dog settle. Plan rest as part of the day, not only exercise.",
+      "fr": "Un moment calme après l’effort aide le chien à se poser. Prévoyez le repos dans la journée, pas seulement l’exercice.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Can your routine make room for this?",
+      "fr": "Votre routine lui laisse-t-elle cette place ?",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-02-apprentissages",
+  "n": 272,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Learning and thinking",
+   "fr": "Apprendre et réfléchir"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/e9262e6b7d.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4f7d444454.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5af2920a3d.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7d92bc8ef8.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4e3f27ea66.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2f18d4eaa2.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Learn together, step by step.",
+      "fr": "Apprendre ensemble, pas à pas.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, relaxed sessions work best. Teach one small thing at a time and keep it positive.",
+      "fr": "Des séances courtes et détendues fonctionnent mieux. Enseignez une petite chose à la fois, dans la bonne humeur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Reward the behaviour you want.",
+      "fr": "Récompenser les comportements souhaités.",
+      "kind": "title"
+     },
+     {
+      "en": "Give a small reward right after the behaviour you want, so your dog links the two.",
+      "fr": "Donnez une petite récompense juste après le comportement souhaité, pour que le chien fasse le lien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Try a simple search game.",
+      "fr": "Proposer une recherche simple.",
+      "kind": "title"
+     },
+     {
+      "en": "Hiding treats in a snuffle mat or around the room gives your dog a gentle mental challenge.",
+      "fr": "Cacher des friandises dans un tapis de fouille ou dans la pièce offre au chien un défi mental tout en douceur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Be clear and consistent.",
+      "fr": "Rester clair et cohérent.",
+      "kind": "title"
+     },
+     {
+      "en": "Use the same cue words and signals every time, and agree on them with everyone at home.",
+      "fr": "Utilisez les mêmes mots et les mêmes signaux à chaque fois, et mettez-vous d’accord avec toute la maison.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "End before interest fades.",
+      "fr": "S’arrêter avant de le lasser.",
+      "kind": "title"
+     },
+     {
+      "en": "Stop while your dog is still keen. A short, successful session beats a long, tiring one.",
+      "fr": "Arrêtez-vous tant que votre chien est motivé. Une séance courte et réussie vaut mieux qu’une longue et fatigante.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog learns at its own pace.",
+      "fr": "Chaque chien apprend à son rythme.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-03-repos",
+  "n": 273,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Rest and sleep",
+   "fr": "Repos et sommeil"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/606c7725c7.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d6cd3c231e.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3ad954fb65.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/75b86c4c26.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3c0904eda9.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/db7c12c8cb.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for quiet time.",
+      "fr": "Prévoir aussi des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Dogs need plenty of rest during the day. Plan calm periods alongside walks and play.",
+      "fr": "Les chiens ont besoin de beaucoup de repos dans la journée. Prévoyez des temps calmes en plus des sorties et des jeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A place to retreat.",
+      "fr": "Un espace où se retirer.",
+      "kind": "title"
+     },
+     {
+      "en": "Give your dog a quiet place of its own, where it can go and not be disturbed.",
+      "fr": "Offrez à votre chien un endroit tranquille bien à lui, où il peut se retirer sans être dérangé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let sleeping dogs rest.",
+      "fr": "Laisser dormir sans le déranger.",
+      "kind": "title"
+     },
+     {
+      "en": "Avoid waking or handling a dog that is asleep. Rest helps it recharge.",
+      "fr": "Évitez de réveiller ou de manipuler un chien qui dort. Le repos l’aide à récupérer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Notice your dog’s own rhythm.",
+      "fr": "Observer son rythme individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs sleep more, some less. Observe when your dog is most active and when it rests.",
+      "fr": "Certains chiens dorment plus, d’autres moins. Observez quand le vôtre est actif et quand il se repose.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Anatomy does not explain everything.",
+      "fr": "L’anatomie n’explique pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified anatomy view cannot explain a dog’s behaviour or tiredness. Observe the individual dog.",
+      "fr": "Une vue anatomique simplifiée n’explique ni le comportement ni la fatigue d’un chien. Observez le chien lui-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Notice unusual changes.",
+      "fr": "Un changement inhabituel mérite attention.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Dogs Trust",
+      "fr": "Sources : Dogs Trust",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-04-solitude",
+  "n": 274,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Learning to be alone",
+   "fr": "Apprendre à rester seul"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/465980e741.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a3c0ad29b0.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/25d316df3c.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c315b8ee72.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5a66c336ec.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0ccf4a0b99.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Being alone takes practice.",
+      "fr": "Être seul, cela s’apprend.",
+      "kind": "title"
+     },
+     {
+      "en": "Staying alone is a skill dogs learn gradually. Build it up over time rather than all at once.",
+      "fr": "Rester seul est une habitude qui s’apprend progressivement. Construisez-la dans le temps, pas d’un coup.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Begin with brief separations.",
+      "fr": "Commencer par de courtes séparations.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with a few minutes, then increase slowly, as long as your dog stays relaxed.",
+      "fr": "Commencez par quelques minutes, puis allongez doucement, tant que votre chien reste détendu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe rather than assume.",
+      "fr": "Observer plutôt que supposer.",
+      "kind": "title"
+     },
+     {
+      "en": "Notice how your dog behaves when you leave and when you return, instead of assuming it is fine.",
+      "fr": "Observez le comportement de votre chien à votre départ et à votre retour, plutôt que de supposer que tout va bien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "There is no single pace for every dog.",
+      "fr": "Ne pas imposer un rythme unique.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs adapt quickly, others need longer. Follow your dog’s own pace.",
+      "fr": "Certains chiens s’adaptent vite, d’autres ont besoin de plus de temps. Suivez le rythme du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Seek help if your dog is distressed.",
+      "fr": "En cas de détresse, demander de l’aide.",
+      "kind": "title"
+     },
+     {
+      "en": "If your dog seems distressed when alone, talk to your vet or a qualified trainer or behaviourist.",
+      "fr": "Si votre chien semble en détresse quand il est seul, parlez-en à votre vétérinaire ou à un éducateur ou comportementaliste qualifié.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Plan realistic daily support.",
+      "fr": "Prévoir une organisation réaliste.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-05-socialisation",
+  "n": 275,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Discovering without forcing",
+   "fr": "Découvrir sans forcer"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/99fcd4c81c.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ec4070e8c9.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/12ed86743f.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f109214040.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/67a7b9e3d5.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e5ab9dd63b.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discover gradually.",
+      "fr": "Découvrir progressivement.",
+      "kind": "title"
+     },
+     {
+      "en": "Introduce new places, sounds and people step by step, at a level your dog is comfortable with.",
+      "fr": "Présentez lieux, bruits et personnes nouveaux pas à pas, à un niveau où votre chien reste à l’aise.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow the choice to approach.",
+      "fr": "Laisser le choix d’approcher.",
+      "kind": "title"
+     },
+     {
+      "en": "Let your dog decide whether to approach something new. Forcing it can make worry worse.",
+      "fr": "Laissez votre chien décider d’approcher ou non. Le forcer peut aggraver son inquiétude.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep encounters calm.",
+      "fr": "Des rencontres calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, calm meetings with calm people or dogs are easier to cope with than excited ones.",
+      "fr": "Des rencontres courtes et calmes avec des personnes ou des chiens calmes sont plus faciles à vivre que des rencontres agitées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adjust the environment.",
+      "fr": "Adapter l’environnement.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a quieter place or a greater distance if your dog seems overwhelmed.",
+      "fr": "Choisissez un endroit plus calme ou plus de distance si votre chien semble dépassé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Respect your dog’s signals.",
+      "fr": "Respecter ses signaux.",
+      "kind": "title"
+     },
+     {
+      "en": "Yawning, turning away or stiffening can mean discomfort. Give your dog space when you see them.",
+      "fr": "Bâiller, se détourner ou se raidir peut signaler un inconfort. Laissez de l’espace à votre chien quand vous les voyez.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Confidence cannot be forced.",
+      "fr": "La confiance ne se force pas.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-06-vigilance",
+  "n": 276,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Coat, skin and ears",
+   "fr": "Pelage, peau et oreilles"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/ce732802bb.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bb16bcb95e.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/494097883f.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f76b44ab87.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f34c305114.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e5a8fa761b.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Care is part of everyday life.",
+      "fr": "L’entretien fait partie du quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "Brushing, ear checks and nail care are small daily or weekly tasks. Plan them into your routine.",
+      "fr": "Brossage, contrôle des oreilles et soin des griffes sont de petites tâches quotidiennes ou hebdomadaires. Prévoyez-les dans votre routine.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Introduce handling gradually.",
+      "fr": "Prévoir des manipulations progressives.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, gentle handling sessions make grooming and vet visits easier later.",
+      "fr": "De courtes séances de manipulation douce facilitent plus tard le toilettage et les visites chez le vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The skin lies beneath the coat.",
+      "fr": "La peau se trouve sous le pelage.",
+      "kind": "title"
+     },
+     {
+      "en": "Skin is not always visible through the coat. Part the hair to check it while grooming. This illustration is simplified.",
+      "fr": "La peau n’est pas toujours visible sous le poil. Écartez le poil pour la vérifier pendant le toilettage. Illustration simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe without making a diagnosis.",
+      "fr": "Observer sans poser de diagnostic.",
+      "kind": "title"
+     },
+     {
+      "en": "Note changes such as redness or lumps and describe them to your vet. Do not try to diagnose them yourself.",
+      "fr": "Notez les changements comme une rougeur ou une boule et décrivez-les au vétérinaire. N’essayez pas de les diagnostiquer vous-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan care suited to this dog.",
+      "fr": "Prévoir les soins adaptés à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Coat, ear and skin needs differ between dogs. Ask your vet or groomer what suits yours.",
+      "fr": "Les besoins du pelage, des oreilles et de la peau varient d’un chien à l’autre. Demandez au vétérinaire ou au toiletteur ce qui convient au vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Make room for care in your routine.",
+      "fr": "Inclure ce temps dans votre routine.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-07-sante-a",
+  "n": 277,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Heart valve",
+   "fr": "Valve du cœur"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/a71ebec82a.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fc9da26542.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e09f427c57.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7b317e7a79.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c68259bbf6.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/fd987380b3.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Mitral valve disease is a health priority.",
+      "fr": "La maladie mitrale est une priorité de santé.",
+      "kind": "title"
+     },
+     {
+      "en": "Mitral valve disease is common in Cavalier King Charles Spaniels and can begin at a young age.",
+      "fr": "La maladie de la valve mitrale est fréquente chez le Cavalier King Charles et peut débuter jeune.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "This valve is inside the heart.",
+      "fr": "Cette valve se trouve dans le cœur.",
+      "kind": "title"
+     },
+     {
+      "en": "The mitral valve controls blood flow between two chambers of the heart. When it leaks, the heart works harder.",
+      "fr": "La valve mitrale règle le passage du sang entre deux cavités du cœur. Quand elle fuit, le cœur travaille davantage.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for dated cardiac examination results.",
+      "fr": "Demander les examens cardiaques datés.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for recent heart examinations of the parents, with dates, and have a vet explain them.",
+      "fr": "Demandez les examens cardiaques récents des parents, avec leurs dates, et faites-les expliquer par un vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: The Cavalier Club",
+      "fr": "Sources : The Cavalier Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-08-sante-b",
+  "n": 278,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Spinal cord",
+   "fr": "Moelle épinière"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/34fd1b8c94.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6e3ac9f323.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/913c12069f.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cb5b027e47.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1454b9e34a.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bbfcb48a1e.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Syringomyelia is a known risk.",
+      "fr": "La syringomyélie est un risque connu.",
+      "kind": "title"
+     },
+     {
+      "en": "Syringomyelia is a condition in which fluid-filled cavities form in the spinal cord. It is reported in Cavaliers.",
+      "fr": "La syringomyélie est une maladie où des cavités remplies de liquide se forment dans la moelle épinière. Elle est rapportée chez le Cavalier.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "It concerns the spinal cord.",
+      "fr": "Elle concerne la moelle épinière.",
+      "kind": "title"
+     },
+     {
+      "en": "It affects the spinal cord, and signs can include scratching or pain. Only a vet can diagnose it.",
+      "fr": "Elle touche la moelle épinière, et les signes peuvent inclure grattage ou douleur. Seul un vétérinaire peut la diagnostiquer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for available MRI reports.",
+      "fr": "Demander les comptes rendus IRM disponibles.",
+      "kind": "title"
+     },
+     {
+      "en": "An MRI scan can show the condition. Ask whether the parents were scanned, and have a vet explain the report.",
+      "fr": "Une IRM peut montrer la maladie. Demandez si les parents ont été examinés, et faites expliquer le compte rendu par un vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: The Cavalier Club",
+      "fr": "Sources : The Cavalier Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-09-sante-c",
+  "n": 279,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Cataracts",
+   "fr": "Cataracte"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/b43aa08f84.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/376d290ac7.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/21e44f8c72.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4891b2c68c.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/dab9697f8e.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bdf6ffdaf5.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Hereditary cataracts are reported.",
+      "fr": "La cataracte héréditaire est rapportée.",
+      "kind": "title"
+     },
+     {
+      "en": "Hereditary cataracts, which cloud the lens, are reported in Cavalier King Charles Spaniels.",
+      "fr": "La cataracte héréditaire, qui trouble le cristallin, est rapportée chez le Cavalier King Charles.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The lens is inside the eye.",
+      "fr": "Le cristallin est situé dans l’œil.",
+      "kind": "title"
+     },
+     {
+      "en": "The lens sits behind the pupil and focuses light. Clouding can reduce vision.",
+      "fr": "Le cristallin, derrière la pupille, fait converger la lumière. S’il se trouble, la vision peut baisser.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the ophthalmological examination.",
+      "fr": "Demander l’examen ophtalmologique.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for the parents’ eye examination reports, with dates, and have a vet explain them.",
+      "fr": "Demandez les comptes rendus d’examens des yeux des parents, avec leurs dates, et faites-les expliquer par un vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: The Cavalier Club",
+      "fr": "Sources : The Cavalier Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-10-sante-d",
+  "n": 280,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Retina",
+   "fr": "Rétine"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/129ac08444.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2db2a4dbb7.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b36dc47ce6.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f1b4e5ca05.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/276e450163.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/eb8357412f.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Retinal dysplasia is another concern.",
+      "fr": "La dysplasie rétinienne est un autre sujet.",
+      "kind": "title"
+     },
+     {
+      "en": "Retinal dysplasia is a developmental problem of the retina reported in Cavalier King Charles Spaniels.",
+      "fr": "La dysplasie rétinienne est un défaut de développement de la rétine, rapporté chez le Cavalier King Charles.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The retina lines the back of the eye.",
+      "fr": "La rétine tapisse le fond de l’œil.",
+      "kind": "title"
+     },
+     {
+      "en": "The retina is the light-sensitive layer at the back of the eye.",
+      "fr": "La rétine est la couche sensible à la lumière au fond de l’œil.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the report and examination date.",
+      "fr": "Vérifier le bilan et la date de l’examen.",
+      "kind": "title"
+     },
+     {
+      "en": "Check that the eye report is recent and clearly states what was examined.",
+      "fr": "Vérifiez que le compte rendu des yeux est récent et indique clairement ce qui a été examiné.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: The Cavalier Club",
+      "fr": "Sources : The Cavalier Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-11-poids",
+  "n": 281,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Weight and feeding",
+   "fr": "Poids et alimentation"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/30ed203f4e.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4b8ecf0cc1.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b4bb8e7f6a.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/516d1229a7.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/89175c1543.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/854bacefd6.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Weight matters day to day.",
+      "fr": "Le poids compte au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "A healthy weight helps a dog move comfortably. Weigh your dog regularly and note any change.",
+      "fr": "Un poids sain aide le chien à bouger à l’aise. Pesez votre chien régulièrement et notez les changements.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe body shape.",
+      "fr": "Observer la silhouette.",
+      "kind": "title"
+     },
+     {
+      "en": "You should be able to feel the ribs under a light layer of fat, and see a waist from above.",
+      "fr": "On doit sentir les côtes sous une fine couche de graisse, et voir une taille vu du dessus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Treats count too.",
+      "fr": "Les friandises comptent aussi.",
+      "kind": "title"
+     },
+     {
+      "en": "Treats add calories. Reduce the meal a little, or use part of the daily food as rewards.",
+      "fr": "Les friandises apportent des calories. Réduisez un peu le repas, ou utilisez une partie de la ration comme récompense.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Different tissues lie beneath the skin.",
+      "fr": "Sous la peau, des tissus différents.",
+      "kind": "title"
+     },
+     {
+      "en": "Under the skin lie fat, muscle and bone. This illustration is a simplified locator, not a diagnosis.",
+      "fr": "Sous la peau se trouvent graisse, muscle et os. Cette illustration simplifiée est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt to age and activity.",
+      "fr": "Adapter à l’âge et à l’activité.",
+      "kind": "title"
+     },
+     {
+      "en": "Food needs change with age, activity and health. Ask your vet how much and what to feed.",
+      "fr": "Les besoins alimentaires changent avec l’âge, l’activité et la santé. Demandez au vétérinaire quoi donner et en quelle quantité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog has individual needs.",
+      "fr": "Chaque chien a ses besoins.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-12-enfants",
+  "n": 282,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Children and dog",
+   "fr": "Enfants et chien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/988e9c537b.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7c79f9a90a.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/25c480e038.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6ded6934af.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b1105b01a5.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6733e83e0c.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A relationship built over time.",
+      "fr": "Une relation qui se construit.",
+      "kind": "title"
+     },
+     {
+      "en": "A child and a dog need time to get to know each other. Do not rush the relationship.",
+      "fr": "Un enfant et un chien ont besoin de temps pour se connaître. Ne précipitez pas la relation.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An adult actively supervises.",
+      "fr": "Un adulte supervise activement.",
+      "kind": "title"
+     },
+     {
+      "en": "An adult should stay close and pay attention whenever a child and a dog are together.",
+      "fr": "Un adulte doit rester proche et attentif chaque fois qu’un enfant et un chien sont ensemble.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let the dog approach.",
+      "fr": "Laisser le chien venir.",
+      "kind": "title"
+     },
+     {
+      "en": "Teach children to let the dog come to them, and to stop if the dog moves away.",
+      "fr": "Apprenez aux enfants à laisser le chien venir à eux, et à s’arrêter s’il s’éloigne.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Protect resting time.",
+      "fr": "Protéger son repos.",
+      "kind": "title"
+     },
+     {
+      "en": "Do not disturb a dog that is eating, sleeping or resting. Children should learn to leave it alone.",
+      "fr": "Ne dérangez pas un chien qui mange, dort ou se repose. Les enfants doivent apprendre à le laisser tranquille.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Provide a quiet space.",
+      "fr": "Prévoir un espace tranquille.",
+      "kind": "title"
+     },
+     {
+      "en": "Give the dog a place to retreat to, where children do not follow.",
+      "fr": "Offrez au chien un endroit où se retirer, où les enfants ne le suivent pas.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Breed never replaces supervision.",
+      "fr": "La race ne remplace pas la supervision.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-13-cohabitation",
+  "n": 283,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Other animals",
+   "fr": "Autres animaux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/1d26c482c5.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d4040d3a39.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/df979a5874.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/62dbeb304b.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b5e43a1608.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/665e90d051.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Prepare introductions.",
+      "fr": "Les présentations se préparent.",
+      "kind": "title"
+     },
+     {
+      "en": "Plan introductions between animals ahead of time, in a calm setting.",
+      "fr": "Préparez à l’avance les présentations entre animaux, dans un cadre calme.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep space between animals.",
+      "fr": "Garder de l’espace.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with distance, and reduce it gradually if both animals stay relaxed.",
+      "fr": "Commencez avec de la distance, et réduisez-la peu à peu si les deux animaux restent détendus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow room to retreat.",
+      "fr": "Laisser des possibilités de retrait.",
+      "kind": "title"
+     },
+     {
+      "en": "Each animal should be able to move away. Keep escape routes free.",
+      "fr": "Chaque animal doit pouvoir s’éloigner. Gardez les issues dégagées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Do not force a meeting.",
+      "fr": "Ne pas forcer la rencontre.",
+      "kind": "title"
+     },
+     {
+      "en": "Forcing animals to meet can create fear or conflict. Let them take their time.",
+      "fr": "Forcer une rencontre peut créer peur ou conflit. Laissez-leur le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange separate resources.",
+      "fr": "Organiser les ressources séparément.",
+      "kind": "title"
+     },
+     {
+      "en": "Give each animal its own bowls, beds and toys to avoid disputes.",
+      "fr": "Donnez à chaque animal ses propres gamelles, couchages et jouets pour éviter les conflits.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Adapt to the individual animals.",
+      "fr": "S’adapter aux individus.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-14-documents",
+  "n": 284,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Documents before adoption",
+   "fr": "Documents avant l’adoption"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/9be1ab115b.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/842977e805.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/83078bbb94.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c1c6a13566.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b4f0386569.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/26aad1c822.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Read the available records.",
+      "fr": "Lire le dossier disponible.",
+      "kind": "title"
+     },
+     {
+      "en": "Read the whole file: identity, vaccinations, examinations and test results.",
+      "fr": "Lisez tout le dossier : identité, vaccinations, examens et résultats de tests.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dog’s identity.",
+      "fr": "Vérifier l’identité du chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Check that the microchip, registration and papers match the dog in front of you.",
+      "fr": "Vérifiez que la puce, l’inscription et les papiers correspondent bien au chien que vous avez devant vous.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask about individual and family history.",
+      "fr": "Demander l’historique individuel et familial.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask about the puppy’s own health and its family’s, as far as the breeder knows it.",
+      "fr": "Interrogez sur la santé du chiot et celle de sa famille, dans la mesure où l’éleveur la connaît.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Choose tests suited to the breed.",
+      "fr": "Choisir les tests adaptés à la race.",
+      "kind": "title"
+     },
+     {
+      "en": "Each breed has its own recommended tests. Ask your vet or the breed club which apply.",
+      "fr": "Chaque race a ses propres tests recommandés. Demandez au vétérinaire ou au club de race lesquels s’appliquent.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check dates and results.",
+      "fr": "Vérifier les dates et les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "Check the date and the exact result of every test. Old results may no longer apply.",
+      "fr": "Vérifiez la date et le résultat exact de chaque test. Des résultats anciens peuvent ne plus être valables.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A test cannot guarantee all aspects of health.",
+      "fr": "Un test ne garantit pas toute la santé.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: The Cavalier Club",
+      "fr": "Sources : The Cavalier Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cavalier-15-engagement",
+  "n": 285,
+  "breeds": "cavalier",
+  "title": {
+   "en": "Preparing life together",
+   "fr": "Préparer la vie ensemble"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/093b84c206.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3ee24b6457.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/145d869449.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/da3275a7b3.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1d72b4fb57.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cad4d7d18e.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan a sustainable routine.",
+      "fr": "Prévoir une routine durable.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a daily routine you can really keep up for years.",
+      "fr": "Choisissez une routine quotidienne que vous pourrez vraiment tenir pendant des années.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for daily outings.",
+      "fr": "Du temps pour les sorties.",
+      "kind": "title"
+     },
+     {
+      "en": "Count the time for outings every day, in all weathers.",
+      "fr": "Comptez le temps des sorties chaque jour, par tous les temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for everyday care.",
+      "fr": "Du temps pour les soins.",
+      "kind": "title"
+     },
+     {
+      "en": "Feeding, grooming and cleaning add up. Include them in your daily schedule.",
+      "fr": "Repas, toilettage et nettoyage s’additionnent. Intégrez-les à votre emploi du temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan for costs and unexpected needs.",
+      "fr": "Prévoir les dépenses et les imprévus.",
+      "kind": "title"
+     },
+     {
+      "en": "Add up food, vet care and insurance, and keep a reserve for the unexpected.",
+      "fr": "Additionnez nourriture, soins vétérinaires et assurance, et gardez une réserve pour l’imprévu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange support when needed.",
+      "fr": "Organiser un relais si nécessaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Know who can help when you travel or fall ill: a friend, family or a sitter.",
+      "fr": "Sachez qui peut vous aider si vous partez ou tombez malade : un ami, la famille ou un gardien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Choose with your real life in mind.",
+      "fr": "Choisir selon votre vie réelle.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-01-activite",
+  "n": 286,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Daily activity",
+   "fr": "Activité au quotidien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/c8d677bbdf.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cb5720cda0.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/93a03a00c4.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/94af6d9cd2.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/5f23e7f2c2.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/eff2e66d24.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An active everyday companion.",
+      "fr": "Un chien actif au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "This breed can enjoy daily outings and play. Every dog is different, so watch your own dog’s energy.",
+      "fr": "Cette race peut apprécier sorties et jeux au quotidien. Chaque chien est différent : observez l’énergie du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for sniffing.",
+      "fr": "Laisser une place au flair.",
+      "kind": "title"
+     },
+     {
+      "en": "Sniffing walks let a dog explore at its own pace. For many dogs it is a calm, enriching way to spend time outdoors.",
+      "fr": "Les promenades de flair laissent le chien explorer à son rythme. Pour beaucoup, c’est une façon calme et enrichissante de profiter du dehors.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Movement involves the joints.",
+      "fr": "Bouger mobilise les articulations.",
+      "kind": "title"
+     },
+     {
+      "en": "Daily movement uses the joints. This simplified illustration shows where, and is not a diagnosis.",
+      "fr": "Le mouvement quotidien sollicite les articulations. Cette illustration simplifiée en montre la localisation, sans valeur de diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt activity to this dog.",
+      "fr": "Adapter l’effort à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Age, health and temperament change how much exercise suits a dog. Adjust gradually, and ask your vet if unsure.",
+      "fr": "L’âge, la santé et le tempérament changent l’effort adapté. Ajustez progressivement, et demandez au vétérinaire en cas de doute.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make time for quiet moments.",
+      "fr": "Prévoir des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Calm time after activity helps a dog settle. Plan rest as part of the day, not only exercise.",
+      "fr": "Un moment calme après l’effort aide le chien à se poser. Prévoyez le repos dans la journée, pas seulement l’exercice.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Can your routine make room for this?",
+      "fr": "Votre routine lui laisse-t-elle cette place ?",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-02-apprentissages",
+  "n": 287,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Learning and thinking",
+   "fr": "Apprendre et réfléchir"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/141b76cabc.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/47de3baced.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f1113ca0af.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/78b6666a7f.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3bc3b8a47b.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cd127ee30e.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Learn together, step by step.",
+      "fr": "Apprendre ensemble, pas à pas.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, relaxed sessions work best. Teach one small thing at a time and keep it positive.",
+      "fr": "Des séances courtes et détendues fonctionnent mieux. Enseignez une petite chose à la fois, dans la bonne humeur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Reward the behaviour you want.",
+      "fr": "Récompenser les comportements souhaités.",
+      "kind": "title"
+     },
+     {
+      "en": "Give a small reward right after the behaviour you want, so your dog links the two.",
+      "fr": "Donnez une petite récompense juste après le comportement souhaité, pour que le chien fasse le lien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Try a simple search game.",
+      "fr": "Proposer une recherche simple.",
+      "kind": "title"
+     },
+     {
+      "en": "Hiding treats in a snuffle mat or around the room gives your dog a gentle mental challenge.",
+      "fr": "Cacher des friandises dans un tapis de fouille ou dans la pièce offre au chien un défi mental tout en douceur.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Be clear and consistent.",
+      "fr": "Rester clair et cohérent.",
+      "kind": "title"
+     },
+     {
+      "en": "Use the same cue words and signals every time, and agree on them with everyone at home.",
+      "fr": "Utilisez les mêmes mots et les mêmes signaux à chaque fois, et mettez-vous d’accord avec toute la maison.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "End before interest fades.",
+      "fr": "S’arrêter avant de le lasser.",
+      "kind": "title"
+     },
+     {
+      "en": "Stop while your dog is still keen. A short, successful session beats a long, tiring one.",
+      "fr": "Arrêtez-vous tant que votre chien est motivé. Une séance courte et réussie vaut mieux qu’une longue et fatigante.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog learns at its own pace.",
+      "fr": "Chaque chien apprend à son rythme.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-03-repos",
+  "n": 288,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Rest and sleep",
+   "fr": "Repos et sommeil"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/8eb047ca25.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9990d928ea.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d436b03c3a.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/45345fea8d.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a5cf15e112.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0b05e107f9.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Make room for quiet time.",
+      "fr": "Prévoir aussi des moments calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Dogs need plenty of rest during the day. Plan calm periods alongside walks and play.",
+      "fr": "Les chiens ont besoin de beaucoup de repos dans la journée. Prévoyez des temps calmes en plus des sorties et des jeux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A place to retreat.",
+      "fr": "Un espace où se retirer.",
+      "kind": "title"
+     },
+     {
+      "en": "Give your dog a quiet place of its own, where it can go and not be disturbed.",
+      "fr": "Offrez à votre chien un endroit tranquille bien à lui, où il peut se retirer sans être dérangé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let sleeping dogs rest.",
+      "fr": "Laisser dormir sans le déranger.",
+      "kind": "title"
+     },
+     {
+      "en": "Avoid waking or handling a dog that is asleep. Rest helps it recharge.",
+      "fr": "Évitez de réveiller ou de manipuler un chien qui dort. Le repos l’aide à récupérer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Notice your dog’s own rhythm.",
+      "fr": "Observer son rythme individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs sleep more, some less. Observe when your dog is most active and when it rests.",
+      "fr": "Certains chiens dorment plus, d’autres moins. Observez quand le vôtre est actif et quand il se repose.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Anatomy does not explain everything.",
+      "fr": "L’anatomie n’explique pas tout.",
+      "kind": "title"
+     },
+     {
+      "en": "A simplified anatomy view cannot explain a dog’s behaviour or tiredness. Observe the individual dog.",
+      "fr": "Une vue anatomique simplifiée n’explique ni le comportement ni la fatigue d’un chien. Observez le chien lui-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Notice unusual changes.",
+      "fr": "Un changement inhabituel mérite attention.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: Dogs Trust",
+      "fr": "Sources : Dogs Trust",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-04-solitude",
+  "n": 289,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Learning to be alone",
+   "fr": "Apprendre à rester seul"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/c5a13684ee.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/de6a6ff22a.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ad95eae635.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/29e7eabb43.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a86f33b1d8.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/035104ac02.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Being alone takes practice.",
+      "fr": "Être seul, cela s’apprend.",
+      "kind": "title"
+     },
+     {
+      "en": "Staying alone is a skill dogs learn gradually. Build it up over time rather than all at once.",
+      "fr": "Rester seul est une habitude qui s’apprend progressivement. Construisez-la dans le temps, pas d’un coup.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Begin with brief separations.",
+      "fr": "Commencer par de courtes séparations.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with a few minutes, then increase slowly, as long as your dog stays relaxed.",
+      "fr": "Commencez par quelques minutes, puis allongez doucement, tant que votre chien reste détendu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe rather than assume.",
+      "fr": "Observer plutôt que supposer.",
+      "kind": "title"
+     },
+     {
+      "en": "Notice how your dog behaves when you leave and when you return, instead of assuming it is fine.",
+      "fr": "Observez le comportement de votre chien à votre départ et à votre retour, plutôt que de supposer que tout va bien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "There is no single pace for every dog.",
+      "fr": "Ne pas imposer un rythme unique.",
+      "kind": "title"
+     },
+     {
+      "en": "Some dogs adapt quickly, others need longer. Follow your dog’s own pace.",
+      "fr": "Certains chiens s’adaptent vite, d’autres ont besoin de plus de temps. Suivez le rythme du vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Seek help if your dog is distressed.",
+      "fr": "En cas de détresse, demander de l’aide.",
+      "kind": "title"
+     },
+     {
+      "en": "If your dog seems distressed when alone, talk to your vet or a qualified trainer or behaviourist.",
+      "fr": "Si votre chien semble en détresse quand il est seul, parlez-en à votre vétérinaire ou à un éducateur ou comportementaliste qualifié.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Plan realistic daily support.",
+      "fr": "Prévoir une organisation réaliste.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-05-socialisation",
+  "n": 290,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Discovering without forcing",
+   "fr": "Découvrir sans forcer"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/0b59470abc.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3d3bd32b29.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/a0a28ddb3d.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0ea05ff436.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2eda0e2255.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e072b538ef.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Discover gradually.",
+      "fr": "Découvrir progressivement.",
+      "kind": "title"
+     },
+     {
+      "en": "Introduce new places, sounds and people step by step, at a level your dog is comfortable with.",
+      "fr": "Présentez lieux, bruits et personnes nouveaux pas à pas, à un niveau où votre chien reste à l’aise.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow the choice to approach.",
+      "fr": "Laisser le choix d’approcher.",
+      "kind": "title"
+     },
+     {
+      "en": "Let your dog decide whether to approach something new. Forcing it can make worry worse.",
+      "fr": "Laissez votre chien décider d’approcher ou non. Le forcer peut aggraver son inquiétude.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep encounters calm.",
+      "fr": "Des rencontres calmes.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, calm meetings with calm people or dogs are easier to cope with than excited ones.",
+      "fr": "Des rencontres courtes et calmes avec des personnes ou des chiens calmes sont plus faciles à vivre que des rencontres agitées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adjust the environment.",
+      "fr": "Adapter l’environnement.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a quieter place or a greater distance if your dog seems overwhelmed.",
+      "fr": "Choisissez un endroit plus calme ou plus de distance si votre chien semble dépassé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Respect your dog’s signals.",
+      "fr": "Respecter ses signaux.",
+      "kind": "title"
+     },
+     {
+      "en": "Yawning, turning away or stiffening can mean discomfort. Give your dog space when you see them.",
+      "fr": "Bâiller, se détourner ou se raidir peut signaler un inconfort. Laissez de l’espace à votre chien quand vous les voyez.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Confidence cannot be forced.",
+      "fr": "La confiance ne se force pas.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-06-vigilance",
+  "n": 291,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Coat, skin and ears",
+   "fr": "Pelage, peau et oreilles"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/deabc01374.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b31916ed42.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7a785113e5.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c51fe55103.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/85d91a19db.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/769161c1e9.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Care is part of everyday life.",
+      "fr": "L’entretien fait partie du quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "Brushing, ear checks and nail care are small daily or weekly tasks. Plan them into your routine.",
+      "fr": "Brossage, contrôle des oreilles et soin des griffes sont de petites tâches quotidiennes ou hebdomadaires. Prévoyez-les dans votre routine.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Introduce handling gradually.",
+      "fr": "Prévoir des manipulations progressives.",
+      "kind": "title"
+     },
+     {
+      "en": "Short, gentle handling sessions make grooming and vet visits easier later.",
+      "fr": "De courtes séances de manipulation douce facilitent plus tard le toilettage et les visites chez le vétérinaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The skin lies beneath the coat.",
+      "fr": "La peau se trouve sous le pelage.",
+      "kind": "title"
+     },
+     {
+      "en": "Skin is not always visible through the coat. Part the hair to check it while grooming. This illustration is simplified.",
+      "fr": "La peau n’est pas toujours visible sous le poil. Écartez le poil pour la vérifier pendant le toilettage. Illustration simplifiée.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe without making a diagnosis.",
+      "fr": "Observer sans poser de diagnostic.",
+      "kind": "title"
+     },
+     {
+      "en": "Note changes such as redness or lumps and describe them to your vet. Do not try to diagnose them yourself.",
+      "fr": "Notez les changements comme une rougeur ou une boule et décrivez-les au vétérinaire. N’essayez pas de les diagnostiquer vous-même.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan care suited to this dog.",
+      "fr": "Prévoir les soins adaptés à ce chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Coat, ear and skin needs differ between dogs. Ask your vet or groomer what suits yours.",
+      "fr": "Les besoins du pelage, des oreilles et de la peau varient d’un chien à l’autre. Demandez au vétérinaire ou au toiletteur ce qui convient au vôtre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Make room for care in your routine.",
+      "fr": "Inclure ce temps dans votre routine.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-07-sante-a",
+  "n": 292,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Lens luxation",
+   "fr": "Luxation du cristallin"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/7b71e77e33.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b3f2234d50.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/3afb5b0a3b.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/650b4c3c06.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/238d439ad7.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d0a8d70e0d.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Primary lens luxation is a known risk.",
+      "fr": "La luxation primaire du cristallin est un risque connu.",
+      "kind": "title"
+     },
+     {
+      "en": "Primary lens luxation (PLL) is an inherited eye condition reported in Jack Russell Terriers.",
+      "fr": "La luxation primaire du cristallin (PLL) est une maladie oculaire héréditaire rapportée chez le Jack Russell.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "The lens can move out of its normal position.",
+      "fr": "Le cristallin peut quitter sa position normale.",
+      "kind": "title"
+     },
+     {
+      "en": "The lens sits behind the pupil. In PLL it can shift, which can cause pain and affect sight.",
+      "fr": "Le cristallin se trouve derrière la pupille. Dans la PLL il peut se déplacer, ce qui peut causer douleur et gêne visuelle.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the PLL DNA test result.",
+      "fr": "Demander le résultat ADN PLL.",
+      "kind": "title"
+     },
+     {
+      "en": "A DNA test for PLL exists. Ask for the parents’ results and have your vet explain what they mean.",
+      "fr": "Un test ADN existe pour la PLL. Demandez les résultats des parents et faites-vous expliquer ce qu’ils signifient.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: The Kennel Club",
+      "fr": "Sources : The Kennel Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-08-sante-b",
+  "n": 293,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Ataxia (LOA)",
+   "fr": "Ataxie (LOA)"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/b8e2b8f775.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/6a7c663bce.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4065f850ee.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7636da8baf.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/47b39f7e0f.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/f83ccfb5e1.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A targeted test is available for LOA.",
+      "fr": "Un test ciblé existe pour la LOA.",
+      "kind": "title"
+     },
+     {
+      "en": "Late-onset ataxia (LOA) is an inherited condition for which a DNA test exists.",
+      "fr": "L’ataxie tardive (LOA) est une maladie héréditaire pour laquelle un test ADN existe.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ataxia affects coordination.",
+      "fr": "Une ataxie affecte la coordination.",
+      "kind": "title"
+     },
+     {
+      "en": "Ataxia means unsteady movement. It can affect how a dog walks and balances. A vet must confirm it.",
+      "fr": "L’ataxie est un mouvement mal assuré. Elle peut affecter la marche et l’équilibre. Un vétérinaire doit la confirmer.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the test for the lineage and registry.",
+      "fr": "Vérifier le test adapté à la lignée et au registre.",
+      "kind": "title"
+     },
+     {
+      "en": "Tests differ between lineages. Ask which one applies to this dog and its registry.",
+      "fr": "Les tests diffèrent selon les lignées. Demandez lequel s’applique à ce chien et à son registre.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: The Kennel Club",
+      "fr": "Sources : The Kennel Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-09-sante-c",
+  "n": 294,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Ataxia (SCA)",
+   "fr": "Ataxie (SCA)"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/8b70ec2908.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/e2945bb9b7.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/2fcc47cfe8.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7197f37855.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/1c6f560225.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0ccd1ea14a.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "SCA is a separate concern from LOA.",
+      "fr": "La SCA est un sujet distinct de la LOA.",
+      "kind": "title"
+     },
+     {
+      "en": "Spinocerebellar ataxia (SCA) is another inherited condition. It is separate from late-onset ataxia.",
+      "fr": "L’ataxie spinocérébelleuse (SCA) est une autre maladie héréditaire, distincte de l’ataxie tardive.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "DNA screening targets a specific mutation.",
+      "fr": "Le dépistage ADN cible une mutation précise.",
+      "kind": "title"
+     },
+     {
+      "en": "A DNA test looks for one known mutation. A clear result does not exclude every health risk.",
+      "fr": "Un test ADN recherche une mutation connue. Un résultat normal n’écarte pas tous les risques de santé.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for the SCA test result.",
+      "fr": "Demander le résultat du test SCA.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask for the parents’ SCA results, and have your vet explain what they mean.",
+      "fr": "Demandez les résultats SCA des parents, et faites-vous expliquer ce qu’ils signifient.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: The Kennel Club",
+      "fr": "Sources : The Kennel Club",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-10-sante-d",
+  "n": 295,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Hearing",
+   "fr": "Audition"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/e84f79d97e.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/192454de93.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/92771aabf0.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/04a8a24fb7.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7f6077de07.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/19ce63afe5.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Hearing is among recommended checks.",
+      "fr": "L’audition fait partie des contrôles recommandés.",
+      "kind": "title"
+     },
+     {
+      "en": "Hearing is among the recommended checks for Jack Russell Terriers, since deafness can be inherited.",
+      "fr": "L’audition fait partie des contrôles recommandés pour le Jack Russell, car la surdité peut être héréditaire.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Locate the structure in the body.",
+      "fr": "Situer la structure dans le corps.",
+      "kind": "title"
+     },
+     {
+      "en": "This simplified illustration shows roughly where the structure sits in the body. It is not a diagnosis.",
+      "fr": "Cette illustration simplifiée montre à peu près où se trouve la structure dans le corps. Ce n’est pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "BAER testing measures an auditory response.",
+      "fr": "Le test BAER évalue une réponse auditive.",
+      "kind": "title"
+     },
+     {
+      "en": "A BAER test records how the brain responds to sound. It can show hearing in one or both ears.",
+      "fr": "Le test BAER enregistre la réponse du cerveau au son. Il peut montrer l’audition d’une oreille ou des deux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A risk does not predict an individual case.",
+      "fr": "Un risque ne prédit pas le cas individuel.",
+      "kind": "title"
+     },
+     {
+      "en": "A breed tendency does not mean a particular dog will be affected. Look at the individual dog and its family history.",
+      "fr": "Une tendance de race ne signifie pas qu’un chien précis sera touché. Regardez le chien et ses antécédents familiaux.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask for any available BAER report.",
+      "fr": "Demander le compte rendu BAER disponible.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask whether the puppy or its parents had a BAER test, and what it showed.",
+      "fr": "Demandez si le chiot ou ses parents ont passé un test BAER, et ce qu’il a montré.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A veterinarian interprets the results.",
+      "fr": "Le vétérinaire interprète les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: The Real Jack Russell",
+      "fr": "Sources : The Real Jack Russell",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-11-poids",
+  "n": 296,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Weight and feeding",
+   "fr": "Poids et alimentation"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/f833158fb7.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/b197f3c7ec.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c7e8cb3a9e.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4d0c8eecdd.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/cb69452e1d.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/39400a5a08.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Weight matters day to day.",
+      "fr": "Le poids compte au quotidien.",
+      "kind": "title"
+     },
+     {
+      "en": "A healthy weight helps a dog move comfortably. Weigh your dog regularly and note any change.",
+      "fr": "Un poids sain aide le chien à bouger à l’aise. Pesez votre chien régulièrement et notez les changements.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Observe body shape.",
+      "fr": "Observer la silhouette.",
+      "kind": "title"
+     },
+     {
+      "en": "You should be able to feel the ribs under a light layer of fat, and see a waist from above.",
+      "fr": "On doit sentir les côtes sous une fine couche de graisse, et voir une taille vu du dessus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Treats count too.",
+      "fr": "Les friandises comptent aussi.",
+      "kind": "title"
+     },
+     {
+      "en": "Treats add calories. Reduce the meal a little, or use part of the daily food as rewards.",
+      "fr": "Les friandises apportent des calories. Réduisez un peu le repas, ou utilisez une partie de la ration comme récompense.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Different tissues lie beneath the skin.",
+      "fr": "Sous la peau, des tissus différents.",
+      "kind": "title"
+     },
+     {
+      "en": "Under the skin lie fat, muscle and bone. This illustration is a simplified locator, not a diagnosis.",
+      "fr": "Sous la peau se trouvent graisse, muscle et os. Cette illustration simplifiée est un repère, pas un diagnostic.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Adapt to age and activity.",
+      "fr": "Adapter à l’âge et à l’activité.",
+      "kind": "title"
+     },
+     {
+      "en": "Food needs change with age, activity and health. Ask your vet how much and what to feed.",
+      "fr": "Les besoins alimentaires changent avec l’âge, l’activité et la santé. Demandez au vétérinaire quoi donner et en quelle quantité.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Every dog has individual needs.",
+      "fr": "Chaque chien a ses besoins.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-12-enfants",
+  "n": 297,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Children and dog",
+   "fr": "Enfants et chien"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/d7db8f3ca4.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bbcdf1484d.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ecb250dc9a.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/de3affaf4d.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c8c592ce96.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/267ff28ab7.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "A relationship built over time.",
+      "fr": "Une relation qui se construit.",
+      "kind": "title"
+     },
+     {
+      "en": "A child and a dog need time to get to know each other. Do not rush the relationship.",
+      "fr": "Un enfant et un chien ont besoin de temps pour se connaître. Ne précipitez pas la relation.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "An adult actively supervises.",
+      "fr": "Un adulte supervise activement.",
+      "kind": "title"
+     },
+     {
+      "en": "An adult should stay close and pay attention whenever a child and a dog are together.",
+      "fr": "Un adulte doit rester proche et attentif chaque fois qu’un enfant et un chien sont ensemble.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Let the dog approach.",
+      "fr": "Laisser le chien venir.",
+      "kind": "title"
+     },
+     {
+      "en": "Teach children to let the dog come to them, and to stop if the dog moves away.",
+      "fr": "Apprenez aux enfants à laisser le chien venir à eux, et à s’arrêter s’il s’éloigne.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Protect resting time.",
+      "fr": "Protéger son repos.",
+      "kind": "title"
+     },
+     {
+      "en": "Do not disturb a dog that is eating, sleeping or resting. Children should learn to leave it alone.",
+      "fr": "Ne dérangez pas un chien qui mange, dort ou se repose. Les enfants doivent apprendre à le laisser tranquille.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Provide a quiet space.",
+      "fr": "Prévoir un espace tranquille.",
+      "kind": "title"
+     },
+     {
+      "en": "Give the dog a place to retreat to, where children do not follow.",
+      "fr": "Offrez au chien un endroit où se retirer, où les enfants ne le suivent pas.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Breed never replaces supervision.",
+      "fr": "La race ne remplace pas la supervision.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AKC",
+      "fr": "Sources : AKC",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-13-cohabitation",
+  "n": 298,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Other animals",
+   "fr": "Autres animaux"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/5a953bc389.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/4f95511ab8.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/53d4c4083b.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/ea55e6a6e8.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bae8673ff4.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/c175d9241e.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Prepare introductions.",
+      "fr": "Les présentations se préparent.",
+      "kind": "title"
+     },
+     {
+      "en": "Plan introductions between animals ahead of time, in a calm setting.",
+      "fr": "Préparez à l’avance les présentations entre animaux, dans un cadre calme.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Keep space between animals.",
+      "fr": "Garder de l’espace.",
+      "kind": "title"
+     },
+     {
+      "en": "Start with distance, and reduce it gradually if both animals stay relaxed.",
+      "fr": "Commencez avec de la distance, et réduisez-la peu à peu si les deux animaux restent détendus.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Allow room to retreat.",
+      "fr": "Laisser des possibilités de retrait.",
+      "kind": "title"
+     },
+     {
+      "en": "Each animal should be able to move away. Keep escape routes free.",
+      "fr": "Chaque animal doit pouvoir s’éloigner. Gardez les issues dégagées.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Do not force a meeting.",
+      "fr": "Ne pas forcer la rencontre.",
+      "kind": "title"
+     },
+     {
+      "en": "Forcing animals to meet can create fear or conflict. Let them take their time.",
+      "fr": "Forcer une rencontre peut créer peur ou conflit. Laissez-leur le temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange separate resources.",
+      "fr": "Organiser les ressources séparément.",
+      "kind": "title"
+     },
+     {
+      "en": "Give each animal its own bowls, beds and toys to avoid disputes.",
+      "fr": "Donnez à chaque animal ses propres gamelles, couchages et jouets pour éviter les conflits.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Adapt to the individual animals.",
+      "fr": "S’adapter aux individus.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-14-documents",
+  "n": 299,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Documents before adoption",
+   "fr": "Documents avant l’adoption"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/940d55cce8.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/abe48e5882.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/d2d2a53a51.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/be74861bdd.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/666c20bd2a.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/bf8a031622.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Read the available records.",
+      "fr": "Lire le dossier disponible.",
+      "kind": "title"
+     },
+     {
+      "en": "Read the whole file: identity, vaccinations, examinations and test results.",
+      "fr": "Lisez tout le dossier : identité, vaccinations, examens et résultats de tests.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check the dog’s identity.",
+      "fr": "Vérifier l’identité du chien.",
+      "kind": "title"
+     },
+     {
+      "en": "Check that the microchip, registration and papers match the dog in front of you.",
+      "fr": "Vérifiez que la puce, l’inscription et les papiers correspondent bien au chien que vous avez devant vous.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Ask about individual and family history.",
+      "fr": "Demander l’historique individuel et familial.",
+      "kind": "title"
+     },
+     {
+      "en": "Ask about the puppy’s own health and its family’s, as far as the breeder knows it.",
+      "fr": "Interrogez sur la santé du chiot et celle de sa famille, dans la mesure où l’éleveur la connaît.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Choose tests suited to the breed.",
+      "fr": "Choisir les tests adaptés à la race.",
+      "kind": "title"
+     },
+     {
+      "en": "Each breed has its own recommended tests. Ask your vet or the breed club which apply.",
+      "fr": "Chaque race a ses propres tests recommandés. Demandez au vétérinaire ou au club de race lesquels s’appliquent.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Check dates and results.",
+      "fr": "Vérifier les dates et les résultats.",
+      "kind": "title"
+     },
+     {
+      "en": "Check the date and the exact result of every test. Old results may no longer apply.",
+      "fr": "Vérifiez la date et le résultat exact de chaque test. Des résultats anciens peuvent ne plus être valables.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "A test cannot guarantee all aspects of health.",
+      "fr": "Un test ne garantit pas toute la santé.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: The Kennel Club, The Real Jack Russell",
+      "fr": "Sources : The Kennel Club, The Real Jack Russell",
+      "kind": "source"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "jackrussell-15-engagement",
+  "n": 300,
+  "breeds": "jackrussell",
+  "title": {
+   "en": "Preparing life together",
+   "fr": "Préparer la vie ensemble"
+  },
+  "duration": 30,
+  "xf": 0.4,
+  "textIn": 0.4,
+  "textOut": 0.3,
+  "fadeInFirst": 0.5,
+  "images": [
+   {
+    "src": "media/capsules/55c74eede1.webp",
+    "start": 0,
+    "end": 5,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/0698b34c4c.webp",
+    "start": 5,
+    "end": 10,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/9b52e1bac1.webp",
+    "start": 10,
+    "end": 15,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/212401f352.webp",
+    "start": 15,
+    "end": 20,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/42718d3d70.webp",
+    "start": 20,
+    "end": 25,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   },
+   {
+    "src": "media/capsules/7539f3aba4.webp",
+    "start": 25,
+    "end": 30,
+    "s0": 1,
+    "s1": 1.03,
+    "p0": 0,
+    "p1": 0,
+    "ox": 0.5,
+    "oy": 0.5
+   }
+  ],
+  "texts": [
+   {
+    "id": "t1",
+    "start": 0.2,
+    "end": 4.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan a sustainable routine.",
+      "fr": "Prévoir une routine durable.",
+      "kind": "title"
+     },
+     {
+      "en": "Choose a daily routine you can really keep up for years.",
+      "fr": "Choisissez une routine quotidienne que vous pourrez vraiment tenir pendant des années.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t2",
+    "start": 5.2,
+    "end": 9.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for daily outings.",
+      "fr": "Du temps pour les sorties.",
+      "kind": "title"
+     },
+     {
+      "en": "Count the time for outings every day, in all weathers.",
+      "fr": "Comptez le temps des sorties chaque jour, par tous les temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t3",
+    "start": 10.2,
+    "end": 14.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Time for everyday care.",
+      "fr": "Du temps pour les soins.",
+      "kind": "title"
+     },
+     {
+      "en": "Feeding, grooming and cleaning add up. Include them in your daily schedule.",
+      "fr": "Repas, toilettage et nettoyage s’additionnent. Intégrez-les à votre emploi du temps.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t4",
+    "start": 15.2,
+    "end": 19.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Plan for costs and unexpected needs.",
+      "fr": "Prévoir les dépenses et les imprévus.",
+      "kind": "title"
+     },
+     {
+      "en": "Add up food, vet care and insurance, and keep a reserve for the unexpected.",
+      "fr": "Additionnez nourriture, soins vétérinaires et assurance, et gardez une réserve pour l’imprévu.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t5",
+    "start": 20.2,
+    "end": 24.8,
+    "persist": false,
+    "lines": [
+     {
+      "en": "Arrange support when needed.",
+      "fr": "Organiser un relais si nécessaire.",
+      "kind": "title"
+     },
+     {
+      "en": "Know who can help when you travel or fall ill: a friend, family or a sitter.",
+      "fr": "Sachez qui peut vous aider si vous partez ou tombez malade : un ami, la famille ou un gardien.",
+      "kind": "body"
+     }
+    ]
+   },
+   {
+    "id": "t6",
+    "start": 25,
+    "end": 30,
+    "persist": true,
+    "fastIn": 0.4,
+    "lines": [
+     {
+      "en": "Choose with your real life in mind.",
+      "fr": "Choisir selon votre vie réelle.",
+      "kind": "title"
+     },
+     {
+      "en": "General information, not a substitute for veterinary advice.",
+      "fr": "Information générale, ne remplace pas l’avis d’un vétérinaire.",
+      "kind": "small"
+     },
+     {
+      "en": "Sources: AAHA",
+      "fr": "Sources : AAHA",
       "kind": "source"
      }
     ]

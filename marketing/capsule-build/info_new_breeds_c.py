@@ -1,0 +1,45 @@
+# Info lines, part C: weight, children, other animals, documents, commitment.
+INFO_C = {
+# ---- 11 poids
+"Weight matters day to day.": ("A healthy weight helps a dog move comfortably. Weigh your dog regularly and note any change.", "Un poids sain aide le chien à bouger à l’aise. Pesez votre chien régulièrement et notez les changements."),
+"Observe body shape.": ("You should be able to feel the ribs under a light layer of fat, and see a waist from above.", "On doit sentir les côtes sous une fine couche de graisse, et voir une taille vu du dessus."),
+"Treats count too.": ("Treats add calories. Reduce the meal a little, or use part of the daily food as rewards.", "Les friandises apportent des calories. Réduisez un peu le repas, ou utilisez une partie de la ration comme récompense."),
+"Different tissues lie beneath the skin.": ("Under the skin lie fat, muscle and bone. This illustration is a simplified locator, not a diagnosis.", "Sous la peau se trouvent graisse, muscle et os. Cette illustration simplifiée est un repère, pas un diagnostic."),
+"Adapt to age and activity.": ("Food needs change with age, activity and health. Ask your vet how much and what to feed.", "Les besoins alimentaires changent avec l’âge, l’activité et la santé. Demandez au vétérinaire quoi donner et en quelle quantité."),
+# ---- 12 enfants
+"A relationship built over time.": ("A child and a dog need time to get to know each other. Do not rush the relationship.", "Un enfant et un chien ont besoin de temps pour se connaître. Ne précipitez pas la relation."),
+"An adult actively supervises.": ("An adult should stay close and pay attention whenever a child and a dog are together.", "Un adulte doit rester proche et attentif chaque fois qu’un enfant et un chien sont ensemble."),
+"Let the dog approach.": ("Teach children to let the dog come to them, and to stop if the dog moves away.", "Apprenez aux enfants à laisser le chien venir à eux, et à s’arrêter s’il s’éloigne."),
+"Protect resting time.": ("Do not disturb a dog that is eating, sleeping or resting. Children should learn to leave it alone.", "Ne dérangez pas un chien qui mange, dort ou se repose. Les enfants doivent apprendre à le laisser tranquille."),
+"Provide a quiet space.": ("Give the dog a place to retreat to, where children do not follow.", "Offrez au chien un endroit où se retirer, où les enfants ne le suivent pas."),
+# ---- 13 cohabitation
+"Prepare introductions.": ("Plan introductions between animals ahead of time, in a calm setting.", "Préparez à l’avance les présentations entre animaux, dans un cadre calme."),
+"Keep space between animals.": ("Start with distance, and reduce it gradually if both animals stay relaxed.", "Commencez avec de la distance, et réduisez-la peu à peu si les deux animaux restent détendus."),
+"Allow room to retreat.": ("Each animal should be able to move away. Keep escape routes free.", "Chaque animal doit pouvoir s’éloigner. Gardez les issues dégagées."),
+"Do not force a meeting.": ("Forcing animals to meet can create fear or conflict. Let them take their time.", "Forcer une rencontre peut créer peur ou conflit. Laissez-leur le temps."),
+"Arrange separate resources.": ("Give each animal its own bowls, beds and toys to avoid disputes.", "Donnez à chaque animal ses propres gamelles, couchages et jouets pour éviter les conflits."),
+# ---- 14 documents
+"Read the records before committing.": ("Read the health and identity documents before you decide, not after.", "Lisez les documents de santé et d’identité avant de vous décider, pas après."),
+"Check the dog’s identity.": ("Check that the microchip, registration and papers match the dog in front of you.", "Vérifiez que la puce, l’inscription et les papiers correspondent bien au chien que vous avez devant vous."),
+"Ask for the available history.": ("Ask for vaccination, veterinary and family history, as far as it is available.", "Demandez l’historique de vaccination, vétérinaire et familial, dans la mesure où il existe."),
+"Distinguish examinations from DNA tests.": ("An examination looks at a dog’s body now. A DNA test looks for specific genetic changes. They answer different questions.", "Un examen regarde le corps du chien aujourd’hui. Un test ADN cherche des variations génétiques précises. Ce sont deux questions différentes."),
+"Parents: hips, elbows, eyes and heart.": ("For this breed, ask about the parents’ hip, elbow, eye and heart results.", "Pour cette race, interrogez sur les résultats des hanches, coudes, yeux et cœur des parents."),
+"Check available records.": ("Ask for the records that exist, including those of the parents.", "Demandez les documents qui existent, y compris ceux des parents."),
+"Confirm the Standard variety.": ("Poodles come in several sizes, and some health tests differ. Confirm which variety this dog is.", "Le Caniche existe en plusieurs tailles, et certains tests de santé diffèrent. Confirmez la variété de ce chien."),
+"Hips, eyes and thyroid.": ("Ask about hip, eye and thyroid screening for the parents.", "Interrogez sur le dépistage des hanches, des yeux et de la thyroïde chez les parents."),
+"NEwS and vWD1 are targeted tests.": ("Some DNA tests look for specific conditions, such as NEwS and von Willebrand disease type 1. Ask which were done.", "Certains tests ADN recherchent des maladies précises, comme le NEwS et la maladie de von Willebrand de type 1. Demandez lesquels ont été faits."),
+"Check identity and results.": ("Check that the identity and the test results belong to this dog or its parents.", "Vérifiez que l’identité et les résultats de tests concernent bien ce chien ou ses parents."),
+"JLPP: ask for the DNA test result.": ("JLPP is an inherited condition of Rottweilers that affects the nerves, and a DNA test exists. Ask for the result.", "La JLPP est une maladie héréditaire du Rottweiler qui touche les nerfs, et un test ADN existe. Demandez le résultat."),
+"MLS: ask for the DNA test result.": ("Ask for the parents’ MLS DNA test results, and have your vet explain them.", "Demandez les résultats du test ADN MLS des parents, et faites-les expliquer par votre vétérinaire."),
+"Discuss hips, eyes, heart and thyroid screening.": ("Ask the breeder which of these screenings were done on the parents.", "Demandez à l’éleveur lesquels de ces dépistages ont été faits chez les parents."),
+"Read the available records.": ("Read the whole file: identity, vaccinations, examinations and test results.", "Lisez tout le dossier : identité, vaccinations, examens et résultats de tests."),
+"Ask about individual and family history.": ("Ask about the puppy’s own health and its family’s, as far as the breeder knows it.", "Interrogez sur la santé du chiot et celle de sa famille, dans la mesure où l’éleveur la connaît."),
+"Choose tests suited to the breed.": ("Each breed has its own recommended tests. Ask your vet or the breed club which apply.", "Chaque race a ses propres tests recommandés. Demandez au vétérinaire ou au club de race lesquels s’appliquent."),
+"Check dates and results.": ("Check the date and the exact result of every test. Old results may no longer apply.", "Vérifiez la date et le résultat exact de chaque test. Des résultats anciens peuvent ne plus être valables."),
+# ---- 15 engagement
+"Plan a sustainable routine.": ("Choose a daily routine you can really keep up for years.", "Choisissez une routine quotidienne que vous pourrez vraiment tenir pendant des années."),
+"Time for daily outings.": ("Count the time for outings every day, in all weathers.", "Comptez le temps des sorties chaque jour, par tous les temps."),
+"Time for everyday care.": ("Feeding, grooming and cleaning add up. Include them in your daily schedule.", "Repas, toilettage et nettoyage s’additionnent. Intégrez-les à votre emploi du temps."),
+"Plan for costs and unexpected needs.": ("Add up food, vet care and insurance, and keep a reserve for the unexpected.", "Additionnez nourriture, soins vétérinaires et assurance, et gardez une réserve pour l’imprévu."),
+"Arrange support when needed.": ("Know who can help when you travel or fall ill: a friend, family or a sitter.", "Sachez qui peut vous aider si vous partez ou tombez malade : un ami, la famille ou un gardien."),
+}

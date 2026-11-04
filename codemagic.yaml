@@ -57,13 +57,18 @@ workflows:
           NEW_BUILD=$((BUILD_NUMBER + 1))
           sed -i '' "s/CURRENT_PROJECT_VERSION = [0-9]*;/CURRENT_PROJECT_VERSION = $NEW_BUILD;/g" ios/App/App.xcodeproj/project.pbxproj
           echo "Set iOS build number to $NEW_BUILD"
-          sed -i '' 's/MARKETING_VERSION = [0-9.]*;/MARKETING_VERSION = 1.2;/g' ios/App/App.xcodeproj/project.pbxproj
-          echo "Set iOS marketing version to 1.2"
+          sed -i '' 's/MARKETING_VERSION = [0-9.]*;/MARKETING_VERSION = 1.3;/g' ios/App/App.xcodeproj/project.pbxproj
+          echo "Set iOS marketing version to 1.3"
       - name: Declare export compliance (no custom encryption)
         script: |
           PLIST="ios/App/App/Info.plist"
           /usr/libexec/PlistBuddy -c "Delete :ITSAppUsesNonExemptEncryption" "$PLIST" 2>/dev/null || true
           /usr/libexec/PlistBuddy -c "Add :ITSAppUsesNonExemptEncryption bool false" "$PLIST"
+          # Needed by the photo picker on the dog's profile (camera and photo library). Without these strings iOS closes the app when the picker opens.
+          /usr/libexec/PlistBuddy -c "Delete :NSCameraUsageDescription" "$PLIST" 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :NSCameraUsageDescription string DogTrial uses the camera so you can take a photo of your dog for its profile." "$PLIST"
+          /usr/libexec/PlistBuddy -c "Delete :NSPhotoLibraryUsageDescription" "$PLIST" 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string DogTrial uses your photos so you can choose a picture of your dog for its profile." "$PLIST"
       - name: Install CocoaPods
         script: |
           cd ios/App && pod install
