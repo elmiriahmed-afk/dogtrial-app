@@ -85,6 +85,7 @@
   /* ---- brand strip ---- */
   .brand{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:18px;}
   .trial-banner{margin:-6px 0 14px; padding:8px 12px; border-radius:12px; background:var(--accent-soft); color:var(--accent); font-size:13px; font-weight:600; text-align:center;}
+  .trial-banner-link{background:none; border:0; padding:0 0 0 4px; color:var(--accent); font:inherit; font-weight:700; text-decoration:underline; cursor:pointer;}
   .brand-wordmark{font-family:"DM Serif Display",Georgia,serif; font-weight:700; font-size:21px; color:var(--ink); letter-spacing:-.4px; line-height:1;}
   .brand-dayline{font-family:'DM Serif Display',Georgia,serif; font-weight:700; font-size:8.5px; letter-spacing:.03em; text-transform:uppercase; color:var(--ink-faint); margin-top:5px; line-height:1.35;}
   .brand-right{display:flex; align-items:center; gap:8px; flex:none; padding-top:1px;}
@@ -1963,6 +1964,9 @@
       lt_care_notice_web: "Lock-screen reminders work in the iPhone and Android apps, not in the browser.",
       pw_title: "Try Premium free for 7 days",
       pw_end_title: "Your free week is over",
+      pw_info_title: "Keep Premium after your free week",
+      pw_reason_trial_info: "Everything is unlocked during your free week. Subscribe now to keep it afterwards, or continue with the free version when the week ends.",
+      trial_see: "See Premium",
       pw_reason_trial_end: "Keep Premium to unlock every breed, reminders, walk tools, videos and photos. Or continue with the free version: one breed (Labrador) and the simulation basics.",
       pw_after_trial_end: "Cancel anytime.",
       pw_cta_end: "Continue with Premium",
@@ -2556,6 +2560,9 @@
       lt_care_notice_web: "Les rappels sur écran verrouillé fonctionnent dans les apps iPhone et Android, pas dans le navigateur.",
       pw_title: "Essayez Premium gratuitement pendant 7 jours",
       pw_end_title: "Votre semaine gratuite est terminée",
+      pw_info_title: "Gardez Premium après votre semaine gratuite",
+      pw_reason_trial_info: "Tout est débloqué pendant votre semaine gratuite. Abonnez-vous dès maintenant pour le garder ensuite, ou continuez avec la version gratuite à la fin de la semaine.",
+      trial_see: "Voir Premium",
       pw_reason_trial_end: "Gardez Premium pour débloquer toutes les races, les rappels, les outils de promenade, les vidéos et les photos. Ou continuez avec la version gratuite : une seule race (Labrador) et les bases de la simulation.",
       pw_after_trial_end: "Annulable à tout moment.",
       pw_cta_end: "Continuer avec Premium",
@@ -4048,7 +4055,7 @@
     var n = graceDaysLeft(), kind = graceKind() === "trial" ? "trial" : "grace";
     var txt = n <= 1 ? tr(kind+'_banner_last', kind === "trial" ? "Your free Premium week: last day" : "Premium is free for you: last day")
                      : tr(kind+'_banner', kind === "trial" ? "Your free Premium week: {n} days left" : "Premium is free for you: {n} days left").replace("{n}", String(n));
-    return '<div class="trial-banner">'+esc(txt)+'</div>';
+    return '<div class="trial-banner">'+esc(txt)+' <button class="trial-banner-link" data-open-paywall="trial_info">'+esc(tr('trial_see',"See Premium"))+'</button></div>';
   }
   // After the free period: show the choice (Premium or free) once, never again by itself.
   function trialChoiceDue(){
@@ -4139,10 +4146,10 @@
       ["camera","pw_feat_photos","Photos and moments"]].map(function(f){
       return '<div class="cost-row" style="align-items:center; gap:10px; justify-content:flex-start;"><span style="display:inline-flex; color:var(--accent-bright);">'+icon(f[0],18)+'</span><b style="font-weight:600;">'+tr(f[1],f[2])+'</b></div>';
     }).join("");
-    var ended = paywallReason === "trial_end";
+    var ended = paywallReason === "trial_end" || paywallReason === "trial_info";   // free-week screens: no "start free week" wording
     var reasonLine = paywallReason ? '<p class="muted" style="margin:0 2px 12px;">'+tr('pw_reason_'+paywallReason, "")+'</p>' : "";
     return '<button class="btn-ghost" id="paywall-close">'+tr('btn_back','Back')+'</button>' +
-      '<div class="page-header" style="padding-top:10px;"><h1>'+(ended ? tr('pw_end_title',"Your free week is over") : tr('pw_title',"Try Premium free for 7 days"))+'</h1></div>' +
+      '<div class="page-header" style="padding-top:10px;"><h1>'+(paywallReason === "trial_end" ? tr('pw_end_title',"Your free week is over") : paywallReason === "trial_info" ? tr('pw_info_title',"Keep Premium after your free week") : tr('pw_title',"Try Premium free for 7 days"))+'</h1></div>' +
       reasonLine +
       '<div class="card">' + feats + '</div>' +
       '<div class="card" style="text-align:center;">' +
